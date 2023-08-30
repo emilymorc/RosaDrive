@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { LogginComponent } from './loggin/loggin.component';
-import { CreateAccountComponent } from './create-account/create-account.component';
+import { CreateAccountComponent } from './menu/create-account/create-account.component';
 
 @NgModule({
   declarations: [
