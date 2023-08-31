@@ -21,6 +21,7 @@ body {
 }
 
 .login-form input[type="text"],
+.login-form input[type="email"],
 .login-form input[type="password"] {
   padding: 10px;
   width: 60%; /* Ancho ajustado */

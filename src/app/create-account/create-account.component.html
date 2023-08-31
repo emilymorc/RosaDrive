@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+<div class="header">
+  <h1>Crear Usuario</h1>
+</div>
+
+<div >
+  <form (submit)="signUp()" >
+    <div class="login-form">
+    <label class="label">Nombre</label>
+    <br>
+    <input type="text" id="firstName" [(ngModel)]="password" name="firstName" required type="text">
+    <br>
+
+    <label class="label">Apellido</label>
+    <br>
+    <input type="text" id="firstName" [(ngModel)]="password" name="firstName" required type="text" type="text"  required>
+    <br>
+
+
+    <label for="email" class="label">Correo Electrónico</label>
+    <br>
+    <input type="email" id="email" [(ngModel)]="email" name="email" required>
+    <br>
+
+    <label  class="label">Contraseña</label>
+    <br>
+    <input type="password" id="password" [(ngModel)]="password" name="password" requiredtype="password" required>
+    <br>
+
+    </div>
+    <button class="buttonSave" type="submit">Crear</button>
+
+  </form>
+</div>
+
+</body>
+</html>
+
