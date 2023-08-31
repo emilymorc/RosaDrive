@@ -1,0 +1,22 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.encabezado {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px; /* Altura del encabezado */
+  background-color: #b4b4b4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.titulo {
+  color: #202123;
+  font-size: 2rem;
+}

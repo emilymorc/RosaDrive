@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import {CreateAccountComponent} from "./menu/create-account/create-account.component";
+import {CreateAccountComponent} from "./create-account/create-account.component";
 import {UserModel} from "./loggin/user.model";
 import {HttpClient} from "@angular/common/http";
 
