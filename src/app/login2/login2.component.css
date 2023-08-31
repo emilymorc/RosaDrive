@@ -1,0 +1,49 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilos para el encabezado */
+.header {
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Estilos para el logo */
+.logo {
+  position: absolute;
+  top: 5px;
+  left: 20px;
+  max-width: 70px; /* Tamaño máximo del logo */
+  height: auto;
+}
+
+/* Estilos para el formulario */
+.login-form {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.login-form input[type="text"],
+.login-form input[type="email"],
+.login-form input[type="password"] {
+  padding: 10px;
+  width: 20%; /* Ancho ajustado */
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.login-form button {
+  padding: 10px 20px;
+  background-color: #0062A9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-inside: 30px;
+}
