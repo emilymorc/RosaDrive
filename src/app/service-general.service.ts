@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import {CreateAccountComponent} from "./menu/create-account/create-account.component";
+import {CreateAccountComponent} from "./create-account/create-account.component";
 import {UserModel} from "./loggin/user.model";
 import {HttpClient} from "@angular/common/http";
 
@@ -15,7 +15,7 @@ export class ServiceGeneralService {
   constructor(private http: HttpClient) { }
 
   getUserValidation2(): Promise<boolean> {
-    const key = this.formDataUser.username;
+    const key = this.formDataUser.email;
     const value = this.formDataUser.password;
     const url = `${this.APIUrl}/Users/Login?email=${key}&password=${value}`;
 

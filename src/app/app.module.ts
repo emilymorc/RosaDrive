@@ -3,9 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { LogginComponent } from './loggin/loggin.component';
-import { CreateAccountComponent } from './create-account/create-account.component';
 import {SidenavComponent} from "./sidenav/sidenav.component";
-import {RouterLink} from "@angular/router";
 import {BodyComponent} from "./body/body.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {ProductsComponent} from "./products/products.component";
@@ -49,15 +47,11 @@ import {FormsModule} from "@angular/forms";
         HttpClientModule,
         CommonModule,
         FormsModule,
-        RouterLink
+        RouterLink,
+      BrowserAnimationsModule,
+      AppRoutingModule
     ],
   providers: [AppComponent],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule
-  ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
