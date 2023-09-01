@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { LogginComponent } from './loggin/loggin.component';
 import {SidenavComponent} from "./sidenav/sidenav.component";
 import {BodyComponent} from "./body/body.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
@@ -21,12 +20,12 @@ import {RouterLink, RouterOutlet} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
+import { ViewUsersComponent } from './view-users/view-users.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LogginComponent,
     AppComponent,
     BodyComponent,
     SidenavComponent,
@@ -39,7 +38,8 @@ import {FormsModule} from "@angular/forms";
     SettingsComponent,
     SublevelMenuComponent,
     CreateAccountComponent,
-    Login2Component
+    Login2Component,
+    ViewUsersComponent
   ],
     imports: [
         BrowserModule,

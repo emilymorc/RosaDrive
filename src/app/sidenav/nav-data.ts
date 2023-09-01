@@ -16,11 +16,11 @@ export const navbarData: INavbarData[] = [
         label: 'Crear',
       },
       {
-        routeLink: 'product/level1.2',
+        routeLink: 'modifyAccount',
         label: 'Modificar',
       },
       {
-        routeLink: 'product/level1.2',
+        routeLink: 'view-users',
         label: 'Ver',
       }
     ]
