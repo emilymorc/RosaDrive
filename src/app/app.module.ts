@@ -23,6 +23,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import { ToastrModule } from 'ngx-toastr';
+import { ViewUsersComponent } from './view-users/view-users.component';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { ToastrModule } from 'ngx-toastr';
     SettingsComponent,
     SublevelMenuComponent,
     CreateAccountComponent,
-    Login2Component
+    Login2Component,
+    ViewUsersComponent
   ],
     imports: [
         BrowserModule,

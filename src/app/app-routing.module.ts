@@ -7,8 +7,14 @@ import {BodyComponent} from "./body/body.component";
 import {RouterModule, Routes} from "@angular/router";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {PagesComponent} from "./pages/pages.component"
+import {ViewUsersComponent} from "./view-users/view-users.component";
+import {ModifyAccountComponet} from "./modify-account/modify-account.component";
 
 const routes: Routes = [
+  {path: '.', component:Login2Component},
+  {path: 'create', component: CreateAccountComponent},
+  {path: 'view-users', component: ViewUsersComponent},
+  {path: 'modifyAccount', component: ModifyAccountComponet}
   {path: '', component:Login2Component},
   {
     path: 'dashboard',
