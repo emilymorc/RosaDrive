@@ -24,6 +24,8 @@ import {FormsModule} from "@angular/forms";
 import { ToastrModule } from 'ngx-toastr';
 /*import { ViewUsersComponent } from './view-users/view-users.component';
 import {ModifyAccountComponet} from "./modify-account/modify-account.component";*/
+import {ViewUsersComponent} from "./view-users/view-users.component";
+import {ModifyAccountComponet} from "./modify-account/modify-account.component";
 import { LandingComponent } from './landing/landing.component';
 
 
@@ -44,8 +46,8 @@ import { LandingComponent } from './landing/landing.component';
     SublevelMenuComponent,
     CreateAccountComponent,
     Login2Component,
-/*    ViewUsersComponent,
-    ModifyAccountComponet,*/
+    ViewUsersComponent,
+    ModifyAccountComponet,
     LandingComponent
   ],
     imports: [

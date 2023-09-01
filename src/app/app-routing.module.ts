@@ -9,6 +9,7 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
 import {PagesComponent} from "./pages/pages.component"
 import {ViewUsersComponent} from "./view-users/view-users.component";
 import {ModifyAccountComponet} from "./modify-account/modify-account.component";
+import {LandingComponent} from "./landing/landing.component";
 
 
 const routes: Routes = [
@@ -24,7 +25,10 @@ const routes: Routes = [
       { path: 'sidebar', component: SidenavComponent },
       { path: 'AppBody', component:BodyComponent },
       { path: 'create', component: CreateAccountComponent},
-      { path: 'pages', component: PagesComponent}
+      { path: 'pages', component: PagesComponent},
+      {path: 'view-users', component: ViewUsersComponent},
+      {path: 'modifyAccount', component: ModifyAccountComponet},
+      {path: 'landing', component: LandingComponent}
     ]
   },
 ];

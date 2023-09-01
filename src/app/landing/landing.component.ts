@@ -8,16 +8,22 @@ import { Component } from '@angular/core';
 export class LandingComponent {
   services: any[] = [
     {
-      title: 'Servicio 1',
-      description: 'Descripción del servicio 1.'
+      title: 'Latoneria',
+      description: 'El proceso consiste en restaurar las piezas del vehículo que han sido golpeadas.\n' +
+        'Para esto es importante implementar mecanismos para corregir las ondulaciones presentes\n' +
+        'en una lamina o chapa y hacer que estas tomen la forma original del fabricante.'
     },
     {
-      title: 'Servicio 2',
-      description: 'Descripción del servicio 2.'
+      title: 'Pintura',
+      description: 'El proceso consiste en restaurar las piezas del vehículo que han sido golpeadas.\n' +
+        'Para esto es importante implementar mecanismos para corregir las ondulaciones presentes\n' +
+        'en una lamina o chapa y hacer que estas tomen la forma original del fabricante'
     },
     {
-      title: 'Servicio 3',
-      description: 'Descripción del servicio 3.'
+      title: 'Mecanica',
+      description: 'El proceso consiste en restaurar las piezas del vehículo que han sido golpeadas.\n' +
+        'Para esto es importante implementar mecanismos para corregir las ondulaciones presentes\n' +
+        'en una lamina o chapa y hacer que estas tomen la forma original del fabricante'
     }
   ];
 }
