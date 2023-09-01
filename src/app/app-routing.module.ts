@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: '.', component:Login2Component},
   {path: 'create', component: CreateAccountComponent},
   {path: 'view-users', component: ViewUsersComponent},
-  {path: 'modifyAccount', component: ModifyAccountComponet}
+  {path: 'modifyAccount', component: ModifyAccountComponet},
   {path: '', component:Login2Component},
   {
     path: 'dashboard',
