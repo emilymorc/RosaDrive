@@ -12,7 +12,7 @@ export const navbarData: INavbarData[] = [
     label: 'Usuarios',
     items: [
       {
-        routeLink: 'create-account',
+        routeLink: 'create',
         label: 'Crear',
       },
       {
