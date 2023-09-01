@@ -17,9 +17,17 @@ import {SettingsComponent} from "./settings/settings.component";
 import {AppRoutingModule} from "./app-routing.module";
 import {SublevelMenuComponent} from "./sidenav/sublevel-menu.components";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { CreateAccountComponent } from './create-account/create-account.component';
+import { Login2Component } from './login2/login2.component';
+import {RouterLink, RouterOutlet} from "@angular/router";
+import {HttpClientModule} from "@angular/common/http";
+import {CommonModule} from "@angular/common";
+import {FormsModule} from "@angular/forms";
+
 
 @NgModule({
   declarations: [
+    AppComponent,
     LogginComponent,
     AppComponent,
     BodyComponent,
@@ -32,7 +40,18 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     MediaComponent,
     SettingsComponent,
     SublevelMenuComponent,
+    CreateAccountComponent,
+    Login2Component
   ],
+    imports: [
+        BrowserModule,
+        RouterOutlet,
+        HttpClientModule,
+        CommonModule,
+        FormsModule,
+        RouterLink
+    ],
+  providers: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

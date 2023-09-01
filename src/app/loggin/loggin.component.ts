@@ -14,7 +14,7 @@ export class LogginComponent {
   ) {
   }
 
-  async validateUser(): Promise<void> {
+/*  async validateUser(): Promise<void> {
     try {
       const isValid = await this.service.getUserValidation2();
       if (isValid) {
@@ -26,7 +26,7 @@ export class LogginComponent {
     } catch (error) {
       //this.toastr.error("Ocurrio un error al iniciar sesion, intente de nuevo", "ERROR!");
     }
-  }
+  }*/
 
 
 }

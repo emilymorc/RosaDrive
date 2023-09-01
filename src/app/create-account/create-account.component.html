@@ -9,37 +9,29 @@
 </div>
 
 <div >
-  <form>
+  <form (submit)="signUp()" >
     <div class="login-form">
     <label class="label">Nombre</label>
     <br>
-    <input type="text"  required>
+    <input type="text" id="firstName" [(ngModel)]="password" name="firstName" required type="text">
     <br>
 
     <label class="label">Apellido</label>
     <br>
-    <input type="text"  required>
+    <input type="text" id="firstName" [(ngModel)]="password" name="firstName" required type="text" type="text"  required>
     <br>
 
-    <label class="label">Nombre de usuario</label>
-    <br>
-    <input type="text"  required>
-    <br>
 
-    <label class="label">Correo Electrónico</label>
+    <label for="email" class="label">Correo Electrónico</label>
     <br>
-    <input type="text"  required>
+    <input type="email" id="email" [(ngModel)]="email" name="email" required>
     <br>
 
     <label  class="label">Contraseña</label>
     <br>
-    <input type="password" required>
+    <input type="password" id="password" [(ngModel)]="password" name="password" requiredtype="password" required>
     <br>
 
-    <label class="label">Celular</label>
-    <br>
-    <input type="text"  required>
-    <br>
     </div>
     <button class="buttonSave" type="submit">Crear</button>
 

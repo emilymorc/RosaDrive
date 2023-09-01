@@ -1,0 +1,6 @@
+{
+  "/api": {
+    "target": "https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io",
+    "secure": false
+  }
+}
