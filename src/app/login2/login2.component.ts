@@ -1,24 +1,21 @@
 import {Component, OnInit} from '@angular/core';
-import {Routes, RouterModule, RouterLink} from '@angular/router';
-import {ActivatedRoute, Router} from "@angular/router";
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms'; // Asegúrate de importar FormsModule
-import {NgForm} from "@angular/forms";
-import {INavbarData} from "../sidenav/helper";
-import {ToastrService} from "ngx-toastr";
+import {Router} from '@angular/router';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {ToastrModule, ToastrService} from "ngx-toastr";
+
 @Component({
   selector: 'app-login2',
   templateUrl: './login2.component.html',
-  styleUrls: ['./login2.component.css']
+  styleUrls: ['./login2.component.css'],
+  providers: [ToastrModule]
 })
-export class Login2Component implements OnInit{
+export class Login2Component implements OnInit {
 
   email: string = '';
   password: string = '';
 
-  constructor(private http: HttpClient, private router: Router, public toastr:ToastrService) {}
+  constructor(private http: HttpClient, private router: Router, private toastr: ToastrService) {
+  }
 
   signIn() {
     console.log("entra")
@@ -33,10 +30,9 @@ export class Login2Component implements OnInit{
       password: 'admin'
     };
 
-    this.http.post(url, body, { headers }).subscribe(
+    this.http.post(url, body, {headers}).subscribe(
       (response) => {
-        // Maneja la respuesta exitosa aquí
-        console.log('Respuesta:', response);
+        this.toastr.success("Inicio de sesion exitoso", "EXITO!!")
       },
       (error) => {
         // Maneja el error aquí
@@ -58,16 +54,12 @@ export class Login2Component implements OnInit{
       'User-Agent': 'Your-User-Agent'
     });
 
-    this.http.post(url, body, { headers }).subscribe(
+    this.http.post(url, body, {headers}).subscribe(
       response => {
-        console.log('Response:', response);
-        // Puedes manejar la respuesta aquí, por ejemplo, redireccionar al usuario a otra página
-        this.router.navigate(['/dashboard']);
         this.toastr.success("Inicio de sesión exitoso", "EXITOSO!");
+        this.router.navigate(['/dashboard/landing']);
       },
       error => {
-        console.error('Error:', error);
-        // Manejar el error aquí, como mostrar un mensaje de error al usuario
         this.toastr.error("Ocurrio un error al iniciar sesion, intente de nuevo", "ERROR!");
       }
     );
