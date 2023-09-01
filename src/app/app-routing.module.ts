@@ -5,12 +5,13 @@ import {CreateAccountComponent} from "./create-account/create-account.component"
 import {RouterModule, Routes} from "@angular/router";
 
 const routes: Routes = [
- /* {path: '.', component:Login2Component},
-  {path: 'create', component: CreateAccountComponent}*/
+  {path: '.', component:Login2Component},
+  {path: 'create', component: CreateAccountComponent}
 ];
 @NgModule({
   declarations: [],
   imports: [
+
     RouterModule.forRoot(routes)
   ],
   exports: [RouterModule]
