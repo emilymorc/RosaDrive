@@ -2,7 +2,7 @@ import { INavbarData } from "./helper";
 
 export const navbarData: INavbarData[] = [
   {
-    routeLink: 'dashboard',
+    routeLink: 's',
     icon: 'fal fa-home',
     label: 'Inicio'
   },

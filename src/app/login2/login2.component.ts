@@ -6,6 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'; // Asegúrate de importar FormsModule
 import {NgForm} from "@angular/forms";
+import {INavbarData} from "../sidenav/helper";
 @Component({
   selector: 'app-login2',
   templateUrl: './login2.component.html',
@@ -16,7 +17,7 @@ export class Login2Component implements OnInit{
   email: string = '';
   password: string = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   signIn() {
     console.log("entra")
@@ -68,11 +69,12 @@ export class Login2Component implements OnInit{
     );
   }
 
-  ngOnInit(): void {
+  iniciarSesion() {
+    // Verificar las credenciales y si son válidas
+    const credencialesValidas = true; // Cambia esto a la lógica real de validación
+    this.router.navigate(['/dashboard']);
   }
 
-
-
-
-
+  ngOnInit(): void {
+  }
 }

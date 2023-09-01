@@ -8,9 +8,9 @@ describe('Login2Component', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [LoginComponent]
+      declarations: [Login2Component]
     });
-    fixture = TestBed.createComponent(LoginComponent);
+    fixture = TestBed.createComponent(Login2Component);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
