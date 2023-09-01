@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {animation} from "@angular/animations";
 
 import { AppComponent } from './app.component';
+import { LogginComponent } from './loggin/loggin.component';
 import {SidenavComponent} from "./sidenav/sidenav.component";
 import {BodyComponent} from "./body/body.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
@@ -21,13 +22,14 @@ import {RouterLink, RouterOutlet} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
-import { ToastrModule } from 'ngx-toastr';
-import { ViewUsersComponent } from './view-users/view-users.component';
+import { LandingComponent } from './landing/landing.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    LogginComponent,
     AppComponent,
     BodyComponent,
     SidenavComponent,
@@ -41,7 +43,8 @@ import { ViewUsersComponent } from './view-users/view-users.component';
     SublevelMenuComponent,
     CreateAccountComponent,
     Login2Component,
-    ViewUsersComponent
+    ViewUsersComponent,
+    LandingComponent
   ],
     imports: [
         BrowserModule,
@@ -51,7 +54,6 @@ import { ViewUsersComponent } from './view-users/view-users.component';
         FormsModule,
         RouterLink,
       BrowserAnimationsModule,
-      ToastrModule.forRoot(),
       AppRoutingModule
     ],
   providers: [AppComponent],
