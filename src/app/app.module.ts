@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import {animation} from "@angular/animations";
 
 import { AppComponent } from './app.component';
-import { LogginComponent } from './loggin/loggin.component';
 import {SidenavComponent} from "./sidenav/sidenav.component";
 import {BodyComponent} from "./body/body.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
@@ -32,7 +31,6 @@ import { LandingComponent } from './landing/landing.component';
 @NgModule({
   declarations: [
     AppComponent,
-    LogginComponent,
     AppComponent,
     BodyComponent,
     SidenavComponent,
