@@ -7,6 +7,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'; // Asegúrate de importar FormsModule
 import {NgForm} from "@angular/forms";
 import {INavbarData} from "../sidenav/helper";
+import {ToastrService} from "ngx-toastr";
 @Component({
   selector: 'app-login2',
   templateUrl: './login2.component.html',
@@ -17,7 +18,7 @@ export class Login2Component implements OnInit{
   email: string = '';
   password: string = '';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, public toastr:ToastrService) {}
 
   signIn() {
     console.log("entra")
@@ -61,18 +62,15 @@ export class Login2Component implements OnInit{
       response => {
         console.log('Response:', response);
         // Puedes manejar la respuesta aquí, por ejemplo, redireccionar al usuario a otra página
+        this.router.navigate(['/dashboard']);
+        this.toastr.success("Inicio de sesión exitoso", "EXITOSO!");
       },
       error => {
         console.error('Error:', error);
         // Manejar el error aquí, como mostrar un mensaje de error al usuario
+        this.toastr.error("Ocurrio un error al iniciar sesion, intente de nuevo", "ERROR!");
       }
     );
-  }
-
-  iniciarSesion() {
-    // Verificar las credenciales y si son válidas
-    const credencialesValidas = true; // Cambia esto a la lógica real de validación
-    this.router.navigate(['/dashboard']);
   }
 
   ngOnInit(): void {

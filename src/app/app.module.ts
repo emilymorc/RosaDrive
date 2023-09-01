@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {animation} from "@angular/animations";
 
 import { AppComponent } from './app.component';
 import { LogginComponent } from './loggin/loggin.component';
@@ -21,7 +22,7 @@ import {RouterLink, RouterOutlet} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
-
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import {FormsModule} from "@angular/forms";
         FormsModule,
         RouterLink,
       BrowserAnimationsModule,
+      ToastrModule.forRoot(),
       AppRoutingModule
     ],
   providers: [AppComponent],

@@ -6,16 +6,18 @@ import {SidenavComponent} from "./sidenav/sidenav.component";
 import {BodyComponent} from "./body/body.component";
 import {RouterModule, Routes} from "@angular/router";
 import {DashboardComponent} from "./dashboard/dashboard.component";
+import {PagesComponent} from "./pages/pages.component"
 
 const routes: Routes = [
-  {path: '.', component:Login2Component},
-  {path: 'create', component: CreateAccountComponent},
+  {path: '', component:Login2Component},
   {
     path: 'dashboard',
     component: DashboardComponent,
     children: [
       { path: 'sidebar', component: SidenavComponent },
-      { path: 'AppBody', component:BodyComponent }
+      { path: 'AppBody', component:BodyComponent },
+      { path: 'create', component: CreateAccountComponent},
+      { path: 'pages', component: PagesComponent}
     ]
   },
 ];
