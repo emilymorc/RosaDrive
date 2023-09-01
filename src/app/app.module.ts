@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {animation} from "@angular/animations";
 
 import { AppComponent } from './app.component';
 import { LogginComponent } from './loggin/loggin.component';
@@ -21,6 +22,9 @@ import {RouterLink, RouterOutlet} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
+import { ToastrModule } from 'ngx-toastr';
+/*import { ViewUsersComponent } from './view-users/view-users.component';
+import {ModifyAccountComponet} from "./modify-account/modify-account.component";*/
 import { LandingComponent } from './landing/landing.component';
 
 
@@ -42,6 +46,8 @@ import { LandingComponent } from './landing/landing.component';
     SublevelMenuComponent,
     CreateAccountComponent,
     Login2Component,
+/*    ViewUsersComponent,
+    ModifyAccountComponet,*/
     LandingComponent
   ],
     imports: [
@@ -52,6 +58,7 @@ import { LandingComponent } from './landing/landing.component';
         FormsModule,
         RouterLink,
       BrowserAnimationsModule,
+      ToastrModule.forRoot(),
       AppRoutingModule
     ],
   providers: [AppComponent],
