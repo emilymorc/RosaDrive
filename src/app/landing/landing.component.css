@@ -53,16 +53,24 @@
   border: 1px solid #ccc;
   padding: 10px;
   margin: 10px;
-  width: 300px; /* Ancho fijo para cada servicio */
+  width: 300px;
   text-align: center;
-  transition: background-color 0.3s; /* Agrega una transición suave al color de fondo */
+  transition: background-color 0.3s;
 }
 
-/* Estilos para resaltar al pasar el mouse */
 .service:hover {
-  background-color: #3498db; /* Cambia el color de fondo al pasar el mouse */
-  color: white; /* Cambia el color del texto al pasar el mouse */
-  cursor: pointer; /* Cambia el cursor al pasar el mouse */
+  background-color: #3498db;
+  color: white;
+  cursor: pointer;
+}
+/*Contactos*/
+.contact {
+
+  bottom: 0;
+  background-color: #f2f2f2;
+  padding: 10px;
+  text-align: left;
+  font-size: 12px;
 }
 
 
