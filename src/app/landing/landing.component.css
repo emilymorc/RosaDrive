@@ -65,9 +65,9 @@
 }
 /*Contactos*/
 .contact {
-
+  color: black;
   bottom: 0;
-  background-color: #f2f2f2;
+  background-color: #b4b4b4 ;
   padding: 10px;
   text-align: left;
   font-size: 12px;
