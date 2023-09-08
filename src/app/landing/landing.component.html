@@ -64,7 +64,8 @@
     <h2>- Bienvenido a nuestro sitio web -</h2>
     <br>
     <br>
-    <h3>Profesionales en el sector de reparación automotriz
+    <h3>Profesionales en el sector de reparación automotriz</h3>
+    <h3>
       Somos taller certificado ISO 9001!
       Contamos con un equipo de trabajo calificado y constantemente evaluado, y con tecnología de punta que nos permite
       garantizar reparaciones de calidad.
@@ -93,9 +94,10 @@
         <br>
         <div class="card-body">
           <h5 class="card-title">Latoneria</h5>
-          <p class="card-text">El proceso consiste en restaurar las piezas del vehículo que han sido golpeadas.\n' +
-            'Para esto es importante implementar mecanismos para corregir las ondulaciones presentes\n' +
-            'en una lamina o chapa y hacer que estas tomen la forma original del fabricante.</p>
+          <p class="card-text">El proceso de Latonería consiste en restaurar las piezas del vehículo que han sido golpeadas.
+            Para esto es importante implementar mecanismos para corregir las ondulaciones presentes en una lamina o chapa y
+            hacer que estas tomen la forma original del fabricante..</p>
+          <a href="https://centralautomotrizrosas.co/recursos/servicios/latoneria.html" class="btn btn-outline-dark">Leer mas</a>
         </div>
       </div>
     </div>
@@ -105,9 +107,10 @@
         <img src="https://www.jalux.com.ar/images/0LUSQTOFF000160052214W-71G-WEB.png" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Pintura</h5>
-          <p class="card-text">El proceso consiste en restaurar las piezas del vehículo que han sido golpeadas.\n' +
-            'Para esto es importante implementar mecanismos para corregir las ondulaciones presentes\n' +
-            'en una lamina o chapa y hacer que estas tomen la forma original del fabricante</p>
+          <p class="card-text">El proceso de la aplicación de pintura en un vehículo cumple una doble función: por un lado, lo
+            protege y previene la corrosión (oxidación) del metal y, por otro, proporciona el aspecto estético final, aportando
+            el color y el brillo que hacen que el vehículo sea más atractivo.</p>
+          <a href="https://centralautomotrizrosas.co/recursos/servicios/pintura.html" class="btn btn-outline-dark">Leer mas</a>
         </div>
       </div>
     </div>
@@ -116,14 +119,30 @@
       <img src="https://images.vexels.com/media/users/3/314292/isolated/preview/777e5b381f3ee2422189c98f4fb49cbf-la-mano-de-un-meca-nico-sosteniendo-una-llave-inglesa.png" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">Mecanica</h5>
-        <p class="card-text">El proceso consiste en restaurar las piezas del vehículo que han sido golpeadas.\n' +
-          'Para esto es importante implementar mecanismos para corregir las ondulaciones presentes\n' +
-          'en una lamina o chapa y hacer que estas tomen la forma original del fabricante</p>
+        <p class="card-text">En Central Automotriz Rosas contamos con personal capacitado y encargado de trabajar para diagnosticar
+          y resolver los problemas de funcionamiento mecánico y eléctrico que se puedan presentar dentro del motor de un vehículo y
+          sus demás...</p>
+        <a href="https://centralautomotrizrosas.co/recursos/servicios/mecanica.html" class="btn btn-outline-dark">Leer mas</a>
       </div>
     </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<div class="services">
+  <h1>Para usted y su vehículo contamos con</h1>
+  <br>
+  <br>
+  <div class="service-container">
+    <div *ngFor="let service of services" class="service">
+      <h3>{{ service.title }}</h3>
+      <p>{{ service.description }}</p>
     </div>
   </div>
 </div>
 
 </body>
 </html>
+

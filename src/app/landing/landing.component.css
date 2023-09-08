@@ -36,6 +36,13 @@
   background: #b4b4b4;
 }
 
+/* Estilos para los servicios */
+.services {
+  background-color: #f2f2f2;
+  padding: 20px;
+  text-align: center;
+}
+
 .service-container {
   display: flex;
   flex-wrap: wrap;
@@ -46,6 +53,16 @@
   border: 1px solid #ccc;
   padding: 10px;
   margin: 10px;
-  width: 500px; /* Ancho fijo para cada servicio */
+  width: 300px; /* Ancho fijo para cada servicio */
   text-align: center;
+  transition: background-color 0.3s; /* Agrega una transición suave al color de fondo */
 }
+
+/* Estilos para resaltar al pasar el mouse */
+.service:hover {
+  background-color: #3498db; /* Cambia el color de fondo al pasar el mouse */
+  color: white; /* Cambia el color del texto al pasar el mouse */
+  cursor: pointer; /* Cambia el cursor al pasar el mouse */
+}
+
+
