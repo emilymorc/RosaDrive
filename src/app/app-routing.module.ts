@@ -10,9 +10,7 @@ import {PagesComponent} from "./pages/pages.component"
 import {ViewUsersComponent} from "./view-users/view-users.component";
 import {ModifyAccountComponet} from "./modify-account/modify-account.component";
 import {LandingComponent} from "./landing/landing.component";
-import {AutomotiveHistoryComponent} from "./automotive-history/automotive-history.component";
-import {HistoryComponent} from "./history/history.component";
-import {HistoryAComponent} from "./history-a/history-a.component";
+import {AutostorieComponent} from "./autostorie/autostorie.component";
 
 
 const routes: Routes = [
@@ -32,9 +30,7 @@ const routes: Routes = [
       {path: 'view-users', component: ViewUsersComponent},
       {path: 'modifyAccount', component: ModifyAccountComponet},
       {path: 'landing', component: LandingComponent},
-      {path: 'history', component: AutomotiveHistoryComponent},
-      {path: 'historial', component: HistoryComponent},
-      {path: 'h', component: HistoryAComponent}
+      {path: 'history', component: AutostorieComponent}
     ]
   },
 ];

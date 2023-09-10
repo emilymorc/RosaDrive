@@ -31,7 +31,7 @@ export const navbarData: INavbarData[] = [
     label: ' Historial Automotores',
     items: [
       {
-        routeLink: 'h',
+        routeLink: 'history',
         label: 'Crear',
       },
       {
