@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {ServiceUserService} from "../servicios/service-user.service";
 
 @Component({
   selector: 'app-view-users',
@@ -11,9 +12,13 @@ export class ViewUsersComponent implements OnInit{
     { id: 'Lorena', nombre: 'Manrrique', edad: 'lorena.manrrique@gmail.com' },
     { id: 'Carlos', nombre: 'Lopez', edad:  'carlos.lopez@gmail.com'}
   ];
+  users: any[] = [];
 
-  constructor() { }
+  constructor(private service: ServiceUserService) { }
 
   ngOnInit(): void {
+    this.service.getUsers().subscribe((data: any) => {
+      this.users = data; // Almacena los datos en la variable 'users'
+    });
   }
 }

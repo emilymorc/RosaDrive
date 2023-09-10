@@ -28,7 +28,7 @@
         </thead>
 
         <tbody>
-        <tr *ngFor="let item of data">
+        <!--<tr *ngFor="let item of data">
           <td>{{ item.id }}</td>
           <td>{{ item.nombre }}</td>
           <td>{{ item.edad }}</td>
@@ -43,7 +43,11 @@
                     style="vertical-align: middle;" type="submit">Inactivar
             </button>
           </td>
-        </tr>
+        </tr>-->
+        <tr *ngFor="let user of users">
+          <td>{{ user.id }}</td>
+          <td>{{ user.name }}</td>
+<!--          <td>{{ user.email }}</td>-->
 
 
         </tbody>
@@ -79,6 +83,8 @@
                            previousLabel="Anterior"></pagination-controls>-->
     </div>
   </div>
+
+
 
 
 

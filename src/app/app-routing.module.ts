@@ -11,6 +11,7 @@ import {ViewUsersComponent} from "./view-users/view-users.component";
 import {ModifyAccountComponet} from "./modify-account/modify-account.component";
 import {LandingComponent} from "./landing/landing.component";
 import {AutostorieComponent} from "./autostorie/autostorie.component";
+import {ModifyautostorieComponent} from "./modifyautostorie/autostorie.component";
 
 
 const routes: Routes = [
@@ -30,7 +31,8 @@ const routes: Routes = [
       {path: 'view-users', component: ViewUsersComponent},
       {path: 'modifyAccount', component: ModifyAccountComponet},
       {path: 'landing', component: LandingComponent},
-      {path: 'history', component: AutostorieComponent}
+      {path: 'history', component: AutostorieComponent},
+      {path: 'modifyStorie', component: ModifyautostorieComponent}
     ]
   },
 ];
