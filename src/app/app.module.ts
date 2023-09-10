@@ -21,6 +21,7 @@ import {ModifyAccountComponet} from "./modify-account/modify-account.component";
 import {ViewUsersComponent} from "./view-users/view-users.component";
 import {ModifyAccountComponet} from "./modify-account/modify-account.component";
 import { LandingComponent } from './landing/landing.component';
+import { LogoutComponent } from './logout/logout.component';
 
 
 
@@ -36,7 +37,8 @@ import { LandingComponent } from './landing/landing.component';
     Login2Component,
     ViewUsersComponent,
     ModifyAccountComponet,
-    LandingComponent
+    LandingComponent,
+    LogoutComponent
   ],
     imports: [
         BrowserModule,

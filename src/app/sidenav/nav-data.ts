@@ -53,5 +53,10 @@ export const navbarData: INavbarData[] = [
     routeLink: 'login',
     icon: 'fa solid fa-address-book',
     label: 'Agendar'
+  },
+  {
+    routeLink: 'logout',
+    icon: 'fa solid fa-arrow-right',
+    label: 'Cerrar Sesión'
   }
 ];

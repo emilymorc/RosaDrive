@@ -10,6 +10,9 @@ import {PagesComponent} from "./pages/pages.component"
 import {ViewUsersComponent} from "./view-users/view-users.component";
 import {ModifyAccountComponet} from "./modify-account/modify-account.component";
 import {LandingComponent} from "./landing/landing.component";
+import {AuthService} from "./services/auth.service";
+import {AuthGuard} from "./auth.guard";
+import {LogoutComponent} from "./logout/logout.component";
 
 
 const routes: Routes = [
@@ -18,9 +21,7 @@ const routes: Routes = [
   {path: 'view-users', component: ViewUsersComponent},
   {path: 'modifyAccount', component: ModifyAccountComponet},
   {path: '', component:Login2Component},
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
+  {path: 'dashboard', component: DashboardComponent,
     children: [
       { path: 'sidebar', component: SidenavComponent },
       { path: 'AppBody', component:BodyComponent },
@@ -28,8 +29,10 @@ const routes: Routes = [
       { path: 'pages', component: PagesComponent},
       {path: 'view-users', component: ViewUsersComponent},
       {path: 'modifyAccount', component: ModifyAccountComponet},
-      {path: 'landing', component: LandingComponent}
-    ]
+      {path: 'landing', component: LandingComponent},
+      {path: 'logout', component: LogoutComponent}
+
+    ],canActivate:[AuthGuard]
   },
 ];
 @NgModule({
