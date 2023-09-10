@@ -16,23 +16,21 @@ import {LogoutComponent} from "./logout/logout.component";
 
 
 const routes: Routes = [
-  {path: '.', component:Login2Component},
   {path: 'create', component: CreateAccountComponent},
   {path: 'view-users', component: ViewUsersComponent},
   {path: 'modifyAccount', component: ModifyAccountComponet},
   {path: '', component:Login2Component},
-  {path: 'dashboard', component: DashboardComponent,
+  {path: 'dashboard', component: DashboardComponent,canActivate:[AuthGuard],
     children: [
-      { path: 'sidebar', component: SidenavComponent },
-      { path: 'AppBody', component:BodyComponent },
-      { path: 'create', component: CreateAccountComponent},
-      { path: 'pages', component: PagesComponent},
-      {path: 'view-users', component: ViewUsersComponent},
-      {path: 'modifyAccount', component: ModifyAccountComponet},
-      {path: 'landing', component: LandingComponent},
-      {path: 'logout', component: LogoutComponent}
-
-    ],canActivate:[AuthGuard]
+      { path: 'sidebar', component: SidenavComponent, canActivate:[AuthGuard]},
+      { path: 'AppBody', component:BodyComponent, canActivate:[AuthGuard] },
+      { path: 'create', component: CreateAccountComponent, canActivate:[AuthGuard]},
+      { path: 'pages', component: PagesComponent, canActivate:[AuthGuard]},
+      {path: 'view-users', component: ViewUsersComponent, canActivate:[AuthGuard]},
+      {path: 'modifyAccount', component: ModifyAccountComponet, canActivate:[AuthGuard]},
+      {path: 'landing', component: LandingComponent, canActivate:[AuthGuard]},
+      {path: 'logout', component: LogoutComponent, canActivate:[AuthGuard]}
+    ]
   },
 ];
 @NgModule({

@@ -19,7 +19,7 @@ export class Login2Component implements OnInit {
   }
 
   onSubmit() {
-    this.authService.login(this.email, this.password)
+    this.authService.logear(this.email, this.password)
       .subscribe((response:any) => {
         const token = response.data.TOKEN;
         this.authService.setAuthentication(token);
@@ -35,8 +35,7 @@ export class Login2Component implements OnInit {
   }
 
   logout(){
-    localStorage.removeItem('token')
-    this.router.navigate(['.']);
+    this.authService.logout();
   }
 
   // signIn() {

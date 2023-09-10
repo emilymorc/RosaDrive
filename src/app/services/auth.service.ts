@@ -10,11 +10,13 @@ export class AuthService {
   private isAuthenticated: boolean = false;
   private authToken: string = '';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient){
     this.isAuthenticated = !!localStorage.getItem('token');
+    this.isAuthenticated = !!this.isLoggedIn();
+    console.log(this.isAuthenticated);
   }
 
-  login(email: string, password: string) {
+  logear(email: string, password: string) {
     const body = { email, password };
     return this.http.post('https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/auth/signIn', body);
   }
@@ -30,6 +32,7 @@ export class AuthService {
 
   // Método para cerrar sesión
   logout(): void {
+    localStorage.removeItem('token')
     this.isAuthenticated = false;
     this.authToken = '';
 
