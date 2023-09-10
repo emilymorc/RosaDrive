@@ -34,6 +34,11 @@
     </div>
     <button class="buttonSave" type="submit">Crear</button>
 
+    <select>
+      <option value="" disabled selected>Seleccione una opcion</option>
+      <option *ngFor="let n of optionsBodyTipe" >{{n}}</option>
+    </select>
+
   </form>
 </div>
 

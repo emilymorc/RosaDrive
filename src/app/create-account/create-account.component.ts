@@ -13,7 +13,7 @@ export class CreateAccountComponent {
   password: string = '';
 
   constructor(private http: HttpClient) { }
-
+  optionsBodyTipe = ['Automóvil', 'Campero'];
   signUp() {
     const userData = {
       firstName: this.firstName,

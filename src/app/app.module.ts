@@ -27,7 +27,9 @@ import {ModifyAccountComponet} from "./modify-account/modify-account.component";
 import {ViewUsersComponent} from "./view-users/view-users.component";
 import {ModifyAccountComponet} from "./modify-account/modify-account.component";
 import { LandingComponent } from './landing/landing.component';
-
+import {AutomotiveHistoryComponent} from "./automotive-history/automotive-history.component";
+import { HistoryComponent } from './history/history.component';
+import { HistoryAComponent } from './history-a/history-a.component';
 
 
 @NgModule({
@@ -48,7 +50,9 @@ import { LandingComponent } from './landing/landing.component';
     Login2Component,
     ViewUsersComponent,
     ModifyAccountComponet,
-    LandingComponent
+    LandingComponent,
+    HistoryComponent,
+    HistoryAComponent
   ],
     imports: [
         BrowserModule,

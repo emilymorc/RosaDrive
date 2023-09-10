@@ -28,10 +28,10 @@ export const navbarData: INavbarData[] = [
   {
     routeLink: 'statistics',
     icon: 'fa solid fa-car',
-    label: 'Automotores',
+    label: ' Historial Automotores',
     items: [
       {
-        routeLink: 'product/level1.1',
+        routeLink: 'h',
         label: 'Crear',
       },
       {
