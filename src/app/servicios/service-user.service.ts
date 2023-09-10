@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,11 @@ export class ServiceUserService {
 
   constructor(private http: HttpClient) {}
 
-  getUsers() {
-    return this.http.get(this.apiUrl);
+  getUsers(): Observable<any> {
+    const headers = new HttpHeaders({
+      'User-Agent': 'Insomnia/2023.5.5'
+    });
+
+    return this.http.get(this.apiUrl, { headers });
   }
 }
