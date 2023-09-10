@@ -17,8 +17,6 @@ export class ViewUsersComponent implements OnInit{
   constructor(private service: ServiceUserService) { }
 
   ngOnInit(): void {
-    this.service.getUsers().subscribe((data: any) => {
-      this.users = data; // Almacena los datos en la variable 'users'
-    });
+
   }
 }
