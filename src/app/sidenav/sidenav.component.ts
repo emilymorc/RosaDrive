@@ -1,6 +1,7 @@
 import { animate, keyframes, style, transition, trigger } from '@angular/animations';
 import { Component, Output, EventEmitter, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
+import {AuthService} from "../services/auth.service";
 import { fadeInOut, INavbarData } from './helper';
 import { navbarData } from './nav-data';
 
@@ -77,5 +78,8 @@ export class SidenavComponent implements OnInit {
         }
       }
     }
+  }
+  logout(){
+
   }
 }

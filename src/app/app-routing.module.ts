@@ -12,6 +12,9 @@ import {ModifyAccountComponet} from "./modify-account/modify-account.component";
 import {LandingComponent} from "./landing/landing.component";
 import {AutostorieComponent} from "./autostorie/autostorie.component";
 import {ModifyautostorieComponent} from "./modifyautostorie/autostorie.component";
+import {AuthService} from "./services/auth.service";
+import {AuthGuard} from "./auth.guard";
+import {LogoutComponent} from "./logout/logout.component";
 
 
 const routes: Routes = [
@@ -20,9 +23,7 @@ const routes: Routes = [
   {path: 'view-users', component: ViewUsersComponent},
   {path: 'modifyAccount', component: ModifyAccountComponet},
   {path: '', component:Login2Component},
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
+  {path: 'dashboard', component: DashboardComponent,canActivate:[AuthGuard],
     children: [
       { path: 'sidebar', component: SidenavComponent },
       { path: 'AppBody', component:BodyComponent },
@@ -32,7 +33,15 @@ const routes: Routes = [
       {path: 'modifyAccount', component: ModifyAccountComponet},
       {path: 'landing', component: LandingComponent},
       {path: 'history', component: AutostorieComponent},
-      {path: 'modifyStorie', component: ModifyautostorieComponent}
+      {path: 'modifyStorie', component: ModifyautostorieComponent},
+      { path: 'sidebar', component: SidenavComponent, canActivate:[AuthGuard]},
+      { path: 'AppBody', component:BodyComponent, canActivate:[AuthGuard] },
+      { path: 'create', component: CreateAccountComponent, canActivate:[AuthGuard]},
+      { path: 'pages', component: PagesComponent, canActivate:[AuthGuard]},
+      {path: 'view-users', component: ViewUsersComponent, canActivate:[AuthGuard]},
+      {path: 'modifyAccount', component: ModifyAccountComponet, canActivate:[AuthGuard]},
+      {path: 'landing', component: LandingComponent, canActivate:[AuthGuard]},
+      {path: 'logout', component: LogoutComponent, canActivate:[AuthGuard]}
     ]
   },
 ];

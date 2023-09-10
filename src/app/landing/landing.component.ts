@@ -8,22 +8,51 @@ import { Component } from '@angular/core';
 export class LandingComponent {
   services: any[] = [
     {
-      title: 'Latoneria',
-      description: 'El proceso consiste en restaurar las piezas del vehículo que han sido golpeadas.\n' +
-        'Para esto es importante implementar mecanismos para corregir las ondulaciones presentes\n' +
-        'en una lamina o chapa y hacer que estas tomen la forma original del fabricante.'
+      title: 'ISO 9001',
+      description: 'Nuestros procesos son certificados.'
     },
     {
-      title: 'Pintura',
-      description: 'El proceso consiste en restaurar las piezas del vehículo que han sido golpeadas.\n' +
-        'Para esto es importante implementar mecanismos para corregir las ondulaciones presentes\n' +
-        'en una lamina o chapa y hacer que estas tomen la forma original del fabricante'
+      title: 'Cabina de pintura',
+      description: 'Aplicación y secado en condiciones optimas'
     },
     {
-      title: 'Mecanica',
-      description: 'El proceso consiste en restaurar las piezas del vehículo que han sido golpeadas.\n' +
-        'Para esto es importante implementar mecanismos para corregir las ondulaciones presentes\n' +
-        'en una lamina o chapa y hacer que estas tomen la forma original del fabricante'
+      title: 'Laboratorio propio',
+      description: 'Mezcla computarizada de pinturas de la mejor calidad'
+    },
+    {
+      title: 'Instalaciones',
+      description: 'Mas de 10.000 M² distribuidos técnicamente'
+    },
+    {
+      title: 'Factor Humano',
+      description: 'Contamos con\n' +
+        'técnicos en todas\n' +
+        'nuestras áreas'
+    },
+    {
+      title: 'Bancada estiraje',
+      description: 'Alineación de\n' +
+        'carrocería\n' +
+        'certificada'
+    },
+    {
+      title: 'Diagnostico',
+      description: 'Equipos electrónicos\n' +
+        'diagnostican con\n' +
+        'precisión\n' +
+        '\n '
+    },
+    {
+      title: 'Soldadura de punto',
+      description: 'Equipos garantizan\n' +
+        'la originalidad\n' +
+        'del vehículo'
+    },
+    {
+      title: 'Calidad certificada',
+      description: 'Todos los procesos\n' +
+        'cumplen estándares\n' +
+        'de calidad'
     }
   ];
 }

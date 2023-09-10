@@ -1,17 +1,41 @@
+/*@font-face {*/
+/*  font-family: 'Average Sans';*/
+/*  src: url('https://fonts.cdnfonts.com/css/average-sans') format('woff2'),*/
+/*  url('https://fonts.cdnfonts.com/css/average-sans') format('woff');*/
+/*  !* Agrega formatos adicionales si tienes archivos .ttf o .otf *!*/
+/*  font-weight: normal;*/
+/*  font-style: normal;*/
+/*}*/
+
 
 .carousel-caption d-none d-md-block{
   color: black;
 }
+.contenedor-carrusel{
+  min-height: 90%;
+  min-width: 100%;
+}
+.text-carrusel{
+  /*background-color: rgba(128, 128, 128, 0.4);*/
+  /*padding: 10px;*/
+}
 .header {
   background-color: #b4b4b4;
-
   color: black;
   text-align: center;
   padding: 20px;
 }
+
+.body-info{
+  text-align: center;
+  color: #202123;
+}
+
+
 .cotainer{
   background: #b4b4b4;
 }
+
 /* Estilos para los servicios */
 .services {
   background-color: #f2f2f2;
@@ -29,6 +53,24 @@
   border: 1px solid #ccc;
   padding: 10px;
   margin: 10px;
-  width: 500px; /* Ancho fijo para cada servicio */
+  width: 300px;
   text-align: center;
+  transition: background-color 0.3s;
 }
+
+.service:hover {
+  background-color: #3498db;
+  color: white;
+  cursor: pointer;
+}
+/*Contactos*/
+.contact {
+  color: black;
+  bottom: 0;
+  background-color: #b4b4b4 ;
+  padding: 10px;
+  text-align: left;
+  font-size: 12px;
+}
+
+

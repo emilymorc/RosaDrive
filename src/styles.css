@@ -9,13 +9,15 @@
 body {
   position: relative;
   font-family: 'Open Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f3f3f3
 }
 
 .card {
   display: flex;
   flex-direction: column;
   border-radius: .5rem;
-  background-color: #fff;
+  background-color: #f3f3f3;
   margin: 1.25rem 0 1.25rem 0;
   box-shadow: 0 .25rem .5rem #e6edef;
 }

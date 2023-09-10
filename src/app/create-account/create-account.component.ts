@@ -10,7 +10,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-create-account',
   templateUrl: './create-account.component.html',
-  styleUrls: ['./create-account.component.css']
+  styleUrls: ['./create-account.component.css'],
+  providers: [ToastrModule]
 })
 export class CreateAccountComponent {
 
@@ -21,6 +22,7 @@ export class CreateAccountComponent {
   password: string = '';
   identification_type: string = '';
   identification_number: string = '';
+
 
   constructor(private http: HttpClient, private router: Router, private toastr: ToastrService, private formBuilder: FormBuilder) { }
 
