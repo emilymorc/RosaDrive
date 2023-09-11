@@ -12,12 +12,12 @@
     <div class="login-form">
     <label class="label">Nombre</label>
     <br>
-    <input type="text" id="firstName" [(ngModel)]="first_name" name="first_name" required type="text">
+    <input type="text" id="firstName" [(ngModel)]="first_name" name="first_name" required type="text" maxlength="255">
     <br>
 
     <label class="label">Apellido</label>
     <br>
-    <input type="text" id="last_name" [(ngModel)]="last_name" name="last_name" required type="text" type="text"  required>
+    <input type="text" id="last_name" [(ngModel)]="last_name" name="last_name" required type="text" type="text"  required maxlength="255">
     <br>
 
       <label  class="label">Tipo de Identificación</label>
@@ -32,7 +32,7 @@
 
       <label  class="label">Numero de Identificación</label>
       <br>
-      <input type="text" id="identification_number" [(ngModel)]="identification_number" name="identification_number" requiredtype="number" required>
+      <input type="text" id="identification_number" [(ngModel)]="identification_number" name="identification_number" requiredtype="number" required (input)="onDocumentInfoInput()">
       <br>
 
     <label for="email" class="label">Correo Electrónico</label>
@@ -42,13 +42,11 @@
 
     <label  class="label">Contraseña</label>
     <br>
-    <input type="password" id="password" [(ngModel)]="password" name="password" requiredtype="password" required>
+    <input type="password" id="password" [(ngModel)]="password" name="password" requiredtype="password" required maxlength="255">
     <br>
 
-
-
     </div>
-    <button class="buttonSave" type="submit">Crear</button>
+    <button class="buttonSave" type="submit" (click)="validateDocument()">Crear</button>
 
 
   </form>
