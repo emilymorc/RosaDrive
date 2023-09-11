@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {AuthService} from "../services/auth.service";
+import {AuthService} from "../servicios/auth.service";
 import {ToastrModule, ToastrService} from "ngx-toastr";
 
 @Component({

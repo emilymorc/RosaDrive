@@ -12,7 +12,7 @@ import {ModifyAccountComponet} from "./modify-account/modify-account.component";
 import {LandingComponent} from "./landing/landing.component";
 import {AutostorieComponent} from "./autostorie/autostorie.component";
 import {ModifyautostorieComponent} from "./modifyautostorie/autostorie.component";
-import {AuthService} from "./services/auth.service";
+import {AuthService} from "./servicios/auth.service";
 import {AuthGuard} from "./auth.guard";
 import {LogoutComponent} from "./logout/logout.component";
 
