@@ -1,3 +1,5 @@
+<!-- ... Tu código HTML anterior ... -->
+
 <html>
 <header>
   <div class="header">
@@ -7,336 +9,356 @@
 
 <body>
 
-<form>
+<form #myForm="ngForm" (submit)="signUp(myForm)" >
   <div class="container mt-5 border p-4 rounded body1">
-    <div class="form-group mb-4">
-      <label>Fecha de creación:</label>
-      <div>
-        <input type="date">
-      </div>
-    </div>
 
-    <div class="form-group mb-4">
-      <label>Fecha de ingreso: </label>
-      <div>
-        <input type="date">
-      </div>
-    </div>
+<div class="form-group mb-4">
+  <label>Fecha de creación:</label>
+  <div>
+    <input type="datetime-local" id="creationDate" name="creationDate" [(ngModel)]="creationDate">
+  </div>
+</div>
 
-    <div class="form-group">
-      <label>Propietario Actual:</label>
-      <br>
-      <input type="text">
-    </div>
-    <br>
-    <div class="form-group">
-      <label>Contacto Propietario:</label>
-      <br>
-      <input type="text">
-    </div>
-    <br>
-    <div class="form-group">
-      <label>Fecha de Servicio:</label>
-      <br>
-      <input type="date" name="fecha_servicio">
-    </div>
-    <br>
-    <div class="form-group">
-      <label>Notas adicionales</label>
-      <br>
-      <textarea></textarea>
-    </div>
+<div class="form-group mb-4">
+  <label>Fecha de ingreso:</label>
+  <div>
+    <input type="datetime-local" id="entryDate" name="entryDate" [(ngModel)]="entryDate">
+  </div>
+</div>
+
+<div class="form-group">
+  <label>Propietario Actual:</label>
+  <br>
+  <input type="text" id="currentOwner" name="currentOwner" [(ngModel)]="currentOwner">
+</div>
+
+<div class="form-group">
+  <label>Contacto Propietario:</label>
+  <br>
+  <input type="text" id="contactOwner" name="contactOwner" [(ngModel)]="contactOwner">
+</div>
+
+<div class="form-group">
+  <label>Fecha de Servicio:</label>
+  <br>
+  <input type="datetime-local" id="serviceDate" name="serviceDate" [(ngModel)]="serviceDate">
+</div>
+
+
+<div class="form-group">
+  <label>Notas adicionales:</label>
+  <br>
+  <textarea id="additionalNotes" name="additionalNotes" [(ngModel)]="additionalNotes"></textarea>
+</div>
   </div>
 
   <div class="container mt-4 border  p-4 rounded body1">
     <h3>Datos del Vehiculo</h3>
-<br>
-    <form>
-      <div class="form-group mb-4">
-        <label>Numero Placa</label>
-        <br>
-        <input type="text">
-      </div>
-        <div class="form-group mb-4">
-          <label>Número de Licencia de Tránsito:</label>
-          <br>
-          <input type="text">
-        </div>
+    <br>
 
-        <div class="form-group mb-4">
-          <label>Estado del Vehículo:</label>
-          <br>
-          <select>
-            <option value="" disabled selected>Seleccione una opcion</option>
-            <option *ngFor="let n of vehicleState" >{{n}}</option>
-          </select>
-        </div>
-        <br>
+<div class="form-group mb-4">
+  <label>Numero Placa:</label>
+  <br>
+  <input type="text" id="licensePlateNumber" name="licensePlateNumber" [(ngModel)]="licensePlateNumber">
+</div>
 
-        <div class="form-group mb-4">
-          <label>Tipo de Servicio:</label>
-          <br>
-          <select>
-            <option value="" disabled selected>Seleccione una opcion</option>
-            <option *ngFor="let n of transitAgency" >{{n}}</option>
-          </select>
-        </div>
+<div class="form-group mb-4">
+  <label>Número de Licencia de Tránsito:</label>
+  <br>
+  <input type="text" id="transitLicenseNumber" name="transitLicenseNumber" [(ngModel)]="transitLicenseNumber">
+</div>
 
-        <div class="form-group mb-4">
-          <label>Clase de Vehículo:</label>
-          <br>
-          <select>
-            <option value="" disabled selected>Seleccione una opcion</option>
-            <option *ngFor="let n of optionsBodyTipe" >{{n}}</option>
-          </select>
-        </div>
+<div class="form-group mb-4">
+  <label>Estado del Vehículo:</label>
+  <br>
+  <select id="vehicleState" name="vehicleState" [(ngModel)]="vehicleState">
+    <option value="" disabled selected>Seleccione una opción</option>
+    <option *ngFor="let n of vehicleState2">{{n}}</option>
+  </select>
+</div>
 
-        <div class="form-group mb-4">
-          <label>Marca:</label>
-          <br>
-          <input type="text">
-        </div>
+<div class="form-group mb-4">
+  <label>Tipo de Servicio:</label>
+  <br>
+  <select id="serviceType" name="serviceType" [(ngModel)]="serviceType">
+    <option value="" disabled selected>Seleccione una opción</option>
+    <option *ngFor="let n of transitAgency2">{{n}}</option>
+  </select>
+</div>
 
-        <div class="form-group mb-4">
-          <label>Línea:</label>
-          <br>
-          <input type="text">
-        </div>
+<div class="form-group mb-4">
+  <label>Clase de Vehículo:</label>
+  <br>
+  <select id="vehicleClass" name="vehicleClass" [(ngModel)]="vehicleClass">
+    <option value="" disabled selected>Seleccione una opción</option>
+    <option *ngFor="let n of optionsBodyTipe">{{n}}</option>
+  </select>
+</div>
 
-        <div class="form-group mb-4">
-          <label>Modelo:</label>
-          <br>
-          <input type="text">
-        </div>
+<div class="form-group mb-4">
+  <label>Marca:</label>
+  <br>
+  <input type="text" id="brand" name="brand" [(ngModel)]="brand">
+</div>
 
-        <div class="form-group mb-4">
-          <label>Color:</label>
-          <br>
-          <input type="text">
-        </div>
+<div class="form-group mb-4">
+  <label>Línea:</label>
+  <br>
+  <input type="text" id="line" name="line" [(ngModel)]="line">
+</div>
 
-        <div class="form-group mb-4">
-          <label>Número de Motor:</label>
-          <br>
-          <input type="text">
-        </div>
+<div class="form-group mb-4">
+  <label>Modelo:</label>
+  <br>
+  <input type="text" id="model" name="model" [(ngModel)]="model">
+</div>
 
-        <div class="form-group mb-4">
-          <label>Número de Chasis:</label>
-          <br>
-          <input type="text">
-        </div>
+<div class="form-group mb-4">
+  <label>Color:</label>
+  <br>
+  <input type="text" id="color" name="color" [(ngModel)]="color">
+</div>
 
-        <div class="form-group mb-4">
-          <label>Número de VIN:</label>
-          <br>
-          <input type="text">
-        </div>
+<div class="form-group mb-4">
+  <label>Número de Motor:</label>
+  <br>
+  <input type="text" id="engineNumber" name="engineNumber" [(ngModel)]="engineNumber">
+</div>
 
-        <div class="form-group mb-4">
-          <label>Cilindraje:</label>
-          <br>
-          <input type="text">
-        </div>
+<div class="form-group mb-4">
+  <label>Número de Chasis:</label>
+  <br>
+  <input type="text" id="chassisNumber" name="chassisNumber" [(ngModel)]="chassisNumber">
+</div>
 
-        <div class="form-group mb-4">
-          <label>Tipo de Carrocería:</label>
-          <br>
-          <select>
-            <option value="" disabled selected>Seleccione una opcion</option>
-            <option *ngFor="let n of optionsBodyTipe" >{{n}}</option>
-          </select>
-        </div>
+<div class="form-group mb-4">
+  <label>Número de VIN:</label>
+  <br>
+  <input type="text" id="vinNumber" name="vinNumber" [(ngModel)]="vinNumber">
+</div>
 
-        <div class="form-group mb-4">
-          <label>Fecha de Matrícula:</label>
-          <br>
-          <input type="date">
-        </div>
+<div class="form-group mb-4">
+  <label>Cilindraje:</label>
+  <br>
+  <input type="number" id="displacement" name="displacement" [(ngModel)]="displacement">
+</div>
 
-        <div class="form-group mb-4">
-          <label>Tiene Gravámenes:</label>
-          <br>
-          <select>
-            <option value="" disabled selected>Seleccione una opcion</option>
-            <option>Si</option>
-            <option>No</option>
-          </select>
-        </div>
+<div class="form-group mb-4">
+  <label>Tipo de Carrocería:</label>
+  <br>
+  <select id="bodyType" name="bodyType" [(ngModel)]="bodyType">
+    <option value="" disabled selected>Seleccione una opción</option>
+    <option *ngFor="let n of optionsBodyTipe">{{n}}</option>
+  </select>
+</div>
 
-        <div class="form-group mb-4">
-          <label>Organismo de Tránsito:</label>
-          <br>
-          <select>
-            <option value="" disabled selected>Seleccione una opcion</option>
-            <option *ngFor="let n of transitAgency1" >{{n}}</option>
-          </select>
-        </div>
+<div class="form-group mb-4">
+  <label>Fecha de Matrícula:</label>
+  <br>
+  <input type="datetime-local" id="registrationDate" name="registrationDate" [(ngModel)]="registrationDate">
+</div>
 
-        <div class="form-group mb-4">
-          <label>Clasificación:</label>
-          <br>
-          <select>
-            <option value="" disabled selected>Seleccione una opcion</option>
-            <option *ngFor="let n of optionsBodyTipe" >{{n}}</option>
-          </select>
-        </div>
+<div class="form-group mb-4">
+  <label>Tiene Gravámenes:</label>
+  <br>
+  <select id="hasEncumbrances" name="hasEncumbrances" [(ngModel)]="hasEncumbrances">
+    <option value="" disabled selected>Seleccione una opción</option>
+    <option [value]="true">Si</option>
+    <option [value]="false">No</option>
+  </select>
+</div>
 
-        <div class="form-group mb-4">
-          <label>Es Regrabado Motor:</label>
-          <br>
-          <select>
-            <option value="" disabled selected>Seleccione una opcion</option>
-            <option>Si</option>
-            <option>No</option>
-          </select>
-        </div>
+<div class="form-group mb-4">
+  <label>Organismo de Tránsito:</label>
+  <br>
+  <select id="transitAgency" name="transitAgency" [(ngModel)]="transitAgency">
+    <option value="" disabled selected>Seleccione una opción</option>
+    <option *ngFor="let n of transitAgency1">{{n}}</option>
+  </select>
+</div>
 
-        <div class="form-group mb-4">
-          <label>Es Regrabado Chasis:</label>
-          <br>
-          <select>
-            <option value="" disabled selected>Seleccione una opcion</option>
-            <option>Si</option>
-            <option>No</option>
-          </select>
-        </div>
+<div class="form-group mb-4">
+  <label>Clasificación:</label>
+  <br>
+  <select id="classification" name="classification" [(ngModel)]="classification">
+    <option value="" disabled selected>Seleccione una opción</option>
+    <option *ngFor="let n of optionsBodyTipe">{{n}}</option>
+  </select>
+</div>
 
-        <div class="form-group mb-4">
-          <label>Es Regrabado Serie:</label>
-          <br>
-          <select>
-            <option value="" disabled selected>Seleccione una opcion</option>
-            <option>Si</option>
-            <option>No</option>
-          </select>
-        </div>
+<div class="form-group mb-4">
+  <label>Es Regrabado Motor:</label>
+  <br>
+  <select id="isEngineRetagged" name="isEngineRetagged" [(ngModel)]="isEngineRetagged">
+    <option value="" disabled selected>Seleccione una opción</option>
+    <option [value]="true">Si</option>
+    <option [value]="false">No</option>
+  </select>
+</div>
 
-        <div class="form-group mb-4">
-          <label>Clásico Antiguo:</label>
-          <br>
-          <select>
-            <option value="" disabled selected>Seleccione una opcion</option>
-            <option>Clasico</option>
-            <option>Antiguo</option>
-          </select>
-        </div>
+<div class="form-group mb-4">
+  <label>Es Regrabado Chasis:</label>
+  <br>
+  <select id="isChassisRetagged" name="isChassisRetagged" [(ngModel)]="isChassisRetagged">
+    <option value="" disabled selected>Seleccione una opción</option>
+    <option [value]="true">Si</option>
+    <option [value]="false">No</option>
+  </select>
+</div>
 
-        <div class="form-group mb-4">
-          <label>Tipo de Combustible:</label>
-          <br>
-          <select>
-            <option value="" disabled selected>Seleccione una opcion</option>
-            <option *ngFor="let n of combustible" >{{n}}</option>
-          </select>
-        </div>
+<div class="form-group mb-4">
+  <label>Es Regrabado Serie:</label>
+  <br>
+  <select id="isSerialNumberRetagged" name="isSerialNumberRetagged" [(ngModel)]="isSerialNumberRetagged">
+    <option value="" disabled selected>Seleccione una opción</option>
+    <option [value]="true">Si</option>
+    <option [value]="false">No</option>
+  </select>
+</div>
 
-        <div class="form-group mb-4">
-          <label>Tarjeta de Servicio:</label>
-          <br>
-          <input type="text">
-        </div>
+<div class="form-group mb-4">
+  <label>Clásico Antiguo:</label>
+  <br>
+  <select id="classicAntiquity" name="classicAntiquity" [(ngModel)]="classicAntiquity">
+    <option value="" disabled selected>Seleccione una opción</option>
+    <option [value]="true">Clásico</option>
+    <option [value]="false">Antiguo</option>
+  </select>
+</div>
 
-        <div class="form-group mb-4">
-          <label>Seguridad Estado:</label>
-          <br>
-          <input type="text">
-        </div>
+<div class="form-group mb-4">
+  <label>Tipo de Combustible:</label>
+  <br>
+  <select id="fuelType" name="fuelType" [(ngModel)]="fuelType">
+    <option value="" disabled selected>Seleccione una opción</option>
+    <option *ngFor="let n of combustible">{{n}}</option>
+  </select>
+</div>
 
-        <div class="form-group mb-4">
-          <label>Verificación Valida DIAN:</label>
-          <br>
-          <input type="text">
-        </div>
+<div class="form-group mb-4">
+  <label>Tarjeta de Servicio:</label>
+  <br>
+  <input type="number" id="serviceCard" name="serviceCard" [(ngModel)]="serviceCard">
+</div>
 
-        <div class="form-group mb-4">
-          <label>Número de Placa:</label>
-          <br>
-          <input type="text">
-        </div>
+<div class="form-group mb-4">
+  <label>Total Pasajeros:</label>
+  <br>
+  <input type="text" id="totalPassengers" name="totalPassengers" [(ngModel)]="totalPassengers">
+</div>
 
-        <div class="form-group mb-4">
-          <label>Peso Bruto Vehicular:</label>
-          <br>
-          <input type="text">
-        </div>
+<div class="form-group mb-4">
+  <label>Seguridad Estado:</label>
+  <br>
+  <input type="text" id="stateOfSecurity" name="stateOfSecurity" [(ngModel)]="stateOfSecurity">
+</div>
 
-        <div class="form-group mb-4">
-          <label>Número de Ejes:</label>
-          <br>
-          <input type="text">
-        </div>
+<div class="form-group mb-4">
+  <label>Verificación Valida DIAN:</label>
+  <br>
+  <select id="dianValid" name="dianValid" [(ngModel)]="dianValid">
+    <option value="" disabled selected>Seleccione una opción</option>
+    <option [value]="true">Si</option>
+    <option [value]="false">No</option>
+  </select>
+</div>
 
-        <div class="form-group mb-4">
-          <label>Pasajeros Sentados:</label>
-          <br>
-          <input type="text">
-        </div>
+<div class="form-group mb-4">
+  <label>Número de Placa:</label>
+  <br>
+  <input type="text" id="licensePlateNumber" name="licensePlateNumber" [(ngModel)]="licensePlateNumber">
+</div>
 
-        <div class="form-group mb-4">
-          <label>Número de Póliza SOAT:</label>
-          <br>
-          <input type="text">
-        </div>
+<div class="form-group mb-4">
+  <label>Peso Bruto Vehicular:</label>
+  <br>
+  <input type="number" id="grossVehicleWeight" name="grossVehicleWeight" [(ngModel)]="grossVehicleWeight">
+</div>
 
-        <div class="form-group mb-4">
-          <label>Fecha de Expedición SOAT:</label>
-          <br>
-          <input type="date">
-        </div>
+<div class="form-group mb-4">
+  <label>Número de Ejes:</label>
+  <br>
+  <input type="text" id="numberOfAxles" name="numberOfAxles" [(ngModel)]="numberOfAxles">
+</div>
 
-        <div class="form-group mb-4">
-          <label>Fecha de Vigencia SOAT:</label>
-          <br>
-          <input type="date">
-        </div>
+<div class="form-group mb-4">
+  <label>Pasajeros Sentados:</label>
+  <br>
+  <input type="number" id="totalPassengers" name="totalPassengers" [(ngModel)]="totalPassengers">
+</div>
 
-        <div class="form-group mb-4">
-          <label>Fecha de Vencimiento SOAT:</label>
-          <br>
-          <input type="date">
-        </div>
+<div class="form-group mb-4">
+  <label>Número de Póliza SOAT:</label>
+  <br>
+  <input type="text" id="soatPolicyNumber" name="soatPolicyNumber" [(ngModel)]="soatPolicyNumber">
+</div>
 
-        <div class="form-group mb-4">
-          <label>Entidad que Expide SOAT:</label>
-          <br>
-          <input type="text">
-        </div>
+<div class="form-group mb-4">
+  <label>Fecha de Expedición SOAT:</label>
+  <br>
+  <input type="datetime-local" id="soatIssueDate" name="soatIssueDate" [(ngModel)]="soatIssueDate">
+</div>
 
-        <div class="form-group mb-4">
-          <label>Estado:</label>
-          <br>
-          <select>
-            <option value="" disabled selected>Seleccione una opcion</option>
-            <option>Activo</option>
-            <option>Inactivo</option>
-          </select>
-        </div>
+<div class="form-group mb-4">
+  <label>Fecha de Vigencia SOAT:</label>
+  <br>
+  <input type="datetime-local" id="soatEffectiveDate" name="soatEffectiveDate" [(ngModel)]="soatEffectiveDate">
+</div>
 
-        <div class="form-group mb-4">
-          <label>Tipo de Tarifa:</label>
-          <br>
-          <input type="text">
-        </div>
+<div class="form-group mb-4">
+  <label>Fecha de Vencimiento SOAT:</label>
+  <br>
+  <input type="datetime-local" id="soatExpirationDate" name="soatExpirationDate" [(ngModel)]="soatExpirationDate">
+</div>
 
-        <div class="form-group mb-4">
-          <label>TecnoMecánica:</label>
-          <div>
-            <input type="text" placeholder="Tipo de Revisión">
-            <input type="date" placeholder="Fecha de Expedición">
-            <input type="date" placeholder="Fecha Vigente">
-            <input type="text" placeholder="CDA que Expide">
-            <input type="text" placeholder="Vigente">
-            <input type="text" placeholder="Número de Certificado">
-            <input type="text" placeholder="Información Consistente">
-          </div>
-        </div>
+<div class="form-group mb-4">
+  <label>Entidad que Expide SOAT:</label>
+  <br>
+  <input type="text" id="issuingEntitySoat" name="issuingEntitySoat" [(ngModel)]="issuingEntitySoat">
+</div>
 
-      <button type="button" class="btn btn-primay">Crear</button>
-    </form>
+<div class="form-group mb-4">
+  <label>Estado:</label>
+  <br>
+  <select id="status" name="status" [(ngModel)]="status">
+    <option value="" disabled selected>Seleccione una opción</option>
+    <option>Activo</option>
+    <option>Inactivo</option>
+  </select>
+</div>
 
+<div class="form-group mb-4">
+  <label>Tipo de Tarifa:</label>
+  <br>
+  <input type="text" id="tariffType" name="tariffType" [(ngModel)]="tariffType">
+</div>
+
+<div class="form-group mb-4">
+  <label>TecnoMecánica:</label>
+  <div>
+    <input type="text" id="technicalInspectionType" name="technicalInspectionType" [(ngModel)]="inspectionType" placeholder="Tipo de Revisión">
+    <input type="datetime-local" id="technicalInspectionIssueDate" name="technicalInspectionIssueDate" [(ngModel)]="issueDate" placeholder="Fecha de Expedición">
+    <input type="datetime-local" id="technicalInspectionEffectiveDate" name="technicalInspectionEffectiveDate" [(ngModel)]="effectiveDate" placeholder="Fecha Vigente">
+    <input type="text" id="cdaIssuer" name="cdaIssuer" [(ngModel)]="cdaIssuer" placeholder="CDA que Expide">
+    <br>
+    <label>Es valido:</label>
+    <br>
+    <select id="isValid" name="isValid" [(ngModel)]="isValid">
+      <option value="" disabled selected>Seleccione una opción</option>
+      <option [value]="true">Si</option>
+      <option [value]="false">No</option>
+    </select>
+    <input type="text" id="certificateNumber" name="certificateNumber" [(ngModel)]="certificateNumber" placeholder="Número de Certificado">
+    <input type="text" id="consistentInformation" name="consistentInformation" [(ngModel)]="consistentInformation" placeholder="Información Consistente">
   </div>
+</div>
+
+<button type="submit" class="btn btn-primay">Crear</button>
+
+<!-- ... Tu código HTML posterior ... -->
+
+
+</div>
 </form>
 
 </body>
-</html>
