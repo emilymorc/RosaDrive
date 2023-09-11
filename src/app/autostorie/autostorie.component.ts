@@ -88,6 +88,7 @@ export class AutostorieComponent {
     const valorCasteado: string | number | (string | number)[] = valor as string | number | (string | number)[];
     const data = {
 
+      creationDate: this.creationDate,
       entryDate: this.convertirFecha(this.entryDate),
       serviceDate:this.convertirFecha(this.serviceDate),
       registrationDate: this.convertirFecha(this.registrationDate),
