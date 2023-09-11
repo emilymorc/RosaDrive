@@ -10,11 +10,17 @@
   <h1>Usuarios</h1>
 </div>
 
-<div class="container mt-5">
-  <table class="table">
+<div class="container mt-5 table-responsive">
+  <div class="ml-2">
+    <input type="text" [(ngModel)]="filtroApellido" placeholder="Filtrar por Apellido" class="form-control">
+  </div>
+  <br>
+  <table class="table table table-bordered" >
     <thead>
     <tr>
-      <th (click)="sortBy('ID_USER')">ID_USER</th>
+      <th (click)="sortDataByColumn('ID_USER')">ID_USER
+        <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'ID_USER' && isAsc, 'fa-arrow-down': orderBy === 'ID_USER' && !isAsc}"></i>
+      </th>
       <th (click)="sortDataByColumn('FIRST_NAME')">
         FIRST_NAME
         <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'FIRST_NAME' && isAsc, 'fa-arrow-down': orderBy === 'FIRST_NAME' && !isAsc}"></i>
@@ -27,15 +33,15 @@
         REGISTRATION_DATE
         <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'REGISTRATION_DATE' && isAsc, 'fa-arrow-down': orderBy === 'REGISTRATION_DATE' && !isAsc}"></i>
       </th>
-      <th (click)="sortBy('EMAIL')">EMAIL</th>
+      <th>EMAIL</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let dato of users | slice:(currentPage-1)*itemsPerPage:currentPage*itemsPerPage">
+    <tr *ngFor="let dato of filtrarPorApellido() | slice:(currentPage-1)*itemsPerPage:currentPage*itemsPerPage">
       <td>{{ dato.ID_USER }}</td>
       <td>{{ dato.FIRST_NAME }}</td>
       <td>{{ dato.LAST_NAME }}</td>
-      <td>{{ dato.REGISTRATION_DATE }}</td>
+      <td>{{ dato.REGISTRATION_DATE | date: 'MM/dd/yyyy hh:mm:ss a' }}</td>
       <td>{{ dato.EMAIL }}</td>
     </tr>
     </tbody>
@@ -46,6 +52,10 @@
           [itemsPerPage]="itemsPerPage"
           [maxSize]="maxSize"
           [boundaryLinks]="true"
+          [previousText]="'Anterior'"
+          [nextText]="'Siguiente'"
+          [lastText]="'Primero'"
+          [firstText]="'Final'"
           (pageChanged)="onPageChange($event)">
   </pagination>
 </div>
