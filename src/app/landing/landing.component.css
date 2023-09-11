@@ -19,8 +19,8 @@ h5,p{
   min-width: 100%;
 }
 .text-carrusel{
-  /*background-color: rgba(128, 128, 128, 0.4);*/
-  /*padding: 10px;*/
+  background-color: rgba(128, 128, 128, 0.4);
+  padding: 10px;
 }
 .header {
   background-color: #b4b4b4;
