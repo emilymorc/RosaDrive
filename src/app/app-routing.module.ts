@@ -15,6 +15,7 @@ import {ModifyautostorieComponent} from "./modifyautostorie/autostorie.component
 import {AuthService} from "./services/auth.service";
 import {AuthGuard} from "./auth.guard";
 import {LogoutComponent} from "./logout/logout.component";
+import {ViewautostoriesComponent} from "./viewautostories/viewautostories.component";
 
 
 const routes: Routes = [
@@ -41,7 +42,8 @@ const routes: Routes = [
       {path: 'view-users', component: ViewUsersComponent, canActivate:[AuthGuard]},
       {path: 'modifyAccount', component: ModifyAccountComponet, canActivate:[AuthGuard]},
       {path: 'landing', component: LandingComponent, canActivate:[AuthGuard]},
-      {path: 'logout', component: LogoutComponent, canActivate:[AuthGuard]}
+      {path: 'logout', component: LogoutComponent, canActivate:[AuthGuard]},
+      {path: 'viewStories', component: ViewautostoriesComponent}
     ]
   },
 ];

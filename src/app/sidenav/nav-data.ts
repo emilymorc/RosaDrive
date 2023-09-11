@@ -39,7 +39,7 @@ export const navbarData: INavbarData[] = [
         label: 'Modificar',
       },
       {
-        routeLink: 'product/level1.2',
+        routeLink: 'viewStories',
         label: 'Ver',
       }
     ]
