@@ -145,7 +145,7 @@ export class AutostorieComponent {
       consistentInformation: this.consistentInformation,
 
     };
-    console.log("Fecha" + this.convertirFecha(this.creationDate))
+    console.log("Data: " + this.entryDate)
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'User-Agent': 'Insomnia/2023.5.5',

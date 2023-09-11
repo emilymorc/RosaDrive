@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
 
-</head>
 
 <body>
 
@@ -38,7 +36,8 @@
       <td>{{ dato.LICENSE_PLATE_NUMBER }}</td>
       <td>{{ dato.CURRENT_OWNER }}</td>
       <td>{{ dato.VEHICLE_CLASS }}</td>
-      <td>{{ dato.CREATION_DATE }}</td>
+<!--      <td>{{ dato.CREATION_DATE | date: 'MM/dd/yyyy hh:mm:ss a'}}</td>-->
+      <td>{{ dato.ENTRY_DATE}}</td>
 
     </tr>
     </tbody>
