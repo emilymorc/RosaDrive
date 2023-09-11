@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {animation} from "@angular/animations";
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 import { AppComponent } from './app.component';
 import {SidenavComponent} from "./sidenav/sidenav.component";
@@ -23,6 +24,7 @@ import {ModifyAccountComponet} from "./modify-account/modify-account.component";
 import { LandingComponent } from './landing/landing.component';
 import { AutostorieComponent } from './autostorie/autostorie.component';
 import { LogoutComponent } from './logout/logout.component';
+import { ViewautostoriesComponent } from './viewautostories/viewautostories.component';
 
 
 
@@ -41,9 +43,11 @@ import { LogoutComponent } from './logout/logout.component';
     LandingComponent,
     AutostorieComponent,
     LandingComponent,
-    LogoutComponent
+    LogoutComponent,
+    ViewautostoriesComponent
   ],
     imports: [
+        PaginationModule.forRoot(),
         BrowserModule,
         RouterOutlet,
         HttpClientModule,

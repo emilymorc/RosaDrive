@@ -32,6 +32,8 @@ export class Login2Component implements OnInit {
         const token = response.data.TOKEN;
         this.authService.setAuthentication(token);
         localStorage.setItem('token', token);
+        console.log(localStorage.getItem('token'))
+
         this.router.navigate(['/dashboard/landing']);
         this.toastr.success("Inicio de sesión exitoso", "EXITOSO!");
       },

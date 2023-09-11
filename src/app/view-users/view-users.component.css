@@ -4,3 +4,11 @@
   text-align: center;
   padding: 20px;
 }
+
+.pagination-previous::before {
+  content: "Anterior";
+}
+
+.pagination-next::after {
+  content: "Siguiente";
+}

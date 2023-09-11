@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+
+<body>
+
+<div class="header">
+  <h1>Historiales de Automotores</h1>
+</div>
+
+<div class="container mt-5 table-responsive">
+  <div class="ml-2">
+    <input type="text" [(ngModel)]="filtroPorClase" placeholder="Filtrar por Clase de Vehiculo" class="form-control">
+  </div>
+  <br>
+  <table class="table table table-bordered" >
+    <thead>
+    <tr>
+
+      <th (click)="sortDataByColumn('LICENSE_PLATE_NUMBER')">
+        Placa
+        <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'LICENSE_PLATE_NUMBER' && isAsc, 'fa-arrow-down': orderBy === 'LICENSE_PLATE_NUMBER' && !isAsc}"></i>
+      </th>
+      <th (click)="sortDataByColumn('CURRENT_OWNER')">Propietario
+        <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'CURRENT_OWNER' && isAsc, 'fa-arrow-down': orderBy === 'CURRENT_OWNER' && !isAsc}"></i>
+      </th>
+      <th (click)="sortDataByColumn('VEHICLE_CLASS')">
+        Clase de Vehiculo
+        <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'VEHICLE_CLASS' && isAsc, 'fa-arrow-down': orderBy === 'VEHICLE_CLASS' && !isAsc}"></i>
+      </th>
+      <th>Fecha creación</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let dato of filtrarPorClase() | slice:(currentPage-1)*itemsPerPage:currentPage*itemsPerPage">
+      <td>{{ dato.LICENSE_PLATE_NUMBER }}</td>
+      <td>{{ dato.CURRENT_OWNER }}</td>
+      <td>{{ dato.VEHICLE_CLASS }}</td>
+<!--      <td>{{ dato.CREATION_DATE | date: 'MM/dd/yyyy hh:mm:ss a'}}</td>-->
+      <td>{{ dato.ENTRY_DATE}}</td>
+
+    </tr>
+    </tbody>
+  </table>
+  <pagination
+    [totalItems]="users.length"
+    [(ngModel)]="currentPage"
+    [itemsPerPage]="itemsPerPage"
+    [maxSize]="maxSize"
+    [boundaryLinks]="true"
+    [previousText]="'Anterior'"
+    [nextText]="'Siguiente'"
+    [lastText]="'Primero'"
+    [firstText]="'Final'"
+    (pageChanged)="onPageChange($event)">
+  </pagination>
+</div>
+
+
+</body>
+
+</html>
+
+
+
