@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {animation} from "@angular/animations";
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 import { AppComponent } from './app.component';
 import {SidenavComponent} from "./sidenav/sidenav.component";
@@ -46,6 +47,7 @@ import { ViewautostoriesComponent } from './viewautostories/viewautostories.comp
     ViewautostoriesComponent
   ],
     imports: [
+        PaginationModule.forRoot(),
         BrowserModule,
         RouterOutlet,
         HttpClientModule,
