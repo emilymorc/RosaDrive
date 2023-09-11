@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {animation} from "@angular/animations";
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 import { AppComponent } from './app.component';
 import {SidenavComponent} from "./sidenav/sidenav.component";
@@ -44,6 +45,7 @@ import { LogoutComponent } from './logout/logout.component';
     LogoutComponent
   ],
     imports: [
+        PaginationModule.forRoot(),
         BrowserModule,
         RouterOutlet,
         HttpClientModule,
