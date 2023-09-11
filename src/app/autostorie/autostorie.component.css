@@ -11,6 +11,19 @@ h3{
 
   color: black;
 }
+
+.buttonSave{
+  padding: 10px 20px;
+  background-color: #0062A9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block; /* Convertir en bloque para que ocupe todo el ancho disponible */
+  margin: 0 auto; /* Margen automático en los lados para centrarlo horizontalmente */
+  text-align: center;
+  margin-top: 50px;
+}
 .body1{
   background-color: #e1e1e1;
   width: 100%;
