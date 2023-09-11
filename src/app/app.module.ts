@@ -23,6 +23,7 @@ import {ModifyAccountComponet} from "./modify-account/modify-account.component";
 import { LandingComponent } from './landing/landing.component';
 import { AutostorieComponent } from './autostorie/autostorie.component';
 import { LogoutComponent } from './logout/logout.component';
+import { ViewautostoriesComponent } from './viewautostories/viewautostories.component';
 
 
 
@@ -41,7 +42,8 @@ import { LogoutComponent } from './logout/logout.component';
     LandingComponent,
     AutostorieComponent,
     LandingComponent,
-    LogoutComponent
+    LogoutComponent,
+    ViewautostoriesComponent
   ],
     imports: [
         BrowserModule,

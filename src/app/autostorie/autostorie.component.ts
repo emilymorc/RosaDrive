@@ -89,13 +89,13 @@ export class AutostorieComponent {
     const data = {
 
       entryDate: this.convertirFecha(this.entryDate),
-      /*serviceDate:this.convertirFecha(this.serviceDate),
+      serviceDate:this.convertirFecha(this.serviceDate),
       registrationDate: this.convertirFecha(this.registrationDate),
       soatIssueDate: this.convertirFecha(this.soatIssueDate),
       soatEffectiveDate: this.convertirFecha(this.soatEffectiveDate),
       soatExpirationDate: this.convertirFecha(this.soatExpirationDate),
       issueDate: this.convertirFecha(this.issueDate),
-      effectiveDate: this.convertirFecha(this.effectiveDate),*/
+      effectiveDate: this.convertirFecha(this.effectiveDate),
 
       brand: this.brand,
       color: this.color,
