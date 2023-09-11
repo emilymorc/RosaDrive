@@ -197,7 +197,4 @@ export class AutostorieComponent {
       return 'Fecha no válida';
     }
   }
-
-
-
 }
