@@ -69,7 +69,7 @@ export class ModifyAccountComponet implements OnInit{
       return;
     }
 
-    if (!this.validateEmail(this.email)) {
+    if (!this.validateEmail(userDataForm.value.email)) {
       this.toastr.error("Por favor, ingrese un correo valido", "Correo Invalido");
       return;
     }
