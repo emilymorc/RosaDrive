@@ -1,8 +1,8 @@
 .header {
-  color: #0062A9;
   background-color: #b4b4b4;
-  text-align: center;
+  color: black;
   padding: 20px;
+  width: 100%;
 }
 
 .pagination-previous::before {
