@@ -1,5 +1,4 @@
 body {
-  font-family: sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -10,19 +9,16 @@ label{
 
 /* Estilos para el encabezado */
 .header {
-  color: #0062A9;
   background-color: #b4b4b4;
-  text-align: center;
+  color: black;
   padding: 20px;
-
+  width: 100%;
 }
-
 /* Estilos para el logo */
 
 
 /* Estilos para el formulario */
 .login-form {
-  font-family: 'Source Sans 3', sans-serif;
   margin-top: 5%;
   margin-left: 23%;
   color: black;

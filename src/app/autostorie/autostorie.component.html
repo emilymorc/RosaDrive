@@ -336,7 +336,13 @@
   <label>TecnoMecánica:</label>
   <div>
     <input type="text" id="technicalInspectionType" name="technicalInspectionType" [(ngModel)]="inspectionType" placeholder="Tipo de Revisión" maxlength="255">
+    <br>
+    <label>Fecha de expedición:</label>
+    <br>
     <input type="datetime-local" id="technicalInspectionIssueDate" name="technicalInspectionIssueDate" [(ngModel)]="issueDate" placeholder="Fecha de Expedición" [max]="maxDate">
+    <br>
+    <label>Fecha Vigencia:</label>
+    <br>
     <input type="datetime-local" id="technicalInspectionEffectiveDate" name="technicalInspectionEffectiveDate" [(ngModel)]="effectiveDate" placeholder="Fecha Vigente" maxlength="255">
     <input type="text" id="cdaIssuer" name="cdaIssuer" [(ngModel)]="cdaIssuer" placeholder="CDA que Expide">
     <br>

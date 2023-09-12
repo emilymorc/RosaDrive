@@ -3,11 +3,13 @@ import {HttpClient} from "@angular/common/http";
 import {UserService} from "../servicios/users.service";
 import {NgForm} from "@angular/forms";
 import {Router} from "@angular/router";
+import {ToastrModule, ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-create-account',
   templateUrl: './modify-account.component.html',
-  styleUrls: ['./modify-account.component.css']
+  styleUrls: ['./modify-account.component.css'],
+  providers: [ToastrModule]
 })
 export class ModifyAccountComponet implements OnInit{
 
@@ -17,7 +19,7 @@ export class ModifyAccountComponet implements OnInit{
   password: string = '';
   selectedUser: any = {};
 
-  constructor(private http: HttpClient,private userService: UserService,private router: Router) { }
+  constructor(private http: HttpClient,private userService: UserService,private router: Router, private toastr: ToastrService) { }
 
   signUp() {
     const userData = {
@@ -56,6 +58,7 @@ export class ModifyAccountComponet implements OnInit{
     this.userService.updateUserData(userData).subscribe(
       (response) => {
         console.log('Usuario actualizado:', response);
+        this.toastr.success("Usuario modificado con exito", "EXITOSO!");
         this.resetForm(userDataForm);
         this.router.navigate(['/dashboard/view-users']);
       },
