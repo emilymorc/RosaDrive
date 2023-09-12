@@ -11,7 +11,6 @@ import {ViewUsersComponent} from "./view-users/view-users.component";
 import {ModifyAccountComponet} from "./modify-account/modify-account.component";
 import {LandingComponent} from "./landing/landing.component";
 import {AutostorieComponent} from "./autostorie/autostorie.component";
-import {ModifyautostorieComponent} from "./modifyautostorie/autostorie.component";
 import {AuthService} from "./servicios/auth.service";
 import {AuthGuard} from "./auth.guard";
 import {LogoutComponent} from "./logout/logout.component";
@@ -34,7 +33,6 @@ const routes: Routes = [
       {path: 'modifyAccount', component: ModifyAccountComponet},
       {path: 'landing', component: LandingComponent},
       {path: 'history', component: AutostorieComponent},
-      {path: 'modifyStorie', component: ModifyautostorieComponent},
       { path: 'sidebar', component: SidenavComponent, canActivate:[AuthGuard]},
       { path: 'AppBody', component:BodyComponent, canActivate:[AuthGuard] },
       { path: 'create', component: CreateAccountComponent, canActivate:[AuthGuard]},

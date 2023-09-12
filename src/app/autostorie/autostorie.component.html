@@ -161,10 +161,10 @@
 <div class="form-group mb-4">
   <label>Tiene Gravámenes:</label>
   <br>
-  <select id="hasEncumbrances" name="hasEncumbrances" [(ngModel)]="hasEncumbrances">
-    <option value="" disabled selected>Seleccione una opción</option>
-    <option [value]="true">Si</option>
-    <option [value]="false">No</option>
+  <select  id="hasEncumbrances" name="hasEncumbrances" [(ngModel)]="hasEncumbrances">
+    <option disabled selected>Seleccione una opción</option>
+    <option [value]=true>Si</option>
+    <option [value]=false>No</option>
   </select>
 </div>
 
@@ -191,8 +191,8 @@
   <br>
   <select id="isEngineRetagged" name="isEngineRetagged" [(ngModel)]="isEngineRetagged">
     <option value="" disabled selected>Seleccione una opción</option>
-    <option [value]="true">Si</option>
-    <option [value]="false">No</option>
+    <option [value]=true>Si</option>
+    <option [value]=false>No</option>
   </select>
 </div>
 
@@ -201,8 +201,8 @@
   <br>
   <select id="isChassisRetagged" name="isChassisRetagged" [(ngModel)]="isChassisRetagged">
     <option value="" disabled selected>Seleccione una opción</option>
-    <option [value]="true">Si</option>
-    <option [value]="false">No</option>
+    <option [value]=true>Si</option>
+    <option [value]=false>No</option>
   </select>
 </div>
 
@@ -211,7 +211,7 @@
   <br>
   <select id="isSerialNumberRetagged" name="isSerialNumberRetagged" [(ngModel)]="isSerialNumberRetagged">
     <option value="" disabled selected>Seleccione una opción</option>
-    <option [value]="true">Si</option>
+    <option [value]=true>Si</option>
     <option [value]="false">No</option>
   </select>
 </div>
@@ -221,8 +221,8 @@
   <br>
   <select id="classicAntiquity" name="classicAntiquity" [(ngModel)]="classicAntiquity">
     <option value="" disabled selected>Seleccione una opción</option>
-    <option [value]="true">Clásico</option>
-    <option [value]="false">Antiguo</option>
+    <option [value]=true>Clásico</option>
+    <option [value]=false>Antiguo</option>
   </select>
 </div>
 
@@ -250,7 +250,11 @@
 <div class="form-group mb-4">
   <label>Seguridad Estado:</label>
   <br>
-  <input type="text" id="stateOfSecurity" name="stateOfSecurity" [(ngModel)]="stateOfSecurity">
+  <select id="stateOfSecurity" name="stateOfSecurity" [(ngModel)]="stateOfSecurity">
+    <option value="" disabled selected>Seleccione una opción</option>
+    <option [value]=true>Clásico</option>
+    <option [value]=false>Antiguo</option>
+  </select>
 </div>
 
 <div class="form-group mb-4">
@@ -258,8 +262,8 @@
   <br>
   <select id="dianValid" name="dianValid" [(ngModel)]="dianValid">
     <option value="" disabled selected>Seleccione una opción</option>
-    <option [value]="true">Si</option>
-    <option [value]="false">No</option>
+    <option [value]=true>Si</option>
+    <option [value]=false>No</option>
   </select>
 </div>
 
@@ -340,8 +344,8 @@
     <br>
     <select id="isValid" name="isValid" [(ngModel)]="isValid">
       <option value="" disabled selected>Seleccione una opción</option>
-      <option [value]="true">Si</option>
-      <option [value]="false">No</option>
+      <option [value]= "true" > Si</option>
+      <option [value]= false>No</option>
     </select>
     <input type="text" id="certificateNumber" name="certificateNumber" [(ngModel)]="certificateNumber" placeholder="Número de Certificado">
     <input type="text" id="consistentInformation" name="consistentInformation" [(ngModel)]="consistentInformation" placeholder="Información Consistente">

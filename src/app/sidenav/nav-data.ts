@@ -16,10 +16,6 @@ export const navbarData: INavbarData[] = [
         label: 'Crear',
       },
       {
-        routeLink: 'modifyAccount',
-        label: 'Modificar',
-      },
-      {
         routeLink: 'view-users',
         label: 'Ver',
       }
@@ -33,10 +29,6 @@ export const navbarData: INavbarData[] = [
       {
         routeLink: 'history',
         label: 'Crear',
-      },
-      {
-        routeLink: 'modifyStorie',
-        label: 'Modificar',
       },
       {
         routeLink: 'viewStories',

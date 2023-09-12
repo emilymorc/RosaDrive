@@ -25,6 +25,8 @@ import { LandingComponent } from './landing/landing.component';
 import { AutostorieComponent } from './autostorie/autostorie.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ViewautostoriesComponent } from './viewautostories/viewautostories.component';
+import { ModifyautostoriesComponent } from './modifyautostories/modifyautostories.component';
+
 
 
 
@@ -44,7 +46,8 @@ import { ViewautostoriesComponent } from './viewautostories/viewautostories.comp
     AutostorieComponent,
     LandingComponent,
     LogoutComponent,
-    ViewautostoriesComponent
+    ViewautostoriesComponent,
+    ModifyautostoriesComponent
   ],
     imports: [
         PaginationModule.forRoot(),

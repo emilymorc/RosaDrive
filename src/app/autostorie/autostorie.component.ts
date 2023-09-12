@@ -34,19 +34,19 @@ export class AutostorieComponent {
   displacement: number = 0;
   bodyType: string = '';
   registrationDate: any;
-  hasEncumbrances: boolean = false;
+  hasEncumbrances: string = '';
   transitAgency: string = '';
   classification: string = '';
-  isEngineRetagged: boolean = false;
-  isChassisRetagged: boolean = false;
+  isEngineRetagged: string = '';
+  isChassisRetagged:string = '';
 
-  isSerialNumberRetagged: boolean = false;
-  classicAntiquity: boolean = false;
+  isSerialNumberRetagged: string = '';
+  classicAntiquity:  string = '';
   fuelType: string = '';
   serviceCard: number = 0;
   totalPassengers: number = 0;
-  stateOfSecurity: boolean = false;
-  dianValid:  boolean = false;
+  stateOfSecurity:  string = '';
+  dianValid:string = '';
   licensePlateNumber: string = '';
   grossVehicleWeight: number = 0;
   numberOfAxles: number = 0;
@@ -62,9 +62,9 @@ export class AutostorieComponent {
   issueDate: any;
   effectiveDate: string = '';
   cdaIssuer: string = '';
-  isValid: boolean = false;
+  isValid: string = '';
   certificateNumber: any;
-  consistentInformation: boolean = false;
+  consistentInformation: string = '';
 
 
 
@@ -115,19 +115,19 @@ export class AutostorieComponent {
       displacement: this.displacement,
       bodyType: this.bodyType,
 
-      hasEncumbrances: this.hasEncumbrances,
+      hasEncumbrances: this.stringToBoolean(this.hasEncumbrances),
       transitAgency: this.transitAgency,
       classification: this.classification,
-      isEngineRetagged: this.isEngineRetagged,
-      isChassisRetagged: this.isChassisRetagged,
+      isEngineRetagged: this.stringToBoolean(this.isEngineRetagged),
+      isChassisRetagged: this.stringToBoolean(this.isChassisRetagged),
 
-      isSerialNumberRetagged: this.isSerialNumberRetagged,
-      classicAntiquity: this.classicAntiquity,
+      isSerialNumberRetagged: this.stringToBoolean(this.isSerialNumberRetagged),
+      classicAntiquity: this.stringToBoolean(this.classicAntiquity),
       fuelType: this.fuelType,
       serviceCard: this.serviceCard,
       totalPassengers: this.totalPassengers,
-      stateOfSecurity: this.stateOfSecurity,
-      dianValid: this.dianValid,
+      stateOfSecurity: this.stringToBoolean(this.stateOfSecurity),
+      dianValid: this.stringToBoolean(this.dianValid),
       licensePlateNumber: this.licensePlateNumber,
       grossVehicleWeight: this.grossVehicleWeight,
       numberOfAxles: this.numberOfAxles,
@@ -140,12 +140,14 @@ export class AutostorieComponent {
       inspectionType: this.inspectionType,
 
       cdaIssuer: this.cdaIssuer,
-      isValid: this.isValid,
+      isValid: this.stringToBoolean(this.isValid),
       certificateNumber: this.certificateNumber,
-      consistentInformation: this.consistentInformation,
+      consistentInformation: this.stringToBoolean(this.consistentInformation),
 
     };
     console.log("Data: " + this.entryDate)
+    console.log("bool" + this.stringToBoolean(this.isValid) )
+
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'User-Agent': 'Insomnia/2023.5.5',
@@ -173,6 +175,16 @@ export class AutostorieComponent {
 
   resetForm(form: any) {
     form.form.reset();
+  }
+
+  stringToBoolean(value: string): boolean | null {
+    if (value.toLowerCase() === 'true') {
+      return true;
+    } else if (value.toLowerCase() === 'false') {
+      return false;
+    } else {
+      return null; // Valor no reconocido, puedes manejarlo de acuerdo a tus necesidades
+    }
   }
 
   convertirFecha(inputFecha: string): string {
