@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {UserService} from "../servicios/users.service";
+import {NgForm} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-create-account',
@@ -15,7 +17,7 @@ export class ModifyAccountComponet implements OnInit{
   password: string = '';
   selectedUser: any = {};
 
-  constructor(private http: HttpClient,private userService: UserService) { }
+  constructor(private http: HttpClient,private userService: UserService,private router: Router) { }
 
   signUp() {
     const userData = {
@@ -38,6 +40,33 @@ export class ModifyAccountComponet implements OnInit{
 
   ngOnInit() {
     this.selectedUser = this.userService.getSelectedUser();
+  }
+
+  actualizarUsuario(userDataForm: NgForm) {
+    const userData = {
+      key: this.selectedUser.ID_USER,
+      firstName: userDataForm.value.firstName,
+      lastName: userDataForm.value.lastName,
+      email: userDataForm.value.email,
+      password: this.selectedUser.PASSWORD,
+      identification_type: this.selectedUser.IDENTIFICATION_TYPE,
+      identification_number: this.selectedUser.IDENTIFICATION_NUMBER
+    };
+
+    this.userService.updateUserData(userData).subscribe(
+      (response) => {
+        console.log('Usuario actualizado:', response);
+        this.resetForm(userDataForm);
+        this.router.navigate(['/dashboard/view-users']);
+      },
+      (error) => {
+        console.error('Error al actualizar el usuario:', error);
+      }
+    );
+  }
+
+  resetForm(form: any) {
+    form.form.reset();
   }
 
 }
