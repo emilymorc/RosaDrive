@@ -18,22 +18,24 @@
   <table class="table table table-bordered" >
     <thead>
     <tr>
-      <th (click)="sortDataByColumn('ID_USER')">ID_USER
+      <th (click)="sortDataByColumn('ID_USER')">ID
         <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'ID_USER' && isAsc, 'fa-arrow-down': orderBy === 'ID_USER' && !isAsc}"></i>
       </th>
       <th (click)="sortDataByColumn('FIRST_NAME')">
-        FIRST_NAME
+        NOMBRES
         <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'FIRST_NAME' && isAsc, 'fa-arrow-down': orderBy === 'FIRST_NAME' && !isAsc}"></i>
       </th>
       <th (click)="sortDataByColumn('LAST_NAME')">
-        LAST_NAME
+        APELLIDOS
         <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'LAST_NAME' && isAsc, 'fa-arrow-down': orderBy === 'LAST_NAME' && !isAsc}"></i>
       </th>
       <th (click)="sortDataByColumn('REGISTRATION_DATE')">
-        REGISTRATION_DATE
+        FECHA DE REGISTRO
         <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'REGISTRATION_DATE' && isAsc, 'fa-arrow-down': orderBy === 'REGISTRATION_DATE' && !isAsc}"></i>
       </th>
-      <th>EMAIL</th>
+      <th>CORREO ELECTRONICO</th>
+      <th>MODIFICAR</th>
+      <th>ELIMINAR</th>
     </tr>
     </thead>
     <tbody>
@@ -43,6 +45,12 @@
       <td>{{ dato.LAST_NAME }}</td>
       <td>{{ dato.REGISTRATION_DATE | date: 'MM/dd/yyyy hh:mm:ss a' }}</td>
       <td>{{ dato.EMAIL }}</td>
+      <td>
+        <button class="btn btn-primary" (click)="modificarUsuario(dato)">Modificar</button>
+      </td>
+      <td>
+        <button class="btn btn-danger">Inactivar</button>
+      </td>
     </tr>
     </tbody>
   </table>
@@ -54,8 +62,8 @@
           [boundaryLinks]="true"
           [previousText]="'Anterior'"
           [nextText]="'Siguiente'"
-          [lastText]="'Primero'"
-          [firstText]="'Final'"
+          [lastText]="'Final'"
+          [firstText]="'Primer'"
           (pageChanged)="onPageChange($event)">
   </pagination>
 </div>

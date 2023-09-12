@@ -6,9 +6,12 @@ import { Observable } from 'rxjs';
     providedIn: 'root'
 })
 export class UserService {
-    private apiUrl = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/users/getUsers';
+    private apiUrl = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/users/';
+    //private apiUrlG = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/users/';
     private valor: string | null = localStorage.getItem('token')
     private valorCasteado: string | number | (string | number)[] = this.valor as string | number | (string | number)[];
+
+    private selectedUser: any;
 
 
     constructor(private http: HttpClient) { }
@@ -19,6 +22,25 @@ export class UserService {
             'x-access-token': this.valorCasteado
         });
 
-        return this.http.get(this.apiUrl, { headers });
+        return this.http.get(`${this.apiUrl}getUsers/`, { headers });
     }
+
+  getUserById(id: number): Observable<any> {
+    const token = this.valorCasteado;
+
+    const headers = new HttpHeaders({
+      'x-access-token': token
+    });
+
+    return this.http.get<any>(`${this.apiUrl}getUserById/${id}`, { headers });
+  }
+
+  setSelectedUser(user: any) {
+    this.selectedUser = user;
+  }
+
+  getSelectedUser() {
+    return this.selectedUser;
+  }
+
 }
