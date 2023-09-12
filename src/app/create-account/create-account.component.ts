@@ -15,6 +15,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 })
 export class CreateAccountComponent {
 
+
   optionsTypeIdentificastionNumber = ['Cédula de identidad', 'Pasaporte', 'Tarjeta de identificación', 'Cedula de Extrangeria'];
   first_name: string = '';
   last_name: string = '';
