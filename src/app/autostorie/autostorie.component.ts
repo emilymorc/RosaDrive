@@ -105,6 +105,15 @@ export class AutostorieComponent {
       return;
     }
 
+    if (this.isValid.trim() === '' || this.vehicleState.trim() === ''|| this.serviceType.trim() === ''|| this.vehicleClass.trim() === ''
+      || this.bodyType.trim() === ''|| this.hasEncumbrances.trim() === ''|| this.transitAgency.trim() === ''|| this.classification.trim() === ''
+      || this.isEngineRetagged.trim() === ''|| this.isChassisRetagged.trim() === ''|| this.isSerialNumberRetagged.trim() === ''|| this.classicAntiquity.trim() === ''
+      || this.fuelType.trim() === ''|| this.stateOfSecurity.trim() === ''
+      || this.dianValid.trim() === '' || this.status.trim() === ''|| this.isValid.trim() === ''){
+      this.toastr.error("Por favor, complete todos los campos", "Campos Vacios");
+      return;
+    }
+
     if (format.test(form.value.licensePlateNumber) || format.test(form.value.currentOwner)|| format.test(form.value.transitLicenseNumber) || format.test(form.value.brand)|| format.test(form.value.line)
       || format.test(form.value.model) || format.test(form.value.color)){
       this.toastr.error("Existen campos con caracteres especiales", "¡Campos incorrectos!");
