@@ -59,6 +59,11 @@ export class ModifyAccountComponet implements OnInit{
 
     const format =/[^A-Za-z0-9\-]/;
 
+    if (this.firstName.trim() === '' || this.lastName.trim() === ''|| this.email.trim() === ''){
+      this.toastr.error("Por favor, complete todos los campos", "¡Campos incompletos!");
+      return;
+    }
+
     if (format.test(userDataForm.value.firstName) || format.test(userDataForm.value.lastName)){
       this.toastr.error("Existen campos con caracteres especiales", "¡Campos incorrectos!");
       return;
