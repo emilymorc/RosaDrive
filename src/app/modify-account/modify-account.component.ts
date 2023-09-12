@@ -59,7 +59,7 @@ export class ModifyAccountComponet implements OnInit{
 
     const format =/[^A-Za-z0-9\-]/;
 
-    if (this.firstName.trim() === '' || this.lastName.trim() === ''|| this.email.trim() === ''){
+    if (userDataForm.value.firstName.trim() === '' || userDataForm.value.lastName.trim() === ''|| userDataForm.value.email.trim() === ''){
       this.toastr.error("Por favor, complete todos los campos", "¡Campos incompletos!");
       return;
     }
@@ -69,7 +69,7 @@ export class ModifyAccountComponet implements OnInit{
       return;
     }
 
-    if (!this.validateEmail(this.email)) {
+    if (!this.validateEmail(userDataForm.value.email)) {
       this.toastr.error("Por favor, ingrese un correo valido", "Correo Invalido");
       return;
     }
