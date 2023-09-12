@@ -29,6 +29,8 @@ export class ModifyAccountComponet implements OnInit{
       password: this.password
     };
 
+
+
     this.http.post('https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/auth/signUp', userData)
       .subscribe(
         (response) => {
@@ -55,6 +57,18 @@ export class ModifyAccountComponet implements OnInit{
       identification_number: this.selectedUser.IDENTIFICATION_NUMBER
     };
 
+    const format =/[^A-Za-z0-9\-]/;
+
+    if (format.test(userDataForm.value.firstName) || format.test(userDataForm.value.lastName)){
+      this.toastr.error("Existen campos con caracteres especiales", "¡Campos incorrectos!");
+      return;
+    }
+
+    if (!this.validateEmail(this.email)) {
+      this.toastr.error("Por favor, ingrese un correo valido", "Correo Invalido");
+      return;
+    }
+
     this.userService.updateUserData(userData).subscribe(
       (response) => {
         console.log('Usuario actualizado:', response);
@@ -70,6 +84,11 @@ export class ModifyAccountComponet implements OnInit{
 
   resetForm(form: any) {
     form.form.reset();
+  }
+
+  validateEmail(email: string): boolean {
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return emailPattern.test(email);
   }
 
 }

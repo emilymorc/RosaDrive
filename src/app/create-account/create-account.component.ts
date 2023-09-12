@@ -37,6 +37,12 @@ export class CreateAccountComponent {
       identification_type: this.identification_type,
       identification_number: this.identification_number
     };
+    const format =/[^A-Za-z0-9\-]/;
+
+    if (format.test(form.value.first_name) || format.test(form.value.last_name)){
+      this.toastr.error("Existen campos con caracteres especiales", "¡Campos incorrectos!");
+      return;
+    }
 
     if (this.first_name.trim() === '' || this.last_name.trim() === ''|| this.password.trim() === '') {
       this.toastr.error("Por favor, complete todos los campos", "Campos Vacios");
