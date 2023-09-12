@@ -12,17 +12,17 @@
     <div class="login-form">
       <label class="label">Nombre</label>
       <br>
-      <input type="text" id="firstName" name="firstName" required [(ngModel)]="selectedUser.FIRST_NAME">
+      <input type="text" id="firstName" name="firstName" required [(ngModel)]="selectedUser.FIRST_NAME" maxlength="255">
       <br>
 
       <label class="label">Apellido</label>
       <br>
-      <input type="text" id="lastName" name="lastName" required [(ngModel)]="selectedUser.LAST_NAME">
+      <input type="text" id="lastName" name="lastName" required [(ngModel)]="selectedUser.LAST_NAME" maxlength="255">
       <br>
 
       <label for="email" class="label">Correo Electrónico</label>
       <br>
-      <input type="email" id="email" name="email" [(ngModel)]="selectedUser.EMAIL" required>
+      <input type="email" id="email" name="email" [(ngModel)]="selectedUser.EMAIL" required maxlength="255">
       <br>
     </div>
     <button class="buttonSave" type="submit">Modificar</button>
