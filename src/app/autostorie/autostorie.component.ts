@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
-import {FormBuilder} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../servicios/auth.service";
 
 @Component({
@@ -79,6 +79,10 @@ export class AutostorieComponent {
   combustible = ['Gasolina', 'Diésel', 'Gas Natural Vehicular (GNV)', 'Gas Licuado de Petróleo (GLP)', 'Eléctrico', 'Híbrido', 'Etanol', 'Hidrógeno'];
 
 
+  showError = false; // Para mostrar u ocultar el error
+  campoId = '';
+
+
   prueba(){
     console.log( "token" + localStorage.getItem('token'));
     const valor: string | null = localStorage.getItem('token')
@@ -90,6 +94,34 @@ export class AutostorieComponent {
     const apiUrl = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/stories/addStory';
     const valor: string | null = localStorage.getItem('token')
     const valorCasteado: string | number | (string | number)[] = valor as string | number | (string | number)[];
+    const format =/[^A-Za-z0-9\-]/;
+
+    if (this.currentOwner.trim() === '' || this.contactOwner.trim() === ''|| this.licensePlateNumber.trim() === ''|| this.transitLicenseNumber.trim() === ''
+      || this.brand.trim() === ''|| this.line.trim() === ''|| this.model.trim() === ''|| this.color.trim() === ''
+      || this.engineNumber.trim() === ''|| this.chassisNumber.trim() === ''|| this.vinNumber.trim() === ''|| this.soatPolicyNumber.trim() === ''
+      || this.issuingEntitySoat.trim() === ''|| this.certificateNumber.trim() === ''
+      || this.consistentInformation.trim() === '') {
+      this.toastr.error("Por favor, complete todos los campos", "Campos Vacios");
+      return;
+    }
+
+    if (this.isValid.trim() === '' || this.vehicleState.trim() === ''|| this.serviceType.trim() === ''|| this.vehicleClass.trim() === ''
+      || this.bodyType.trim() === ''|| this.hasEncumbrances.trim() === ''|| this.transitAgency.trim() === ''|| this.classification.trim() === ''
+      || this.isEngineRetagged.trim() === ''|| this.isChassisRetagged.trim() === ''|| this.isSerialNumberRetagged.trim() === ''|| this.classicAntiquity.trim() === ''
+      || this.fuelType.trim() === ''|| this.stateOfSecurity.trim() === ''
+      || this.dianValid.trim() === '' || this.status.trim() === ''|| this.isValid.trim() === ''){
+      this.toastr.error("Por favor, complete todos los campos", "Campos Vacios");
+      return;
+    }
+
+    if (format.test(form.value.licensePlateNumber) || format.test(form.value.currentOwner)|| format.test(form.value.transitLicenseNumber) || format.test(form.value.brand)|| format.test(form.value.line)
+      || format.test(form.value.model) || format.test(form.value.color)){
+      this.toastr.error("Existen campos con caracteres especiales", "¡Campos incorrectos!");
+      this.showError = true;
+      return;
+    }
+
+
     const data = {
 
       creationDate: this.creationDate,

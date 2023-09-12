@@ -57,3 +57,8 @@ input:focus {
 input:hover {
   cursor: pointer;
 }
+
+.campo-con-error {
+  border: 1px solid red; /* Estilo de borde rojo */
+  color: red; /* Color de texto rojo */
+}

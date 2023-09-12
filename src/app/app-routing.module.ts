@@ -23,7 +23,7 @@ const routes: Routes = [
   {path: 'view-users', component: ViewUsersComponent},
   {path: 'modifyAccount', component: ModifyAccountComponet},
   {path: '', component:Login2Component},
-  {path: 'dashboard', component: DashboardComponent,canActivate:[AuthGuard],
+  {path: 'dashboard', component: DashboardComponent,
     children: [
       { path: 'sidebar', component: SidenavComponent },
       { path: 'AppBody', component:BodyComponent },
@@ -42,7 +42,7 @@ const routes: Routes = [
       {path: 'landing', component: LandingComponent, canActivate:[AuthGuard]},
       {path: 'logout', component: LogoutComponent, canActivate:[AuthGuard]},
       {path: 'viewStories', component: ViewautostoriesComponent}
-    ]
+    ] ,canActivate:[AuthGuard]
   },
 ];
 @NgModule({
