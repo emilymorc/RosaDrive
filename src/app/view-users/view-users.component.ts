@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../servicios/users.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -9,15 +10,15 @@ import {UserService} from "../servicios/users.service";
 })
 export class ViewUsersComponent implements OnInit{
     currentPage: number = 1;
-    itemsPerPage: number = 5;
-    maxSize: number = 5;
+    itemsPerPage: number = 10;
+    maxSize: number = 10;
     orderBy: string | null = null;
     isAsc: boolean = true;
     filtroApellido: string = '';
 
   users: any[] = [];
 
-  constructor(private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
     this.userService.getUsers().subscribe(
@@ -69,4 +70,18 @@ export class ViewUsersComponent implements OnInit{
             return this.users;
         }
     }
+
+  modificarUsuario(dato: any): void {
+    this.userService.getUserById(dato.ID_USER).subscribe(
+      response => {
+        console.log(response.body);
+        this.userService.setSelectedUser(dato);
+        this.router.navigate(['/dashboard/modifyAccount']);
+        console.log('Datos del usuario:', response);
+      },
+      error => {
+        console.error('Error al obtener datos del usuario:', error);
+      }
+    );
+  }
 }

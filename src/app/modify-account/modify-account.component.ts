@@ -1,18 +1,21 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {UserService} from "../servicios/users.service";
 
 @Component({
   selector: 'app-create-account',
   templateUrl: './modify-account.component.html',
   styleUrls: ['./modify-account.component.css']
 })
-export class ModifyAccountComponet {
+export class ModifyAccountComponet implements OnInit{
+
   firstName: string = '';
   lastName: string = '';
   email: string = '';
   password: string = '';
+  selectedUser: any = {};
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private userService: UserService) { }
 
   signUp() {
     const userData = {
@@ -31,6 +34,10 @@ export class ModifyAccountComponet {
           console.error('Sign up error:', error);
         }
       );
+  }
+
+  ngOnInit() {
+    this.selectedUser = this.userService.getSelectedUser();
   }
 
 }

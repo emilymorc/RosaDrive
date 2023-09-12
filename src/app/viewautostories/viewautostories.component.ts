@@ -10,8 +10,8 @@ import {HistoryService} from "../servicios/history.service";
 export class ViewautostoriesComponent {
 
   currentPage: number = 1;
-  itemsPerPage: number = 5;
-  maxSize: number = 5;
+  itemsPerPage: number = 10;
+  maxSize: number = 10;
   orderBy: string | null = null;
   isAsc: boolean = true;
   filtroPorClase: string = '';

@@ -46,7 +46,7 @@
       <td>{{ dato.REGISTRATION_DATE | date: 'MM/dd/yyyy hh:mm:ss a' }}</td>
       <td>{{ dato.EMAIL }}</td>
       <td>
-        <button class="btn btn-primary">Modificar</button>
+        <button class="btn btn-primary" (click)="modificarUsuario(dato)">Modificar</button>
       </td>
       <td>
         <button class="btn btn-danger">Inactivar</button>
