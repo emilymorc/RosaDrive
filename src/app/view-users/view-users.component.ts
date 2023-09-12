@@ -84,4 +84,21 @@ export class ViewUsersComponent implements OnInit{
       }
     );
   }
+
+  eliminarUsuario(userId: number): void {
+    const confirmation = confirm('¿Estás seguro de que deseas eliminar este usuario?');
+
+    if (confirmation) {
+      this.userService.deleteUser(userId).subscribe(
+        (response) => {
+          console.log('Usuario eliminado:', response);
+          // Actualizar la lista de usuarios después de la eliminación
+          this.users = this.users.filter(user => user.ID_USER !== userId);
+        },
+        (error) => {
+          console.error('Error al eliminar el usuario:', error);
+        }
+      );
+    }
+  }
 }

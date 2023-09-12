@@ -45,6 +45,16 @@ export class UserService {
     return this.http.post(`${this.apiUrl}/updateUser`, userData, { headers });
   }
 
+  deleteUser(userId: number): Observable<any> {
+    const url = `${this.apiUrl}/deleteUser/${userId}`;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'x-access-token': this.valorCasteado
+    });
+
+    return this.http.delete(url, { headers });
+  }
+
   setSelectedUser(user: any) {
     this.selectedUser = user;
   }
