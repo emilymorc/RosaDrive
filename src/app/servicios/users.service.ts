@@ -35,6 +35,26 @@ export class UserService {
     return this.http.get<any>(`${this.apiUrl}getUserById/${id}`, { headers });
   }
 
+  updateUserData(userData: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'User-Agent': 'Insomnia/2023.5.6',
+      'x-access-token': this.valorCasteado
+    });
+
+    return this.http.post(`${this.apiUrl}/updateUser`, userData, { headers });
+  }
+
+  deleteUser(userId: number): Observable<any> {
+    const url = `${this.apiUrl}/deleteUser/${userId}`;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'x-access-token': this.valorCasteado
+    });
+
+    return this.http.delete(url, { headers });
+  }
+
   setSelectedUser(user: any) {
     this.selectedUser = user;
   }

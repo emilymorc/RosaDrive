@@ -59,7 +59,7 @@
 <div class="form-group mb-4">
   <label>Numero Placa:</label>
   <br>
-  <input type="text" id="licensePlateNumber" name="licensePlateNumber" [(ngModel)]="licensePlateNumber" maxlength="10">
+  <input type="text" id="licensePlateNumber" name="licensePlateNumber" [(ngModel)]="licensePlateNumber" maxlength="10"  >
 </div>
 
 <div class="form-group mb-4">
@@ -329,14 +329,20 @@
 <div class="form-group mb-4">
   <label>Tipo de Tarifa:</label>
   <br>
-  <input type="text" id="tariffType" name="tariffType" [(ngModel)]="tariffType" maxlength="255">
+  <input type="number" id="tariffType" name="tariffType" [(ngModel)]="tariffType" maxlength="255">
 </div>
 
 <div class="form-group mb-4">
   <label>TecnoMecánica:</label>
   <div>
     <input type="text" id="technicalInspectionType" name="technicalInspectionType" [(ngModel)]="inspectionType" placeholder="Tipo de Revisión" maxlength="255">
+    <br>
+    <label>Fecha de expedición:</label>
+    <br>
     <input type="datetime-local" id="technicalInspectionIssueDate" name="technicalInspectionIssueDate" [(ngModel)]="issueDate" placeholder="Fecha de Expedición" [max]="maxDate">
+    <br>
+    <label>Fecha Vigencia:</label>
+    <br>
     <input type="datetime-local" id="technicalInspectionEffectiveDate" name="technicalInspectionEffectiveDate" [(ngModel)]="effectiveDate" placeholder="Fecha Vigente" maxlength="255">
     <input type="text" id="cdaIssuer" name="cdaIssuer" [(ngModel)]="cdaIssuer" placeholder="CDA que Expide">
     <br>

@@ -8,28 +8,26 @@
 </div>
 
 <div >
-  <form  >
+  <form #userDataForm="ngForm" (ngSubmit)="actualizarUsuario(userDataForm)">
     <div class="login-form">
-    <label class="label">Nombre</label>
-    <br>
-      <input type="text" id="firstName" type="text" required [(ngModel)]="selectedUser.FIRST_NAME" name="firstName">
-    <br>
+      <label class="label">Nombre</label>
+      <br>
+      <input type="text" id="firstName" name="firstName" required [(ngModel)]="selectedUser.FIRST_NAME">
+      <br>
 
-    <label class="label">Apellido</label>
-    <br>
-    <input type="text" id="lastName"  name="lastName" required [(ngModel)]="selectedUser.LAST_NAME" type="text" type="text"  required>
-    <br>
+      <label class="label">Apellido</label>
+      <br>
+      <input type="text" id="lastName" name="lastName" required [(ngModel)]="selectedUser.LAST_NAME">
+      <br>
 
-
-    <label for="email" class="label">Correo Electrónico</label>
-    <br>
-    <input type="email" id="email"  name="email" [(ngModel)]="selectedUser.EMAIL" required>
-    <br>
-
+      <label for="email" class="label">Correo Electrónico</label>
+      <br>
+      <input type="email" id="email" name="email" [(ngModel)]="selectedUser.EMAIL" required>
+      <br>
     </div>
     <button class="buttonSave" type="submit">Modificar</button>
-
   </form>
+
 </div>
 
 </body>

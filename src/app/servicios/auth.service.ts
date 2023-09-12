@@ -12,7 +12,7 @@ export class AuthService {
 
   constructor(private http: HttpClient){
     this.isAuthenticated = !!localStorage.getItem('token');
-    this.isAuthenticated = !!this.isLoggedIn();
+
     console.log(this.isAuthenticated);
   }
 
