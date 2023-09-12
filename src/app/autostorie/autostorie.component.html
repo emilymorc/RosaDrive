@@ -15,40 +15,40 @@
 <div class="form-group mb-4">
   <label>Fecha de creación:</label>
   <div>
-    <input type="datetime-local" id="creationDate" name="creationDate" [(ngModel)]="creationDate">
+    <input type="datetime-local" id="creationDate" name="creationDate" [(ngModel)]="creationDate" [max]="maxDate">
   </div>
 </div>
 
 <div class="form-group mb-4">
   <label>Fecha de ingreso:</label>
   <div>
-    <input type="datetime-local" id="entryDate" name="entryDate" [(ngModel)]="entryDate">
+    <input type="datetime-local" id="entryDate" name="entryDate" [(ngModel)]="entryDate" [max]="maxDate">
   </div>
 </div>
 
 <div class="form-group">
   <label>Propietario Actual:</label>
   <br>
-  <input type="text" id="currentOwner" name="currentOwner" [(ngModel)]="currentOwner">
+  <input type="text" id="currentOwner" name="currentOwner" [(ngModel)]="currentOwner" maxlength="255">
 </div>
 
 <div class="form-group">
   <label>Contacto Propietario:</label>
   <br>
-  <input type="text" id="contactOwner" name="contactOwner" [(ngModel)]="contactOwner">
+  <input type="text" id="contactOwner" name="contactOwner" [(ngModel)]="contactOwner" maxlength="255">
 </div>
 
 <div class="form-group">
   <label>Fecha de Servicio:</label>
   <br>
-  <input type="datetime-local" id="serviceDate" name="serviceDate" [(ngModel)]="serviceDate">
+  <input type="datetime-local" id="serviceDate" name="serviceDate" [(ngModel)]="serviceDate" [max]="maxDate">
 </div>
 
 
 <div class="form-group">
   <label>Notas adicionales:</label>
   <br>
-  <textarea id="additionalNotes" name="additionalNotes" [(ngModel)]="additionalNotes"></textarea>
+  <textarea id="additionalNotes" name="additionalNotes" [(ngModel)]="additionalNotes" maxlength="255"></textarea>
 </div>
   </div>
 
@@ -59,13 +59,13 @@
 <div class="form-group mb-4">
   <label>Numero Placa:</label>
   <br>
-  <input type="text" id="licensePlateNumber" name="licensePlateNumber" [(ngModel)]="licensePlateNumber">
+  <input type="text" id="licensePlateNumber" name="licensePlateNumber" [(ngModel)]="licensePlateNumber" maxlength="10">
 </div>
 
 <div class="form-group mb-4">
   <label>Número de Licencia de Tránsito:</label>
   <br>
-  <input type="text" id="transitLicenseNumber" name="transitLicenseNumber" [(ngModel)]="transitLicenseNumber">
+  <input type="text" id="transitLicenseNumber" name="transitLicenseNumber" [(ngModel)]="transitLicenseNumber" maxlength="9">
 </div>
 
 <div class="form-group mb-4">
@@ -98,43 +98,43 @@
 <div class="form-group mb-4">
   <label>Marca:</label>
   <br>
-  <input type="text" id="brand" name="brand" [(ngModel)]="brand">
+  <input type="text" id="brand" name="brand" [(ngModel)]="brand" maxlength="255">
 </div>
 
 <div class="form-group mb-4">
   <label>Línea:</label>
   <br>
-  <input type="text" id="line" name="line" [(ngModel)]="line">
+  <input type="text" id="line" name="line" [(ngModel)]="line" maxlength="255">
 </div>
 
 <div class="form-group mb-4">
   <label>Modelo:</label>
   <br>
-  <input type="text" id="model" name="model" [(ngModel)]="model">
+  <input type="text" id="model" name="model" [(ngModel)]="model" maxlength="255">
 </div>
 
 <div class="form-group mb-4">
   <label>Color:</label>
   <br>
-  <input type="text" id="color" name="color" [(ngModel)]="color">
+  <input type="text" id="color" name="color" [(ngModel)]="color" maxlength="255">
 </div>
 
 <div class="form-group mb-4">
   <label>Número de Motor:</label>
   <br>
-  <input type="text" id="engineNumber" name="engineNumber" [(ngModel)]="engineNumber">
+  <input type="text" id="engineNumber" name="engineNumber" [(ngModel)]="engineNumber" maxlength="255">
 </div>
 
 <div class="form-group mb-4">
   <label>Número de Chasis:</label>
   <br>
-  <input type="text" id="chassisNumber" name="chassisNumber" [(ngModel)]="chassisNumber">
+  <input type="text" id="chassisNumber" name="chassisNumber" [(ngModel)]="chassisNumber" maxlength="255">
 </div>
 
 <div class="form-group mb-4">
   <label>Número de VIN:</label>
   <br>
-  <input type="text" id="vinNumber" name="vinNumber" [(ngModel)]="vinNumber">
+  <input type="text" id="vinNumber" name="vinNumber" [(ngModel)]="vinNumber" maxlength="255">
 </div>
 
 <div class="form-group mb-4">
@@ -155,16 +155,16 @@
 <div class="form-group mb-4">
   <label>Fecha de Matrícula:</label>
   <br>
-  <input type="datetime-local" id="registrationDate" name="registrationDate" [(ngModel)]="registrationDate">
+  <input type="datetime-local" id="registrationDate" name="registrationDate" [(ngModel)]="registrationDate" [max]="maxDate">
 </div>
 
 <div class="form-group mb-4">
   <label>Tiene Gravámenes:</label>
   <br>
-  <select  id="hasEncumbrances" name="hasEncumbrances" [(ngModel)]="hasEncumbrances">
-    <option disabled selected>Seleccione una opción</option>
-    <option [value]=true>Si</option>
-    <option [value]=false>No</option>
+  <select id="hasEncumbrances" name="hasEncumbrances" [(ngModel)]="hasEncumbrances">
+    <option value="" disabled selected>Seleccione una opción</option>
+    <option [value]="true">Si</option>
+    <option [value]="false">No</option>
   </select>
 </div>
 
@@ -191,8 +191,8 @@
   <br>
   <select id="isEngineRetagged" name="isEngineRetagged" [(ngModel)]="isEngineRetagged">
     <option value="" disabled selected>Seleccione una opción</option>
-    <option [value]=true>Si</option>
-    <option [value]=false>No</option>
+    <option [value]="true">Si</option>
+    <option [value]="false">No</option>
   </select>
 </div>
 
@@ -201,8 +201,8 @@
   <br>
   <select id="isChassisRetagged" name="isChassisRetagged" [(ngModel)]="isChassisRetagged">
     <option value="" disabled selected>Seleccione una opción</option>
-    <option [value]=true>Si</option>
-    <option [value]=false>No</option>
+    <option [value]="true">Si</option>
+    <option [value]="false">No</option>
   </select>
 </div>
 
@@ -211,7 +211,7 @@
   <br>
   <select id="isSerialNumberRetagged" name="isSerialNumberRetagged" [(ngModel)]="isSerialNumberRetagged">
     <option value="" disabled selected>Seleccione una opción</option>
-    <option [value]=true>Si</option>
+    <option [value]="true">Si</option>
     <option [value]="false">No</option>
   </select>
 </div>
@@ -221,8 +221,8 @@
   <br>
   <select id="classicAntiquity" name="classicAntiquity" [(ngModel)]="classicAntiquity">
     <option value="" disabled selected>Seleccione una opción</option>
-    <option [value]=true>Clásico</option>
-    <option [value]=false>Antiguo</option>
+    <option [value]="true">Clásico</option>
+    <option [value]="false">Antiguo</option>
   </select>
 </div>
 
@@ -244,7 +244,7 @@
 <div class="form-group mb-4">
   <label>Total Pasajeros:</label>
   <br>
-  <input type="text" id="totalPassengers" name="totalPassengers" [(ngModel)]="totalPassengers">
+  <input type="number" id="totalPassengers" name="totalPassengers" [(ngModel)]="totalPassengers">
 </div>
 
 <div class="form-group mb-4">
@@ -262,8 +262,8 @@
   <br>
   <select id="dianValid" name="dianValid" [(ngModel)]="dianValid">
     <option value="" disabled selected>Seleccione una opción</option>
-    <option [value]=true>Si</option>
-    <option [value]=false>No</option>
+    <option [value]="true">Si</option>
+    <option [value]="false">No</option>
   </select>
 </div>
 
@@ -277,7 +277,7 @@
 <div class="form-group mb-4">
   <label>Número de Ejes:</label>
   <br>
-  <input type="text" id="numberOfAxles" name="numberOfAxles" [(ngModel)]="numberOfAxles">
+  <input type="number" id="numberOfAxles" name="numberOfAxles" [(ngModel)]="numberOfAxles">
 </div>
 
 <div class="form-group mb-4">
@@ -289,13 +289,13 @@
 <div class="form-group mb-4">
   <label>Número de Póliza SOAT:</label>
   <br>
-  <input type="text" id="soatPolicyNumber" name="soatPolicyNumber" [(ngModel)]="soatPolicyNumber">
+  <input type="text" id="soatPolicyNumber" name="soatPolicyNumber" [(ngModel)]="soatPolicyNumber" maxlength="255">
 </div>
 
 <div class="form-group mb-4">
   <label>Fecha de Expedición SOAT:</label>
   <br>
-  <input type="datetime-local" id="soatIssueDate" name="soatIssueDate" [(ngModel)]="soatIssueDate">
+  <input type="datetime-local" id="soatIssueDate" name="soatIssueDate" [(ngModel)]="soatIssueDate" [max]="maxDate">
 </div>
 
 <div class="form-group mb-4">
@@ -313,7 +313,7 @@
 <div class="form-group mb-4">
   <label>Entidad que Expide SOAT:</label>
   <br>
-  <input type="text" id="issuingEntitySoat" name="issuingEntitySoat" [(ngModel)]="issuingEntitySoat">
+  <input type="text" id="issuingEntitySoat" name="issuingEntitySoat" [(ngModel)]="issuingEntitySoat" maxlength="255">
 </div>
 
 <div class="form-group mb-4">
@@ -329,26 +329,26 @@
 <div class="form-group mb-4">
   <label>Tipo de Tarifa:</label>
   <br>
-  <input type="text" id="tariffType" name="tariffType" [(ngModel)]="tariffType">
+  <input type="text" id="tariffType" name="tariffType" [(ngModel)]="tariffType" maxlength="255">
 </div>
 
 <div class="form-group mb-4">
   <label>TecnoMecánica:</label>
   <div>
-    <input type="text" id="technicalInspectionType" name="technicalInspectionType" [(ngModel)]="inspectionType" placeholder="Tipo de Revisión">
-    <input type="datetime-local" id="technicalInspectionIssueDate" name="technicalInspectionIssueDate" [(ngModel)]="issueDate" placeholder="Fecha de Expedición">
-    <input type="datetime-local" id="technicalInspectionEffectiveDate" name="technicalInspectionEffectiveDate" [(ngModel)]="effectiveDate" placeholder="Fecha Vigente">
+    <input type="text" id="technicalInspectionType" name="technicalInspectionType" [(ngModel)]="inspectionType" placeholder="Tipo de Revisión" maxlength="255">
+    <input type="datetime-local" id="technicalInspectionIssueDate" name="technicalInspectionIssueDate" [(ngModel)]="issueDate" placeholder="Fecha de Expedición" [max]="maxDate">
+    <input type="datetime-local" id="technicalInspectionEffectiveDate" name="technicalInspectionEffectiveDate" [(ngModel)]="effectiveDate" placeholder="Fecha Vigente" maxlength="255">
     <input type="text" id="cdaIssuer" name="cdaIssuer" [(ngModel)]="cdaIssuer" placeholder="CDA que Expide">
     <br>
     <label>Es valido:</label>
     <br>
     <select id="isValid" name="isValid" [(ngModel)]="isValid">
       <option value="" disabled selected>Seleccione una opción</option>
-      <option [value]= "true" > Si</option>
-      <option [value]= false>No</option>
+      <option [value]="true">Si</option>
+      <option [value]="false">No</option>
     </select>
-    <input type="text" id="certificateNumber" name="certificateNumber" [(ngModel)]="certificateNumber" placeholder="Número de Certificado">
-    <input type="text" id="consistentInformation" name="consistentInformation" [(ngModel)]="consistentInformation" placeholder="Información Consistente">
+    <input type="text" id="certificateNumber" name="certificateNumber" [(ngModel)]="certificateNumber" placeholder="Número de Certificado" maxlength="255">
+    <input type="text" id="consistentInformation" name="consistentInformation" [(ngModel)]="consistentInformation" placeholder="Información Consistente" maxlength="255">
   </div>
 </div>
 

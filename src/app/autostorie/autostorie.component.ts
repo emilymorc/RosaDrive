@@ -12,7 +12,11 @@ import {AuthService} from "../servicios/auth.service";
 })
 export class AutostorieComponent {
 
-  constructor(private http: HttpClient, private router: Router, private toastr: ToastrService, private formBuilder: FormBuilder, private authService: AuthService) { }
+  maxDate: string = '';
+  constructor(private http: HttpClient, private router: Router, private toastr: ToastrService, private formBuilder: FormBuilder, private authService: AuthService) {
+    const currentDate = new Date();
+    this.maxDate = currentDate.toISOString().slice(0, 16);
+  }
 
   creationDate: any;
   entryDate: any;
