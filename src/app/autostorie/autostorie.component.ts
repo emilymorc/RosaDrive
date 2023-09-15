@@ -18,13 +18,10 @@ export class AutostorieComponent {
     this.maxDate = currentDate.toISOString().slice(0, 16);
   }
 
-  creationDate: any;
   entryDate: any;
   currentOwner: string = '';
   contactOwner: string = '';
-  serviceDate: any;
   additionalNotes: string = '';
-  transitLicenseNumber: string = '';
   vehicleState: string = '';
   serviceType: string = '';
   vehicleClass: string = '';
@@ -37,39 +34,30 @@ export class AutostorieComponent {
   vinNumber: string = '';
   displacement: number = 0;
   bodyType: string = '';
-  registrationDate: any;
+
   hasEncumbrances: string = '';
-  transitAgency: string = '';
-  classification: string = '';
+
   isEngineRetagged: string = '';
   isChassisRetagged:string = '';
 
   isSerialNumberRetagged: string = '';
-  classicAntiquity:  string = '';
   fuelType: string = '';
   serviceCard: number = 0;
   totalPassengers: number = 1;
   totalPassengersSit: number = 1;
-  stateOfSecurity:  string = '';
+
   dianValid:string = '';
   licensePlateNumber: string = '';
   grossVehicleWeight: number = 0;
   numberOfAxles: number = 0;
   soatPolicyNumber: string = '';
-  soatIssueDate: any;
-  soatEffectiveDate: any;
-  soatExpirationDate: any;
+
   issuingEntitySoat: string = '';
   status: string = '';
-  tariffType: number = 0;
+
   technicalInspection: string = '';
   inspectionType: string = '';
-  issueDate: any;
-  effectiveDate: string = '';
-  cdaIssuer: string = '';
-  isValid: string = '';
-  certificateNumber: any;
-  consistentInformation: string = '';
+
 
 
 
@@ -84,33 +72,26 @@ export class AutostorieComponent {
   campoId = '';
 
 
-  prueba(){
-    console.log( "token" + localStorage.getItem('token'));
-    const valor: string | null = localStorage.getItem('token')
-    const valorCasteado: string | number | (string | number)[] = valor as string | number | (string | number)[];
-    console.log( "tokenCasteo" + localStorage.getItem('token'));
-    console.log("Fecha" + this.convertirFecha(this.creationDate))
-  }
+
   signUp(form: any){
     const apiUrl = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/stories/addStory';
     const valor: string | null = localStorage.getItem('token')
     const valorCasteado: string | number | (string | number)[] = valor as string | number | (string | number)[];
     const format =/[^A-Za-z0-9\-]/;
 
-    if (this.currentOwner.trim() === '' || this.contactOwner.trim() === ''|| this.licensePlateNumber.trim() === ''|| this.transitLicenseNumber.trim() === ''
+    if (this.currentOwner.trim() === '' || this.contactOwner.trim() === ''|| this.licensePlateNumber.trim() === ''
       || this.brand.trim() === ''|| this.line.trim() === ''|| this.model.trim() === ''|| this.color.trim() === ''
       || this.engineNumber.trim() === ''|| this.chassisNumber.trim() === ''|| this.vinNumber.trim() === ''|| this.soatPolicyNumber.trim() === ''
-      || this.issuingEntitySoat.trim() === ''|| this.certificateNumber.trim() === ''
-      || this.consistentInformation.trim() === '') {
+      || this.issuingEntitySoat.trim() === '') {
       this.toastr.error("Por favor, complete todos los campos", "Campos Vacios");
       return;
     }
 
-    if (this.isValid.trim() === '' || this.vehicleState.trim() === ''|| this.serviceType.trim() === ''|| this.vehicleClass.trim() === ''
-      || this.bodyType.trim() === ''|| this.hasEncumbrances.trim() === ''|| this.transitAgency.trim() === ''|| this.classification.trim() === ''
-      || this.isEngineRetagged.trim() === ''|| this.isChassisRetagged.trim() === ''|| this.isSerialNumberRetagged.trim() === ''|| this.classicAntiquity.trim() === ''
-      || this.fuelType.trim() === ''|| this.stateOfSecurity.trim() === ''
-      || this.dianValid.trim() === '' || this.status.trim() === ''|| this.isValid.trim() === ''){
+    if ( this.vehicleState.trim() === ''|| this.serviceType.trim() === ''|| this.vehicleClass.trim() === ''
+      || this.bodyType.trim() === ''|| this.hasEncumbrances.trim() === ''
+      || this.isEngineRetagged.trim() === ''|| this.isChassisRetagged.trim() === ''|| this.isSerialNumberRetagged.trim() === ''
+      || this.fuelType.trim() === ''
+      || this.dianValid.trim() === '' || this.status.trim() === ''){
       this.toastr.error("Por favor, complete todos los campos", "Campos Vacios");
       return;
     }
@@ -125,22 +106,21 @@ export class AutostorieComponent {
 
     const data = {
 
-      creationDate: this.creationDate,
+      // creationDate: this.creationDate,
       entryDate: this.convertirFecha(this.entryDate),
-      serviceDate:this.convertirFecha(this.serviceDate),
+/*      serviceDate:this.convertirFecha(this.serviceDate),
       registrationDate: this.convertirFecha(this.registrationDate),
       soatIssueDate: this.convertirFecha(this.soatIssueDate),
       soatEffectiveDate: this.convertirFecha(this.soatEffectiveDate),
       soatExpirationDate: this.convertirFecha(this.soatExpirationDate),
       issueDate: this.convertirFecha(this.issueDate),
-      effectiveDate: this.convertirFecha(this.effectiveDate),
+      effectiveDate: this.convertirFecha(this.effectiveDate),*/
 
       brand: this.brand,
       color: this.color,
       currentOwner: this.currentOwner,
       contactOwner: this.contactOwner,
       additionalNotes: this.additionalNotes,
-      transitLicenseNumber: this.transitLicenseNumber,
       vehicleState: this.vehicleState,
       serviceType: this.serviceType,
       vehicleClass: this.vehicleClass,
@@ -154,17 +134,16 @@ export class AutostorieComponent {
       bodyType: this.bodyType,
 
       hasEncumbrances: this.stringToBoolean(this.hasEncumbrances),
-      transitAgency: this.transitAgency,
-      classification: this.classification,
+
       isEngineRetagged: this.stringToBoolean(this.isEngineRetagged),
       isChassisRetagged: this.stringToBoolean(this.isChassisRetagged),
 
       isSerialNumberRetagged: this.stringToBoolean(this.isSerialNumberRetagged),
-      classicAntiquity: this.stringToBoolean(this.classicAntiquity),
+
       fuelType: this.fuelType,
       serviceCard: this.serviceCard,
       totalPassengers: this.totalPassengers,
-      stateOfSecurity: this.stringToBoolean(this.stateOfSecurity),
+
       dianValid: this.stringToBoolean(this.dianValid),
       licensePlateNumber: this.licensePlateNumber,
       grossVehicleWeight: this.grossVehicleWeight,
@@ -173,18 +152,15 @@ export class AutostorieComponent {
 
       issuingEntitySoat: this.issuingEntitySoat,
       status: this.status,
-      tariffType: this.tariffType,
+
       technicalInspection: this.technicalInspection,
       inspectionType: this.inspectionType,
 
-      cdaIssuer: this.cdaIssuer,
-      isValid: this.stringToBoolean(this.isValid),
-      certificateNumber: this.certificateNumber,
-      consistentInformation: this.stringToBoolean(this.consistentInformation),
+
 
     };
-    console.log("Data: " + this.entryDate)
-    console.log("bool" + this.stringToBoolean(this.isValid) )
+
+
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
