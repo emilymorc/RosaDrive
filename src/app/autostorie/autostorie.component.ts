@@ -48,7 +48,8 @@ export class AutostorieComponent {
   classicAntiquity:  string = '';
   fuelType: string = '';
   serviceCard: number = 0;
-  totalPassengers: number = 0;
+  totalPassengers: number = 1;
+  totalPassengersSit: number = 1;
   stateOfSecurity:  string = '';
   dianValid:string = '';
   licensePlateNumber: string = '';

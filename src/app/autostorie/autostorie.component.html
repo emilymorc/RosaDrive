@@ -12,12 +12,12 @@
 <form #myForm="ngForm" (submit)="signUp(myForm)" >
   <div class="container mt-5 border p-4 rounded body1">
 
-<div class="form-group mb-4">
+<!--<div class="form-group mb-4">
   <label>Fecha de creación:</label>
   <div>
     <input type="datetime-local" id="creationDate" name="creationDate" [(ngModel)]="creationDate" [max]="maxDate">
   </div>
-</div>
+</div>-->
 
 <div class="form-group mb-4">
   <label>Fecha de ingreso:</label>
@@ -38,11 +38,11 @@
   <input type="text" id="contactOwner" name="contactOwner" [(ngModel)]="contactOwner" maxlength="255">
 </div>
 
-<div class="form-group">
+<!--<div class="form-group">
   <label>Fecha de Servicio:</label>
   <br>
   <input type="datetime-local" id="serviceDate" name="serviceDate" [(ngModel)]="serviceDate" [max]="maxDate">
-</div>
+</div>-->
 
 
 <div class="form-group">
@@ -62,11 +62,11 @@
   <input type="text" id="licensePlateNumber" name="licensePlateNumber" [(ngModel)]="licensePlateNumber" maxlength="10"  >
 </div>
 
-<div class="form-group mb-4">
+<!--<div class="form-group mb-4">
   <label>Número de Licencia de Tránsito:</label>
   <br>
   <input type="text" id="transitLicenseNumber" name="transitLicenseNumber" [(ngModel)]="transitLicenseNumber" maxlength="9">
-</div>
+</div>-->
 
 <div class="form-group mb-4">
   <label>Estado del Vehículo:</label>
@@ -152,11 +152,11 @@
   </select>
 </div>
 
-<div class="form-group mb-4">
+<!--<div class="form-group mb-4">
   <label>Fecha de Matrícula:</label>
   <br>
   <input type="datetime-local" id="registrationDate" name="registrationDate" [(ngModel)]="registrationDate" [max]="maxDate">
-</div>
+</div>-->
 
 <div class="form-group mb-4">
   <label>Tiene Gravámenes:</label>
@@ -168,23 +168,23 @@
   </select>
 </div>
 
-<div class="form-group mb-4">
+<!--<div class="form-group mb-4">
   <label>Organismo de Tránsito:</label>
   <br>
   <select id="transitAgency" name="transitAgency" [(ngModel)]="transitAgency">
     <option value="" disabled selected>Seleccione una opción</option>
     <option *ngFor="let n of transitAgency1">{{n}}</option>
   </select>
-</div>
+</div>-->
 
-<div class="form-group mb-4">
+<!--<div class="form-group mb-4">
   <label>Clasificación:</label>
   <br>
   <select id="classification" name="classification" [(ngModel)]="classification">
     <option value="" disabled selected>Seleccione una opción</option>
     <option *ngFor="let n of optionsBodyTipe">{{n}}</option>
   </select>
-</div>
+</div>-->
 
 <div class="form-group mb-4">
   <label>Es Regrabado Motor:</label>
@@ -216,7 +216,7 @@
   </select>
 </div>
 
-<div class="form-group mb-4">
+<!--<div class="form-group mb-4">
   <label>Clásico Antiguo:</label>
   <br>
   <select id="classicAntiquity" name="classicAntiquity" [(ngModel)]="classicAntiquity">
@@ -224,7 +224,7 @@
     <option [value]="true">Clásico</option>
     <option [value]="false">Antiguo</option>
   </select>
-</div>
+</div>-->
 
 <div class="form-group mb-4">
   <label>Tipo de Combustible:</label>
@@ -235,19 +235,15 @@
   </select>
 </div>
 
-<div class="form-group mb-4">
-  <label>Tarjeta de Servicio:</label>
-  <br>
-  <input type="number" id="serviceCard" name="serviceCard" [(ngModel)]="serviceCard">
-</div>
+
 
 <div class="form-group mb-4">
   <label>Total Pasajeros:</label>
   <br>
-  <input type="number" id="totalPassengers" name="totalPassengers" [(ngModel)]="totalPassengers">
+  <input type="number"  id="totalPassengers" name="totalPassengers" [(ngModel)]="totalPassengers">
 </div>
 
-<div class="form-group mb-4">
+<!--<div class="form-group mb-4">
   <label>Seguridad Estado:</label>
   <br>
   <select id="stateOfSecurity" name="stateOfSecurity" [(ngModel)]="stateOfSecurity">
@@ -255,7 +251,7 @@
     <option [value]=true>Clásico</option>
     <option [value]=false>Antiguo</option>
   </select>
-</div>
+</div>-->
 
 <div class="form-group mb-4">
   <label>Verificación Valida DIAN:</label>
@@ -283,7 +279,7 @@
 <div class="form-group mb-4">
   <label>Pasajeros Sentados:</label>
   <br>
-  <input type="number" id="totalPassengers" name="totalPassengers" [(ngModel)]="totalPassengers">
+  <input type="number" id="totalPassengersSit" name="totalPassengersSit" [(ngModel)]="totalPassengers">
 </div>
 
 <div class="form-group mb-4">
@@ -292,7 +288,7 @@
   <input type="text" id="soatPolicyNumber" name="soatPolicyNumber" [(ngModel)]="soatPolicyNumber" maxlength="255">
 </div>
 
-<div class="form-group mb-4">
+<!--<div class="form-group mb-4">
   <label>Fecha de Expedición SOAT:</label>
   <br>
   <input type="datetime-local" id="soatIssueDate" name="soatIssueDate" [(ngModel)]="soatIssueDate" [max]="maxDate">
@@ -308,7 +304,7 @@
   <label>Fecha de Vencimiento SOAT:</label>
   <br>
   <input type="datetime-local" id="soatExpirationDate" name="soatExpirationDate" [(ngModel)]="soatExpirationDate">
-</div>
+</div>-->
 
 <div class="form-group mb-4">
   <label>Entidad que Expide SOAT:</label>
@@ -326,18 +322,18 @@
   </select>
 </div>
 
-<div class="form-group mb-4">
+<!--<div class="form-group mb-4">
   <label>Tipo de Tarifa:</label>
   <br>
   <input type="number" id="tariffType" name="tariffType" [(ngModel)]="tariffType" maxlength="255">
-</div>
+</div>-->
 
 <div class="form-group mb-4">
   <label>TecnoMecánica:</label>
   <div>
     <input type="text" id="technicalInspectionType" name="technicalInspectionType" [(ngModel)]="inspectionType" placeholder="Tipo de Revisión" maxlength="255">
     <br>
-    <label>Fecha de expedición:</label>
+   <!-- <label>Fecha de expedición:</label>
     <br>
     <input type="datetime-local" id="technicalInspectionIssueDate" name="technicalInspectionIssueDate" [(ngModel)]="issueDate" placeholder="Fecha de Expedición" [max]="maxDate">
     <br>
@@ -354,7 +350,7 @@
       <option [value]="false">No</option>
     </select>
     <input type="text" id="certificateNumber" name="certificateNumber" [(ngModel)]="certificateNumber" placeholder="Número de Certificado" maxlength="255">
-    <input type="text" id="consistentInformation" name="consistentInformation" [(ngModel)]="consistentInformation" placeholder="Información Consistente" maxlength="255">
+    <input type="text" id="consistentInformation" name="consistentInformation" [(ngModel)]="consistentInformation" placeholder="Información Consistente" maxlength="255">-->
   </div>
 </div>
 
