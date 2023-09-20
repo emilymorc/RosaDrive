@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {UserService} from "../servicios/users.service";
+import {UserService} from "../../servicios/users.service";
 import {NgForm} from "@angular/forms";
 import {Router} from "@angular/router";
 import {ToastrModule, ToastrService} from "ngx-toastr";

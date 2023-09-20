@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../servicios/auth.service";
+import {AuthService} from "../../servicios/auth.service";
 
 @Component({
   selector: 'app-autostorie',

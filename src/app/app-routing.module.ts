@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {Login2Component} from "./login2/login2.component";
-import {CreateAccountComponent} from "./create-account/create-account.component";
+import {CreateAccountComponent} from "./account/create-account/create-account.component";
 import {SidenavComponent} from "./sidenav/sidenav.component";
 import {BodyComponent} from "./body/body.component";
 import {RouterModule, Routes} from "@angular/router";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {PagesComponent} from "./pages/pages.component"
-import {ViewUsersComponent} from "./view-users/view-users.component";
-import {ModifyAccountComponet} from "./modify-account/modify-account.component";
+import {ViewUsersComponent} from "./account/view-users/view-users.component";
+import {ModifyAccountComponet} from "./account/modify-account/modify-account.component";
 import {LandingComponent} from "./landing/landing.component";
-import {AutostorieComponent} from "./autostorie/autostorie.component";
+import {AutostorieComponent} from "./autostories/autostorie/autostorie.component";
 import {AuthService} from "./servicios/auth.service";
 import {AuthGuard} from "./auth.guard";
 import {LogoutComponent} from "./logout/logout.component";
-import {ViewautostoriesComponent} from "./viewautostories/viewautostories.component";
+import {ViewautostoriesComponent} from "./autostories/viewautostories/viewautostories.component";
 
 
 const routes: Routes = [
