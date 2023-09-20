@@ -37,6 +37,21 @@ export const navbarData: INavbarData[] = [
     ]
   },
   {
+    routeLink: 'statistics',
+    icon: 'fas fa-receipt',
+    label: 'Ordenes de Servicio',
+    items: [
+      {
+        routeLink: 'createOrder',
+        label: 'Crear',
+      },
+      {
+        routeLink: 'viewStories',
+        label: 'Ver',
+      }
+    ]
+  },
+  {
     routeLink: 'coupens',
     icon: 'fal fa-scroll',
     label: 'Reportes',

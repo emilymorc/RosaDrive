@@ -1,1 +1,67 @@
-<p>order-service works!</p>
+<!DOCTYPE html>
+<html>
+
+<body>
+
+<div class="header">
+  <h1>Crear Orden de Servicio</h1>
+</div>
+
+<div >
+  <form #myForm="ngForm" >
+    <div class="orderService-form">
+      <label class="label">Servicio</label>
+      <br>
+      <input type="text" id="firstName" [(ngModel)]="service" name="service" required type="text" maxlength="255">
+      <br>
+
+      <label class="label">Fecha</label>
+      <br>
+      <input type="text" id="last_name" [(ngModel)]="issue_date" name="issue_date" required type="text" type="text"  required maxlength="255">
+      <br>
+
+      <label class="label">Descripción de la orden</label>
+      <br>
+      <input type="text" id="description" [(ngModel)]="description" name="description" required type="text" type="text"  required maxlength="255">
+      <br>
+
+      <label class="label">Observaciones</label>
+      <br>
+      <input type="text" id="observations" [(ngModel)]="observations" name="observations" required type="text" type="text"  required maxlength="255">
+      <br>
+
+      <label class="label">Tecnico Responsable</label>
+      <br>
+      <input type="text" id="responsible_technician" [(ngModel)]="responsible_technician" name="responsible_technician" required type="text" type="text"  required maxlength="255">
+      <br>
+
+      <label class="label">Costo Total</label>
+      <br>
+      <input type="text" id="total_cost" [(ngModel)]="total_cost" name="total_cost" required type="text" type="text"  required maxlength="255">
+      <br>
+
+      <label  class="label">Tipo de Identificación</label>
+      <br>
+      <!--<select id="identification_type" name="identification_type" [(ngModel)]="identification_type" >
+        <option value="" disabled selected>Seleccione una opcion</option>
+        <option *ngFor="let n of optionsTypeIdentificastionNumber" >{{n}}</option>
+        <br>
+      </select>-->
+      <br>
+      <br>
+
+
+
+
+
+    </div>
+    <button class="buttonSave" type="submit" >Crear</button>
+
+
+  </form>
+</div>
+
+</body>
+</html>
+
+

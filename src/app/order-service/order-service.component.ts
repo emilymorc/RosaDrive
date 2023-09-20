@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class OrderServiceComponent {
 
+  service: string = '';
+  issue_date: string = '';
+  description: string = '';
+  observations: string = '';
+  responsible_technician: string = '';
+  inspection_type: string = '';
+  total_cost: string = '';
+
 }
