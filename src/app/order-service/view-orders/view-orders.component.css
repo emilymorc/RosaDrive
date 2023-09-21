@@ -1,0 +1,14 @@
+.header {
+  background-color: #b4b4b4;
+  color: black;
+  padding: 20px;
+  width: 100%;
+}
+
+.pagination-previous::before {
+  content: "Anterior";
+}
+
+.pagination-next::after {
+  content: "Siguiente";
+}

@@ -30,6 +30,7 @@ import { CreateOrderServiceComponent } from './order-service/create-order-servic
 import { AutostoriesComponent } from './autostories/autostories.component';
 import { AccountComponent } from './account/account.component';
 import { OrderServiceComponent } from './order-service/order-service.component';
+import { ViewOrdersComponent } from './order-service/view-orders/view-orders.component';
 
 
 
@@ -55,7 +56,8 @@ import { OrderServiceComponent } from './order-service/order-service.component';
     CreateOrderServiceComponent,
     AutostoriesComponent,
     AccountComponent,
-    OrderServiceComponent
+    OrderServiceComponent,
+    ViewOrdersComponent
   ],
     imports: [
         PaginationModule.forRoot(),
