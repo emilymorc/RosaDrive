@@ -46,7 +46,7 @@ export const navbarData: INavbarData[] = [
         label: 'Crear',
       },
       {
-        routeLink: 'viewStories',
+        routeLink: 'viewOrder',
         label: 'Ver',
       }
     ]
