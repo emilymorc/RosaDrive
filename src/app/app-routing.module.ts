@@ -17,6 +17,7 @@ import {LogoutComponent} from "./logout/logout.component";
 import {ViewautostoriesComponent} from "./autostories/viewautostories/viewautostories.component";
 import {CreateOrderServiceComponent} from "./order-service/create-order-service/create-order-service.component";
 import {OrderServiceComponent} from "./order-service/order-service.component";
+import {ViewOrdersComponent} from "./order-service/view-orders/view-orders.component"
 
 const routes: Routes = [
   {path: '.', component:Login2Component},
@@ -44,6 +45,7 @@ const routes: Routes = [
       {path: 'logout', component: LogoutComponent, canActivate:[AuthGuard]},
       {path: 'viewStories', component: ViewautostoriesComponent},
       {path: 'createOrder', component: OrderServiceComponent},
+      {path: 'viewOrder', component: ViewOrdersComponent}
     ] ,canActivate:[AuthGuard]
   },
 ];

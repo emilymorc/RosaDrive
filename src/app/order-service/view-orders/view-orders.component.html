@@ -7,7 +7,7 @@
 <body>
 
 <div class="header">
-  <h1>Usuarios</h1>
+  <h1>Ordenes</h1>
 </div>
 
 <div class="container mt-5 table-responsive">
@@ -19,21 +19,21 @@
     <thead>
     <tr>
       <th (click)="sortDataByColumn('ID_USER')">ID
-        <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'ID_USER' && isAsc, 'fa-arrow-down': orderBy === 'ID_USER' && !isAsc}"></i>
+        <i class="fa" ></i>
       </th>
       <th (click)="sortDataByColumn('FIRST_NAME')">
-        NOMBRES
-        <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'FIRST_NAME' && isAsc, 'fa-arrow-down': orderBy === 'FIRST_NAME' && !isAsc}"></i>
+        Servicio
+        <i class="fa" ></i>
       </th>
       <th (click)="sortDataByColumn('LAST_NAME')">
-        APELLIDOS
-        <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'LAST_NAME' && isAsc, 'fa-arrow-down': orderBy === 'LAST_NAME' && !isAsc}"></i>
+        Descripción de la orden
+        <i class="fa"></i>
       </th>
       <th (click)="sortDataByColumn('REGISTRATION_DATE')">
-        FECHA DE REGISTRO
-        <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'REGISTRATION_DATE' && isAsc, 'fa-arrow-down': orderBy === 'REGISTRATION_DATE' && !isAsc}"></i>
+        Costo Total
+        <i class="fa"></i>
       </th>
-      <th>CORREO ELECTRONICO</th>
+      <th>Tecnico Responsable</th>
       <th>MODIFICAR</th>
       <th>ELIMINAR</th>
     </tr>
