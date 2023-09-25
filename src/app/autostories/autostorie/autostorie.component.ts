@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
@@ -13,6 +13,7 @@ import {AuthService} from "../../servicios/auth.service";
 export class AutostorieComponent {
 
   maxDate: string = '';
+
   constructor(private http: HttpClient, private router: Router, private toastr: ToastrService, private formBuilder: FormBuilder, private authService: AuthService) {
     const currentDate = new Date();
     this.maxDate = currentDate.toISOString().slice(0, 16);
@@ -38,7 +39,7 @@ export class AutostorieComponent {
   hasEncumbrances: string = '';
 
   isEngineRetagged: string = '';
-  isChassisRetagged:string = '';
+  isChassisRetagged: string = '';
 
   isSerialNumberRetagged: string = '';
   fuelType: string = '';
@@ -46,7 +47,7 @@ export class AutostorieComponent {
   totalPassengers: number = 1;
   totalPassengersSit: number = 1;
 
-  dianValid:string = '';
+  dianValid: string = '';
   licensePlateNumber: string = '';
   grossVehicleWeight: number = 0;
   numberOfAxles: number = 0;
@@ -57,8 +58,6 @@ export class AutostorieComponent {
 
   technicalInspection: string = '';
   inspectionType: string = '';
-
-
 
 
   optionsBodyTipe = ['Automóvil', 'Campero', 'Camión', 'Volqueta', 'Bus', 'Microbús', 'Motocicleta', 'Tractocamión', 'Motocarro', 'Cuatrimoto', 'Remolque', 'Semirremolque', 'Vehículo especial', 'Chasis con cabina', 'Camión grúa', 'Ambulancia', 'Carro de bomberos', 'Cabezote', 'Furgoneta', 'Camión cisterna', 'Camión plataforma', 'Camión recolector', 'Vehículo de carga ligera', 'Vehículo eléctrico', 'Camión tanque', 'Camión blindado', 'Remolque de carga', 'Autobús de turismo', 'Autobús escolar', 'Camión de volteo', 'Motocicleta eléctrica', 'Triciclo motorizado', 'Bicicleta motorizada', 'Vehículo de ferrocarril', 'Tractor agrícola', 'Maquinaria de construcción', 'Camión frigorífico', 'Camión de reparto', 'Camión de carga peligrosa', 'Camión de basura', 'Camión de mudanza', 'Remolque de alimentos', 'Camión de bomberos aéreo', 'Vehículo de rescate', 'Caravana', 'Camión de pasajeros', 'Remolque de carga pesada', 'Vehículo todoterreno', 'Camión de reparto de gas', 'Remolque de ganado'];
@@ -72,32 +71,31 @@ export class AutostorieComponent {
   campoId = '';
 
 
-
-  signUp(form: any){
+  signUp(form: any) {
     const apiUrl = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/stories/addStory';
     const valor: string | null = localStorage.getItem('token')
     const valorCasteado: string | number | (string | number)[] = valor as string | number | (string | number)[];
-    const format =/[^A-Za-z0-9\-]/;
+    const format = /[^A-Za-z0-9\-]/;
 
-    if (this.currentOwner.trim() === '' || this.contactOwner.trim() === ''|| this.licensePlateNumber.trim() === ''
-      || this.brand.trim() === ''|| this.line.trim() === ''|| this.model.trim() === ''|| this.color.trim() === ''
-      || this.engineNumber.trim() === ''|| this.chassisNumber.trim() === ''|| this.vinNumber.trim() === ''|| this.soatPolicyNumber.trim() === ''
+    if (this.currentOwner.trim() === '' || this.contactOwner.trim() === '' || this.licensePlateNumber.trim() === ''
+      || this.brand.trim() === '' || this.line.trim() === '' || this.model.trim() === '' || this.color.trim() === ''
+      || this.engineNumber.trim() === '' || this.chassisNumber.trim() === '' || this.vinNumber.trim() === '' || this.soatPolicyNumber.trim() === ''
       || this.issuingEntitySoat.trim() === '') {
       this.toastr.error("Por favor, complete todos los campos", "Campos Vacios");
       return;
     }
 
-    if ( this.vehicleState.trim() === ''|| this.serviceType.trim() === ''|| this.vehicleClass.trim() === ''
-      || this.bodyType.trim() === ''|| this.hasEncumbrances.trim() === ''
-      || this.isEngineRetagged.trim() === ''|| this.isChassisRetagged.trim() === ''|| this.isSerialNumberRetagged.trim() === ''
+    if (this.vehicleState.trim() === '' || this.serviceType.trim() === '' || this.vehicleClass.trim() === ''
+      || this.bodyType.trim() === '' || this.hasEncumbrances.trim() === ''
+      || this.isEngineRetagged.trim() === '' || this.isChassisRetagged.trim() === '' || this.isSerialNumberRetagged.trim() === ''
       || this.fuelType.trim() === ''
-      || this.dianValid.trim() === '' || this.status.trim() === ''){
+      || this.dianValid.trim() === '' || this.status.trim() === '') {
       this.toastr.error("Por favor, complete todos los campos", "Campos Vacios");
       return;
     }
 
-    if (format.test(form.value.licensePlateNumber) || format.test(form.value.currentOwner)|| format.test(form.value.transitLicenseNumber) || format.test(form.value.brand)|| format.test(form.value.line)
-      || format.test(form.value.model) || format.test(form.value.color)){
+    if (format.test(form.value.licensePlateNumber) || format.test(form.value.currentOwner) || format.test(form.value.transitLicenseNumber) || format.test(form.value.brand) || format.test(form.value.line)
+      || format.test(form.value.model) || format.test(form.value.color)) {
       this.toastr.error("Existen campos con caracteres especiales", "¡Campos incorrectos!");
       this.showError = true;
       return;
@@ -108,14 +106,6 @@ export class AutostorieComponent {
 
       // creationDate: this.creationDate,
       entryDate: this.convertirFecha(this.entryDate),
-/*      serviceDate:this.convertirFecha(this.serviceDate),
-      registrationDate: this.convertirFecha(this.registrationDate),
-      soatIssueDate: this.convertirFecha(this.soatIssueDate),
-      soatEffectiveDate: this.convertirFecha(this.soatEffectiveDate),
-      soatExpirationDate: this.convertirFecha(this.soatExpirationDate),
-      issueDate: this.convertirFecha(this.issueDate),
-      effectiveDate: this.convertirFecha(this.effectiveDate),*/
-
       brand: this.brand,
       color: this.color,
       currentOwner: this.currentOwner,
@@ -128,7 +118,6 @@ export class AutostorieComponent {
       model: this.model,
       engineNumber: this.engineNumber,
       chassisNumber: this.chassisNumber,
-
       vinNumber: this.vinNumber,
       displacement: this.displacement,
       bodyType: this.bodyType,
@@ -157,9 +146,7 @@ export class AutostorieComponent {
       inspectionType: this.inspectionType,
 
 
-
     };
-
 
 
     const headers = new HttpHeaders({
@@ -168,7 +155,7 @@ export class AutostorieComponent {
       'x-access-token': valorCasteado
     });
 
-    console.log(this.authService.getToken())
+    // console.log(this.authService.getToken())
 
 
     this.http.post(apiUrl, data, {headers: headers})
@@ -184,7 +171,6 @@ export class AutostorieComponent {
         }
       );
   }
-
 
 
   resetForm(form: any) {

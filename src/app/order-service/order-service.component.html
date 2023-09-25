@@ -8,7 +8,7 @@
 </div>
 
 <div >
-  <form #myForm="ngForm" >
+  <form #myForm="ngForm" (submit)="createOrder(myForm)">
     <div class="orderService-form">
       <label class="label">Servicio</label>
       <br>
@@ -17,12 +17,15 @@
 
       <label class="label">Fecha</label>
       <br>
-      <input type="text" id="last_name" [(ngModel)]="issue_date" name="issue_date" required type="text" type="text"  required maxlength="255">
+      <input type="datetime-local" id="issue_date" [(ngModel)]="issue_date" name="issue_date" required  required maxlength="255">
+
+      <br>
       <br>
 
       <label class="label">Descripción de la orden</label>
       <br>
       <input type="text" id="description" [(ngModel)]="description" name="description" required type="text" type="text"  required maxlength="255">
+
       <br>
 
       <label class="label">Observaciones</label>
@@ -35,24 +38,18 @@
       <input type="text" id="responsible_technician" [(ngModel)]="responsible_technician" name="responsible_technician" required type="text" type="text"  required maxlength="255">
       <br>
 
+      <label class="label">Tipo de Insepección</label>
+      <br>
+      <input type="text" id="inspection_type" [(ngModel)]="inspection_type" name="inspection_type" required maxlength="255">
+      <br>
+
       <label class="label">Costo Total</label>
       <br>
-      <input type="text" id="total_cost" [(ngModel)]="total_cost" name="total_cost" required type="text" type="text"  required maxlength="255">
+      <input type="number" id="total_cost" [(ngModel)]="total_cost" name="total_cost" required type="text" type="text"  required maxlength="255">
       <br>
 
-
-      <!--<select id="identification_type" name="identification_type" [(ngModel)]="identification_type" >
-        <option value="" disabled selected>Seleccione una opcion</option>
-        <option *ngFor="let n of optionsTypeIdentificastionNumber" >{{n}}</option>
-        <br>
-      </select>-->
       <br>
       <br>
-
-
-
-
-
     </div>
     <button class="buttonSave" type="submit" >Crear</button>
 
