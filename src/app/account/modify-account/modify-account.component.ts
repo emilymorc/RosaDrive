@@ -18,35 +18,16 @@ export class ModifyAccountComponet implements OnInit{
   email: string = '';
   password: string = '';
   selectedUser: any = {};
+  oldPassword: string = '';
+  newPassword: string = '';
 
   constructor(private http: HttpClient,private userService: UserService,private router: Router, private toastr: ToastrService) { }
-
-  signUp() {
-    const userData = {
-      firstName: this.firstName,
-      lastName: this.lastName,
-      email: this.email,
-      password: this.password
-    };
-
-
-
-    this.http.post('https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/auth/signUp', userData)
-      .subscribe(
-        (response) => {
-          console.log('Sign up successful:', response);
-        },
-        (error) => {
-          console.error('Sign up error:', error);
-        }
-      );
-  }
 
   ngOnInit() {
     this.selectedUser = this.userService.getSelectedUser();
   }
 
-  actualizarUsuario(userDataForm: NgForm) {
+  updateUser(userDataForm: NgForm, passwordDataForm: NgForm) {
     const userData = {
       key: this.selectedUser.ID_USER,
       firstName: userDataForm.value.firstName,
@@ -56,6 +37,12 @@ export class ModifyAccountComponet implements OnInit{
       identification_type: this.selectedUser.IDENTIFICATION_TYPE,
       identification_number: this.selectedUser.IDENTIFICATION_NUMBER
     };
+
+    const passwordData = {
+      email: userDataForm.value.email,
+      oldPassword: passwordDataForm.value.oldPassword,
+      newPassword: passwordDataForm.value.newPassword
+    }
 
     const format =/[^A-Za-z0-9\-]/;
 
@@ -74,6 +61,31 @@ export class ModifyAccountComponet implements OnInit{
       return;
     }
 
+    const oldPassword = passwordDataForm.value.oldPassword;
+    const newPassword = passwordDataForm.value.newPassword;
+
+    console.log(oldPassword + " - " + newPassword);
+
+    if ((!oldPassword ||oldPassword.trim() === '') && (!newPassword || newPassword.trim() === '')){
+      this.updateOnlyDataUser(userData, userDataForm);
+      console.log("solo user")
+    }else {
+      if(!oldPassword || oldPassword.trim() === ''){
+        this.toastr.error("Por favor, complete todos los campos", "¡Campos incompletos!");
+        return;
+      }
+
+      if(!newPassword || newPassword.trim() === ''){
+        this.toastr.error("Por favor, complete todos los campos", "¡Campos incompletos!");
+        return;
+      }
+      this.updatePassword(passwordDataForm);
+      this.updateOnlyDataUser(userData, userDataForm);
+      console.log("user con password")
+    }
+  }
+
+  updateOnlyDataUser(userData: any, userDataForm: NgForm ): void{
     this.userService.updateUserData(userData).subscribe(
       (response) => {
         console.log('Usuario actualizado:', response);
@@ -87,6 +99,17 @@ export class ModifyAccountComponet implements OnInit{
     );
   }
 
+  updatePassword(passwordDataForm: NgForm): void {
+    this.userService.updatePassword(passwordDataForm.value.email, passwordDataForm.value.oldPassword, passwordDataForm.value.newPassword).subscribe(
+      (response) => {
+        this.toastr.success("contraseña modificado con exito", "EXITOSO!");
+        this.resetForm(passwordDataForm);
+      },
+      (error) => {
+        console.error('Error al modificar la contraseña:', error);
+      }
+    );
+  }
   resetForm(form: any) {
     form.form.reset();
   }
