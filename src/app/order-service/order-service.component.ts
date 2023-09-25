@@ -18,8 +18,8 @@ export class OrderServiceComponent {
   responsible_technician: string = '';
   inspection_type: string = '';
   total_cost: number = 0;
-  issuing_location: string = '';
-  id_story: number = 0;
+  issuing_location: string = '2';
+  id_story: number = 3;
 
   constructor(private http: HttpClient, private router: Router, private toastr: ToastrService, private formBuilder: FormBuilder) {
   }
@@ -29,6 +29,7 @@ export class OrderServiceComponent {
     const valorCasteado: string | number | (string | number)[] = valor as string | number | (string | number)[];
     const apiUrl = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/orders/addOrder';
     const data = {
+      id_story: this.id_story,
       service: this.service,
       description: this.description,
       issuing_location: this.issuing_location,
@@ -41,7 +42,7 @@ export class OrderServiceComponent {
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      // 'User-Agent': 'Insomnia/2023.5.5',
+      'User-Agent': 'Insomnia/2023.5.5',
       'x-access-token': valorCasteado
     });
     console.log('Token from localStorage:', valorCasteado);
