@@ -8,8 +8,10 @@
 </div>
 
 <div >
-  <form #userDataForm="ngForm" (ngSubmit)="actualizarUsuario(userDataForm)">
-    <div class="login-form">
+  <form #userDataForm="ngForm" #passwordDataForm="ngForm" (ngSubmit)="updateUser(userDataForm, passwordDataForm)">
+    <div class="login-form container mt-4 border  p-4 rounded body1">
+      <h3>Datos del Usuario</h3>
+      <br>
       <label class="label">Nombre</label>
       <br>
       <input type="text" id="firstName" name="firstName" required [(ngModel)]="selectedUser.FIRST_NAME" maxlength="255">
@@ -23,6 +25,18 @@
       <label for="email" class="label">Correo Electrónico</label>
       <br>
       <input type="email" id="email" name="email" [(ngModel)]="selectedUser.EMAIL" required maxlength="255">
+      <br>
+    </div>
+    <div class="login-form container mt-4 border  p-4 rounded body1">
+      <h3>Contraseña</h3>
+      <br>
+      <label for="email" class="label">Antigua contraseña</label>
+      <br>
+      <input type="password" id="oldPassword" name="oldPassword" [(ngModel)]="oldPassword" required maxlength="255">
+      <br>
+      <label for="email" class="label">Nueva Contraseña</label>
+      <br>
+      <input type="password" id="newPassword" name="newPassword" [(ngModel)]="newPassword" required maxlength="255">
       <br>
     </div>
     <button class="buttonSave" type="submit">Modificar</button>

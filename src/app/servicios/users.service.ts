@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 export class UserService {
     private apiUrl = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/users/';
     //private apiUrlG = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/users/';
-    private valor: string | null = localStorage.getItem('token')
-    private valorCasteado: string | number | (string | number)[] = this.valor as string | number | (string | number)[];
+    private token: string | null = localStorage.getItem('token')
+    private castToken: string | number | (string | number)[] = this.token as string | number | (string | number)[];
 
     private selectedUser: any;
 
@@ -19,14 +19,14 @@ export class UserService {
     getUsers(): Observable<any> {
         const headers = new HttpHeaders({
             'User-Agent': 'Insomnia/2023.5.5',
-            'x-access-token': this.valorCasteado
+            'x-access-token': this.castToken
         });
 
         return this.http.get(`${this.apiUrl}getUsers/`, { headers });
     }
 
   getUserById(id: number): Observable<any> {
-    const token = this.valorCasteado;
+    const token = this.castToken;
 
     const headers = new HttpHeaders({
       'x-access-token': token
@@ -39,7 +39,7 @@ export class UserService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'User-Agent': 'Insomnia/2023.5.6',
-      'x-access-token': this.valorCasteado
+      'x-access-token': this.castToken
     });
 
     return this.http.post(`${this.apiUrl}/updateUser`, userData, { headers });
@@ -49,10 +49,26 @@ export class UserService {
     const url = `${this.apiUrl}/deleteUser/${userId}`;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'x-access-token': this.valorCasteado
+      'x-access-token': this.castToken
     });
 
     return this.http.delete(url, { headers });
+  }
+
+  updatePassword(email: string, oldPassword: string, newPassword: string): Observable<any> {
+    const url = `${this.apiUrl}/updatePasswordUser`;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'User-Agent': 'Insomnia/2023.5.5',
+      'x-access-token': this.castToken
+    });
+
+    const body = {
+      email,
+      oldPassword,
+      newPassword
+    };
+    return this.http.post(url, body, { headers });
   }
 
   setSelectedUser(user: any) {
