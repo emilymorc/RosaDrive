@@ -42,6 +42,12 @@ export class OrderServiceComponent {
 
     };
 
+    if (this.description.trim() === '' || this.observations.trim() === '' || this.responsible_technician.trim() === ''
+      || this.inspection_type.trim() === '' || this.total_cost.toString() === '') {
+      this.toastr.error("Por favor, complete todos los campos", "Campos Vacios");
+      return;
+    }
+
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       // 'User-Agent': 'Insomnia/2023.5.5',
