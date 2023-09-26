@@ -51,12 +51,19 @@ export class ViewautostoriesComponent {
       const aValue = a[column];
       const bValue = b[column];
 
-      if (aValue < bValue) {
-        return this.isAsc ? -1 : 1;
-      } else if (aValue > bValue) {
-        return this.isAsc ? 1 : -1;
+      if (!isNaN(Number(aValue)) && !isNaN(Number(bValue))) {
+        return this.isAsc ? Number(aValue) - Number(bValue) : Number(bValue) - Number(aValue);
       } else {
-        return 0;
+        const aValueString = String(aValue).toLowerCase();
+        const bValueString = String(bValue).toLowerCase();
+
+        if (aValueString < bValueString) {
+          return this.isAsc ? -1 : 1;
+        } else if (aValueString > bValueString) {
+          return this.isAsc ? 1 : -1;
+        } else {
+          return 0;
+        }
       }
     });
   }

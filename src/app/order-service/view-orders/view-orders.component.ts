@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {UserService} from "../../servicios/users.service";
+import {OrderService} from "../../servicios/order.service";
 
 @Component({
   selector: 'app-view-orders',
@@ -13,16 +14,16 @@ export class ViewOrdersComponent implements OnInit{
   maxSize: number = 10;
   orderBy: string | null = null;
   isAsc: boolean = true;
-  filtroApellido: string = '';
+  filtroServicio: string = '';
 
-  users: any[] = [];
+  orders: any[] = [];
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router, private orderService :OrderService) { }
 
   ngOnInit(): void {
-    this.userService.getUsers().subscribe(
+    this.orderService.getAllOrders().subscribe(
       data => {
-        this.users = data;
+        this.orders = data;
       },
       error => {
         console.error('Error al obtener usuarios:', error);
@@ -33,44 +34,43 @@ export class ViewOrdersComponent implements OnInit{
     this.currentPage = event.page;
   }
 
-  sortBy(column: string): void {
-    if (this.orderBy === column) {
-      this.isAsc = !this.isAsc;
-    } else {
-      this.orderBy = column;
-      this.isAsc = true;
-    }
-  }
-
   sortDataByColumn(column: string): void {
     this.orderBy = column;
     this.isAsc = !this.isAsc;
 
-    this.users.sort((a, b) => {
+    this.orders.sort((a, b) => {
       const aValue = a[column];
       const bValue = b[column];
 
-      if (aValue < bValue) {
-        return this.isAsc ? -1 : 1;
-      } else if (aValue > bValue) {
-        return this.isAsc ? 1 : -1;
+      if (!isNaN(Number(aValue)) && !isNaN(Number(bValue))) {
+        return this.isAsc ? Number(aValue) - Number(bValue) : Number(bValue) - Number(aValue);
       } else {
-        return 0;
+        const aValueString = String(aValue).toLowerCase();
+        const bValueString = String(bValue).toLowerCase();
+
+        if (aValueString < bValueString) {
+          return this.isAsc ? -1 : 1;
+        } else if (aValueString > bValueString) {
+          return this.isAsc ? 1 : -1;
+        } else {
+          return 0;
+        }
       }
     });
   }
 
-  filtrarPorApellido(): any[] {
-    if (this.filtroApellido) {
-      return this.users.filter(dato =>
-        dato.LAST_NAME && dato.LAST_NAME.toLowerCase().includes(this.filtroApellido.toLowerCase())
+
+  filtrarPorServicio(): any[] {
+    if (this.filtroServicio) {
+      return this.orders.filter(dato =>
+        dato.SERVICE && dato.SERVICE.toLowerCase().includes(this.filtroServicio.toLowerCase())
       );
     } else {
-      return this.users;
+      return this.orders;
     }
   }
 
-  modificarUsuario(dato: any): void {
+  /*modificarUsuario(dato: any): void {
     this.userService.getUserById(dato.ID_USER).subscribe(
       response => {
         console.log(response.body);
@@ -82,9 +82,9 @@ export class ViewOrdersComponent implements OnInit{
         console.error('Error al obtener datos del usuario:', error);
       }
     );
-  }
+  }*/
 
-  eliminarUsuario(userId: number): void {
+  /*deleteOrder(userId: number): void {
     const confirmation = confirm('¿Estás seguro de que deseas eliminar este usuario?');
 
     if (confirmation) {
@@ -99,6 +99,6 @@ export class ViewOrdersComponent implements OnInit{
         }
       );
     }
-  }
+  }*/
 
 }
