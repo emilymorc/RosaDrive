@@ -23,6 +23,16 @@ export class OrderService{
     return this.http.get(url, { headers });
   }
 
+  getAllOrders(): Observable<any> {
+    const url = `${this.apiUrl}/getOrdersHistory`;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'x-access-token': this.castToken
+    });
+    console.log(this.castToken)
+    return this.http.get(url, { headers });
+  }
+
   deleteOrder(historyId: number, orderId: number): Observable<any> {
     const url = `${this.apiUrl}/deleteOrder/${historyId}/${orderId}`;
     const headers = new HttpHeaders({

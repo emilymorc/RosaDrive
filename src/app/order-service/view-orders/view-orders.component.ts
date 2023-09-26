@@ -21,7 +21,7 @@ export class ViewOrdersComponent implements OnInit{
   constructor(private router: Router, private orderService :OrderService) { }
 
   ngOnInit(): void {
-    this.orderService.getOrdersHistory(3).subscribe(
+    this.orderService.getAllOrders().subscribe(
       data => {
         this.orders = data;
       },
