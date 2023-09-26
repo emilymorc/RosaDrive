@@ -20,8 +20,11 @@ export class OrderServiceComponent {
   total_cost: number = 0;
   issuing_location: string = '';
   id_story: number = 0;
+  maxDate: string = '';
 
   constructor(private http: HttpClient, private router: Router, private toastr: ToastrService, private formBuilder: FormBuilder) {
+    const currentDate = new Date();
+    this.maxDate = currentDate.toISOString().slice(0, 16);
   }
 
   createOrder(form: any) {

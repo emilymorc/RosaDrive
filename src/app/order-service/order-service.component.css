@@ -36,8 +36,7 @@ select {
 }
 
 .orderService-form input[type="text"],
-.orderService-form input[type="email"],
-.orderService-form input[type="password"] {
+.orderService-form input[type="number"]{
   padding: 10px;
   width: 60%; /* Ancho ajustado */
   margin-bottom: 10px;
@@ -46,6 +45,10 @@ select {
 }
 .label {
   text-align: right;
+}
+
+textarea{
+  width: 60%;
 }
 
 .buttonSave{
