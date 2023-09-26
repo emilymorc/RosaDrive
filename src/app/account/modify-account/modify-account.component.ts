@@ -17,6 +17,7 @@ export class ModifyAccountComponet implements OnInit{
   lastName: string = '';
   email: string = '';
   password: string = '';
+
   selectedUser: any = {};
   oldPassword: string = '';
   newPassword: string = '';

@@ -10,7 +10,7 @@ export class OrderService{
   private apiUrl = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/orders';
   private token: string | null = localStorage.getItem('token')
   private castToken: string | number | (string | number)[] = this.token as string | number | (string | number)[];
-
+  private selectedOrder: any;
   constructor(private http: HttpClient) { }
 
   getOrdersHistory(historyId: number): Observable<any> {
@@ -41,6 +41,14 @@ export class OrderService{
     });
 
     return this.http.delete(url, { headers });
+  }
+
+  setSelectedOrder(order: any) {
+    this.selectedOrder = order;
+  }
+
+  getSelectedOrder() {
+    return this.selectedOrder;
   }
 
 }

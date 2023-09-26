@@ -70,6 +70,21 @@ export class ViewOrdersComponent implements OnInit{
     }
   }
 
+  viewOrder(dato: any): void {
+    this.orderService.getOrdersHistory(dato.ID_STORY).subscribe(
+      response => {
+        console.log(response.body);
+        this.orderService.setSelectedOrder(dato);
+        this.router.navigate(['/dashboard/detailsOrder']);
+        console.log('Datos del la orden:', response);
+      },
+      error => {
+        console.error('Error al obtener datos de la orden:', error);
+        this.router.navigate(['/dashboard/detailsOrder']);
+      }
+    );
+  }
+
   /*modificarUsuario(dato: any): void {
     this.userService.getUserById(dato.ID_USER).subscribe(
       response => {
