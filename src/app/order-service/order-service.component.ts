@@ -1,15 +1,25 @@
-import { Component } from '@angular/core';
+import {Component, NgModule, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {FormBuilder} from "@angular/forms";
+import {HistoryService} from "../servicios/history.service";
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-order-service',
   templateUrl: './order-service.component.html',
   styleUrls: ['./order-service.component.css']
 })
-export class OrderServiceComponent {
+
+/*@NgModule({
+  imports: [
+    // ...
+    FormsModule, // Asegúrate de que FormsModule esté importado
+  ],
+  // ...
+})*/
+export class OrderServiceComponent implements OnInit{
 
   service: string = '';
   issue_date: string = '';
@@ -20,8 +30,22 @@ export class OrderServiceComponent {
   total_cost: number = 0;
   issuing_location: string = '2';
   id_story: number = 3;
+  histories: any[]= [];
+  selectedLicensePlate: number = 0;
 
-  constructor(private http: HttpClient, private router: Router, private toastr: ToastrService, private formBuilder: FormBuilder) {
+  constructor(private http: HttpClient, private router: Router, private toastr: ToastrService, private formBuilder: FormBuilder, public service1: HistoryService) {
+  }
+
+  ngOnInit(): void {
+    this.service1.getHistories().subscribe(
+      (data: any) => {
+        this.histories = data;
+        console.log(data)
+      },
+      (error: any) => {
+        console.error(error);
+      }
+    );
   }
 
   createOrder(form: any) {

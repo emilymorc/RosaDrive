@@ -10,6 +10,15 @@
 <div >
   <form #myForm="ngForm" (submit)="createOrder(myForm)">
     <div class="orderService-form">
+
+      <label class="label">Placa del vehiculo</label>
+      <br>
+      <select [(ngModel)]="id_story" name="id_story">
+        <option *ngFor="let history of histories" [value]="history.ID_STORY">{{ history.LICENSE_PLATE_NUMBER}}</option>
+      </select>
+      <br>
+      <br>
+
       <label class="label">Servicio</label>
       <br>
       <input type="text" id="firstName" [(ngModel)]="service" name="service" required type="text" maxlength="255">
