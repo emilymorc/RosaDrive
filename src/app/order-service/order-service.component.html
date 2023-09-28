@@ -10,17 +10,21 @@
 <div >
   <form #myForm="ngForm" (submit)="createOrder(myForm)">
     <div class="orderService-form">
+
+      <label class="label">Placa del vehiculo</label>
+      <br>
+      <select [(ngModel)]="id_story" name="id_story">
+        <option *ngFor="let history of histories" [value]="history.ID_STORY">{{ history.LICENSE_PLATE_NUMBER}}</option>
+      </select>
+      <br>
+      <br>
+      <input type="datetime-local" id="issue_date" [(ngModel)]="issue_date" name="issue_date" maxlength="255" [max]="maxDate">
+
       <label class="label">Servicio</label>
       <br>
       <input type="text" id="firstName" [(ngModel)]="service" name="service" required type="text" maxlength="255">
       <br>
 
-      <label class="label">Fecha</label>
-      <br>
-      <input type="datetime-local" id="issue_date" [(ngModel)]="issue_date" name="issue_date" maxlength="255" [max]="maxDate">
-
-      <br>
-      <br>
 
       <label class="label">Descripción de la orden</label>
       <br>

@@ -12,50 +12,50 @@
 
 <div class="container mt-5 table-responsive">
   <div class="ml-2">
-    <input type="text" [(ngModel)]="filtroApellido" placeholder="Filtrar por Apellido" class="form-control">
+    <input type="text" [(ngModel)]="filtroServicio" placeholder="Filtrar por Servicio" class="form-control">
   </div>
   <br>
   <table class="table table table-bordered" >
     <thead>
     <tr>
-      <th (click)="sortDataByColumn('ID_USER')">ID
-        <i class="fa" ></i>
+      <th (click)="sortDataByColumn('ID_STORY')">ID HISTORIA
+        <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'ID_STORY' && isAsc, 'fa-arrow-down': orderBy === 'ID_STORY' && !isAsc}"></i>
       </th>
-      <th (click)="sortDataByColumn('FIRST_NAME')">
-        Servicio
-        <i class="fa" ></i>
+      <th (click)="sortDataByColumn('ID_ORDER')">
+        ID ORDEN
+        <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'ID_ORDER' && isAsc, 'fa-arrow-down': orderBy === 'ID_ORDER' && !isAsc}"></i>
       </th>
-      <th (click)="sortDataByColumn('LAST_NAME')">
-        Descripción de la orden
-        <i class="fa"></i>
+      <th (click)="sortDataByColumn('SERVICE')">
+        SERVICIO
+        <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'SERVICE' && isAsc, 'fa-arrow-down': orderBy === 'SERVICE' && !isAsc}"></i>
       </th>
-      <th (click)="sortDataByColumn('REGISTRATION_DATE')">
-        Costo Total
-        <i class="fa"></i>
+      <th (click)="sortDataByColumn('DESCRIPTION')">
+        DESCRIPCIÓN DE LA ORDEN
+        <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'DESCRIPTION' && isAsc, 'fa-arrow-down': orderBy === 'DESCRIPTION' && !isAsc}"></i>
       </th>
-      <th>Tecnico Responsable</th>
+      <th>COSTO TOTAL</th>
       <th>MODIFICAR</th>
-      <th>ELIMINAR</th>
+      <th>VER</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let dato of filtrarPorApellido() | slice:(currentPage-1)*itemsPerPage:currentPage*itemsPerPage">
-      <td>{{ dato.ID_USER }}</td>
-      <td>{{ dato.FIRST_NAME }}</td>
-      <td>{{ dato.LAST_NAME }}</td>
-      <td>{{ dato.REGISTRATION_DATE | date: 'MM/dd/yyyy hh:mm:ss a' }}</td>
-      <td>{{ dato.EMAIL }}</td>
+    <tr *ngFor="let dato of filtrarPorServicio() | slice:(currentPage-1)*itemsPerPage:currentPage*itemsPerPage">
+      <td>{{ dato.ID_STORY }}</td>
+      <td>{{ dato.ID_ORDER }}</td>
+      <td>{{ dato.SERVICE }}</td>
+      <td>{{ dato.DESCRIPTION }}</td>
+      <td>{{ dato.TOTAL_COST }}</td>
       <td>
-        <button class="btn btn-primary" (click)="modificarUsuario(dato)">Modificar</button>
+         <button class="btn btn-primary" >Modificar</button>
       </td>
       <td>
-        <button class="btn btn-danger" (click)="eliminarUsuario(dato.ID_USER)">Inactivar</button>
+        <button class="btn btn-primary" (click)="viewOrder(dato)">VER</button>
       </td>
     </tr>
     </tbody>
   </table>
   <pagination
-    [totalItems]="users.length"
+    [totalItems]="orders.length"
     [(ngModel)]="currentPage"
     [itemsPerPage]="itemsPerPage"
     [maxSize]="maxSize"
@@ -67,8 +67,5 @@
     (pageChanged)="onPageChange($event)">
   </pagination>
 </div>
-
-
 </body>
-
 </html>
