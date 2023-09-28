@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {FormBuilder} from "@angular/forms";
+import {HistoryService} from "../servicios/history.service";
 
 @Component({
   selector: 'app-order-service',
@@ -32,10 +33,11 @@ export class OrderServiceComponent implements OnInit{
   histories: any[]= [];
   selectedLicensePlate: number = 0;
 
-  constructor(private http: HttpClient, private router: Router, private toastr: ToastrService, private formBuilder: FormBuilder) {
+
+
+  constructor(private http: HttpClient, private router: Router, private toastr: ToastrService, private formBuilder: FormBuilder, public service1: HistoryService) {
     const currentDate = new Date();
     this.maxDate = currentDate.toISOString().slice(0, 16);
-  constructor(private http: HttpClient, private router: Router, private toastr: ToastrService, private formBuilder: FormBuilder, public service1: HistoryService) {
   }
 
   ngOnInit(): void {
