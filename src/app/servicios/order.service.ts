@@ -14,7 +14,7 @@ export class OrderService{
   constructor(private http: HttpClient) { }
 
   getOrdersHistory(historyId: number): Observable<any> {
-    const url = `${this.apiUrl}/getOrdersHistory/${historyId}`;
+    const url = `${this.apiUrl}/getOrdersById/${historyId}`;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'x-access-token': this.castToken
