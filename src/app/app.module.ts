@@ -31,6 +31,7 @@ import { AutostoriesComponent } from './autostories/autostories.component';
 import { AccountComponent } from './account/account.component';
 import { OrderServiceComponent } from './order-service/order-service.component';
 import { ViewOrdersComponent } from './order-service/view-orders/view-orders.component';
+import { DetailsHistoryComponent } from './autostories/details-history/details-history.component';
 
 
 
@@ -57,7 +58,8 @@ import { ViewOrdersComponent } from './order-service/view-orders/view-orders.com
     AutostoriesComponent,
     AccountComponent,
     OrderServiceComponent,
-    ViewOrdersComponent
+    ViewOrdersComponent,
+    DetailsHistoryComponent
   ],
     imports: [
         PaginationModule.forRoot(),

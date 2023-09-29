@@ -6,10 +6,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class HistoryService {
-  private apiUrl = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/stories/getStories';
-  private accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNjk0MzgxNjEwLCJleHAiOjE2OTQ0NjgwMTB9.avJWxnQ-Nom5ICE4tMB1vEWptsDf_MP5SI1qjzP_xuM';
+  private apiUrl = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/stories/';
+  private token: string | null = localStorage.getItem('token')
+  private castToken: string | number | (string | number)[] = this.token as string | number | (string | number)[];
 
+  private selectedHistory: any;
   constructor(private http: HttpClient) { }
+
 
   getHistories(): Observable<any> {
     const valor: string | null = localStorage.getItem('token')
@@ -19,6 +22,23 @@ export class HistoryService {
       'x-access-token':valorCasteado
     });
 
-    return this.http.get(this.apiUrl, { headers });
+    return this.http.get(`${this.apiUrl}getStories/`, { headers });
+  }
+
+  getHistoryById(id: number): Observable<any> {
+    const token = this.castToken;
+
+    const headers = new HttpHeaders({
+      'x-access-token': token
+    });
+
+    return this.http.get<any>(`https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/stories/getStoryById/${id}`, { headers });
+  }
+
+  setSelectedHistory(history: any) {
+    this.selectedHistory = history;
+  }
+  getSelectedHistory() {
+    return this.selectedHistory;
   }
 }

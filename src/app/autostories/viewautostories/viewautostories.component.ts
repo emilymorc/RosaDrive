@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {HistoryService} from "../../servicios/history.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -18,7 +19,7 @@ export class ViewautostoriesComponent {
 
   users: any[] = [];
 
-  constructor(private historyService: HistoryService) { }
+  constructor(private historyService: HistoryService , private router: Router) { }
 
   ngOnInit(): void {
     this.historyService.getHistories().subscribe(
@@ -69,6 +70,20 @@ export class ViewautostoriesComponent {
     } else {
       return this.users;
     }
+  }
+
+  getHistories(dato: any){
+    this.historyService.getHistoryById(dato.ID_USER).subscribe(
+      response => {
+        console.log(response.body);
+        this.historyService.setSelectedHistory(dato);
+        this.router.navigate(['/dashboard/detailsHistory']);
+        console.log('Datos del Historial:', response);
+      },
+      error => {
+        console.error('Error al obtener datos del Historial:', error);
+      }
+    );
   }
 
 }
