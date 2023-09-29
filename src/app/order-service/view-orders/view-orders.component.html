@@ -18,7 +18,7 @@
   <table class="table table table-bordered" >
     <thead>
     <tr>
-      <th (click)="sortDataByColumn('ID_STORY')">ID HISTORIA
+      <th (click)="sortDataByColumn('ID_STORY')">PLACA DEL VEHICULO
         <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'ID_STORY' && isAsc, 'fa-arrow-down': orderBy === 'ID_STORY' && !isAsc}"></i>
       </th>
       <th (click)="sortDataByColumn('ID_ORDER')">
@@ -40,7 +40,7 @@
     </thead>
     <tbody>
     <tr *ngFor="let dato of filtrarPorServicio() | slice:(currentPage-1)*itemsPerPage:currentPage*itemsPerPage">
-      <td>{{ dato.ID_STORY }}</td>
+      <td>{{getPlateByHistory(dato.ID_STORY)}}</td>
       <td>{{ dato.ID_ORDER }}</td>
       <td>{{ dato.SERVICE }}</td>
       <td>{{ dato.DESCRIPTION }}</td>
