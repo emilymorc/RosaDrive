@@ -1,0 +1,21 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { DetailsHistoryComponent } from './details-history.component';
+
+describe('DetailsHistoryComponent', () => {
+  let component: DetailsHistoryComponent;
+  let fixture: ComponentFixture<DetailsHistoryComponent>;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [DetailsHistoryComponent]
+    });
+    fixture = TestBed.createComponent(DetailsHistoryComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

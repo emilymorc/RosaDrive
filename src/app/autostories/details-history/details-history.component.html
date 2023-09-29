@@ -1,0 +1,263 @@
+<html>
+<header>
+  <div class="header">
+    <h2>Ver Historial Automotor</h2>
+  </div>
+</header>
+
+<body>
+
+<form #historyDataForm="ngForm" (ngSubmit)="seeHistory(historyDataForm)">
+
+  <div class="container mt-5 border p-4 rounded body1">
+
+    <div class="form-group mb-4">
+      <label>Fecha de ingreso:</label>
+      <div>
+        <input type="text" id="entryDate" name="entryDate"  [(ngModel)]="selecteHistoy.ENTRY_DATE">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Propietario Actual:</label>
+      <br>
+      <input type="text" id="currentOwner" name="currentOwner" [(ngModel)]="selecteHistoy.CURRENT_OWNER" maxlength="255">
+    </div>
+
+    <div class="form-group">
+      <label>Contacto Propietario:</label>
+      <br>
+      <input type="text" id="contactOwner" name="contactOwner" [(ngModel)]="selecteHistoy.OWNER_CONTACT" maxlength="255">
+    </div>
+
+
+    <div class="form-group">
+      <label>Notas adicionales:</label>
+      <br>
+      <textarea id="additionalNotes" name="additionalNotes" [(ngModel)]="selecteHistoy.ADDITIONAL_NOTES" maxlength="255"></textarea>
+    </div>
+  </div>
+
+  <div class="container mt-4 border  p-4 rounded body1">
+    <h3>Datos del Vehiculo</h3>
+    <br>
+
+    <div class="form-group mb-4">
+      <label>Numero Placa:</label>
+      <br>
+      <input type="text" id="licensePlateNumber" name="licensePlateNumber" [(ngModel)]="selecteHistoy.LICENSE_PLATE_NUMBER" maxlength="10"  >
+    </div>
+
+    <div class="form-group mb-4">
+      <label>Estado del Vehículo:</label>
+      <br>
+      <input type="text" id="vehicleState" name="vehicleState" [(ngModel)]="selecteHistoy.VEHICLE_STATE">
+<!--      <select id="vehicleState" name="vehicleState" [(ngModel)]="selecteHistoy.VEHICLE_STATE">-->
+<!--        <option value="" disabled selected>Seleccione una opción</option>-->
+<!--      </select>-->
+    </div>
+
+    <div class="form-group mb-4">
+      <label>Tipo de Servicio:</label>
+      <br>
+      <input type="text" id="serviceType" name="serviceType" [(ngModel)]="selecteHistoy.SERVICE_TYPE">
+<!--      <select id="serviceType" name="serviceType" [(ngModel)]="selecteHistoy.SERVICE_TYPE">-->
+<!--        <option value="" disabled selected>Seleccione una opción</option>-->
+<!--      </select>-->
+    </div>
+
+    <div class="form-group mb-4">
+      <label>Clase de Vehículo:</label>
+      <br>
+      <input type="text" id="vehicleClass" name="vehicleClass" [(ngModel)]="selecteHistoy.VEHICLE_CLASS">
+<!--      <select id="vehicleClass" name="vehicleClass" [(ngModel)]="selecteHistoy.VEHICLE_CLASS">-->
+<!--        <option value="" disabled selected>Seleccione una opción</option>-->
+<!--      </select>-->
+    </div>
+
+    <div class="form-group mb-4">
+      <label>Marca:</label>
+      <br>
+      <input type="text" id="brand" name="brand" [(ngModel)]="selecteHistoy.BRAND" maxlength="255">
+    </div>
+
+    <div class="form-group mb-4">
+      <label>Línea:</label>
+      <br>
+      <input type="text" id="line" name="line" [(ngModel)]="selecteHistoy.LINE" maxlength="255">
+    </div>
+
+    <div class="form-group mb-4">
+      <label>Modelo:</label>
+      <br>
+      <input type="text" id="model" name="model" [(ngModel)]="selecteHistoy.MODEL" maxlength="255">
+    </div>
+
+    <div class="form-group mb-4">
+      <label>Color:</label>
+      <br>
+      <input type="text" id="color" name="color" [(ngModel)]="selecteHistoy.COLOR" maxlength="255">
+    </div>
+
+    <div class="form-group mb-4">
+      <label>Número de Motor:</label>
+      <br>
+      <input type="text" id="engineNumber" name="engineNumber" [(ngModel)]="selecteHistoy.ENGINE_NUMBER" maxlength="255">
+    </div>
+
+    <div class="form-group mb-4">
+      <label>Número de Chasis:</label>
+      <br>
+      <input type="text" id="chassisNumber" name="chassisNumber" [(ngModel)]="selecteHistoy.CHASSIS_NUMBER" maxlength="255">
+    </div>
+
+    <div class="form-group mb-4">
+      <label>Número de VIN:</label>
+      <br>
+      <input type="text" id="vinNumber" name="vinNumber" [(ngModel)]="selecteHistoy.VIN_NUMBER" maxlength="255">
+    </div>
+
+    <div class="form-group mb-4">
+      <label>Cilindraje:</label>
+      <br>
+      <input type="number" id="displacement" name="displacement" [(ngModel)]="selecteHistoy.DISPLACEMENT">
+    </div>
+
+    <div class="form-group mb-4">
+      <label>Tipo de Carrocería:</label>
+      <br>
+      <input type="text" id="bodyType" name="bodyType" [(ngModel)]="selecteHistoy.BODY_TYPE">
+<!--      <select id="bodyType" name="bodyType" [(ngModel)]="selecteHistoy.BODY_TYPE">-->
+<!--        <option value="" disabled selected>Seleccione una opción</option>-->
+<!--      </select>-->
+    </div>
+
+    <div class="form-group mb-4">
+      <label>Tiene Gravámenes:</label>
+      <br>
+      <input type="text" id="hasEncumbrances" name="hasEncumbrances" [(ngModel)]="selecteHistoy.HAS_ENCUMBRANCES">
+<!--      <select id="hasEncumbrances" name="hasEncumbrances" [(ngModel)]="selecteHistoy.HAS_ENCUMBRANCES">-->
+<!--        <option value="" disabled selected>Seleccione una opción</option>-->
+<!--        <option [value]="true">Si</option>-->
+<!--        <option [value]="false">No</option>-->
+<!--      </select>-->
+    </div>
+
+    <div class="form-group mb-4">
+      <label>Es Regrabado Motor:</label>
+      <br>
+      <input type="text" id="isEngineRetagged" name="isEngineRetagged" [(ngModel)]="selecteHistoy.IS_ENGINE_RETAGGED">
+<!--      <select id="isEngineRetagged" name="isEngineRetagged" [(ngModel)]="selecteHistoy.IS_ENGINE_RETAGGED">-->
+<!--        <option value="" disabled selected>Seleccione una opción</option>-->
+<!--        <option [value]="true">Si</option>-->
+<!--        <option [value]="false">No</option>-->
+<!--      </select>-->
+    </div>
+
+    <div class="form-group mb-4">
+      <label>Es Regrabado Chasis:</label>
+      <br>
+      <input type="text" id="isChassisRetagged" name="isChassisRetagged" [(ngModel)]="selecteHistoy.IS_CHASSIS_RETAGGED">
+<!--      <select id="isChassisRetagged" name="isChassisRetagged" [(ngModel)]="selecteHistoy.IS_CHASSIS_RETAGGED">-->
+<!--        <option value="" disabled selected>Seleccione una opción</option>-->
+<!--        <option [value]="true">Si</option>-->
+<!--        <option [value]="false">No</option>-->
+<!--      </select>-->
+    </div>
+
+    <div class="form-group mb-4">
+      <label>Es Regrabado Serie:</label>
+      <br>
+      <input type="text" id="isSerialNumberRetagged" name="isSerialNumberRetagged" [(ngModel)]="selecteHistoy.IS_SERIAL_NUMBER_RETAGGED">
+<!--      <select id="isSerialNumberRetagged" name="isSerialNumberRetagged" [(ngModel)]="selecteHistoy.IS_SERIAL_NUMBER_RETAGGED">-->
+<!--        <option value="" disabled selected>Seleccione una opción</option>-->
+<!--        <option [value]="true">Si</option>-->
+<!--        <option [value]="false">No</option>-->
+<!--      </select>-->
+    </div>
+
+    <div class="form-group mb-4">
+      <label>Tipo de Combustible:</label>
+      <br>
+      <input type="text" id="fuelType" name="fuelType" [(ngModel)]="selecteHistoy.FUEL_TYPE">
+<!--      <select id="fuelType" name="fuelType" [(ngModel)]="selecteHistoy.FUEL_TYPE">-->
+<!--        <option value="" disabled selected>Seleccione una opción</option>-->
+<!--      </select>-->
+    </div>
+
+
+
+    <div class="form-group mb-4">
+      <label>Total Pasajeros:</label>
+      <br>
+      <input type="text"  id="totalPassengers" name="totalPassengers" [(ngModel)]="selecteHistoy.TOTAL_PASSENGERS">
+    </div>
+
+    <div class="form-group mb-4">
+      <label>Verificación Valida DIAN:</label>
+      <br>
+      <input id="dianValid" name="dianValid" [(ngModel)]="selecteHistoy.DIAN_VALID">
+<!--      <select id="dianValid" name="dianValid" [(ngModel)]="selecteHistoy.DIAN_VALID">-->
+<!--        <option value="" disabled selected>Seleccione una opción</option>-->
+<!--        <option [value]="true">Si</option>-->
+<!--        <option [value]="false">No</option>-->
+<!--      </select>-->
+    </div>
+
+
+    <div class="form-group mb-4">
+      <label>Peso Bruto Vehicular:</label>
+      <br>
+      <input type="text" id="grossVehicleWeight" name="grossVehicleWeight" [(ngModel)]="selecteHistoy.GROSS_VEHICLE_WEIGHT">
+    </div>
+
+    <div class="form-group mb-4">
+      <label>Número de Ejes:</label>
+      <br>
+      <input type="text" id="numberOfAxles" name="numberOfAxles" [(ngModel)]="selecteHistoy.NUMBER_OF_AXLES">
+    </div>
+
+    <div class="form-group mb-4">
+      <label>Pasajeros Sentados:</label>
+      <br>
+      <input type="text" id="totalPassengersSit" name="totalPassengersSit" [(ngModel)]="selecteHistoy.TOTAL_PASSENGERS">
+    </div>
+
+    <div class="form-group mb-4">
+      <label>Número de Póliza SOAT:</label>
+      <br>
+      <input type="text" id="soatPolicyNumber" name="soatPolicyNumber" [(ngModel)]="selecteHistoy.SOAT_POLICY_NUMBER" maxlength="255">
+    </div>
+
+    <div class="form-group mb-4">
+      <label>Entidad que Expide SOAT:</label>
+      <br>
+      <input type="text" id="issuingEntitySoat" name="issuingEntitySoat" [(ngModel)]="selecteHistoy.ISSUING_ENTITY_SOAT" maxlength="255">
+    </div>
+
+    <div class="form-group mb-4">
+      <label>Estado:</label>
+      <br>
+      <input type="text" id="status" name="status" [(ngModel)]="selecteHistoy.STATUS">
+<!--      <select id="status" name="status" [(ngModel)]="selecteHistoy.STATUS">-->
+<!--        <option value="" disabled selected>Seleccione una opción</option>-->
+<!--        <option>Activo</option>-->
+<!--        <option>Inactivo</option>-->
+<!--      </select>-->
+    </div>
+
+    <div class="form-group mb-4">
+      <label>TecnoMecánica:</label>
+      <div>
+        <input type="text" id="technicalInspectionType" name="technicalInspectionType" [(ngModel)]="selecteHistoy.INSPECTION_TYPE" placeholder="Tipo de Revisión" maxlength="255">
+        <br>
+
+      </div>
+    </div>
+
+<!--    <button type="submit" class="buttonSave">Crear</button>-->
+
+  </div>
+</form>
+
+</body>
