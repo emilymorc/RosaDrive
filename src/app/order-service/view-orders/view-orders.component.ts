@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {UserService} from "../../servicios/users.service";
 import {OrderService} from "../../servicios/order.service";
+import {HistoryService} from "../../servicios/history.service";
 
 @Component({
   selector: 'app-view-orders',
@@ -17,8 +18,9 @@ export class ViewOrdersComponent implements OnInit{
   filtroServicio: string = '';
 
   orders: any[] = [];
+  histories: any[] = [];
 
-  constructor(private router: Router, private orderService :OrderService) { }
+  constructor(private router: Router, private orderService :OrderService, private historyService:HistoryService) { }
 
   ngOnInit(): void {
     this.orderService.getAllOrders().subscribe(
@@ -29,7 +31,40 @@ export class ViewOrdersComponent implements OnInit{
         console.error('Error al obtener usuarios:', error);
       }
     );
+
+    this.historyService.getHistories().subscribe(
+      (data: any) => {
+        this.histories = data;
+        console.log(data)
+      },
+      (error: any) => {
+        console.error(error);
+      }
+    );
   }
+
+  /*getPlateByHistory(id: number): any {
+    this.historyService.getHistories().subscribe(
+      (data: any) => {
+        return data
+      },
+      (error: any) => {
+        return error
+      }
+    );
+  }*/
+
+  getPlateByHistory(id: number): string | null {
+    for (const objeto of this.histories) {
+      //console.log(objeto.ID_STORY)
+      if (objeto.ID_STORY == id) {
+        //console.log(objeto.LICENSE_PLATE_NUMBER)
+        return objeto.LICENSE_PLATE_NUMBER;
+      }
+    }
+    return null;
+  }
+
   onPageChange(event: any): void {
     this.currentPage = event.page;
   }
@@ -69,6 +104,8 @@ export class ViewOrdersComponent implements OnInit{
       return this.orders;
     }
   }
+
+  //filtrarPor
 
   viewOrder(dato: any): void {
     this.orderService.getOrdersHistory(dato.ID_STORY).subscribe(
