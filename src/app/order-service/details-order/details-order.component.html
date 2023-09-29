@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+<div class="header">
+  <h1>Detalles Orden de Servicio</h1>
+</div>
+<br>
+
+<div >
+  <form #myForm="ngForm" >
+    <div class="orderService-form">
+
+      <label class="label1">Id Historia del Automotor: </label>
+      <br>
+      <label>{{ selectedOrder.ID_STORY}}</label>
+      <br>
+      <br>
+
+      <label class="label1">Servicio:</label>
+      <br>
+      <label>{{ selectedOrder.SERVICE}}</label>
+      <br>
+      <br>
+
+      <label class="label1">Fecha:</label>
+      <br>
+      <label>{{ selectedOrder.ISSUE_DATE}}</label>
+
+      <br>
+      <br>
+
+      <label class="label1">Descripción de la orden:</label>
+      <br>
+      <label>{{ selectedOrder.DESCRIPTION}}</label>
+
+      <br>
+      <br>
+
+      <label class="label1">Observaciones:</label>
+      <br>
+      <label>{{ selectedOrder.OBSERVATIONS}}</label>
+      <br>
+      <br>
+
+      <label class="label1">Tecnico Responsable:</label>
+      <br>
+      <label>{{ selectedOrder.RESPONSIBLE_TECHNICIAN}}</label>
+      <br>
+      <br>
+
+      <label class="label1">Tipo de Insepección:</label>
+      <br>
+      <label>{{ selectedOrder.SERVICE}}</label>
+      <br>
+      <br>
+
+      <label class="label1">Costo Total:</label>
+      <br>
+      <label>{{ selectedOrder.TOTAL_COST}}</label>
+      <br>
+      <br>
+
+      <br>
+      <br>
+    </div>
+
+
+
+  </form>
+</div>
+
+</body>
+</html>
+
+
+

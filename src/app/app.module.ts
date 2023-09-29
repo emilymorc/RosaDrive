@@ -31,6 +31,7 @@ import { AutostoriesComponent } from './autostories/autostories.component';
 import { AccountComponent } from './account/account.component';
 import { OrderServiceComponent } from './order-service/order-service.component';
 import { ViewOrdersComponent } from './order-service/view-orders/view-orders.component';
+import { DetailsOrderComponent } from './order-service/details-order/details-order.component';
 import { DetailsHistoryComponent } from './autostories/details-history/details-history.component';
 
 
@@ -59,6 +60,7 @@ import { DetailsHistoryComponent } from './autostories/details-history/details-h
     AccountComponent,
     OrderServiceComponent,
     ViewOrdersComponent,
+    DetailsOrderComponent,
     DetailsHistoryComponent
   ],
     imports: [
