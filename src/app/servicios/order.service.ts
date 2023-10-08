@@ -51,4 +51,14 @@ export class OrderService{
     return this.selectedOrder;
   }
 
+  updateOrderData(orderData: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'User-Agent': 'Insomnia/2023.5.6',
+      'x-access-token': this.castToken
+    });
+
+    return this.http.post(`${this.apiUrl}/updateOrder`, orderData, { headers });
+  }
+
 }

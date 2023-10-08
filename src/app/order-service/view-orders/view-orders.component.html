@@ -46,7 +46,7 @@
       <td>{{ dato.DESCRIPTION }}</td>
       <td>{{ dato.TOTAL_COST }}</td>
       <td>
-         <button class="btn btn-primary" >Modificar</button>
+         <button class="btn btn-primary" (click)="modifyOrder(dato)">Modificar</button>
       </td>
       <td>
         <button class="btn btn-primary" (click)="viewOrder(dato)">VER</button>

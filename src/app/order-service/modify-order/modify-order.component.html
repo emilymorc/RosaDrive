@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+<div class="header">
+  <h1>Modificar Orden de Servicio</h1>
+</div>
+
+<div >
+  <form #myForm="ngForm" (ngSubmit)="updateOrder(myForm)">
+    <div class="orderService-form">
+
+     <!-- <label class="label">Placa del vehiculo</label>
+      <br>
+      <select [(ngModel)]="id_story" name="id_story">
+        <option *ngFor="let history of histories" [value]="history.ID_STORY">{{ history.LICENSE_PLATE_NUMBER}}</option>
+      </select>
+      <br>-->
+      <br>
+<!--      <input type="datetime-local" id="issue_date" [(ngModel)]="issue_date" name="issue_date" maxlength="255" [max]="maxDate">-->
+
+      <label class="label">Servicio</label>
+      <br>
+      <input type="text" id="firstName" [(ngModel)]="selectedOrder.SERVICE" name="service" required type="text" maxlength="255">
+      <br>
+
+
+      <label class="label">Descripción de la orden</label>
+      <br>
+      <textarea id="description" [(ngModel)]="selectedOrder.DESCRIPTION" name="description"  rows="4" required maxlength="255" ></textarea>
+
+      <br>
+
+      <label class="label">Observaciones</label>
+      <br>
+      <textarea type="textarea" id="observations" [(ngModel)]="selectedOrder.OBSERVATIONS" name="observations"  required maxlength="255" rows="4"></textarea>
+      <br>
+
+      <label class="label">Tecnico Responsable</label>
+      <br>
+      <input type="text" id="responsible_technician" [(ngModel)]="selectedOrder.RESPONSIBLE_TECHNICIAN" name="responsible_technician" required maxlength="255">
+      <br>
+
+      <label class="label">Tipo de Insepección</label>
+      <br>
+      <input type="text" id="inspection_type" [(ngModel)]="selectedOrder.INSPECTION_TYPE" name="inspection_type" required maxlength="255">
+      <br>
+
+      <label class="label">Costo Total</label>
+      <br>
+      <input type="number" id="total_cost" [(ngModel)]="selectedOrder.TOTAL_COST" name="total_cost"  required maxlength="255">
+      <br>
+
+      <br>
+      <br>
+    </div>
+    <button class="buttonSave" type="submit" >Modificar</button>
+
+
+  </form>
+</div>
+
+</body>
+</html>
+
+
