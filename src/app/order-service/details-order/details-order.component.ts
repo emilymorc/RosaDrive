@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {OrderService} from "../../servicios/order.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-details-order',
@@ -9,13 +10,19 @@ import {OrderService} from "../../servicios/order.service";
 })
 export class DetailsOrderComponent implements OnInit{
   responseData: any;
-  selectedOrder: any = {};
+  private _selectedOrder: any = {};
+  currentPage: number = 1;
+  itemsPerPage: number = 10;
+  maxSize: number = 10;
+  orderBy: string | null = null;
+  isAsc: boolean = true;
+  filtro: string = '';
+  changes: any[] = [];
 
-  constructor(private http: HttpClient, public service: OrderService) { }
+  constructor(private router: Router, private http: HttpClient, public service: OrderService) { }
 
   ngOnInit(): void {
-    this.selectedOrder = this.service.getSelectedOrder();
-
+    this._selectedOrder = this.service.getSelectedOrder();
     const valor: string | null = localStorage.getItem('token')
     const valorCasteado: string | number | (string | number)[] = valor as string | number | (string | number)[];
     const apiUrl = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/orders/getOrdersHistory/3';
@@ -30,5 +37,56 @@ export class DetailsOrderComponent implements OnInit{
       console.log(this.responseData[0])
     });
   }
+  onPageChange(event: any): void {
+    this.currentPage = event.page;
+  }
 
+  addChange(): void{
+    console.log("se presiono");
+    this.router.navigate(['/dashboard/changeOrder']);
+  }
+
+  filtrarPorServicio(): any[] {
+    if (this.filtro) {
+      return this.changes.filter(dato =>
+        dato.SERVICE && dato.SERVICE.toLowerCase().includes(this.filtro.toLowerCase())
+      );
+    } else {
+      return this.changes;
+    }
+  }
+  get selectedOrder(): any {
+    return this._selectedOrder;
+  }
+
+  set selectedOrder(value: any) {
+    this._selectedOrder = value;
+  }
+
+  sortDataByColumn(column: string): void {
+    this.orderBy = column;
+    this.isAsc = !this.isAsc;
+
+    this.changes.sort((a, b) => {
+      const aValue = a[column];
+      const bValue = b[column];
+
+      if (!isNaN(Number(aValue)) && !isNaN(Number(bValue))) {
+        return this.isAsc ? Number(aValue) - Number(bValue) : Number(bValue) - Number(aValue);
+      } else {
+        const aValueString = String(aValue).toLowerCase();
+        const bValueString = String(bValue).toLowerCase();
+
+        if (aValueString < bValueString) {
+          return this.isAsc ? -1 : 1;
+        } else if (aValueString > bValueString) {
+          return this.isAsc ? 1 : -1;
+        } else {
+          return 0;
+        }
+      }
+    });
+  }
+
+  protected readonly length = length;
 }

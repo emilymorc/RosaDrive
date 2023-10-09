@@ -62,13 +62,61 @@
       <br>
       <br>
 
+      <button class="btn btn-primary" (click)="addChange()">Agregar Cambio</button>
+
       <br>
       <br>
     </div>
 
-
-
   </form>
+
+  <div class="header">
+    <h1>Cambios de la Orden</h1>
+  </div>
+
+  <div class="container mt-5 table-responsive">
+
+    <br>
+    <table class="table table table-bordered" >
+      <thead>
+      <tr>
+        <th (click)="sortDataByColumn('ID_STORY')">ID CAMBIO
+          <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'ID_STORY' && isAsc, 'fa-arrow-down': orderBy === 'ID_STORY' && !isAsc}"></i>
+        </th>
+        <th (click)="sortDataByColumn('ID_ORDER')">DESCRIPCIÓN
+
+          <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'ID_ORDER' && isAsc, 'fa-arrow-down': orderBy === 'ID_ORDER' && !isAsc}"></i>
+        </th>
+        <th (click)="sortDataByColumn('SERVICE')">
+          IMAGEN
+          <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'SERVICE' && isAsc, 'fa-arrow-down': orderBy === 'SERVICE' && !isAsc}"></i>
+        </th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let dato of filtrarPorServicio() | slice:(currentPage-1)*itemsPerPage:currentPage*itemsPerPage">
+        <!--        <td>{{getPlateByHistory(dato.ID_STORY)}}</td>-->
+        <td>{{ dato.ID_ORDER }}</td>
+        <td>{{ dato.CHANGE_DESCRIPTION }}</td>
+
+
+      </tr>
+      </tbody>
+    </table>
+    <pagination
+      [totalItems]="changes.length"
+      [(ngModel)]="currentPage"
+      [itemsPerPage]="itemsPerPage"
+      [maxSize]="maxSize"
+      [boundaryLinks]="true"
+      [previousText]="'Anterior'"
+      [nextText]="'Siguiente'"
+      [lastText]="'Final'"
+      [firstText]="'Primer'"
+      (pageChanged)="onPageChange($event)">
+    </pagination>
+  </div>
 </div>
 
 </body>
