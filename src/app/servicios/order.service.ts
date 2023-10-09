@@ -19,7 +19,6 @@ export class OrderService{
       'Content-Type': 'application/json',
       'x-access-token': this.castToken
     });
-    console.log(this.castToken)
     return this.http.get(url, { headers });
   }
 
@@ -29,7 +28,6 @@ export class OrderService{
       'Content-Type': 'application/json',
       'x-access-token': this.castToken
     });
-    console.log(this.castToken)
     return this.http.get(url, { headers });
   }
 

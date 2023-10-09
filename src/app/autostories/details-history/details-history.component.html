@@ -287,6 +287,68 @@
     <!--    <button type="submit" class="buttonSave">Crear</button>-->
 
   </div>
+
+  <div class="container mt-4 border  p-4 rounded body1">
+    <h2>Ordenes de Servicio</h2>
+
+    <div class="container mt-5 table-responsive">
+      <div class="ml-2">
+        <input type="text" [(ngModel)]="filtroServicio" placeholder="Filtrar por Servicio" class="form-control">
+      </div>
+      <br>
+      <table class="table table table-bordered" >
+        <thead>
+        <tr>
+          <th (click)="sortDataByColumn('ID_STORY')">PLACA DEL VEHICULO
+            <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'ID_STORY' && isAsc, 'fa-arrow-down': orderBy === 'ID_STORY' && !isAsc}"></i>
+          </th>
+          <th (click)="sortDataByColumn('ID_ORDER')">
+            ID ORDEN
+            <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'ID_ORDER' && isAsc, 'fa-arrow-down': orderBy === 'ID_ORDER' && !isAsc}"></i>
+          </th>
+          <th (click)="sortDataByColumn('SERVICE')">
+            SERVICIO
+            <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'SERVICE' && isAsc, 'fa-arrow-down': orderBy === 'SERVICE' && !isAsc}"></i>
+          </th>
+          <th (click)="sortDataByColumn('DESCRIPTION')">
+            DESCRIPCIÓN DE LA ORDEN
+            <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'DESCRIPTION' && isAsc, 'fa-arrow-down': orderBy === 'DESCRIPTION' && !isAsc}"></i>
+          </th>
+          <th>COSTO TOTAL</th>
+          <th>MODIFICAR</th>
+          <th>VER</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let dato of filtrarPorServicio() | slice:(currentPage-1)*itemsPerPage:currentPage*itemsPerPage">
+          <td>{{getPlateByHistory(dato.ID_STORY)}}</td>
+          <td>{{ dato.ID_ORDER }}</td>
+          <td>{{ dato.SERVICE }}</td>
+          <td>{{ dato.DESCRIPTION }}</td>
+          <td>{{ dato.TOTAL_COST }}</td>
+          <td>
+            <button class="btn btn-primary" (click)="modifyOrder(dato)">Modificar</button>
+          </td>
+          <td>
+            <button class="btn btn-primary" (click)="viewOrder(dato)">VER</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <pagination
+        [totalItems]="orders.length"
+        [(ngModel)]="currentPage"
+        [itemsPerPage]="itemsPerPage"
+        [maxSize]="maxSize"
+        [boundaryLinks]="true"
+        [previousText]="'Anterior'"
+        [nextText]="'Siguiente'"
+        [lastText]="'Final'"
+        [firstText]="'Primer'"
+        (pageChanged)="onPageChange($event)">
+      </pagination>
+    </div>
+  </div>
 </form>
 
 </body>
