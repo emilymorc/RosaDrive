@@ -10,12 +10,12 @@ import {Router} from "@angular/router";
 })
 export class DetailsOrderComponent implements OnInit{
   responseData: any;
-  selectedOrder: any = {};
+  private _selectedOrder: any = {};
 
   constructor(private router: Router, private http: HttpClient, public service: OrderService) { }
 
   ngOnInit(): void {
-    this.selectedOrder = this.service.getSelectedOrder();
+    this._selectedOrder = this.service.getSelectedOrder();
 
     const valor: string | null = localStorage.getItem('token')
     const valorCasteado: string | number | (string | number)[] = valor as string | number | (string | number)[];
@@ -37,4 +37,12 @@ export class DetailsOrderComponent implements OnInit{
       this.router.navigate(['/dashboard/changeOrder']);
     }
 
+
+  get selectedOrder(): any {
+    return this._selectedOrder;
+  }
+
+  set selectedOrder(value: any) {
+    this._selectedOrder = value;
+  }
 }

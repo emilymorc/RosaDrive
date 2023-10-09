@@ -38,7 +38,7 @@ select {
 .orderService-form input[type="text"],
 .orderService-form input[type="number"]{
   padding: 10px;
-  width: 60%; /* Ancho ajustado */
+  width: 60%;
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -58,8 +58,8 @@ textarea{
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  display: block; /* Convertir en bloque para que ocupe todo el ancho disponible */
-  margin: 0 auto; /* Margen automático en los lados para centrarlo horizontalmente */
+  display: block;
+  margin: 0 auto;
   text-align: center;
   margin-top: 50px;
 }
@@ -84,8 +84,8 @@ table {
 }
 
 .tabla-celda {
-  vertical-align: center; /* Alinea el contenido en la parte superior de la celda */
-  height: 100px; /* Establece una altura fija para las filas */
+  vertical-align: center;
+  height: 100px;
   border: 1px solid black;
 }
 
@@ -116,7 +116,7 @@ button.eliminar-btn {
   border-radius: 4px;
   font-size: 14px;
   cursor: pointer;
-  display: block; /* Hace que el botón se comporte como un bloque */
+  display: block;
   margin: 0 auto;
 }
 

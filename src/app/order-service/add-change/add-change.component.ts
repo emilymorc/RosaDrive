@@ -1,8 +1,13 @@
 import {Component, OnInit} from '@angular/core';
+import {DetailsOrderComponent} from "../details-order/details-order.component";
+import {OrderService} from "../../servicios/order.service";
+import {HistoryService} from "../../servicios/history.service";
+import {interval} from "rxjs";
 
-interface Imagen {
-    nombre: string;
-    miniatura: string;
+interface Image {
+    name: string;
+    miniature: string;
+    file: File;
 }
 
 @Component({
@@ -12,7 +17,13 @@ interface Imagen {
 })
 export class AddChangeComponent implements OnInit {
 
-    listaImagenes: Imagen[] = [];
+  selectedOrder: any = {};
+  historySelected: any = {};
+
+  constructor(private orderService: OrderService, private historyService: HistoryService) {
+  }
+
+    listImages: Image[] = [];
 
     onFileSelected(event: Event) {
         const input = (event.target as HTMLInputElement);
@@ -20,11 +31,12 @@ export class AddChangeComponent implements OnInit {
             for (const file of Array.from(input.files)) {
                 const reader = new FileReader();
                 reader.onload = () => {
-                    const imagen: Imagen = {
-                        nombre: file.name,
-                        miniatura: reader.result as string
+                    const imagen: Image = {
+                        name: file.name,
+                        miniature: reader.result as string,
+                        file: file // Guardamos el archivo
                     };
-                    this.listaImagenes.push(imagen);
+                    this.listImages.push(imagen);
                 };
                 reader.readAsDataURL(file);
             }
@@ -42,23 +54,45 @@ export class AddChangeComponent implements OnInit {
             for (const file of Array.from(files)) {
                 const reader = new FileReader();
                 reader.onload = () => {
-                    const imagen: Imagen = {
-                        nombre: file.name,
-                        miniatura: reader.result as string
+                    const imagen: Image = {
+                        name: file.name,
+                        miniature: reader.result as string,
+                        file: file
+
                     };
-                    this.listaImagenes.push(imagen);
+                    this.listImages.push(imagen);
                 };
                 reader.readAsDataURL(file);
             }
         }
     }
 
-    eliminarImagen(imagen: Imagen) {
-        this.listaImagenes = this.listaImagenes.filter(i => i !== imagen);
+
+  getHistory(){
+    this.historyService.getHistoryById(this.selectedOrder.ID_STORY).subscribe(
+      response => {
+        this.historySelected = response[0];
+        //console.log(this.historySelected[0]);
+      },
+      error => {
+        console.error('Error al obtener datos del Historial:', error);
+      }
+    );
+  }
+
+    subirImagenes() {
+        for (const imagen of this.listImages) {
+            console.log(imagen.file.size);
+        }
+    }
+
+    deleteImage(image: Image) {
+        this.listImages = this.listImages.filter(i => i !== image);
     }
 
     ngOnInit(): void {
+      this.selectedOrder = this.orderService.getSelectedOrder();
+      this.getHistory();
     }
-
 
 }
