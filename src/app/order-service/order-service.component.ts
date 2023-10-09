@@ -79,7 +79,6 @@ export class OrderServiceComponent implements OnInit{
       // 'User-Agent': 'Insomnia/2023.5.5',
       'x-access-token': valorCasteado
     });
-    console.log('Token from localStorage:', valorCasteado);
     this.http.post(apiUrl, data, {headers: headers})
       .subscribe(
         (response) => {
@@ -98,27 +97,6 @@ export class OrderServiceComponent implements OnInit{
     form.form.reset();
   }
 
-  convertirFecha(inputFecha: string): string {
-    // Parsea la fecha de entrada en formato ISO 8601
-    const fechaEntrada = new Date(inputFecha);
 
-    // Verifica si la fecha de entrada es válida
-    if (!isNaN(fechaEntrada.getTime())) {
-      // Obtiene los componentes de la fecha y hora
-      const anio = fechaEntrada.getFullYear();
-      const mes = ('0' + (fechaEntrada.getMonth() + 1)).slice(-2); // Agrega cero inicial si es necesario
-      const dia = ('0' + fechaEntrada.getDate()).slice(-2); // Agrega cero inicial si es necesario
-      const hora = ('0' + fechaEntrada.getHours()).slice(-2); // Agrega cero inicial si es necesario
-      const minutos = ('0' + fechaEntrada.getMinutes()).slice(-2); // Agrega cero inicial si es necesario
-
-      // Construye la cadena de fecha en el formato deseado
-      const fechaFormateada = `${anio}-${mes}-${dia} ${hora}:${minutos}:00`;
-
-      return fechaFormateada;
-    } else {
-      // La fecha de entrada no es válida
-      return 'Fecha no válida';
-    }
-  }
 
 }

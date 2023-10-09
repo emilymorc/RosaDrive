@@ -105,7 +105,6 @@ export class DetailsHistoryComponent implements OnInit{
     }
   }
 
-  //filtrarPor
 
   viewOrder(dato: any): void {
     this.orderService.getOrdersHistory(dato.ID_STORY).subscribe(
