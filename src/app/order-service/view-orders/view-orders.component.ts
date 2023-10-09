@@ -43,17 +43,6 @@ export class ViewOrdersComponent implements OnInit{
     );
   }
 
-  /*getPlateByHistory(id: number): any {
-    this.historyService.getHistories().subscribe(
-      (data: any) => {
-        return data
-      },
-      (error: any) => {
-        return error
-      }
-    );
-  }*/
-
   getPlateByHistory(id: number): string | null {
     for (const objeto of this.histories) {
       //console.log(objeto.ID_STORY)
@@ -121,36 +110,5 @@ export class ViewOrdersComponent implements OnInit{
       }
     );
   }
-
-  /*modificarUsuario(dato: any): void {
-    this.userService.getUserById(dato.ID_USER).subscribe(
-      response => {
-        console.log(response.body);
-        this.userService.setSelectedUser(dato);
-        this.router.navigate(['/dashboard/modifyAccount']);
-        console.log('Datos del usuario:', response);
-      },
-      error => {
-        console.error('Error al obtener datos del usuario:', error);
-      }
-    );
-  }*/
-
-  /*deleteOrder(userId: number): void {
-    const confirmation = confirm('¿Estás seguro de que deseas eliminar este usuario?');
-
-    if (confirmation) {
-      this.userService.deleteUser(userId).subscribe(
-        (response) => {
-          console.log('Usuario eliminado:', response);
-          // Actualizar la lista de usuarios después de la eliminación
-          this.users = this.users.filter(user => user.ID_USER !== userId);
-        },
-        (error) => {
-          console.error('Error al eliminar el usuario:', error);
-        }
-      );
-    }
-  }*/
 
 }

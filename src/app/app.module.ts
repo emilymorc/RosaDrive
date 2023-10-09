@@ -33,6 +33,7 @@ import { OrderServiceComponent } from './order-service/order-service.component';
 import { ViewOrdersComponent } from './order-service/view-orders/view-orders.component';
 import { DetailsOrderComponent } from './order-service/details-order/details-order.component';
 import { DetailsHistoryComponent } from './autostories/details-history/details-history.component';
+import { AddChangeComponent } from './order-service/add-change/add-change.component';
 
 
 
@@ -61,7 +62,8 @@ import { DetailsHistoryComponent } from './autostories/details-history/details-h
     OrderServiceComponent,
     ViewOrdersComponent,
     DetailsOrderComponent,
-    DetailsHistoryComponent
+    DetailsHistoryComponent,
+    AddChangeComponent
   ],
     imports: [
         PaginationModule.forRoot(),

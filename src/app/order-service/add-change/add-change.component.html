@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+<div class="header">
+  <h1>Agregar Cambio</h1>
+</div>
+
+<div >
+  <div class="imagenes">
+    <div>
+      <input type="file" (change)="onFileSelected($event)" accept="image/*">
+    </div>
+    <div id="dropZone" (drop)="onDrop($event)" (dragover)="onDragOver($event)">
+      Arrastra y suelta aquí
+    </div>
+
+    <table>
+      <tr *ngFor="let imagen of listaImagenes">
+        <td class="tabla-celda">
+          <div class="miniatura">
+            <img [src]="imagen.miniatura" alt="Imagen">
+          </div>
+        </td>
+        <td class="tabla-celda">
+          <div class="nombre">
+            <p>{{ imagen.nombre }}</p>
+          </div>
+        </td>
+        <td class="tabla-celda">
+          <button (click)="eliminarImagen(imagen)" class="eliminar-btn">Eliminar</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+
+
+  <br>
+  <form #myForm="ngForm">
+
+    <div class="orderService-form">
+
+      <label class="label">Descripción del Cambio</label>
+      <br>
+      <textarea id="description"  name="description"  rows="4" required maxlength="255" ></textarea>
+
+      <br>
+
+      <label class="label">Partes remplazadas</label>
+      <br>
+      <input type="text" id="responsible_technician"  name="responsible_technician" required maxlength="255">
+      <br>
+    </div>
+    <button class="buttonSave" type="submit" >Agregar</button>
+
+  </form>
+</div>
+
+</body>
+</html>

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {OrderService} from "../../servicios/order.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-details-order',
@@ -11,7 +12,7 @@ export class DetailsOrderComponent implements OnInit{
   responseData: any;
   selectedOrder: any = {};
 
-  constructor(private http: HttpClient, public service: OrderService) { }
+  constructor(private router: Router, private http: HttpClient, public service: OrderService) { }
 
   ngOnInit(): void {
     this.selectedOrder = this.service.getSelectedOrder();
@@ -30,5 +31,10 @@ export class DetailsOrderComponent implements OnInit{
       console.log(this.responseData[0])
     });
   }
+
+    addChange(): void{
+    console.log("se presiono");
+      this.router.navigate(['/dashboard/changeOrder']);
+    }
 
 }
