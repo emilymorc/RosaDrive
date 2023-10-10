@@ -88,6 +88,7 @@ export class AddChangeComponent implements OnInit {
         }
       );
     }
+    this.postImages();
   }
 
   getHistory() {
@@ -102,11 +103,35 @@ export class AddChangeComponent implements OnInit {
     );
   }
 
-  subirImagenes() {
+  async postImages() {
     for (const imagen of this.listImages) {
-      console.log(imagen.file.size);
+      const base64Image = await this.fileToBase64(imagen.file);
+      console.log(base64Image);
+
+     /*this.changeService.uploadImageOrder({
+        idStory: this.historySelected.ID_STORY,
+        idOrder: this.selectedOrder.ID_ORDER,
+        imageUp: base64Image
+      }).subscribe(
+        response => {
+          console.log('Imagen subida con éxito:', response);
+        },
+        error => {
+          console.error('Error al subir la imagen:', error);
+        }
+      );*/
     }
   }
+
+  fileToBase64(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = error => reject(error);
+    });
+  }
+
 
   deleteImage(image: Image) {
     this.listImages = this.listImages.filter(i => i !== image);
