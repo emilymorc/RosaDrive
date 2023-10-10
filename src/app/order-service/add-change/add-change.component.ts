@@ -82,12 +82,12 @@ export class AddChangeComponent implements OnInit {
       const responsible_technician = changeDataForm.value.remplaced_parts;
       const format = /[^A-Za-z0-9\-]/;
 
-      if (this.description.trim() === '' || this.remplaced_parts.trim()) {
-        this.toastr.error("Por favor, complete todos los campos", "Campos Vacios");
-        return;
-      }
-
-      // if (format.test(form.value.description) || format.test(form.value.remplaced_parts)) {
+      // if (this.description.trim() === '' || this.remplaced_parts.trim()) {
+      //   this.toastr.error("Por favor, complete todos los campos", "Campos Vacios");
+      //   return;
+      // }
+      //
+      // if (format.test(this.remplaced_parts) || format.test(this.remplaced_parts)) {
       //   this.toastr.error("Existen campos con caracteres especiales", "¡Campos incorrectos!");
       //   this.showError = true;
       //   return;
