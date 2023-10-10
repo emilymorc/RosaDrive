@@ -46,23 +46,18 @@
 
 
   <br>
-  <form #myForm="ngForm">
-
+  <form #myForm="ngForm" (submit)="addChange(myForm)">
     <div class="orderService-form">
-
       <label class="label">Descripción del Cambio</label>
       <br>
-      <textarea id="description"  name="description"  rows="4" required maxlength="255" ></textarea>
-
+      <textarea [(ngModel)]="description" id="description"  name="description"  rows="4" required maxlength="255" ></textarea>
       <br>
-
       <label class="label">Partes remplazadas</label>
       <br>
-      <input type="text" id="responsible_technician"  name="responsible_technician" required maxlength="255">
+      <input [(ngModel)]="remplaced_parts" type="text" id="remplaced_parts"  name="remplaced_parts" required maxlength="255">
       <br>
     </div>
     <button class="buttonSave" type="submit" >Agregar</button>
-
   </form>
 </div>
 
