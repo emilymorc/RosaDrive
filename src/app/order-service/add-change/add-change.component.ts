@@ -6,6 +6,7 @@ import {interval} from "rxjs";
 import {ChangeService} from "../../servicios/change.service";
 import {NgForm} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
+import {FormBuilder} from "@angular/forms";
 
 interface Image {
   name: string;
@@ -27,8 +28,9 @@ export class AddChangeComponent implements OnInit {
   selectedOrder: any = {};
   historySelected: any = {};
   imagesApiKey: string = "b9eb61371f94895bbcb1b8ee9e15e144";
+  showError = false; // Para mostrar u ocultar el error
 
-  constructor(private orderService: OrderService, private historyService: HistoryService, private changeService: ChangeService, private toastr: ToastrService) {
+  constructor(private orderService: OrderService, private historyService: HistoryService, private changeService: ChangeService, private toastr: ToastrService,private formBuilder: FormBuilder) {
 
   }
 
@@ -78,6 +80,18 @@ export class AddChangeComponent implements OnInit {
     if (changeDataForm.valid) {
       const description = changeDataForm.value.description;
       const responsible_technician = changeDataForm.value.remplaced_parts;
+      const format = /[^A-Za-z0-9\-]/;
+
+      if (this.description.trim() === '' || this.remplaced_parts.trim()) {
+        this.toastr.error("Por favor, complete todos los campos", "Campos Vacios");
+        return;
+      }
+
+      // if (format.test(form.value.description) || format.test(form.value.remplaced_parts)) {
+      //   this.toastr.error("Existen campos con caracteres especiales", "¡Campos incorrectos!");
+      //   this.showError = true;
+      //   return;
+      // }
 
       this.changeService.addChange(this.selectedOrder.ID_ORDER, description, responsible_technician).subscribe(
         response => {

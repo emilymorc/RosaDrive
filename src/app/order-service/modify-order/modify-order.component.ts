@@ -26,8 +26,7 @@ export class ModifyOrderComponent implements OnInit{
   histories: any[]= [];
   selectedLicensePlate: number = 0;
   selectedOrder: any = {};
-
-
+  showError = false; // Para mostrar u ocultar el error
 
   constructor(private http: HttpClient, private router: Router, private toastr: ToastrService, private formBuilder: FormBuilder, public service1: HistoryService, public orderService: OrderService) {
     const currentDate = new Date();
@@ -51,6 +50,7 @@ export class ModifyOrderComponent implements OnInit{
     const valor: string | null = localStorage.getItem('token')
     const valorCasteado: string | number | (string | number)[] = valor as string | number | (string | number)[];
     const apiUrl = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/orders/addOrder';
+    const format = /[^A-Za-z0-9\-]/;
     const data = {
       id_story: this.id_story,
       service: this.service,
@@ -63,9 +63,15 @@ export class ModifyOrderComponent implements OnInit{
 
     };
 
-    if (this.description.trim() === '' || this.observations.trim() === '' || this.responsible_technician.trim() === ''
+    if (this.description.trim() === '' || this.service.trim() === '' || this.responsible_technician.trim() === ''
       || this.inspection_type.trim() === '' || this.total_cost.toString() === '') {
       this.toastr.error("Por favor, complete todos los campos", "Campos Vacios");
+      return;
+    }
+
+    if (format.test(form.value.description) || format.test(form.value.service) ||format.test(form.value.responsible_technician) || format.test(form.value.inspection_type)) {
+      this.toastr.error("Existen campos con caracteres especiales", "¡Campos incorrectos!");
+      this.showError = true;
       return;
     }
 
