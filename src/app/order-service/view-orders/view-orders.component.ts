@@ -43,17 +43,6 @@ export class ViewOrdersComponent implements OnInit{
     );
   }
 
-  /*getPlateByHistory(id: number): any {
-    this.historyService.getHistories().subscribe(
-      (data: any) => {
-        return data
-      },
-      (error: any) => {
-        return error
-      }
-    );
-  }*/
-
   getPlateByHistory(id: number): string | null {
     for (const objeto of this.histories) {
       //console.log(objeto.ID_STORY)

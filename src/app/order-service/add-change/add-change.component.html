@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+<div class="header">
+  <h1>Agregar Cambio</h1>
+</div>
+
+<div >
+  <br>
+  <br>
+  <label>{{ "Placa del carro: " + historySelected.LICENSE_PLATE_NUMBER }}</label>
+  <br>
+  <label>{{ "ID Orden de servicio: " + selectedOrder.ID_ORDER }}</label>
+  <br>
+  <br>
+  <div class="imagenes">
+    <div>
+      <input type="file" (change)="onFileSelected($event)" accept="image/*">
+    </div>
+    <div id="dropZone" (drop)="onDrop($event)" (dragover)="onDragOver($event)">
+      Arrastra y suelta aquí
+    </div>
+    <br>
+
+    <table>
+      <tr *ngFor="let image of listImages">
+        <td class="tabla-celda">
+          <div class="miniatura">
+            <img [src]="image.miniature" alt="Imagen">
+          </div>
+        </td>
+        <td class="tabla-celda">
+          <div class="nombre">
+            <p>{{ image.name }}</p>
+          </div>
+        </td>
+        <td class="tabla-celda">
+          <button (click)="deleteImage(image)" class="eliminar-btn">Eliminar</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+
+
+  <br>
+  <form #myForm="ngForm" (submit)="addChange(myForm)">
+    <div class="orderService-form">
+      <label class="label">Descripción del Cambio</label>
+      <br>
+      <textarea [(ngModel)]="description" id="description"  name="description"  rows="4" required maxlength="255" ></textarea>
+      <br>
+      <label class="label">Partes remplazadas</label>
+      <br>
+      <input [(ngModel)]="remplaced_parts" type="text" id="remplaced_parts"  name="remplaced_parts" required maxlength="255">
+      <br>
+    </div>
+    <button class="buttonSave" type="submit" >Agregar</button>
+  </form>
+</div>
+
+</body>
+</html>

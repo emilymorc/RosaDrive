@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 })
 export class DetailsOrderComponent implements OnInit{
   responseData: any;
-  private _selectedOrder: any = {};
+  private selectedOrder: any = {};
   currentPage: number = 1;
   itemsPerPage: number = 10;
   maxSize: number = 10;
@@ -22,17 +22,19 @@ export class DetailsOrderComponent implements OnInit{
   constructor(private router: Router, private http: HttpClient, public service: OrderService) { }
 
   ngOnInit(): void {
-    this._selectedOrder = this.service.getSelectedOrder();
+    this.selectedOrder = this.service.getSelectedOrder();
+
     const valor: string | null = localStorage.getItem('token')
     const valorCasteado: string | number | (string | number)[] = valor as string | number | (string | number)[];
     const apiUrl = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/orders/getOrdersHistory/3';
+    // Realiza la solicitud GET
     this.http.get('https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/orders/getOrdersHistory/3', {
       headers: {
         'User-Agent': 'Insomnia/2023.5.5',
         'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNjk1NjkxNTg5LCJleHAiOjE2OTU3Nzc5ODl9.USdqABs6ekvyVAunf8VcB0o5FQsFDV9b1kenWcn3uIY'
       }
     }).subscribe((data) => {
-      this.responseData = data;
+      this.responseData = data; // Almacena los datos en la variable responseData
       console.log(this.responseData[0])
     });
   }
@@ -40,10 +42,7 @@ export class DetailsOrderComponent implements OnInit{
     this.currentPage = event.page;
   }
 
-  addChange(): void{
-    console.log("se presiono");
-    this.router.navigate(['/dashboard/changeOrder']);
-  }
+
 
   filtrarPorServicio(): any[] {
     if (this.filtro) {
@@ -54,13 +53,7 @@ export class DetailsOrderComponent implements OnInit{
       return this.changes;
     }
   }
-  get selectedOrder(): any {
-    return this._selectedOrder;
-  }
 
-  set selectedOrder(value: any) {
-    this._selectedOrder = value;
-  }
 
   sortDataByColumn(column: string): void {
     this.orderBy = column;
@@ -88,4 +81,10 @@ export class DetailsOrderComponent implements OnInit{
   }
 
   protected readonly length = length;
+    addChange(): void{
+    console.log("se presiono");
+      this.router.navigate(['/dashboard/changeOrder']);
+    }
+
+
 }

@@ -21,6 +21,7 @@ import {ViewOrdersComponent} from "./order-service/view-orders/view-orders.compo
 import {DetailsHistoryComponent} from "./autostories/details-history/details-history.component";
 import {DetailsOrderComponent} from "./order-service/details-order/details-order.component";
 import {ModifyOrderComponent} from "./order-service/modify-order/modify-order.component";
+import {AddChangeComponent} from "./order-service/add-change/add-change.component"
 
 const routes: Routes = [
   {path: '.', component:Login2Component},
@@ -52,6 +53,8 @@ const routes: Routes = [
       {path: 'viewOrder', component: ViewOrdersComponent},
       {path: 'detailsOrder', component: DetailsOrderComponent},
       {path: 'modifyOrder', component: ModifyOrderComponent}
+      {path: 'detailsOrder', component: DetailsOrderComponent},
+      {path: 'changeOrder', component: AddChangeComponent}
     ] ,canActivate:[AuthGuard]
   },
 ];

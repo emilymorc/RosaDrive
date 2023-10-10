@@ -34,6 +34,7 @@ import { ViewOrdersComponent } from './order-service/view-orders/view-orders.com
 import { DetailsOrderComponent } from './order-service/details-order/details-order.component';
 import { DetailsHistoryComponent } from './autostories/details-history/details-history.component';
 import { ModifyOrderComponent } from './order-service/modify-order/modify-order.component';
+import { AddChangeComponent } from './order-service/add-change/add-change.component';
 
 
 
@@ -63,7 +64,8 @@ import { ModifyOrderComponent } from './order-service/modify-order/modify-order.
     ViewOrdersComponent,
     DetailsOrderComponent,
     DetailsHistoryComponent,
-    ModifyOrderComponent
+    ModifyOrderComponent,
+    AddChangeComponent
   ],
     imports: [
         PaginationModule.forRoot(),
