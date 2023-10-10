@@ -64,18 +64,18 @@
 
         <button class="btn btn-primary" (click)="addChange()">Agregar Cambio</button>
 
-      <button class="btn btn-primary" (click)="addChange()">Agregar Cambio</button>
 
       <br>
       <br>
     </div>
 
-
+<br>
 
   </form>
-
-  <div class="header">
-    <h1>Cambios de la Orden</h1>
+  <div class="changes">
+<br>
+  <div >
+    <h3>Cambios de la Orden</h3>
   </div>
 
   <div class="container mt-5 table-responsive">
@@ -84,24 +84,21 @@
     <table class="table table table-bordered" >
       <thead>
       <tr>
-        <th (click)="sortDataByColumn('ID_STORY')">ID CAMBIO
-          <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'ID_STORY' && isAsc, 'fa-arrow-down': orderBy === 'ID_STORY' && !isAsc}"></i>
+        <th (click)="sortDataByColumn('ID_CHANGE')">ID CAMBIO
+          <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'ID_CHANGE' && isAsc, 'fa-arrow-down': orderBy === 'ID_CHANGE' && !isAsc}"></i>
         </th>
-        <th (click)="sortDataByColumn('ID_ORDER')">DESCRIPCIÓN
+        <th (click)="sortDataByColumn('DESCRIPTION')">DESCRIPCIÓN
 
-          <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'ID_ORDER' && isAsc, 'fa-arrow-down': orderBy === 'ID_ORDER' && !isAsc}"></i>
+          <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'DESCRIPTION' && isAsc, 'fa-arrow-down': orderBy === 'DESCRIPTION' && !isAsc}"></i>
         </th>
-        <th (click)="sortDataByColumn('SERVICE')">
-          IMAGEN
-          <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'SERVICE' && isAsc, 'fa-arrow-down': orderBy === 'SERVICE' && !isAsc}"></i>
-        </th>
+
 
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let dato of filtrarPorServicio() | slice:(currentPage-1)*itemsPerPage:currentPage*itemsPerPage">
+      <tr *ngFor="let dato of filtrar() | slice:(currentPage-1)*itemsPerPage:currentPage*itemsPerPage">
         <!--        <td>{{getPlateByHistory(dato.ID_STORY)}}</td>-->
-        <td>{{ dato.ID_ORDER }}</td>
+        <td>{{ dato.ID_CHANGE}}</td>
         <td>{{ dato.CHANGE_DESCRIPTION }}</td>
 
 
@@ -120,6 +117,20 @@
       [firstText]="'Primer'"
       (pageChanged)="onPageChange($event)">
     </pagination>
+  </div>
+<br>
+    <div>
+      <h4>Registro fotografico</h4>
+    </div>
+    <div class="image-container">
+      <div *ngFor="let imageUrl of images">
+<!--        <img [src]="'data:image/png;base64,' + imageUrl" alt="Imagen">-->
+        <img [src]="imageUrl.IMAGE_URL" alt="Imagen">
+       <label>{{imageUrl.IMAGE_URL}}</label>
+
+      </div>
+    </div>
+
   </div>
 </div>
 

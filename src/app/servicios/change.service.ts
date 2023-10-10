@@ -9,6 +9,8 @@ export class ChangeService {
 
   private changeApiUrl = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/changes/addchange';
   private apiUrl = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/files/uploadImageOrder';
+  private urlget = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/changes/getChangesByIdOrder';
+  private urlImagen = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/files/getImagesIdOrder'
   private token: string | null = localStorage.getItem('token');
   private castToken: string | number | (string | number)[] = this.token as string | number | (string | number)[];
 
@@ -37,5 +39,24 @@ export class ChangeService {
     });
 
     return this.http.post(this.changeApiUrl, data, { headers });
+  }
+
+  getChanges(orderId: number): Observable<any> {
+    const url = `${this.urlget}/${orderId}`;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'x-access-token': this.castToken
+    });
+    return this.http.get(url, { headers });
+  }
+
+  getImages(orderId: number): Observable<any> {
+    const url = `${this.urlImagen}/${orderId}`;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'x-access-token': this.castToken
+    });
+    console.log(this.castToken);
+    return this.http.get(url, { headers });
   }
 }
