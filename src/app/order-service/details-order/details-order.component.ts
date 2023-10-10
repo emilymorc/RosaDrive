@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 })
 export class DetailsOrderComponent implements OnInit{
   responseData: any;
-  private selectedOrder: any = {};
+  public selectedOrder: any = {};
   currentPage: number = 1;
   itemsPerPage: number = 10;
   maxSize: number = 10;

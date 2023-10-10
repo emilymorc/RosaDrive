@@ -52,7 +52,7 @@ const routes: Routes = [
       {path: 'detailsHistory', component: DetailsHistoryComponent, canActivate:[AuthGuard]},
       {path: 'viewOrder', component: ViewOrdersComponent},
       {path: 'detailsOrder', component: DetailsOrderComponent},
-      {path: 'modifyOrder', component: ModifyOrderComponent}
+      {path: 'modifyOrder', component: ModifyOrderComponent},
       {path: 'detailsOrder', component: DetailsOrderComponent},
       {path: 'changeOrder', component: AddChangeComponent}
     ] ,canActivate:[AuthGuard]
