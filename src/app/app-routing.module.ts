@@ -20,6 +20,7 @@ import {OrderServiceComponent} from "./order-service/order-service.component";
 import {ViewOrdersComponent} from "./order-service/view-orders/view-orders.component"
 import {DetailsHistoryComponent} from "./autostories/details-history/details-history.component";
 import {DetailsOrderComponent} from "./order-service/details-order/details-order.component";
+import {ModifyautostoriesComponent} from "./autostories/modifyautostories/modifyautostories.component";
 
 const routes: Routes = [
   {path: '.', component:Login2Component},
@@ -48,6 +49,7 @@ const routes: Routes = [
       {path: 'viewStories', component: ViewautostoriesComponent},
       {path: 'createOrder', component: OrderServiceComponent},
       {path: 'detailsHistory', component: DetailsHistoryComponent, canActivate:[AuthGuard]},
+      {path: 'modifyHistory', component: ModifyautostoriesComponent, canActivate:[AuthGuard]},
       {path: 'viewOrder', component: ViewOrdersComponent},
       {path: 'detailsOrder', component: DetailsOrderComponent}
     ] ,canActivate:[AuthGuard]

@@ -22,6 +22,6 @@ export class DetailsHistoryComponent implements OnInit{
   }
 
   seeHistory(historyDataForm: NgForm):void{
-
   }
+
 }

@@ -37,7 +37,7 @@ input {
   padding: 10px;
   border-radius: 5px;
   transition: border-color 0.3s ease-in-out;
-  width: 70%;
+  width: 80%;
 }
 
 select {
