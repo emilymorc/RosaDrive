@@ -20,15 +20,17 @@ interface Image {
 })
 export class AddChangeComponent implements OnInit {
 
-  selectedOrder: any = {};
-  historySelected: any = {};
-
-  constructor(private orderService: OrderService, private historyService: HistoryService, private changeService: ChangeService, private toastr: ToastrService) {
-  }
-
   listImages: Image[] = [];
   description: any;
   remplaced_parts: any;
+
+  selectedOrder: any = {};
+  historySelected: any = {};
+  imagesApiKey: string = "b9eb61371f94895bbcb1b8ee9e15e144";
+
+  constructor(private orderService: OrderService, private historyService: HistoryService, private changeService: ChangeService, private toastr: ToastrService) {
+
+  }
 
   onFileSelected(event: Event) {
     const input = (event.target as HTMLInputElement);
@@ -108,26 +110,41 @@ export class AddChangeComponent implements OnInit {
       const base64Image = await this.fileToBase64(imagen.file);
       console.log(base64Image);
 
-     /*this.changeService.uploadImageOrder({
-        idStory: this.historySelected.ID_STORY,
-        idOrder: this.selectedOrder.ID_ORDER,
-        imageUp: base64Image
-      }).subscribe(
+      this.changeService.uploadImage(base64Image, this.imagesApiKey).subscribe(
         response => {
+          const imageUrl = response.data.display_url;
+          const imageName = response.data.image.filename;
           console.log('Imagen subida con éxito:', response);
+          this.uploadChangeImage(imageUrl, imageName);
+          /*console.log(imageUrl);
+          console.log(imageName);*/
         },
         error => {
           console.error('Error al subir la imagen:', error);
         }
-      );*/
+      );
     }
+  }
+
+  uploadChangeImage(displayUrl: string, filename: string) {
+    this.changeService.uploadChangeImage(this.selectedOrder.ID_ORDER, displayUrl, filename).subscribe(
+      response => {
+        console.log('Imagen subida al back con éxito:', response);
+      },
+      error => {
+        console.error('Error al subir la imagen:', error);
+      }
+    );
   }
 
   fileToBase64(file: File): Promise<string> {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result as string);
+      reader.onload = () => {
+        const base64String = reader.result?.toString().split(',')[1] || '';
+        resolve(base64String);
+      };
       reader.onerror = error => reject(error);
     });
   }
