@@ -11,6 +11,8 @@ export class ChangeService {
   private apiUrl = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/files/uploadImageOrder';
   private urlget = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/changes/getChangesByIdOrder';
   private urlImagen = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/files/getImagesIdOrder'
+  private imagesApiUrl = 'https://api.imgbb.com/1/upload';
+  private ImageChangeApiUrl = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/files/uploadImageChange';
   private token: string | null = localStorage.getItem('token');
   private castToken: string | number | (string | number)[] = this.token as string | number | (string | number)[];
 
@@ -32,13 +34,28 @@ export class ChangeService {
     return this.http.post<any>(this.changeApiUrl, body, { headers: headers });
   }
 
-  uploadImageOrder(data: any): Observable<any> {
+  uploadChangeImage(idChange: number, displayUrl: string, filename: string): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'x-access-token': this.castToken // Reemplaza con tu token
+      'User-Agent': 'insomnia/2023.5.8',
+      'x-access-token': this.castToken
     });
 
-    return this.http.post(this.changeApiUrl, data, { headers });
+    const requestBody = {
+      idChange,
+      displayUrl,
+      filename
+    };
+
+    return this.http.post(this.ImageChangeApiUrl, requestBody, { headers });
+  }
+
+  uploadImage(imageBase64: string, apiKey: string): Observable<any> {
+    const formData = new FormData();
+    formData.append('key', apiKey);
+    formData.append('image', imageBase64);
+
+    return this.http.post(this.imagesApiUrl, formData);
   }
 
   getChanges(orderId: number): Observable<any> {
