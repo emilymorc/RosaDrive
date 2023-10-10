@@ -25,7 +25,14 @@ export class DetailsOrderComponent implements OnInit{
 
   ngOnInit(): void {
     this.selectedOrder = this.service.getSelectedOrder();
-    this.images = this.changeService.getImages(this.selectedOrder.ID_ORDER);
+    this.changeService.getImages(this.selectedOrder.ID_ORDER).subscribe(
+      data => {
+        this.images = data;
+      },
+      error => {
+        console.error('Error al obtener ordenes:', error);
+      }
+    );
     this.changeService.getChanges(this.selectedOrder.ID_ORDER).subscribe(
       data => {
         this.changes = data;
