@@ -101,6 +101,11 @@
         <td>{{ dato.ID_CHANGE}}</td>
         <td>{{ dato.CHANGE_DESCRIPTION }}</td>
 
+      <tr *ngFor="let dato of filtrarImagnes() | slice:(currentPage-1)*itemsPerPage:currentPage*itemsPerPage">
+        <!--        <td>{{getPlateByHistory(dato.ID_STORY)}}</td>-->
+        <td>{{ dato.IMAGE_URL}}</td>
+        <td>{{ dato.CHANGE_DESCRIPTION }}</td>
+
 
       </tr>
       </tbody>
@@ -127,6 +132,8 @@
 <!--        <img [src]="'data:image/png;base64,' + imageUrl" alt="Imagen">-->
         <img [src]="imageUrl.IMAGE_URL" alt="Imagen">
        <label>{{imageUrl.IMAGE_URL}}</label>
+
+
 
       </div>
     </div>
