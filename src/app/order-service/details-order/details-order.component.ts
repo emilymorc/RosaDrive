@@ -41,21 +41,7 @@ export class DetailsOrderComponent implements OnInit{
         console.error('Error al obtener ordenes:', error);
       }
     );
-    //this.changes = this.changeService.getChanges(this.selectedOrder.ID_ORDER)
 
-    /*const valor: string | null = localStorage.getItem('token')
-    const valorCasteado: string | number | (string | number)[] = valor as string | number | (string | number)[];
-    const apiUrl = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/orders/getOrdersHistory/3';
-    // Realiza la solicitud GET
-    this.http.get('https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/orders/getOrdersHistory/3', {
-      headers: {
-        'User-Agent': 'Insomnia/2023.5.5',
-        'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNjk1NjkxNTg5LCJleHAiOjE2OTU3Nzc5ODl9.USdqABs6ekvyVAunf8VcB0o5FQsFDV9b1kenWcn3uIY'
-      }
-    }).subscribe((data) => {
-      this.responseData = data;
-      console.log(this.responseData[0])
-    });*/
   }
   onPageChange(event: any): void {
     this.currentPage = event.page;

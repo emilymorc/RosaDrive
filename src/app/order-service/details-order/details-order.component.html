@@ -121,15 +121,14 @@
 <br>
     <div>
       <h4>Registro fotografico</h4>
-    </div>
-    <div class="image-container">
-      <div *ngFor="let imageUrl of images">
-<!--        <img [src]="'data:image/png;base64,' + imageUrl" alt="Imagen">-->
-        <img [src]="imageUrl.IMAGE_URL" alt="Imagen">
-       <label>{{imageUrl.IMAGE_URL}}</label>
+      <div class="image-container">
+        <div *ngFor="let imageUrl of images">
+          <img [src]="imageUrl.IMAGE_URL" alt="Imagen">
 
+        </div>
       </div>
     </div>
+
 
   </div>
 </div>
