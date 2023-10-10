@@ -19,7 +19,7 @@ export class DetailsOrderComponent implements OnInit{
   isAsc: boolean = true;
   filtro: string = '';
   public changes: any[] = [];
-  public images: any = [];
+  public images: any = [] ;
 
   constructor(private router: Router, private http: HttpClient, public service: OrderService, public changeService: ChangeService) { }
 
@@ -65,6 +65,16 @@ export class DetailsOrderComponent implements OnInit{
       return this.changes;
     }
   }
+
+/*  filtrarImages(): any[] {
+    if (this.filtro) {
+      return this.images.filter(dato1 =>
+        dato1.SERVICE && dato1.SERVICE.toLowerCase().includes(this.filtro.toLowerCase())
+      );
+    } else {
+      return this.changes;
+    }
+  }*/
 
 
   sortDataByColumn(column: string): void {
