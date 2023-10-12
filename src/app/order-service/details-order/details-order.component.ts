@@ -18,33 +18,30 @@ export class DetailsOrderComponent implements OnInit{
   orderBy: string | null = null;
   isAsc: boolean = true;
   filtro: string = '';
-  filtro2: string = '';
   public changes: any[] = [];
-  public images: any = [] = [];
+  public images: any = [] ;
 
   constructor(private router: Router, private http: HttpClient, public service: OrderService, public changeService: ChangeService) { }
 
   ngOnInit(): void {
     this.selectedOrder = this.service.getSelectedOrder();
-    // this.images = this.changeService.getImages(this.selectedOrder.ID_ORDER);
+    this.changeService.getImages(this.selectedOrder.ID_ORDER).subscribe(
+      data => {
+        this.images = data;
+      },
+      error => {
+        console.error('Error al obtener ordenes:', error);
+      }
+    );
     this.changeService.getChanges(this.selectedOrder.ID_ORDER).subscribe(
       data => {
         this.changes = data;
-        console.log('Cambios'+ data);
       },
       error => {
         console.error('Error al obtener ordenes:', error);
       }
     );
 
-    this.changeService.getImages(this.selectedOrder.ID_ORDER).subscribe(
-      data => {
-        this.images = data;
-      },
-      error => {
-        console.error('Error al obtener imagenes:', error);
-      }
-    );
   }
   onPageChange(event: any): void {
     this.currentPage = event.page;
@@ -61,6 +58,17 @@ export class DetailsOrderComponent implements OnInit{
       return this.changes;
     }
   }
+
+/*  filtrarImages(): any[] {
+    if (this.filtro) {
+      return this.images.filter(dato1 =>
+        dato1.SERVICE && dato1.SERVICE.toLowerCase().includes(this.filtro.toLowerCase())
+      );
+    } else {
+      return this.changes;
+    }
+  }*/
+
 
   sortDataByColumn(column: string): void {
     this.orderBy = column;
