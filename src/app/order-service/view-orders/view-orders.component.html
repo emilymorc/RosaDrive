@@ -11,9 +11,14 @@
 </div>
 
 <div class="container mt-5 table-responsive">
-  <div class="ml-2">
-    <input type="text" [(ngModel)]="filtroServicio" placeholder="Filtrar por Servicio" class="form-control">
+  <div class="d-flex align-items-center ml-2">
+    <input type="text" [(ngModel)]="filtroServicio" placeholder="Filtrar por: " class="form-control input-large">
+    <select class="form-select ml-2" [(ngModel)]="selectedCategory" (change)="assignSelectedCategory(selectedCategory)">
+      <option value="">Todas las Categorías</option>
+      <option *ngFor="let categoria of availableCategories" [value]="categoria">{{ categoria }}</option>
+    </select>
   </div>
+  <br>
   <br>
   <table class="table table table-bordered" >
     <thead>
@@ -33,17 +38,22 @@
         DESCRIPCIÓN DE LA ORDEN
         <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'DESCRIPTION' && isAsc, 'fa-arrow-down': orderBy === 'DESCRIPTION' && !isAsc}"></i>
       </th>
+      <th (click)="sortDataByColumn('RESPONSIBLE_TECHNICIAN')">
+        TECNICO RESPONSABLE
+        <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'RESPONSIBLE_TECHNICIAN' && isAsc, 'fa-arrow-down': orderBy === 'RESPONSIBLE_TECHNICIAN' && !isAsc}"></i>
+      </th>
       <th>COSTO TOTAL</th>
       <th>MODIFICAR</th>
       <th>VER</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let dato of filtrarPorServicio() | slice:(currentPage-1)*itemsPerPage:currentPage*itemsPerPage">
+    <tr *ngFor="let dato of filterByCategory() | slice:(currentPage-1)*itemsPerPage:currentPage*itemsPerPage">
       <td>{{getPlateByHistory(dato.ID_STORY)}}</td>
       <td>{{ dato.ID_ORDER }}</td>
       <td>{{ dato.SERVICE }}</td>
       <td>{{ dato.DESCRIPTION }}</td>
+      <td>{{ dato.RESPONSIBLE_TECHNICIAN }}</td>
       <td>{{ dato.TOTAL_COST }}</td>
       <td>
          <button class="btn btn-primary" (click)="modifyOrder(dato)">Modificar</button>
