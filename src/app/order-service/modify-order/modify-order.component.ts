@@ -50,7 +50,7 @@ export class ModifyOrderComponent implements OnInit{
     const valor: string | null = localStorage.getItem('token')
     const valorCasteado: string | number | (string | number)[] = valor as string | number | (string | number)[];
     const apiUrl = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/orders/addOrder';
-    const format = /[^A-Za-z0-9\-]/;
+    const format = /[^A-Za-z0-9\- ]/;
     const data = {
       id_story: this.id_story,
       service: this.service,
@@ -122,6 +122,18 @@ export class ModifyOrderComponent implements OnInit{
     }
   }
    updateOrder2(orderData: any, userDataForm: NgForm ): void{
+     const format = /[^A-Za-z0-9\- ]/;
+     if (orderData.description.trim() === '' || orderData.service.trim() === '' || orderData.responsible_technician.trim() === '' || orderData.inspection_type.trim() === '' || orderData.total_cost === null) {
+       this.toastr.error("Por favor, complete todos los campos", "Campos Vacios");
+       return;
+     }
+
+     if (format.test(userDataForm.value.description) || format.test(userDataForm.value.service) ||format.test(userDataForm.value.responsible_technician) || format.test(userDataForm.value.inspection_type)) {
+       this.toastr.error("Existen campos con caracteres especiales", "¡Campos incorrectos!");
+       this.showError = true;
+       return;
+     }
+
      this.orderService.updateOrderData(orderData).subscribe(
        (response) => {
          console.log('Orden actualizada:', response);
@@ -137,6 +149,7 @@ export class ModifyOrderComponent implements OnInit{
 
 
   updateOrder(orderDataForm: NgForm) {
+
     const orderData = {
       id_story: this.selectedOrder.ID_STORY,
       id_order: this.selectedOrder.ID_ORDER,
@@ -149,13 +162,6 @@ export class ModifyOrderComponent implements OnInit{
       total_cost: orderDataForm.value.total_cost,
     };
 
-    /*if (this.description.trim() === '' || this.observations.trim() === '' || this.responsible_technician.trim() === ''
-      || this.inspection_type.trim() === '' || this.total_cost.toString() === '') {
-      this.toastr.error("Por favor, complete todos los campos", "Campos Vacios");
-      return;
-    }*/
     this.updateOrder2(orderData,orderDataForm)
-
-
   }
 }

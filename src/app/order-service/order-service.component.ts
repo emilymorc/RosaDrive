@@ -56,7 +56,7 @@ export class OrderServiceComponent implements OnInit{
     const valor: string | null = localStorage.getItem('token')
     const valorCasteado: string | number | (string | number)[] = valor as string | number | (string | number)[];
     const apiUrl = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/orders/addOrder';
-    const format = /[^A-Za-z0-9\-]/;
+    const format = /[^A-Za-z0-9\- ]/;
     const data = {
       id_story: this.id_story,
       service: this.service,
@@ -70,7 +70,7 @@ export class OrderServiceComponent implements OnInit{
     };
 
     if (this.description.trim() === '' || this.service.trim() === '' || this.responsible_technician.trim() === ''
-      || this.inspection_type.trim() === '' || this.total_cost.toString() === '') {
+      || this.inspection_type.trim() === '' || this.total_cost === null) {
       this.toastr.error("Por favor, complete todos los campos", "Campos Vacios");
       return;
     }
