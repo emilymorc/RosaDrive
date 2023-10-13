@@ -134,6 +134,13 @@ export class ModifyautostoriesComponent {
     const valorCasteado: string | number | (string | number)[] = valor as string | number | (string | number)[];
     const format = /[^A-Za-z0-9\-]/;
 
+    if (parseInt(this.engineNumber) < 0 || parseInt(this.chassisNumber) <0 || parseInt(this.vinNumber) < 0 || this.displacement < 0 || this.numberOfAxles < 0 ||
+      parseInt(this.soatPolicyNumber) <0 || this.grossVehicleWeight < 0 || this.totalPassengers <0) {
+      this.toastr.error("Existen campos negativos", "¡Campos incorrectos!");
+      this.showError = true;
+      return;
+    }
+
     if (this.currentOwner.trim() === '' || this.contactOwner.trim() === '' || this.licensePlateNumber.trim() === ''
       || this.brand.trim() === '' || this.line.trim() === '' || this.model.trim() === '' || this.color.trim() === ''
       || this.engineNumber.trim() === '' || this.chassisNumber.trim() === '' || this.vinNumber.trim() === '' || this.soatPolicyNumber.trim() === ''

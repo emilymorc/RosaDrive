@@ -69,6 +69,12 @@ export class OrderServiceComponent implements OnInit{
 
     };
 
+    if (this.total_cost.valueOf() < 0) {
+      this.toastr.error("Existen campos negativos", "¡Campos incorrectos!");
+      this.showError = true;
+      return;
+    }
+
     if (this.description.trim() === '' || this.service.trim() === '' || this.responsible_technician.trim() === ''
       || this.inspection_type.trim() === '' || this.total_cost === null) {
       this.toastr.error("Por favor, complete todos los campos", "Campos Vacios");

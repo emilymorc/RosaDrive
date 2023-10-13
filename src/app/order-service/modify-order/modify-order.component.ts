@@ -134,6 +134,12 @@ export class ModifyOrderComponent implements OnInit{
        return;
      }
 
+     if (orderData.total_cost < 0) {
+       this.toastr.error("Existen campos negativos", "¡Campos incorrectos!");
+       this.showError = true;
+       return;
+     }
+
      this.orderService.updateOrderData(orderData).subscribe(
        (response) => {
          console.log('Orden actualizada:', response);
