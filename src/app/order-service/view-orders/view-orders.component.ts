@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {UserService} from "../../servicios/users.service";
 import {OrderService} from "../../servicios/order.service";
 import {HistoryService} from "../../servicios/history.service";
+import {compareSegments} from "@angular/compiler-cli/src/ngtsc/sourcemaps/src/segment_marker";
 
 @Component({
   selector: 'app-view-orders',
@@ -17,6 +18,12 @@ export class ViewOrdersComponent implements OnInit{
   isAsc: boolean = true;
   filtroServicio: string = '';
 
+  availableCategories: string[] = ['Servico', 'Tecnico Responsable'];
+  availableCategoriesMap: Map<string, string> = new Map([
+    ['Servico', 'SERVICE'],
+    ['Tecnico Responsable', 'RESPONSIBLE_TECHNICIAN']
+  ]);
+  selectedCategory: string = '';
   orders: any[] = [];
   histories: any[] = [];
 
@@ -82,19 +89,21 @@ export class ViewOrdersComponent implements OnInit{
       }
     });
   }
+  assignSelectedCategory(category: string): void {
+    this.selectedCategory = category;
+    console.log(this.selectedCategory);
+  }
 
-
-  filtrarPorServicio(): any[] {
-    if (this.filtroServicio) {
+  filterByCategory(): any[] {
+    const filtro = this.availableCategoriesMap.get(this.selectedCategory);
+    if (filtro) {
       return this.orders.filter(dato =>
-        dato.SERVICE && dato.SERVICE.toLowerCase().includes(this.filtroServicio.toLowerCase())
+        dato[filtro] && dato[filtro].toLowerCase().includes(this.filtroServicio.toLowerCase())
       );
     } else {
       return this.orders;
     }
   }
-
-  //filtrarPor
 
   viewOrder(dato: any): void {
     this.orderService.getOrdersHistory(dato.ID_STORY).subscribe(
