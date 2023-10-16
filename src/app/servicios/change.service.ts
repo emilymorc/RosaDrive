@@ -18,7 +18,7 @@ export class ChangeService {
 
   constructor(private http: HttpClient) { }
 
-  addChange(idOrder: number, changeDescription: string, replacedParts: number): Observable<any> {
+  addChange(idOrder: number, changeDescription: string, replacedParts: number, referencedParts: string): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'User-Agent': 'insomnia/2023.5.8',
@@ -28,7 +28,8 @@ export class ChangeService {
     const body = JSON.stringify({
       idOrder: idOrder,
       changeDescription: changeDescription,
-      replacedParts: replacedParts
+      replacedParts: replacedParts,
+      referencesParts: referencedParts
     });
 
     return this.http.post<any>(this.changeApiUrl, body, { headers: headers });

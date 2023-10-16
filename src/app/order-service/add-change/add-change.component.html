@@ -52,6 +52,11 @@
       <br>
       <textarea [(ngModel)]="description" id="description"  name="description"  rows="4" required maxlength="255" ></textarea>
       <br>
+      <label class="label">Partes referenciadas</label>
+      <br>
+      <input [(ngModel)]="referencesParts" type="text" id="referencesParts"  name="referencesParts" required maxlength="255">
+      <br>
+      <br>
       <label class="label">Partes remplazadas</label>
       <br>
       <input [(ngModel)]="remplaced_parts" type="number" id="remplaced_parts"  name="remplaced_parts" required maxlength="255">

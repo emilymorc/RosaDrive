@@ -24,6 +24,7 @@ export class AddChangeComponent implements OnInit {
   listImages: Image[] = [];
   description: string="";
   remplaced_parts: string="";
+  referencesParts: string="";
 
   selectedOrder: any = {};
   historySelected: any = {};
@@ -79,8 +80,9 @@ export class AddChangeComponent implements OnInit {
   addChange(changeDataForm: NgForm) {
     const description = changeDataForm.value.description;
     const remplaced_parts = changeDataForm.value.remplaced_parts;
+    const referencesParts = changeDataForm.value.referencesParts;
     const format = /[^A-Za-z0-9\-]/;
-    if (this.description.trim() === '' || this.remplaced_parts.trim() === '') {
+    if (this.description.trim() === '' || this.remplaced_parts.toString() === '' || this.referencesParts.trim() === '') {
       this.toastr.error("Por favor, complete todos los campos", "Campos Vacios");
       return;
     }
@@ -90,7 +92,7 @@ export class AddChangeComponent implements OnInit {
       return;
     }
     if (changeDataForm.valid) {
-      this.changeService.addChange(this.selectedOrder.ID_ORDER, description, remplaced_parts).subscribe(
+      this.changeService.addChange(this.selectedOrder.ID_ORDER, description, remplaced_parts, referencesParts).subscribe(
         response => {
           console.log('Cambio agregado:', response);
           const changeId = response.insertId;

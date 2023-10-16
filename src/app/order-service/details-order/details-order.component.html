@@ -88,8 +88,11 @@
           <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'ID_CHANGE' && isAsc, 'fa-arrow-down': orderBy === 'ID_CHANGE' && !isAsc}"></i>
         </th>
         <th (click)="sortDataByColumn('DESCRIPTION')">DESCRIPCIÓN
-
           <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'DESCRIPTION' && isAsc, 'fa-arrow-down': orderBy === 'DESCRIPTION' && !isAsc}"></i>
+        </th>
+
+        <th (click)="sortDataByColumn('REFERENCES_PARTS')">PARTES REMPLAZADAS
+          <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'REFERENCES_PARTS' && isAsc, 'fa-arrow-down': orderBy === 'REFERENCES_PARTS' && !isAsc}"></i>
         </th>
 
 
@@ -100,6 +103,7 @@
         <!--        <td>{{getPlateByHistory(dato.ID_STORY)}}</td>-->
         <td>{{ dato.ID_CHANGE}}</td>
         <td>{{ dato.CHANGE_DESCRIPTION }}</td>
+        <td>{{ dato.REFERENCES_PARTS}}</td>
 
 
       </tr>
