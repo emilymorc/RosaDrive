@@ -23,6 +23,7 @@ import {DetailsOrderComponent} from "./order-service/details-order/details-order
 import {ModifyOrderComponent} from "./order-service/modify-order/modify-order.component";
 import {AddChangeComponent} from "./order-service/add-change/add-change.component"
 import {ModifyautostoriesComponent} from "./autostories/modifyautostories/modifyautostories.component";
+import {CreateAppoitmentComponent} from "./appoitment/create-appoitment/create-appoitment.component";
 
 const routes: Routes = [
   {path: '.', component:Login2Component},
@@ -56,7 +57,8 @@ const routes: Routes = [
       {path: 'detailsOrder', component: DetailsOrderComponent},
       {path: 'modifyOrder', component: ModifyOrderComponent},
       {path: 'detailsOrder', component: DetailsOrderComponent},
-      {path: 'changeOrder', component: AddChangeComponent}
+      {path: 'changeOrder', component: AddChangeComponent},
+      {path: 'createAppoitment', component: CreateAppoitmentComponent}
     ] ,canActivate:[AuthGuard]
   },
 ];

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+<div class="header">
+  <h1>Crear Cita</h1>
+</div>
+
+<div >
+  <form #myForm="ngForm" >
+    <div class="orderService-form">
+
+      <label class="label">Nombre Usuario</label>
+      <br>
+      <select [(ngModel)]="id_user" name="id_story">
+        <option *ngFor="let user of users" [value]="user.ID_STORY">{{ user.FIRST_NAME}}</option>
+      </select>
+      <br>
+      <br>
+
+      <!--      <input type="datetime-local" id="issue_date" [(ngModel)]="issue_date" name="issue_date" maxlength="255" [max]="maxDate">-->
+
+      <label class="label">Fechas Disponibles</label>
+      <br>
+      <input type="date" id="entryDate" name="entryDate" [(ngModel)]="appoitment_date" [max]="maxDate">
+      <br>
+      <br>
+      <label class="label">Horas Disponibles</label>
+      <br>
+      <select></select>
+      <br>
+      <br>
+      <label class="label">Descripción de la cita</label>
+      <br>
+      <textarea id="description" [(ngModel)]="description" name="description"  rows="4" required maxlength="255" ></textarea>
+
+      <br>
+
+
+
+      <br>
+      <br>
+    </div>
+    <button class="buttonSave" type="submit" >Crear</button>
+
+
+  </form>
+</div>
+
+</body>
+</html>
+
+
+
