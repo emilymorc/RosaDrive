@@ -22,8 +22,8 @@ interface Image {
 export class AddChangeComponent implements OnInit {
 
   listImages: Image[] = [];
-  description: any;
-  remplaced_parts: any;
+  description: string="";
+  remplaced_parts: string="";
 
   selectedOrder: any = {};
   historySelected: any = {};
@@ -77,25 +77,25 @@ export class AddChangeComponent implements OnInit {
   }
 
   addChange(changeDataForm: NgForm) {
+    const description = changeDataForm.value.description;
+    const remplaced_parts = changeDataForm.value.remplaced_parts;
+    const format = /[^A-Za-z0-9\-]/;
+    if (this.description.trim() === '' || this.remplaced_parts.trim() === '') {
+      this.toastr.error("Por favor, complete todos los campos", "Campos Vacios");
+      return;
+    }
+    if (format.test(this.remplaced_parts) || format.test(this.remplaced_parts)) {
+      this.toastr.error("Existen campos con caracteres especiales", "¡Campos incorrectos!");
+      this.showError = true;
+      return;
+    }
     if (changeDataForm.valid) {
-      const description = changeDataForm.value.description;
-      const responsible_technician = changeDataForm.value.remplaced_parts;
-      const format = /[^A-Za-z0-9\-]/;
-
-      // if (this.description.trim() === '' || this.remplaced_parts.trim()) {
-      //   this.toastr.error("Por favor, complete todos los campos", "Campos Vacios");
-      //   return;
-      // }
-      //
-      // if (format.test(this.remplaced_parts) || format.test(this.remplaced_parts)) {
-      //   this.toastr.error("Existen campos con caracteres especiales", "¡Campos incorrectos!");
-      //   this.showError = true;
-      //   return;
-      // }
-
-      this.changeService.addChange(this.selectedOrder.ID_ORDER, description, responsible_technician).subscribe(
+      this.changeService.addChange(this.selectedOrder.ID_ORDER, description, remplaced_parts).subscribe(
         response => {
           console.log('Cambio agregado:', response);
+          const changeId = response.insertId;
+          this.postImages(changeId);
+          console.log(changeId);
           this.toastr.success("Cambio agregado con exito", "EXITOSO!");
         },
         error => {
@@ -104,7 +104,7 @@ export class AddChangeComponent implements OnInit {
         }
       );
     }
-    this.postImages();
+    //this.postImages();
   }
 
   getHistory() {
@@ -119,7 +119,7 @@ export class AddChangeComponent implements OnInit {
     );
   }
 
-  async postImages() {
+  async postImages(idChange: number) {
     for (const imagen of this.listImages) {
       const base64Image = await this.fileToBase64(imagen.file);
       console.log(base64Image);
@@ -129,7 +129,7 @@ export class AddChangeComponent implements OnInit {
           const imageUrl = response.data.display_url;
           const imageName = response.data.image.filename;
           console.log('Imagen subida con éxito:', response);
-          this.uploadChangeImage(imageUrl, imageName);
+          this.uploadChangeImage(idChange, imageUrl, imageName);
           /*console.log(imageUrl);
           console.log(imageName);*/
         },
@@ -140,8 +140,8 @@ export class AddChangeComponent implements OnInit {
     }
   }
 
-  uploadChangeImage(displayUrl: string, filename: string) {
-    this.changeService.uploadChangeImage(this.selectedOrder.ID_ORDER, displayUrl, filename).subscribe(
+  uploadChangeImage(changeId: number, displayUrl: string, filename: string) {
+    this.changeService.uploadChangeImage(changeId, displayUrl, filename).subscribe(
       response => {
         console.log('Imagen subida al back con éxito:', response);
       },

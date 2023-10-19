@@ -12,3 +12,7 @@
 .pagination-next::after {
   content: "Siguiente";
 }
+
+.input-large {
+  width: 200%; /* O cualquier otro valor que desees */
+}
