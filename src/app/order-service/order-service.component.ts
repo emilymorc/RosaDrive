@@ -75,11 +75,11 @@ export class OrderServiceComponent implements OnInit{
       return;
     }
 
-    if (format.test(form.value.description) || format.test(form.value.service) ||format.test(form.value.responsible_technician) || format.test(form.value.inspection_type)) {
+   /* if (format.test(form.value.description) || format.test(form.value.service) ||format.test(form.value.responsible_technician) || format.test(form.value.inspection_type)) {
       this.toastr.error("Existen campos con caracteres especiales", "¡Campos incorrectos!");
       this.showError = true;
       return;
-    }
+    }*/
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
