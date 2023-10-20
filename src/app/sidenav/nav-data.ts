@@ -59,7 +59,17 @@ export const navbarData: INavbarData[] = [
   {
     routeLink: 'login',
     icon: 'fa solid fa-address-book',
-    label: 'Agendar'
+    label: 'Citas',
+    items: [
+      {
+        routeLink: 'createAppoitment',
+        label: 'Crear',
+      },
+      {
+        routeLink: '',
+        label: 'Ver',
+      }
+    ]
   },
   {
     routeLink: 'logout',

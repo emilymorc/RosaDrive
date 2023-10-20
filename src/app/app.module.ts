@@ -35,6 +35,8 @@ import { DetailsOrderComponent } from './order-service/details-order/details-ord
 import { DetailsHistoryComponent } from './autostories/details-history/details-history.component';
 import { ModifyOrderComponent } from './order-service/modify-order/modify-order.component';
 import { AddChangeComponent } from './order-service/add-change/add-change.component';
+import { CreateAppoitmentComponent } from './appoitment/create-appoitment/create-appoitment.component';
+import { AppoitmentComponent } from './appoitment/appoitment.component';
 
 
 
@@ -65,7 +67,9 @@ import { AddChangeComponent } from './order-service/add-change/add-change.compon
     DetailsOrderComponent,
     DetailsHistoryComponent,
     ModifyOrderComponent,
-    AddChangeComponent
+    AddChangeComponent,
+    CreateAppoitmentComponent,
+    AppoitmentComponent
   ],
     imports: [
         PaginationModule.forRoot(),
