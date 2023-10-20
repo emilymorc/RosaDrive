@@ -13,6 +13,8 @@ import {UserService} from "../../servicios/users.service";
 })
 export class CreateAppoitmentComponent implements OnInit{
 
+  usersData: any[] = [];
+  userNamesAndLastNames: string[] = [];
   description: string = '';
   id_user: string = '';
   status: boolean = true;
@@ -34,21 +36,20 @@ export class CreateAppoitmentComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.service1.getUsers().subscribe(
-      (data: any) => {
-        this.users = data;
-        console.log('usuarios'+data)
-      },
-      (error: any) => {
-        console.error(error);
-      }
-    );
+    this.service1.getUsers().subscribe((data: any[]) => {
+      this.usersData = data;
+      this.userNamesAndLastNames = this.concatNamesAndLastNames(data);
+    });
   }
 
 
 
   resetForm(form: any) {
     form.form.reset();
+  }
+
+  concatNamesAndLastNames(users: any[]): string[] {
+    return users.map(user => `${user.FIRST_NAME} ${user.LAST_NAME}`);
   }
 
 }
