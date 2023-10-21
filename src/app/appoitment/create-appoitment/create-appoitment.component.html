@@ -23,12 +23,16 @@
 
       <label class="label">Fechas Disponibles</label>
       <br>
-      <input type="date" id="entryDate" name="entryDate" [(ngModel)]="appoitment_date" [max]="maxDate">
+      <input type="date" id="entryDate" name="entryDate" (change)="onDateChange()" [(ngModel)]="appoitment_date" [min]="minDate">
+
       <br>
       <br>
       <label class="label">Horas Disponibles</label>
       <br>
-      <select></select>
+      <select [(ngModel)]="selectedHour">
+        <option value="" disabled selected>Seleccione una hora</option>
+        <option *ngFor="let hora of horasDisponibles" [value]="hora">{{ hora }}</option>
+      </select>
       <br>
       <br>
       <label class="label">Descripción de la cita</label>
