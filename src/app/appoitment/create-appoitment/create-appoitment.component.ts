@@ -6,7 +6,6 @@ import {FormBuilder, NgForm} from "@angular/forms";
 import {HistoryService} from "../../servicios/history.service";
 import {UserService} from "../../servicios/users.service";
 import {AppointmentService} from "../../servicios/appointment.service";
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-create-appoitment',
@@ -39,7 +38,7 @@ export class CreateAppoitmentComponent implements OnInit {
   showError = false; // Para mostrar u ocultar el error
 
 
-  constructor(private datePipe: DatePipe, private http: HttpClient, private router: Router, private toastr: ToastrService, private formBuilder: FormBuilder, public service1: UserService, private appointmentService: AppointmentService) {
+  constructor(private http: HttpClient, private router: Router, private toastr: ToastrService, private formBuilder: FormBuilder, public service1: UserService, private appointmentService: AppointmentService) {
     this.minDate = this.obtenerFechaManana();
   }
   obtenerFechaManana() {
@@ -159,14 +158,6 @@ export class CreateAppoitmentComponent implements OnInit {
       }
     );
     console.log(this.selecteUser + "usuario selecionado");
-  }
-
-  formatHourToHHMMSS(time12H: string): string {
-    // Primero, convierte la hora en formato 12 horas a un objeto Date.
-    const date = new Date(`2023-01-01 ${time12H}`);
-
-    // Formatea la fecha en el formato "hh:mm:ss".
-    return this.datePipe.transform(date, 'HH:mm:ss') || '';
   }
 
 }
