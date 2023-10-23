@@ -106,7 +106,6 @@ export class AddChangeComponent implements OnInit {
         }
       );
     }
-    //this.postImages();
   }
 
   getHistory() {

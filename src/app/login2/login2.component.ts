@@ -52,52 +52,7 @@ export class Login2Component implements OnInit {
     this.authService.logout();
   }
 
-  // signIn() {
-  //   console.log("entra")
-  //   const url = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/auth/signIn';
-  //   const headers = new HttpHeaders({
-  //     'Content-Type': 'application/json',
-  //     'User-Agent': 'Insomnia/2023.5.6'
-  //   });
-  //
-  //   const body = {
-  //     email: 'alicesmith@example.com',
-  //     password: 'admin'
-  //   };
-  //
-  //   this.http.post(url, body, {headers}).subscribe(
-  //     (response) => {
-  //       this.toastr.success("Inicio de sesion exitoso", "EXITO!!")
-  //     },
-  //     (error) => {
-  //       console.error('Error:', error);
-  //     }
-  //   );
-  // }
-  //
-  // submitForm() {
-  //   const url = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/auth/signIn';
-  //
-  //   const body = {
-  //     email: this.email,
-  //     password: this.password
-  //   };
-  //
-  //   const headers = new HttpHeaders({
-  //     'Content-Type': 'application/json',
-  //     'User-Agent': 'Your-User-Agent'
-  //   });
-  //
-  //   this.http.post(url, body, {headers}).subscribe(
-  //     response => {
-  //       this.toastr.success("Inicio de sesión exitoso", "EXITOSO!");
-  //       this.router.navigate(['/dashboard/landing']);
-  //     },
-  //     error => {
-  //       this.toastr.error("Ocurrio un error al iniciar sesion, intente de nuevo", "ERROR!");
-  //     }
-  //   );
-  // }
+
 
   ngOnInit(): void {
   }

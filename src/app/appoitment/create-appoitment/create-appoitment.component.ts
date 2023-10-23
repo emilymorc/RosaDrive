@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
-import {FormBuilder} from "@angular/forms";
+import {FormBuilder, NgForm} from "@angular/forms";
 import {HistoryService} from "../../servicios/history.service";
 import {UserService} from "../../servicios/users.service";
 import {AppointmentService} from "../../servicios/appointment.service";
@@ -15,9 +15,10 @@ import {AppointmentService} from "../../servicios/appointment.service";
 export class CreateAppoitmentComponent implements OnInit {
 
   usersData: any[] = [];
+  userNamesAndIds: any[] = [];
   userNamesAndLastNames: string[] = [];
   description: string = '';
-  id_user: string = '';
+  id_user: number = 0;
   status: boolean = true;
   responsible_technician: string = '';
   appoitment_date: string = '';
@@ -28,8 +29,11 @@ export class CreateAppoitmentComponent implements OnInit {
   issuing_location: string = '2';
   users: any[] = [];
   horasOcupadas: any[] = [];
+
   horasDisponibles: string[] = [];
+
   selectedHour: string = '';
+  selecteUser: any = {};
   selectedLicensePlate: number = 0;
   showError = false; // Para mostrar u ocultar el error
 
@@ -54,6 +58,7 @@ export class CreateAppoitmentComponent implements OnInit {
     this.service1.getUsers().subscribe((data: any[]) => {
       this.usersData = data;
       this.userNamesAndLastNames = this.concatNamesAndLastNames(data);
+      this.userNamesAndIds = this.concatNamesAndIds(this.usersData);
     });
   }
 
@@ -66,9 +71,18 @@ export class CreateAppoitmentComponent implements OnInit {
     return users.map(user => `${user.FIRST_NAME} ${user.LAST_NAME}`);
   }
 
+  concatNamesAndIds(users: any[]): any[] {
+    return users.map(user => ({
+      id: user.ID_USER, // Cambia "ID" por el nombre del campo real en tus datos
+      name: `${user.FIRST_NAME} ${user.LAST_NAME}`
+    }));
+  }
+
+
   onDateChange(){
     this.horasDisponibles = [];
-    console.log(this.appoitment_date + " 12:00:00");
+    console.log(this.appoitment_date );
+    console.log(this.selectedHour + "hora seleccionada");
     this.getBusyHours(this.appoitment_date + " 12:00:00");
   }
 
@@ -100,6 +114,7 @@ export class CreateAppoitmentComponent implements OnInit {
   }
 
 
+
   generarHorasDisponibles() {
     this.horasDisponibles = [];
 
@@ -122,6 +137,27 @@ export class CreateAppoitmentComponent implements OnInit {
     this.horasDisponibles = this.horasDisponibles.filter(horaDisponible =>
       !this.horasOcupadas.includes(horaDisponible)
     );
+  }
+
+  createAppoitment(form: any){
+    const appointmentData = {
+      idUser: this.id_user,
+      appointmentDate: this.appoitment_date + this.selectedHour,
+      description: this.description,
+      status: this.status
+    };
+
+    this.appointmentService.addAppointment(appointmentData).subscribe(
+      (response) => {
+        console.log('Éxito: ', response);
+        this.toastr.success("Cita creada con exito", "EXITOSO!");
+      },
+      (error) => {
+        console.error('Error: ', error);
+        this.toastr.error("Error al crear cita", "Error");
+      }
+    );
+    console.log(this.selecteUser + "usuario selecionado");
   }
 
 }
