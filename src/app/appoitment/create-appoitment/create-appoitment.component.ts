@@ -20,7 +20,7 @@ export class CreateAppoitmentComponent implements OnInit {
   userNamesAndLastNames: string[] = [];
   description: string = '';
   id_user: number = 0;
-  status: boolean = true;
+  status: string = 'Activa';
   responsible_technician: string = '';
   appoitment_date: string = '';
   inspection_type: string = '';
