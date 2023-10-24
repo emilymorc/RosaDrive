@@ -118,22 +118,25 @@ export class CreateAppoitmentComponent implements OnInit {
   }
 
 
-
   generarHorasDisponibles() {
     this.horasDisponibles = [];
 
     // Generar horas de la mañana (8:00 AM - 12:00 PM)
     for (let hora = 8; hora <= 12; hora++) {
       for (let minutos = 0; minutos < 60; minutos += 30) {
-        const horaFormato12h = `${hora % 12 === 0 ? 12 : hora % 12}:${minutos === 0 ? '00' : minutos} ${hora < 12 ? 'AM' : 'PM'}`;
+        const horaFormateada = hora.toString().padStart(2, '0');
+        const minutosFormateados = minutos === 0 ? '00' : minutos.toString().padStart(2, '0');
+        const horaFormato12h = `${horaFormateada}:${minutosFormateados} ${hora < 12 ? 'AM' : 'PM'}`;
         this.horasDisponibles.push(horaFormato12h);
       }
     }
 
-    // Generar horas de la tarde (2:00 PM - 4:30 PM)
-    for (let hora = 14; hora <= 16; hora++) {
+    // Generar horas de la tarde (1:00 PM - 4:30 PM)
+    for (let hora = 2; hora <= 4; hora++) {
       for (let minutos = 0; minutos < 60; minutos += 30) {
-        const horaFormato12h = `${hora % 12}:${minutos === 0 ? '00' : minutos} ${hora < 12 ? 'AM' : 'PM'}`;
+        const horaFormateada = hora.toString().padStart(2, '0');
+        const minutosFormateados = minutos === 0 ? '00' : minutos.toString().padStart(2, '0');
+        const horaFormato12h = `${horaFormateada}:${minutosFormateados} ${hora < 2 ? 'AM' : 'PM'}`;
         this.horasDisponibles.push(horaFormato12h);
       }
     }
@@ -142,6 +145,8 @@ export class CreateAppoitmentComponent implements OnInit {
       !this.horasOcupadas.includes(horaDisponible)
     );
   }
+
+
 
   createAppoitment(form: any){
     const appointmentData = {
@@ -156,6 +161,7 @@ export class CreateAppoitmentComponent implements OnInit {
       (response) => {
         console.log('Éxito: ', response);
         this.toastr.success("Cita creada con exito", "EXITOSO!");
+        form.reset();
       },
       (error) => {
         console.error('Error: ', error);
