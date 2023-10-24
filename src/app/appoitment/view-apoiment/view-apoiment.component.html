@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+
+<body>
+
+<div class="header">
+  <h1>Citas</h1>
+</div>
+
+<div class="container mt-5 table-responsive">
+  <div class="d-flex align-items-center ml-2">
+    <input type="text" [(ngModel)]="filtroServicio" placeholder="Filtrar por: " class="form-control input-large">
+    <select class="form-select ml-2" [(ngModel)]="selectedCategory" (change)="assignSelectedCategory(selectedCategory)">
+      <option value="">Todas las Categorías</option>
+      <option *ngFor="let categoria of availableCategories" [value]="categoria">{{ categoria }}</option>
+    </select>
+  </div>
+  <br>
+  <br>
+  <table class="table table table-bordered" >
+    <thead>
+    <tr>
+      <th (click)="sortDataByColumn('ID_APPOINTMENT')">
+        ID CITA
+        <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'ID_APPOINTMENT' && isAsc, 'fa-arrow-down': orderBy === 'ID_APPOINTMENT' && !isAsc}"></i>
+      </th>
+      <th (click)="sortDataByColumn('ID_USER')">
+        ID USUARIO
+        <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'ID_USER' && isAsc, 'fa-arrow-down': orderBy === 'ID_USER' && !isAsc}"></i>
+      </th>
+      <th (click)="sortDataByColumn('APPOINTMENTS_DATE')">
+        FECHA DE LA CITA
+        <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'APPOINTMENTS_DATE' && isAsc, 'fa-arrow-down': orderBy === 'APPOINTMENTS_DATE' && !isAsc}"></i>
+      </th>
+      <th (click)="sortDataByColumn('DESCRIPTION')">
+        DESCRIPCION
+        <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'DESCRIPTION' && isAsc, 'fa-arrow-down': orderBy === 'DESCRIPTION' && !isAsc}"></i>
+      </th>
+      <th (click)="sortDataByColumn('STATUS')">
+        ESTADO DE LA CITA
+        <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'STATUS' && isAsc, 'fa-arrow-down': orderBy === 'STATUS' && !isAsc}"></i>
+      </th>
+      <th>MODIFICAR</th>
+      <th>VER</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let dato of filterByCategory() | slice:(currentPage-1)*itemsPerPage:currentPage*itemsPerPage">
+      <td>{{ dato.ID_APPOINTMENT }}</td>
+      <td>{{ dato.ID_USER }}</td>
+      <td>{{ dato.APPOINTMENTS_DATE | date: 'MM/dd/yyyy hh:mm:ss a'}}</td>
+      <td>{{ dato.DESCRIPTION }}</td>
+      <td>{{ dato.STATUS }}</td>
+      <td>
+        <button class="btn btn-primary" (click)="modifyOrder(dato)">Modificar</button>
+      </td>
+      <td>
+        <button class="btn btn-primary" (click)="viewOrder(dato)">VER</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <pagination
+    [totalItems]="orders.length"
+    [(ngModel)]="currentPage"
+    [itemsPerPage]="itemsPerPage"
+    [maxSize]="maxSize"
+    [boundaryLinks]="true"
+    [previousText]="'Anterior'"
+    [nextText]="'Siguiente'"
+    [lastText]="'Final'"
+    [firstText]="'Primer'"
+    (pageChanged)="onPageChange($event)">
+  </pagination>
+</div>
+</body>
+</html>

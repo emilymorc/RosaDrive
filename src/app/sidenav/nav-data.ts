@@ -66,7 +66,7 @@ export const navbarData: INavbarData[] = [
         label: 'Crear',
       },
       {
-        routeLink: '',
+        routeLink: 'viewApoimentComponent',
         label: 'Ver',
       }
     ]

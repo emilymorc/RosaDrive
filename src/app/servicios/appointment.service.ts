@@ -34,4 +34,14 @@ export class AppointmentService {
 
     return this.http.post(`${this.apiUrl}/addAppointment`, appointmentData, { headers });
   }
+
+  getAppointmentsByStatus(status: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'User-Agent': 'insomnia/2023.5.8',
+      'x-access-token': this.castToken
+    });
+
+    return this.http.get(`${this.apiUrl}/getAppointmentByStatus/${status}`, { headers });
+  }
+
 }
