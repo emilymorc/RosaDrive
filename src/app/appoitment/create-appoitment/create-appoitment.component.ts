@@ -6,6 +6,7 @@ import {FormBuilder, NgForm} from "@angular/forms";
 import {HistoryService} from "../../servicios/history.service";
 import {UserService} from "../../servicios/users.service";
 import {AppointmentService} from "../../servicios/appointment.service";
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-create-appoitment',
@@ -38,8 +39,9 @@ export class CreateAppoitmentComponent implements OnInit {
   showError = false; // Para mostrar u ocultar el error
 
 
-  constructor(private http: HttpClient, private router: Router, private toastr: ToastrService, private formBuilder: FormBuilder, public service1: UserService, private appointmentService: AppointmentService) {
+  constructor( private http: HttpClient, private router: Router, private toastr: ToastrService, private formBuilder: FormBuilder, public service1: UserService, private appointmentService: AppointmentService) {
     this.minDate = this.obtenerFechaManana();
+    // console.log('HORA FORMATEADA'+this.formatHourToHHMMSS('12 AM'))
   }
   obtenerFechaManana() {
     const hoy = new Date(); // Obtiene la fecha actual
@@ -61,6 +63,8 @@ export class CreateAppoitmentComponent implements OnInit {
       this.userNamesAndIds = this.concatNamesAndIds(this.usersData);
     });
   }
+
+
 
 
   resetForm(form: any) {
@@ -142,7 +146,8 @@ export class CreateAppoitmentComponent implements OnInit {
   createAppoitment(form: any){
     const appointmentData = {
       idUser: this.id_user,
-      appointmentDate: this.appoitment_date + this.selectedHour,
+      //appointmentDate: this.appoitment_date ,
+      appointmentDate: this.appoitment_date + ' ' + this.formatHourToHHMMSS(this.selectedHour),
       description: this.description,
       status: this.status
     };
@@ -158,6 +163,29 @@ export class CreateAppoitmentComponent implements OnInit {
       }
     );
     console.log(this.selecteUser + "usuario selecionado");
+    console.log(this.formatHourToHHMMSS(this.selectedHour) + "HORAAA");
+  }
+
+  formatHourToHHMMSS(time12H: string): string {
+    // Divide la cadena en horas y período (AM o PM).
+    const [hourStr, period] = time12H.split(' ');
+
+    // Divide la cadena de horas en partes (horas y minutos).
+    const [hour, minutes] = hourStr.split(':').map(Number);
+
+    // Convierte las horas al formato de 24 horas.
+    let hour24 = hour;
+    if (period === 'PM' && hour !== 12) {
+      hour24 += 12;
+    } else if (period === 'AM' && hour === 12) {
+      hour24 = 0;
+    }
+
+    // Formatea la hora en el formato "hh:mm:ss".
+    const hourStr24 = hour24.toString().padStart(2, '0');
+    const minutesStr = minutes.toString().padStart(2, '0');
+
+    return `${hourStr24}:${minutesStr}:00`;
   }
 
 }
