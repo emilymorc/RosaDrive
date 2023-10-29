@@ -30,7 +30,9 @@ export class Login2Component implements OnInit {
     this.authService.logear(this.email, this.password)
       .subscribe((response:any) => {
         const token = response.data.TOKEN;
+        const role = response.data.ROLE
         this.authService.setAuthentication(token);
+        this.authService.setCurrentUser(response);
         localStorage.setItem('token', token);
         console.log(localStorage.getItem('token'))
 

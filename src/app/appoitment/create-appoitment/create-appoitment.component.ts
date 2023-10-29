@@ -7,6 +7,7 @@ import {HistoryService} from "../../servicios/history.service";
 import {UserService} from "../../servicios/users.service";
 import {AppointmentService} from "../../servicios/appointment.service";
 import { DatePipe } from '@angular/common';
+import {AuthService} from "../../servicios/auth.service";
 
 @Component({
   selector: 'app-create-appoitment',
@@ -15,6 +16,7 @@ import { DatePipe } from '@angular/common';
 })
 export class CreateAppoitmentComponent implements OnInit {
 
+  isAdmin: boolean;
   usersData: any[] = [];
   userNamesAndIds: any[] = [];
   userNamesAndLastNames: string[] = [];
@@ -39,10 +41,31 @@ export class CreateAppoitmentComponent implements OnInit {
   showError = false; // Para mostrar u ocultar el error
 
 
-  constructor( private http: HttpClient, private router: Router, private toastr: ToastrService, private formBuilder: FormBuilder, public service1: UserService, private appointmentService: AppointmentService) {
+  constructor( private http: HttpClient, private router: Router, private toastr: ToastrService, private formBuilder: FormBuilder, public service1: UserService, private appointmentService: AppointmentService, private authService: AuthService) {
+    this.isAdmin = this.authService.isUserAdmin();
     this.minDate = this.obtenerFechaManana();
     // console.log('HORA FORMATEADA'+this.formatHourToHHMMSS('12 AM'))
   }
+
+  ngOnInit(): void {
+    if (!this.isAdmin){
+      this.setNameUser();
+    }else {
+      this.service1.getUsers().subscribe((data: any[]) => {
+        this.usersData = data;
+        this.userNamesAndLastNames = this.concatNamesAndLastNames(data);
+        this.userNamesAndIds = this.concatNamesAndIds(this.usersData);
+      });
+    }
+  }
+
+  setNameUser(){
+    const usuario = [this.authService.getCurrentUser().data];
+    this.usersData = usuario;
+    this.userNamesAndLastNames = this.concatNamesAndLastNames(usuario);
+    this.userNamesAndIds = this.concatNamesAndIds(this.usersData);
+  }
+
   obtenerFechaManana() {
     const hoy = new Date(); // Obtiene la fecha actual
     const mañana = new Date(hoy); // Crea una copia de la fecha actual
@@ -56,16 +79,6 @@ export class CreateAppoitmentComponent implements OnInit {
     const fechaManana = `${año}-${mes}-${dia}`; // Formatea la fecha en "YYYY-MM-DD"
     return fechaManana;
   }
-  ngOnInit(): void {
-    this.service1.getUsers().subscribe((data: any[]) => {
-      this.usersData = data;
-      this.userNamesAndLastNames = this.concatNamesAndLastNames(data);
-      this.userNamesAndIds = this.concatNamesAndIds(this.usersData);
-    });
-  }
-
-
-
 
   resetForm(form: any) {
     form.form.reset();
