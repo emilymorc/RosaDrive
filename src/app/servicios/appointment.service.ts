@@ -44,4 +44,14 @@ export class AppointmentService {
     return this.http.get(`${this.apiUrl}/getAppointmentByStatus/${status}`, { headers });
   }
 
+  getAppointmentById(id: number): Observable<any> {
+    const token = this.castToken;
+
+    const headers = new HttpHeaders({
+      'x-access-token': token
+    });
+
+    return this.http.get<any>( `${this.apiUrl}/getAppointmentByUser/${id}`, { headers });
+  }
+
 }
