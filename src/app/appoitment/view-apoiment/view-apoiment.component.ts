@@ -67,6 +67,15 @@ export class ViewApoimentComponent {
       }
     });
   }
+
+  getStatusAppoitment(id: any): boolean{
+    return this.findByID(id).STATUS != 'Activa';
+  }
+
+  findByID(id: number): any {
+    return this.orders.find(order => order.ID_APPOINTMENT === id);
+  }
+
   assignSelectedCategory(category: string): void {
     this.selectedCategory = category;
     console.log(this.selectedCategory);
