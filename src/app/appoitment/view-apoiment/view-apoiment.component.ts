@@ -99,7 +99,7 @@ export class ViewApoimentComponent {
   }
 
   modifyAppoitement(dato: any): void {
-    this.appointmentService.getAppoitmentId(dato.ID_APPOITMENT).subscribe(
+    this.appointmentService.getAppoitmentId(dato.ID_APPOINTMENT).subscribe(
       response => {
         console.log(response.body);
         this.appointmentService.setSelectedAppoitment(dato);
@@ -108,7 +108,7 @@ export class ViewApoimentComponent {
       },
       error => {
         console.error('Error al obtener datos de la cita:', error);
-        this.router.navigate(['/dashboard/modifyOrder']);
+        this.router.navigate(['/dashboard/modifyAppoitment']);
       }
     );
   }

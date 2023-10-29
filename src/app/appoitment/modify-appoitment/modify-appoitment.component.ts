@@ -151,8 +151,9 @@ export class ModifyAppoitmentComponent implements OnInit{
   updateAppoitment(form: any){
     const appointmentData = {
       idUser: this.id_user,
+      idAppoitment: this.selectedAppoitment.ID_APPOINTMENT,
       //appointmentDate: this.appoitment_date ,
-      appointmentDate: this.appoitment_date + ' ' + this.formatHourToHHMMSS(this.selectedHour),
+      //appointmentDate: this.appoitment_date + ' ' + this.formatHourToHHMMSS(this.selectedHour),
       description: this.description,
       status: this.status
     };
