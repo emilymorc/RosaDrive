@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+<div class="header">
+  <h1>Crear Cita</h1>
+</div>
+
+<div >
+  <form #myForm="ngForm" (submit)="updateAppoitment(myForm)">
+    <div class="orderService-form">
+
+      <label class="label">Nombre Usuario</label>
+      <br>
+
+      <select [(ngModel)]="selectedAppoitment.ID_USER" name="id_user">
+        <option *ngFor="let user of userNamesAndIds" [ngValue]="user.id">{{user.name}}</option>
+      </select>
+      <br>
+      <br>
+      <label class="label">Fechas Disponibles</label>
+      <br>
+      <input type="date" id="entryDate" name="entryDate" (change)="onDateChange()" [(ngModel)]="fecha" [min]="minDate">
+
+      <br>
+      <br>
+      <label class="label">Horas Disponibles</label>
+      <br>
+      <select [(ngModel)]="hora" name="selectedHour">
+        <option value="" disabled selected>Seleccione una hora</option>
+        <option *ngFor="let hora of horasDisponibles" [value]="hora">{{ hora }}</option>
+
+      </select>
+      <br>
+      <br>
+      <label class="label">Descripción de la cita</label>
+      <br>
+      <textarea id="description" [(ngModel)]="selectedAppoitment.DESCRIPTION" name="description"  rows="4" required maxlength="255" ></textarea>
+
+      <br>
+      <br>
+      <br>
+    </div>
+    <button class="buttonSave" type="submit" >Modificar</button>
+
+
+  </form>
+</div>
+
+</body>
+</html>
+
+
+
+

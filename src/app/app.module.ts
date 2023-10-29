@@ -38,6 +38,7 @@ import { AddChangeComponent } from './order-service/add-change/add-change.compon
 import { CreateAppoitmentComponent } from './appoitment/create-appoitment/create-appoitment.component';
 import { AppoitmentComponent } from './appoitment/appoitment.component';
 import { ViewApoimentComponent } from './appoitment/view-apoiment/view-apoiment.component';
+import { ModifyAppoitmentComponent } from './appoitment/modify-appoitment/modify-appoitment.component';
 
 
 
@@ -71,7 +72,8 @@ import { ViewApoimentComponent } from './appoitment/view-apoiment/view-apoiment.
     AddChangeComponent,
     CreateAppoitmentComponent,
     AppoitmentComponent,
-    ViewApoimentComponent
+    ViewApoimentComponent,
+    ModifyAppoitmentComponent
   ],
     imports: [
         PaginationModule.forRoot(),

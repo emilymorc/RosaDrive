@@ -34,15 +34,7 @@ export class ModifyOrderComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    /*this.service1.getHistories().subscribe(
-      (data: any) => {
-        this.histories = data;
-        console.log(data)
-      },
-      (error: any) => {
-        console.error(error);
-      }
-    );*/
+
     this.selectedOrder = this.orderService.getSelectedOrder();
   }
 

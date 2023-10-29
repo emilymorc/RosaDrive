@@ -98,18 +98,18 @@ export class ViewApoimentComponent {
     );*/
   }
 
-  modifyOrder(dato: any): void {
-    /*this.orderService.getOrdersHistory(dato.ID_STORY).subscribe(
+  modifyAppoitement(dato: any): void {
+    this.appointmentService.getAppoitmentId(dato.ID_APPOITMENT).subscribe(
       response => {
         console.log(response.body);
-        this.orderService.setSelectedOrder(dato);
-        this.router.navigate(['/dashboard/modifyOrder']);
-        console.log('Datos del la orden:', response);
+        this.appointmentService.setSelectedAppoitment(dato);
+        this.router.navigate(['/dashboard/modifyAppoitment']);
+        console.log('Datos de la cita', response);
       },
       error => {
-        console.error('Error al obtener datos de la orden:', error);
+        console.error('Error al obtener datos de la cita:', error);
         this.router.navigate(['/dashboard/modifyOrder']);
       }
-    );*/
+    );
   }
 }
