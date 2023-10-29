@@ -44,21 +44,21 @@
         <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'STATUS' && isAsc, 'fa-arrow-down': orderBy === 'STATUS' && !isAsc}"></i>
       </th>
       <th>MODIFICAR</th>
-      <th>VER</th>
+      <th>ELIMINAR</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let dato of filterByCategory() | slice:(currentPage-1)*itemsPerPage:currentPage*itemsPerPage">
       <td>{{ dato.ID_APPOINTMENT }}</td>
       <td>{{ dato.ID_USER }}</td>
-      <td>{{ dato.APPOINTMENTS_DATE | date: 'MM/dd/yyyy hh:mm:ss a'}}</td>
+      <td>{{ dato.APPOINTMENTS_DATE | date:'dd/MM/yyyy hh:mm a':'-0000'  }}</td>
       <td>{{ dato.DESCRIPTION }}</td>
       <td>{{ dato.STATUS }}</td>
       <td>
-        <button class="btn btn-primary" (click)="modifyOrder(dato)">Modificar</button>
+        <button class="btn btn-primary" (click)="modifyOrder(dato)" [disabled]="getStatusAppoitment(dato.ID_APPOINTMENT)">Modificar</button>
       </td>
       <td>
-        <button class="btn btn-primary" (click)="viewOrder(dato)">VER</button>
+        <button class="btn btn-danger" (click)="viewOrder(dato)">ELIMINAR</button>
       </td>
     </tr>
     </tbody>
