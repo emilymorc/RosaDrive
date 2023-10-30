@@ -11,17 +11,17 @@
   <form #myForm="ngForm" (submit)="updateAppoitment(myForm)">
     <div class="orderService-form">
 
-      <label class="label">Nombre Usuario</label>
+     <!-- <label class="label">Nombre Usuario</label>
       <br>
 
       <select [(ngModel)]="selectedAppoitment.ID_USER" name="id_user">
         <option *ngFor="let user of userNamesAndIds" [ngValue]="user.id">{{user.name}}</option>
       </select>
-      <br>
+      <br>-->
       <br>
       <label class="label">Fechas Disponibles</label>
       <br>
-      <input type="date" id="entryDate" name="entryDate" (change)="onDateChange()" [(ngModel)]="fecha" [min]="minDate">
+      <input type="date" id="entryDate" name="entryDate" (change)="onDateChange(myForm)" [(ngModel)]="fecha" [min]="minDate">
 
       <br>
       <br>
@@ -42,9 +42,9 @@
       <br>
       <label class="label">Estado de la cita</label>
       <br>
-      <select id="status" name="status" [(ngModel)]="appoitmentState">
+      <select id="status" name="status" [(ngModel)]="selectedAppoitment.STATUS">
         <option value="" disabled selected>Seleccione una opción</option>
-        <option *ngFor="let n of appoitmentState" [value]="n">{{n}}</option>
+        <option *ngFor="let n of appoitmentState" >{{n}}</option>
       </select>
     </div>
     <button class="buttonSave" type="submit" >Modificar</button>

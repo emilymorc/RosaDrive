@@ -36,8 +36,7 @@ export class ModifyAppoitmentComponent implements OnInit{
   selectedHour: string = '';
   selectedAppoitment: any = {};
   selecteUser: any = {};
-  selectedLicensePlate: number = 0;
-  showError = false; // Para mostrar u ocultar el error
+
 
 
   constructor( private http: HttpClient, private router: Router, private toastr: ToastrService, private formBuilder: FormBuilder, public service1: UserService, private appointmentService: AppointmentService) {
@@ -45,7 +44,7 @@ export class ModifyAppoitmentComponent implements OnInit{
     // console.log('HORA FORMATEADA'+this.formatHourToHHMMSS('12 AM'))
   }
 
-  appoitmentState= ['Activa', 'En Curso', 'Completada', 'Cancelada'];
+  appoitmentState= ['Activa', 'Completada', 'Cancelada'];
   obtenerFechaManana() {
     const hoy = new Date(); // Obtiene la fecha actual
     const mañana = new Date(hoy); // Crea una copia de la fecha actual
@@ -105,11 +104,11 @@ export class ModifyAppoitmentComponent implements OnInit{
   }
 
 
-  onDateChange(){
+  onDateChange(form: NgForm){
     this.horasDisponibles = [];
     console.log(this.appoitment_date );
     console.log(this.selectedHour + "hora seleccionada");
-    this.getBusyHours(this.appoitment_date + " 12:00:00");
+    this.getBusyHours(form.value.entryDate + " 12:00:00");
   }
 
   getBusyHours(date: string) {
@@ -167,14 +166,15 @@ export class ModifyAppoitmentComponent implements OnInit{
 
   updateAppoitment(form: NgForm){
     const appointmentData = {
-      idUser: form.value.id_user,
+      idUser: this.selectedAppoitment.ID_USER,
       idAppointment: this.selectedAppoitment.ID_APPOINTMENT,
-      //appointmentDate: this.appoitment_date ,
+      appointmentDate: form.value.entryDate+ ' ' + this.formatHourToHHMMSS(form.value.selectedHour),
       //appointmentDate: form.value.appoitment_date + ' ' + this.formatHourToHHMMSS(this.selectedHour),
       description: form.value.description,
       status: form.value.status
 
     };
+    console.log('fecha'+form.value.entryDate)
 
     this.appointmentService.updateAppoitment(appointmentData).subscribe(
       (response) => {
