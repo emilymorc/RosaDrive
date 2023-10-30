@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
-import {FormBuilder} from "@angular/forms";
+import {FormBuilder, NgForm} from "@angular/forms";
 import {UserService} from "../../servicios/users.service";
 import {AppointmentService} from "../../servicios/appointment.service";
 
@@ -20,6 +20,7 @@ export class ModifyAppoitmentComponent implements OnInit{
   status: string = 'Activa';
   responsible_technician: string = '';
   appoitment_date: string = '';
+  fecha_hora: string = '';
   inspection_type: string = '';
   total_cost: number = 0;
   id_story: number = 0;
@@ -27,7 +28,6 @@ export class ModifyAppoitmentComponent implements OnInit{
   issuing_location: string = '2';
   users: any[] = [];
   horasOcupadas: any[] = [];
-  fechaCompleta: string = '2023-10-24T08:00:00.000Z';
   fecha: string= '';
   hora: string= '';
 
@@ -63,13 +63,27 @@ export class ModifyAppoitmentComponent implements OnInit{
       this.userNamesAndLastNames = this.concatNamesAndLastNames(data);
       this.userNamesAndIds = this.concatNamesAndIds(this.usersData);
       this.selectedAppoitment = this.appointmentService.getSelectedAppoitment();
-      const fechaHora = this.selectedAppoitment.APPOINTMENTS_DATE;
-      this.fecha = fechaHora.toISOString().split('T')[0]; // Obtenemos la parte de la fecha
-      this.hora = fechaHora.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); // Obtenemos la hora en formato 'hh:mm'
+      this.fecha_hora = this.selectedAppoitment.APPOINTMENTS_DATE;
+      this.id_user = this.selectedAppoitment.ID_USER;
+
+      this.fecha = this.fecha_hora.split('T')[0]; // Obtenemos la parte de la fecha
+      this.hora= this.obtenerHoraFormateada(this.fecha_hora)
+
     });
   }
 
+  obtenerHoraFormateada(fecha1: string) {
+    const fecha = new Date(fecha1);
+    const horas = fecha.getHours();
+    const minutos = fecha.getMinutes();
+    const ampm = horas >= 12 ? 'PM' : 'AM';
 
+    // Formatear las horas y los minutos
+    const horasFormateadas = (horas % 12) || 12; // Convertir 0 a 12
+    const minutosFormateados = minutos < 10 ? '0' + minutos : minutos;
+
+    return `${horasFormateadas}:${minutosFormateados} ${ampm}`;
+  }
 
 
   resetForm(form: any) {
@@ -148,14 +162,15 @@ export class ModifyAppoitmentComponent implements OnInit{
     );
   }
 
-  updateAppoitment(form: any){
+  updateAppoitment(form: NgForm){
     const appointmentData = {
-      idUser: this.id_user,
-      idAppoitment: this.selectedAppoitment.ID_APPOINTMENT,
+      idUser: form.value.id_user,
+      idAppointment: this.selectedAppoitment.ID_APPOINTMENT,
       //appointmentDate: this.appoitment_date ,
-      //appointmentDate: this.appoitment_date + ' ' + this.formatHourToHHMMSS(this.selectedHour),
-      description: this.description,
+      //appointmentDate: form.value.appoitment_date + ' ' + this.formatHourToHHMMSS(this.selectedHour),
+      description: form.value.description,
       status: this.status
+
     };
 
     this.appointmentService.updateAppoitment(appointmentData).subscribe(
