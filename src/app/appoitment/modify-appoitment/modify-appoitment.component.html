@@ -40,7 +40,12 @@
 
       <br>
       <br>
+      <label class="label">Estado de la cita</label>
       <br>
+      <select id="status" name="status" [(ngModel)]="appoitmentState">
+        <option value="" disabled selected>Seleccione una opción</option>
+        <option *ngFor="let n of appoitmentState" [value]="n">{{n}}</option>
+      </select>
     </div>
     <button class="buttonSave" type="submit" >Modificar</button>
 

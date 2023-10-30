@@ -17,7 +17,7 @@ export class ModifyAppoitmentComponent implements OnInit{
   userNamesAndLastNames: string[] = [];
   description: string = '';
   id_user: number = 0;
-  status: string = 'Activa';
+  status: string = '';
   responsible_technician: string = '';
   appoitment_date: string = '';
   fecha_hora: string = '';
@@ -44,6 +44,8 @@ export class ModifyAppoitmentComponent implements OnInit{
     this.minDate = this.obtenerFechaManana();
     // console.log('HORA FORMATEADA'+this.formatHourToHHMMSS('12 AM'))
   }
+
+  appoitmentState= ['Activa', 'En Curso', 'Completada', 'Cancelada'];
   obtenerFechaManana() {
     const hoy = new Date(); // Obtiene la fecha actual
     const mañana = new Date(hoy); // Crea una copia de la fecha actual
@@ -65,6 +67,7 @@ export class ModifyAppoitmentComponent implements OnInit{
       this.selectedAppoitment = this.appointmentService.getSelectedAppoitment();
       this.fecha_hora = this.selectedAppoitment.APPOINTMENTS_DATE;
       this.id_user = this.selectedAppoitment.ID_USER;
+      this.status == this.selectedAppoitment.STAATUS;
 
       this.fecha = this.fecha_hora.split('T')[0]; // Obtenemos la parte de la fecha
       this.hora= this.obtenerHoraFormateada(this.fecha_hora)
@@ -169,7 +172,7 @@ export class ModifyAppoitmentComponent implements OnInit{
       //appointmentDate: this.appoitment_date ,
       //appointmentDate: form.value.appoitment_date + ' ' + this.formatHourToHHMMSS(this.selectedHour),
       description: form.value.description,
-      status: this.status
+      status: form.value.status
 
     };
 
