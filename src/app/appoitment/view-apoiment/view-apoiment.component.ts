@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {OrderService} from "../../servicios/order.service";
 import {HistoryService} from "../../servicios/history.service";
 import {AppointmentService} from "../../servicios/appointment.service";
+import {AuthService} from "../../servicios/auth.service";
 
 @Component({
   selector: 'app-view-apoiment',
@@ -11,6 +12,7 @@ import {AppointmentService} from "../../servicios/appointment.service";
 })
 export class ViewApoimentComponent {
 
+  isAdmin: boolean;
   currentPage: number = 1;
   itemsPerPage: number = 10;
   maxSize: number = 10;
@@ -27,17 +29,30 @@ export class ViewApoimentComponent {
   orders: any[] = [];
   histories: any[] = [];
 
-  constructor(private router: Router, private appointmentService :AppointmentService) { }
+  constructor(private router: Router, private appointmentService :AppointmentService,private authService: AuthService) {
+    this.isAdmin = this.authService.isUserAdmin();
+  }
 
   ngOnInit(): void {
-    this.appointmentService.getAppointmentsByStatus('All').subscribe(
-      data => {
-        this.orders = data;
-      },
-      error => {
-        console.error('Error al obtener usuarios:', error);
-      }
-    );
+    if(this.isAdmin){
+      this.appointmentService.getAppointmentsByStatus('All').subscribe(
+        data => {
+          this.orders = data;
+        },
+        error => {
+          console.error('Error al obtener usuarios:', error);
+        }
+      );
+    }else {
+      this.appointmentService.getAppointmentById(this.authService.getCurrentUser().data.ID_USER).subscribe(
+        data => {
+          this.orders = data;
+        },
+        error => {
+          console.error('Error al obtener usuario:', error);
+        }
+      );
+    }
   }
   onPageChange(event: any): void {
     this.currentPage = event.page;
@@ -67,6 +82,15 @@ export class ViewApoimentComponent {
       }
     });
   }
+
+  getStatusAppoitment(id: any): boolean{
+    return this.findByID(id).STATUS != 'Activa';
+  }
+
+  findByID(id: number): any {
+    return this.orders.find(order => order.ID_APPOINTMENT === id);
+  }
+
   assignSelectedCategory(category: string): void {
     this.selectedCategory = category;
     console.log(this.selectedCategory);

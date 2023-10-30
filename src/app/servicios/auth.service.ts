@@ -9,10 +9,11 @@ export class AuthService {
 
   private isAuthenticated: boolean = false;
   private authToken: string = '';
+  private currentUser: any;
 
   constructor(private http: HttpClient){
     this.isAuthenticated = !!localStorage.getItem('token');
-
+    this.currentUser = null;
     console.log(this.isAuthenticated);
   }
 
@@ -44,5 +45,21 @@ export class AuthService {
     this.authToken = token;
     localStorage.setItem(this.authToken,token);
   }
+
+  setCurrentUser(user: any): void {
+    this.currentUser = user;
+  }
+
+  getCurrentUser(): any {
+    // Devuelve la información del usuario almacenada en currentUser
+    return this.currentUser;
+  }
+
+  isUserAdmin(): boolean {
+    const usuario = this.getCurrentUser().data;
+    return usuario && usuario.ROLE === 'Admin';
+  }
+
+
 }
 

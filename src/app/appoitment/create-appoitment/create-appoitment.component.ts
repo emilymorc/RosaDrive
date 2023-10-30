@@ -7,6 +7,7 @@ import {HistoryService} from "../../servicios/history.service";
 import {UserService} from "../../servicios/users.service";
 import {AppointmentService} from "../../servicios/appointment.service";
 import { DatePipe } from '@angular/common';
+import {AuthService} from "../../servicios/auth.service";
 
 @Component({
   selector: 'app-create-appoitment',
@@ -15,6 +16,7 @@ import { DatePipe } from '@angular/common';
 })
 export class CreateAppoitmentComponent implements OnInit {
 
+  isAdmin: boolean;
   usersData: any[] = [];
   userNamesAndIds: any[] = [];
   userNamesAndLastNames: string[] = [];
@@ -39,10 +41,31 @@ export class CreateAppoitmentComponent implements OnInit {
   showError = false; // Para mostrar u ocultar el error
 
 
-  constructor( private http: HttpClient, private router: Router, private toastr: ToastrService, private formBuilder: FormBuilder, public service1: UserService, private appointmentService: AppointmentService) {
+  constructor( private http: HttpClient, private router: Router, private toastr: ToastrService, private formBuilder: FormBuilder, public service1: UserService, private appointmentService: AppointmentService, private authService: AuthService) {
+    this.isAdmin = this.authService.isUserAdmin();
     this.minDate = this.obtenerFechaManana();
     // console.log('HORA FORMATEADA'+this.formatHourToHHMMSS('12 AM'))
   }
+
+  ngOnInit(): void {
+    if (!this.isAdmin){
+      this.setNameUser();
+    }else {
+      this.service1.getUsers().subscribe((data: any[]) => {
+        this.usersData = data;
+        this.userNamesAndLastNames = this.concatNamesAndLastNames(data);
+        this.userNamesAndIds = this.concatNamesAndIds(this.usersData);
+      });
+    }
+  }
+
+  setNameUser(){
+    const usuario = [this.authService.getCurrentUser().data];
+    this.usersData = usuario;
+    this.userNamesAndLastNames = this.concatNamesAndLastNames(usuario);
+    this.userNamesAndIds = this.concatNamesAndIds(this.usersData);
+  }
+
   obtenerFechaManana() {
     const hoy = new Date(); // Obtiene la fecha actual
     const mañana = new Date(hoy); // Crea una copia de la fecha actual
@@ -56,16 +79,6 @@ export class CreateAppoitmentComponent implements OnInit {
     const fechaManana = `${año}-${mes}-${dia}`; // Formatea la fecha en "YYYY-MM-DD"
     return fechaManana;
   }
-  ngOnInit(): void {
-    this.service1.getUsers().subscribe((data: any[]) => {
-      this.usersData = data;
-      this.userNamesAndLastNames = this.concatNamesAndLastNames(data);
-      this.userNamesAndIds = this.concatNamesAndIds(this.usersData);
-    });
-  }
-
-
-
 
   resetForm(form: any) {
     form.form.reset();
@@ -118,22 +131,25 @@ export class CreateAppoitmentComponent implements OnInit {
   }
 
 
-
   generarHorasDisponibles() {
     this.horasDisponibles = [];
 
     // Generar horas de la mañana (8:00 AM - 12:00 PM)
     for (let hora = 8; hora <= 12; hora++) {
       for (let minutos = 0; minutos < 60; minutos += 30) {
-        const horaFormato12h = `${hora % 12 === 0 ? 12 : hora % 12}:${minutos === 0 ? '00' : minutos} ${hora < 12 ? 'AM' : 'PM'}`;
+        const horaFormateada = hora.toString().padStart(2, '0');
+        const minutosFormateados = minutos === 0 ? '00' : minutos.toString().padStart(2, '0');
+        const horaFormato12h = `${horaFormateada}:${minutosFormateados} ${hora < 12 ? 'AM' : 'PM'}`;
         this.horasDisponibles.push(horaFormato12h);
       }
     }
 
-    // Generar horas de la tarde (2:00 PM - 4:30 PM)
-    for (let hora = 14; hora <= 16; hora++) {
+    // Generar horas de la tarde (1:00 PM - 4:30 PM)
+    for (let hora = 2; hora <= 4; hora++) {
       for (let minutos = 0; minutos < 60; minutos += 30) {
-        const horaFormato12h = `${hora % 12}:${minutos === 0 ? '00' : minutos} ${hora < 12 ? 'AM' : 'PM'}`;
+        const horaFormateada = hora.toString().padStart(2, '0');
+        const minutosFormateados = minutos === 0 ? '00' : minutos.toString().padStart(2, '0');
+        const horaFormato12h = `${horaFormateada}:${minutosFormateados} ${hora < 2 ? 'AM' : 'PM'}`;
         this.horasDisponibles.push(horaFormato12h);
       }
     }
@@ -142,6 +158,8 @@ export class CreateAppoitmentComponent implements OnInit {
       !this.horasOcupadas.includes(horaDisponible)
     );
   }
+
+
 
   createAppoitment(form: any){
     const appointmentData = {
@@ -156,6 +174,7 @@ export class CreateAppoitmentComponent implements OnInit {
       (response) => {
         console.log('Éxito: ', response);
         this.toastr.success("Cita creada con exito", "EXITOSO!");
+        form.reset();
       },
       (error) => {
         console.error('Error: ', error);
