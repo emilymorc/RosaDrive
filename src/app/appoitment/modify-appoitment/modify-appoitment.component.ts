@@ -61,7 +61,7 @@ export class ModifyAppoitmentComponent implements OnInit{
   }
   ngOnInit(): void {
     if (!this.authService.isUserAdmin()){
-      this.appoitmentState= ['Cancelada'];
+      this.appoitmentState= ['Activa','Cancelada'];
     }
 
     /*this.service1.getUsers().subscribe((data: any[]) => {
