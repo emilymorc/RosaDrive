@@ -4,6 +4,7 @@ import {OrderService} from "../../servicios/order.service";
 import {HistoryService} from "../../servicios/history.service";
 import {AppointmentService} from "../../servicios/appointment.service";
 import {AuthService} from "../../servicios/auth.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-view-apoiment',
@@ -17,7 +18,7 @@ export class ViewApoimentComponent {
   itemsPerPage: number = 10;
   maxSize: number = 10;
   orderBy: string | null = null;
-  isAsc: boolean = true;
+  isAsc: boolean = false;
   filtroServicio: string = '';
 
   availableCategories: string[] = ['Descripción', 'Estado'];
@@ -29,7 +30,10 @@ export class ViewApoimentComponent {
   orders: any[] = [];
   histories: any[] = [];
 
-  constructor(private router: Router, private appointmentService :AppointmentService,private authService: AuthService) {
+  constructor(private router: Router,
+              private appointmentService: AppointmentService,
+              private authService: AuthService,
+              private toastr: ToastrService) {
     this.isAdmin = this.authService.isUserAdmin();
   }
 
@@ -53,7 +57,23 @@ export class ViewApoimentComponent {
         }
       );
     }
+    this.sortDataByColumn('APPOINTMENTS_DATE');
   }
+
+  convertISOtoCustomFormat(date: string) {
+    const isoDate = new Date(date);
+    const year = isoDate.getFullYear();
+    const month = String(isoDate.getMonth() + 1).padStart(2, '0');
+    const day = String(isoDate.getDate()).padStart(2, '0');
+    const hours = String(isoDate.getHours()).padStart(2, '0');
+    const minutes = String(isoDate.getMinutes()).padStart(2, '0');
+    const seconds = String(isoDate.getSeconds()).padStart(2, '0');
+
+    const customFormatDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
+    return customFormatDate;
+  }
+
   onPageChange(event: any): void {
     this.currentPage = event.page;
   }
@@ -107,21 +127,6 @@ export class ViewApoimentComponent {
     }
   }
 
-  viewOrder(dato: any): void {
-    /*this.orderService.getOrdersHistory(dato.ID_STORY).subscribe(
-      response => {
-        console.log(response.body);
-        this.orderService.setSelectedOrder(dato);
-        this.router.navigate(['/dashboard/detailsOrder']);
-        console.log('Datos del la orden:', response);
-      },
-      error => {
-        console.error('Error al obtener datos de la orden:', error);
-        this.router.navigate(['/dashboard/detailsOrder']);
-      }
-    );*/
-  }
-
   modifyAppoitement(dato: any): void {
     this.appointmentService.getAppoitmentId(dato.ID_APPOINTMENT).subscribe(
       response => {
@@ -133,6 +138,25 @@ export class ViewApoimentComponent {
       error => {
         console.error('Error al obtener datos de la cita:', error);
         this.router.navigate(['/dashboard/modifyAppoitment']);
+      }
+    );
+  }
+  cancelApoiment(dato: any): void {
+    const appointmentData = {
+      idUser: dato.ID_USER,
+      idAppointment: dato.ID_APPOINTMENT,
+      appointmentDate: this.convertISOtoCustomFormat(dato.APPOINTMENTS_DATE),
+      description: dato.DESCRIPTION,
+      status: 'Cancelada'
+    };
+    this.appointmentService.updateAppoitment(appointmentData).subscribe(
+      (response) => {
+        console.log('Éxito: ', response);
+        this.toastr.success("Cita cancelada con exito", "EXITOSO!");
+      },
+      (error) => {
+        console.error('Error: ', error);
+        this.toastr.error("Error al cancelar la cita", "Error");
       }
     );
   }
