@@ -5,6 +5,7 @@ import {ToastrService} from "ngx-toastr";
 import {FormBuilder, NgForm} from "@angular/forms";
 import {UserService} from "../../servicios/users.service";
 import {AppointmentService} from "../../servicios/appointment.service";
+import {AuthService} from "../../servicios/auth.service";
 
 @Component({
   selector: 'app-modify-appoitment',
@@ -39,7 +40,7 @@ export class ModifyAppoitmentComponent implements OnInit{
 
 
 
-  constructor( private http: HttpClient, private router: Router, private toastr: ToastrService, private formBuilder: FormBuilder, public service1: UserService, private appointmentService: AppointmentService) {
+  constructor( private http: HttpClient, private router: Router, private toastr: ToastrService, private formBuilder: FormBuilder, public service1: UserService, private appointmentService: AppointmentService, private authService: AuthService) {
     this.minDate = this.obtenerFechaManana();
     // console.log('HORA FORMATEADA'+this.formatHourToHHMMSS('12 AM'))
   }
@@ -59,6 +60,10 @@ export class ModifyAppoitmentComponent implements OnInit{
     return fechaManana;
   }
   ngOnInit(): void {
+    if (!this.authService.isUserAdmin()){
+      this.appoitmentState= ['Cancelada'];
+    }
+
     this.service1.getUsers().subscribe((data: any[]) => {
       this.usersData = data;
       this.userNamesAndLastNames = this.concatNamesAndLastNames(data);
