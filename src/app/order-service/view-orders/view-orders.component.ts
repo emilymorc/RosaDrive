@@ -137,7 +137,7 @@ export class ViewOrdersComponent implements OnInit{
   }
 
   deleteOrder(historyId: number, orderId: number): void {
-    const confirmation = confirm('¿Estás seguro de que deseas eliminar este usuario?');
+    const confirmation = confirm('¿Estás seguro de que deseas eliminar esta orden?');
 
     if (confirmation) {
       this.orderService.deleteOrder(historyId, orderId).subscribe(
