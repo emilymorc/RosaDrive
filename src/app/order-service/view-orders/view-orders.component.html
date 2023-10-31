@@ -45,6 +45,7 @@
       <th>COSTO TOTAL</th>
       <th>MODIFICAR</th>
       <th>VER</th>
+      <th>ELIMINAR</th>
     </tr>
     </thead>
     <tbody>
@@ -60,6 +61,9 @@
       </td>
       <td>
         <button class="btn btn-primary" (click)="viewOrder(dato)">VER</button>
+      </td>
+      <td>
+        <button class="btn btn-danger" (click)="deleteOrder(dato.ID_STORY, dato.ID_ORDER)">ELIMINAR</button>
       </td>
     </tr>
     </tbody>

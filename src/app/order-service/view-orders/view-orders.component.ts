@@ -4,6 +4,7 @@ import {UserService} from "../../servicios/users.service";
 import {OrderService} from "../../servicios/order.service";
 import {HistoryService} from "../../servicios/history.service";
 import {compareSegments} from "@angular/compiler-cli/src/ngtsc/sourcemaps/src/segment_marker";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-view-orders',
@@ -27,7 +28,7 @@ export class ViewOrdersComponent implements OnInit{
   orders: any[] = [];
   histories: any[] = [];
 
-  constructor(private router: Router, private orderService :OrderService, private historyService:HistoryService) { }
+  constructor(private router: Router, private orderService :OrderService, private historyService:HistoryService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.orderService.getAllOrders().subscribe(
@@ -135,35 +136,19 @@ export class ViewOrdersComponent implements OnInit{
     );
   }
 
-  /*modificarUsuario(dato: any): void {
-    this.userService.getUserById(dato.ID_USER).subscribe(
-      response => {
-        console.log(response.body);
-        this.userService.setSelectedUser(dato);
-        this.router.navigate(['/dashboard/modifyAccount']);
-        console.log('Datos del usuario:', response);
-      },
-      error => {
-        console.error('Error al obtener datos del usuario:', error);
-      }
-    );
-  }*/
-
-  /*deleteOrder(userId: number): void {
+  deleteOrder(historyId: number, orderId: number): void {
     const confirmation = confirm('¿Estás seguro de que deseas eliminar este usuario?');
 
     if (confirmation) {
-      this.userService.deleteUser(userId).subscribe(
+      this.orderService.deleteOrder(historyId, orderId).subscribe(
         (response) => {
-          console.log('Usuario eliminado:', response);
-          // Actualizar la lista de usuarios después de la eliminación
-          this.users = this.users.filter(user => user.ID_USER !== userId);
+          this.toastr.success("Orden eliminada con exito", "EXITOSO!");
         },
         (error) => {
-          console.error('Error al eliminar el usuario:', error);
+          this.toastr.error("Error al eliminar la orden", "Error");
         }
       );
     }
-  }*/
+  }
 
 }

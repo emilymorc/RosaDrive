@@ -35,7 +35,7 @@ export class OrderService{
     const url = `${this.apiUrl}/deleteOrder/${historyId}/${orderId}`;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNjk1NTExNjM5LCJleHAiOjE2OTU1OTgwMzl9.RSFszepzG1yrHNfkofZzfpyM612Hc3EA_FwXmO5IwgM' // Asegúrate de actualizar este token
+      'x-access-token': this.castToken
     });
 
     return this.http.delete(url, { headers });
