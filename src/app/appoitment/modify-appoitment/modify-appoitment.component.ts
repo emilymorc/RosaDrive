@@ -193,6 +193,7 @@ export class ModifyAppoitmentComponent implements OnInit{
       (response) => {
         console.log('Éxito: ', response);
         this.toastr.success("Cita modificada con exito", "EXITOSO!");
+        this.router.navigate(['/dashboard/viewApoimentComponent']);
       },
       (error) => {
         console.error('Error: ', error);
