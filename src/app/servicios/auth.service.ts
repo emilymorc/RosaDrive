@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class AuthService {
 
   private isAuthenticated: boolean = false;
+  private user: any;
   private authToken: string = '';
   private currentUser: any;
 
@@ -48,18 +49,16 @@ export class AuthService {
 
   setCurrentUser(user: any): void {
     this.currentUser = user;
+    this.user = this.getCurrentUser().data;
   }
 
   getCurrentUser(): any {
-    // Devuelve la información del usuario almacenada en currentUser
     return this.currentUser;
   }
 
   isUserAdmin(): boolean {
-    const usuario = this.getCurrentUser().data;
-    return usuario && usuario.ROLE === 'Admin';
+    return this.user && this.user.ROLE === 'Admin';
   }
-
 
 }
 
