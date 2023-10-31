@@ -44,7 +44,7 @@
         <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'STATUS' && isAsc, 'fa-arrow-down': orderBy === 'STATUS' && !isAsc}"></i>
       </th>
       <th>MODIFICAR</th>
-      <th>ELIMINAR</th>
+      <th>CANCELAR</th>
     </tr>
     </thead>
     <tbody>
@@ -55,10 +55,10 @@
       <td>{{ dato.DESCRIPTION }}</td>
       <td>{{ dato.STATUS }}</td>
       <td>
-        <button class="btn btn-primary" (click)="modifyOrder(dato)" [disabled]="getStatusAppoitment(dato.ID_APPOINTMENT)">Modificar</button>
+        <button class="btn btn-primary" (click)="modifyAppoitement(dato)" [disabled]="getStatusAppoitment(dato.ID_APPOINTMENT)">Modificar</button>
       </td>
       <td>
-        <button class="btn btn-danger" (click)="viewOrder(dato)">ELIMINAR</button>
+        <button class="btn btn-danger" (click)="cancelApoiment(dato) " [disabled]="getStatusAppoitment(dato.ID_APPOINTMENT)">CANCELAR</button>
       </td>
     </tr>
     </tbody>
