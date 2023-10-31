@@ -174,7 +174,7 @@ export class CreateAppoitmentComponent implements OnInit {
       (response) => {
         console.log('Éxito: ', response);
         this.toastr.success("Cita creada con exito", "EXITOSO!");
-        form.reset();
+        this.resetForm(form);
       },
       (error) => {
         console.error('Error: ', error);
@@ -206,5 +206,7 @@ export class CreateAppoitmentComponent implements OnInit {
 
     return `${hourStr24}:${minutesStr}:00`;
   }
+
+
 
 }

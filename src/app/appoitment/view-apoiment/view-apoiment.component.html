@@ -55,7 +55,7 @@
       <td>{{ dato.DESCRIPTION }}</td>
       <td>{{ dato.STATUS }}</td>
       <td>
-        <button class="btn btn-primary" (click)="modifyOrder(dato)" [disabled]="getStatusAppoitment(dato.ID_APPOINTMENT)">Modificar</button>
+        <button class="btn btn-primary" (click)="modifyAppoitement(dato)" [disabled]="getStatusAppoitment(dato.ID_APPOINTMENT)">Modificar</button>
       </td>
       <td>
         <button class="btn btn-danger" (click)="viewOrder(dato)">ELIMINAR</button>
