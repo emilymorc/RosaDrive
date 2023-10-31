@@ -64,7 +64,7 @@ export class ModifyAppoitmentComponent implements OnInit{
       this.appoitmentState= ['Cancelada'];
     }
 
-    this.service1.getUsers().subscribe((data: any[]) => {
+    /*this.service1.getUsers().subscribe((data: any[]) => {
       this.usersData = data;
       this.userNamesAndLastNames = this.concatNamesAndLastNames(data);
       this.userNamesAndIds = this.concatNamesAndIds(this.usersData);
@@ -76,7 +76,15 @@ export class ModifyAppoitmentComponent implements OnInit{
       this.fecha = this.fecha_hora.split('T')[0]; // Obtenemos la parte de la fecha
       this.hora= this.obtenerHoraFormateada(this.fecha_hora)
 
-    });
+    });*/
+    this.userNamesAndIds = this.concatNamesAndIds(this.usersData);
+    this.selectedAppoitment = this.appointmentService.getSelectedAppoitment();
+    this.fecha_hora = this.selectedAppoitment.APPOINTMENTS_DATE;
+    this.id_user = this.selectedAppoitment.ID_USER;
+    this.status == this.selectedAppoitment.STAATUS;
+
+    this.fecha = this.fecha_hora.split('T')[0]; // Obtenemos la parte de la fecha
+    this.hora= this.obtenerHoraFormateada(this.fecha_hora)
   }
 
   obtenerHoraFormateada(fecha1: string) {
