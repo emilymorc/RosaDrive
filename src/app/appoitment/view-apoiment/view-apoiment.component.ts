@@ -153,6 +153,7 @@ export class ViewApoimentComponent {
       (response) => {
         console.log('Éxito: ', response);
         this.toastr.success("Cita cancelada con exito", "EXITOSO!");
+        this.getApoitments();
       },
       (error) => {
         console.error('Error: ', error);
@@ -160,4 +161,27 @@ export class ViewApoimentComponent {
       }
     );
   }
+
+  getApoitments(): void{
+    if(this.isAdmin){
+      this.appointmentService.getAppointmentsByStatus('All').subscribe(
+        data => {
+          this.orders = data;
+        },
+        error => {
+          //console.error('Error al obtener usuarios:', error);
+        }
+      );
+    }else {
+      this.appointmentService.getAppointmentById(this.authService.getCurrentUser().data.ID_USER).subscribe(
+        data => {
+          this.orders = data;
+        },
+        error => {
+          //console.error('Error al obtener usuario:', error);
+        }
+      );
+    }
+  }
+
 }
