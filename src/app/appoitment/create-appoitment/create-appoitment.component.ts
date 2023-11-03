@@ -98,8 +98,6 @@ export class CreateAppoitmentComponent implements OnInit {
 
   onDateChange(){
     this.horasDisponibles = [];
-    console.log(this.appoitment_date );
-    console.log(this.selectedHour + "hora seleccionada");
     this.getBusyHours(this.appoitment_date + " 12:00:00");
   }
 
@@ -120,8 +118,6 @@ export class CreateAppoitmentComponent implements OnInit {
             // Formatea la hora y los minutos en un string HH:mm AM/PM en UTC
             return `${hora12h < 10 ? '0' : ''}${hora12h}:${minutosUTC < 10 ? '0' : ''}${minutosUTC} ${periodo}`;
           });
-
-        console.log(this.horasOcupadas[0]);
         this.generarHorasDisponibles();
       },
       (error) => {
@@ -181,8 +177,6 @@ export class CreateAppoitmentComponent implements OnInit {
         this.toastr.error("Error al crear cita", "Error");
       }
     );
-    console.log(this.selecteUser + "usuario selecionado");
-    console.log(this.formatHourToHHMMSS(this.selectedHour) + "HORAAA");
   }
 
   formatHourToHHMMSS(time12H: string): string {

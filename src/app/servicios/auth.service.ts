@@ -49,15 +49,18 @@ export class AuthService {
 
   setCurrentUser(user: any): void {
     this.currentUser = user;
-    this.user = this.getCurrentUser().data;
+    this.user = user;
+    localStorage.setItem('actualUser', JSON.stringify(user));
   }
 
   getCurrentUser(): any {
-    return this.currentUser;
+    this.currentUser = localStorage.getItem('actualUser');
+    const userObject = JSON.parse(this.currentUser);
+    return userObject;
   }
 
   isUserAdmin(): boolean {
-    return this.user && this.user.ROLE === 'Admin';
+    return this.getCurrentUser() && this.getCurrentUser().data.ROLE === 'Admin';
   }
 
 }
