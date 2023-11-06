@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
     providedIn: 'root'
 })
 export class UserService {
-    private apiUrl = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/users/';
+    private apiUrl = 'https://rosasdriveback.onrender.com/api/users/';
     //private apiUrlG = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/users/';
     private token: string | null = localStorage.getItem('token')
     private castToken: string | number | (string | number)[] = this.token as string | number | (string | number)[];
@@ -23,6 +23,8 @@ export class UserService {
 
         return this.http.get(`${this.apiUrl}getUsers/`, { headers });
     }
+
+
 
   getUserById(id: number): Observable<any> {
     const token = this.castToken;

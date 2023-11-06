@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AppointmentService {
   private selectedAppoitment: any;
-  private apiUrl = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/appointments';
+  private apiUrl = 'https://rosasdriveback.onrender.com/api/appointments';
   private token: string | null = localStorage.getItem('token');
   private castToken: string | number | (string | number)[] = this.token as string | number | (string | number)[];
 

@@ -1,6 +1,7 @@
 // auth.service.ts
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,9 @@ export class AuthService {
   private user: any;
   private authToken: string = '';
   private currentUser: any;
+  private apiUrl = 'https://rosasdriveback.onrender.com/api/auth';
+  private token: string | null = localStorage.getItem('token');
+  private castToken: string | number | (string | number)[] = this.token as string | number | (string | number)[];
 
   constructor(private http: HttpClient){
     this.isAuthenticated = !!localStorage.getItem('token');
@@ -20,7 +24,17 @@ export class AuthService {
 
   logear(email: string, password: string) {
     const body = { email, password };
-    return this.http.post('https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/auth/signIn', body);
+    return this.http.post(`${this.apiUrl}/signIn`, body);
+  }
+
+  addAccount(accountData: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'User-Agent': 'insomnia/2023.5.8',
+      'x-access-token': this.castToken
+    });
+
+    return this.http.post(`${this.apiUrl}/signUp`, accountData, { headers });
   }
 
   isLoggedIn(): boolean {

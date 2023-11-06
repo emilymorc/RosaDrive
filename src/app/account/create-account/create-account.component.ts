@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {NgForm} from "@angular/forms";
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {AuthService} from "../../servicios/auth.service";
 
 
 @Component({
@@ -24,7 +25,7 @@ export class CreateAccountComponent {
   identification_type: string = '';
   identification_number: string = '';
 
-  constructor(private http: HttpClient, private router: Router, private toastr: ToastrService, private formBuilder: FormBuilder) {
+  constructor(private http: HttpClient, private router: Router, private toastr: ToastrService, private formBuilder: FormBuilder, private service: AuthService) {
   }
 
 
@@ -54,7 +55,7 @@ export class CreateAccountComponent {
       return;
     }
 
-    this.http.post('https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/auth/signUp', userData)
+    this.service.addAccount(userData)
       .subscribe(
         (response) => {
           console.log('Sign up successful:', response);

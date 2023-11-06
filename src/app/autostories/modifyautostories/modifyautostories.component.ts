@@ -47,7 +47,7 @@ export class ModifyautostoriesComponent {
   status: string = '';
 
 
-  constructor(private router: Router, private historyService: HistoryService, private http: HttpClient,private toastr: ToastrService,private authService: AuthService ,private formBuilder: FormBuilder) {
+  constructor(private router: Router, private historyService: HistoryService, private http: HttpClient,private toastr: ToastrService,private service: HistoryService ,private formBuilder: FormBuilder) {
 
   }
 
@@ -129,7 +129,6 @@ export class ModifyautostoriesComponent {
   showError = false; // Para mostrar u ocultar el error
 
   signUp(form: any){
-    const apiUrl = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/stories/updateStory';
     const valor: string | null = localStorage.getItem('token')
     const valorCasteado: string | number | (string | number)[] = valor as string | number | (string | number)[];
     const format = /[^A-Za-z0-9\-]/;
@@ -221,19 +220,7 @@ export class ModifyautostoriesComponent {
       consistentInformation: this.stringToBoolean(this.consistentInformation)
     };
 
-    console.log("Data: " + this.entryDate)
-    console.log("bool" + this.stringToBoolean(this.isValid) )
-
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'User-Agent': 'Insomnia/2023.5.5',
-      'x-access-token': valorCasteado
-    });
-
-    console.log(this.authService.getToken())
-
-
-    this.http.post(apiUrl, data, {headers: headers})
+    this.service.updateStorie(data)
       .subscribe(
         (response) => {
           console.log('Sign up successful:', response);

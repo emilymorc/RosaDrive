@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../servicios/auth.service";
+import {HistoryService} from "../../servicios/history.service";
 
 @Component({
   selector: 'app-autostorie',
@@ -14,7 +15,7 @@ export class AutostorieComponent {
 
   maxDate: string = '';
 
-  constructor(private http: HttpClient, private router: Router, private toastr: ToastrService, private formBuilder: FormBuilder, private authService: AuthService) {
+  constructor(private http: HttpClient, private router: Router, private toastr: ToastrService, private formBuilder: FormBuilder, private service: HistoryService) {
     const currentDate = new Date();
     this.maxDate = currentDate.toISOString().slice(0, 16);
   }
@@ -72,7 +73,7 @@ export class AutostorieComponent {
 
 
   signUp(form: any) {
-    const apiUrl = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/stories/addStory';
+
     const valor: string | null = localStorage.getItem('token')
     const valorCasteado: string | number | (string | number)[] = valor as string | number | (string | number)[];
     const format = /[^A-Za-z0-9\-]/;
@@ -155,17 +156,7 @@ export class AutostorieComponent {
 
     };
 
-
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'User-Agent': 'Insomnia/2023.5.5',
-      'x-access-token': valorCasteado
-    });
-
-    // console.log(this.authService.getToken())
-
-
-    this.http.post(apiUrl, data, {headers: headers})
+    this.service.addAutoStorie(data)
       .subscribe(
         (response) => {
           console.log('Sign up successful:', response);

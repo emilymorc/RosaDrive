@@ -7,11 +7,21 @@ import {Observable} from "rxjs";
 })
 
 export class OrderService{
-  private apiUrl = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/orders';
+  private apiUrl = 'https://rosasdriveback.onrender.com/api/orders';
   private token: string | null = localStorage.getItem('token')
   private castToken: string | number | (string | number)[] = this.token as string | number | (string | number)[];
   private selectedOrder: any;
   constructor(private http: HttpClient) { }
+
+  addOrder(orderData: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'User-Agent': 'insomnia/2023.5.8',
+      'x-access-token': this.castToken
+    });
+
+    return this.http.post(`${this.apiUrl}/addOrder`, orderData, { headers });
+  }
 
   getOrdersHistory(historyId: number): Observable<any> {
     const url = `${this.apiUrl}/getOrdersById/${historyId}`;

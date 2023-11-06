@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {FormBuilder} from "@angular/forms";
 import {HistoryService} from "../servicios/history.service";
+import {OrderService} from "../servicios/order.service";
 
 @Component({
   selector: 'app-order-service',
@@ -35,7 +36,7 @@ export class OrderServiceComponent implements OnInit{
   showError = false; // Para mostrar u ocultar el error
 
 
-  constructor(private http: HttpClient, private router: Router, private toastr: ToastrService, private formBuilder: FormBuilder, public service1: HistoryService) {
+  constructor(private http: HttpClient, private router: Router, private toastr: ToastrService, private formBuilder: FormBuilder, public service1: HistoryService, public serviceOrder: OrderService) {
     const currentDate = new Date();
     this.maxDate = currentDate.toISOString().slice(0, 16);
   }
@@ -55,7 +56,6 @@ export class OrderServiceComponent implements OnInit{
   createOrder(form: any) {
     const valor: string | null = localStorage.getItem('token')
     const valorCasteado: string | number | (string | number)[] = valor as string | number | (string | number)[];
-    const apiUrl = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/orders/addOrder';
     const format = /[^A-Za-z0-9\- ]/;
     const data = {
       id_story: this.id_story,
@@ -87,12 +87,7 @@ export class OrderServiceComponent implements OnInit{
       return;
     }*/
 
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      // 'User-Agent': 'Insomnia/2023.5.5',
-      'x-access-token': valorCasteado
-    });
-    this.http.post(apiUrl, data, {headers: headers})
+    this.serviceOrder.addOrder(data)
       .subscribe(
         (response) => {
           console.log('create order successful:', response);

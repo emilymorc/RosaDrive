@@ -7,12 +7,32 @@ import { Observable } from 'rxjs';
 })
 export class HistoryService {
 
-  private apiUrl = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/stories';
+  private apiUrl = 'https://rosasdriveback.onrender.com/api/stories';
   private token: string | null = localStorage.getItem('token');
   private castToken: string | number | (string | number)[] = this.token as string | number | (string | number)[];
 
   private selectedHistory: any;
   constructor(private http: HttpClient) { }
+
+  addAutoStorie(AutoStorieData: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'User-Agent': 'insomnia/2023.5.8',
+      'x-access-token': this.castToken
+    });
+
+    return this.http.post(`${this.apiUrl}/addStory`, AutoStorieData, { headers });
+  }
+
+  updateStorie(storieData: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'User-Agent': 'Insomnia/2023.5.6',
+      'x-access-token': this.castToken
+    });
+
+    return this.http.post(`${this.apiUrl}/updateStory`, storieData, { headers });
+  }
 
   getHistories(): Observable<any> {
     const headers = new HttpHeaders({
@@ -40,7 +60,7 @@ export class HistoryService {
       'x-access-token': token
     });
 
-    return this.http.get<any>(`https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/stories/getStoryById/${id}`, { headers });
+    return this.http.get<any>(`https://rosasdriveback.onrender.com/api/stories/getStoryById/${id}`, { headers });
   }
 
   setSelectedHistory(history: any) {
