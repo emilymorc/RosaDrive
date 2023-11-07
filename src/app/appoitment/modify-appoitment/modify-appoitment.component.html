@@ -28,7 +28,7 @@
       <label class="label">Horas Disponibles</label>
       <br>
       <select [(ngModel)]="hora" name="selectedHour">
-        <option value="" disabled selected>Seleccione una hora</option>
+<!--        <option value="" disabled selected>Seleccione una hora</option>-->
         <option *ngFor="let hora of horasDisponibles" [value]="hora">{{ hora }}</option>
 
       </select>

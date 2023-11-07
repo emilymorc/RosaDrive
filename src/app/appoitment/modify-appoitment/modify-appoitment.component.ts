@@ -5,7 +5,8 @@ import {ToastrService} from "ngx-toastr";
 import {FormBuilder, NgForm} from "@angular/forms";
 import {UserService} from "../../servicios/users.service";
 import {AppointmentService} from "../../servicios/appointment.service";
-import {AuthService} from "../../servicios/auth.service";
+import {AuthService} from "../../servicios/auth.service"
+
 
 @Component({
   selector: 'app-modify-appoitment',
@@ -84,8 +85,26 @@ export class ModifyAppoitmentComponent implements OnInit{
     this.status == this.selectedAppoitment.STAATUS;
 
     this.fecha = this.fecha_hora.split('T')[0]; // Obtenemos la parte de la fecha
-    this.hora= this.obtenerHoraFormateada(this.fecha_hora)
+    this.hora= this.formatarHora(this.fecha_hora);
+    this.horasDisponibles = [this.hora];
+
   }
+
+
+  formatarHora(fechaHora: string): string {
+    const fecha = new Date(fechaHora);
+    const horas = fecha.getUTCHours();
+    const minutos = fecha.getUTCMinutes();
+    const ampm = horas >= 12 ? 'PM' : 'AM';
+    const horas12 = horas % 12 || 12;
+
+    // Asegura que las horas y los minutos tengan dos dígitos
+    const horasFormateadas = horas12 < 10 ? '0' + horas12 : horas12;
+    const minutosFormateados = minutos < 10 ? '0' + minutos : minutos;
+
+    return `${horasFormateadas}:${minutosFormateados} ${ampm}`;
+  }
+
 
   obtenerHoraFormateada(fecha1: string) {
     const fecha = new Date(fecha1);
@@ -115,7 +134,6 @@ export class ModifyAppoitmentComponent implements OnInit{
       name: `${user.FIRST_NAME} ${user.LAST_NAME}`
     }));
   }
-
 
   onDateChange(form: NgForm){
     this.horasDisponibles = [];
@@ -151,8 +169,6 @@ export class ModifyAppoitmentComponent implements OnInit{
     );
   }
 
-
-
   generarHorasDisponibles() {
     this.horasDisponibles = [];
 
@@ -187,7 +203,11 @@ export class ModifyAppoitmentComponent implements OnInit{
       status: form.value.status
 
     };
-    console.log('fecha'+form.value.entryDate)
+    console.log(this.hora);
+    if (this.hora.trim() === ''){
+      this.toastr.error("Por favor, elige una hora", "Campos Vacios");
+      return;
+    }
 
     this.appointmentService.updateAppoitment(appointmentData).subscribe(
       (response) => {
