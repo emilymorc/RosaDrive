@@ -26,6 +26,9 @@ import {ModifyautostoriesComponent} from "./autostories/modifyautostories/modify
 import {CreateAppoitmentComponent} from "./appoitment/create-appoitment/create-appoitment.component";
 import {ViewApoimentComponent} from "./appoitment/view-apoiment/view-apoiment.component";
 import {ModifyAppoitmentComponent} from "./appoitment/modify-appoitment/modify-appoitment.component";
+import {ReportComponent} from "./report/report.component";
+import {ReportAppoitmetsByDayComponent} from "./reportAppoitmentsByDay/report.component";
+import {ReportAppoitmentWeek} from "./reportAppoitmentWeek/report.component";
 
 
 const routes: Routes = [
@@ -63,7 +66,11 @@ const routes: Routes = [
       {path: 'changeOrder', component: AddChangeComponent},
       {path: 'createAppoitment', component: CreateAppoitmentComponent},
       {path: 'viewApoimentComponent', component: ViewApoimentComponent},
-      {path: 'modifyAppoitment', component: ModifyAppoitmentComponent}
+      {path: 'modifyAppoitment', component: ModifyAppoitmentComponent},
+      {path: 'report', component: ReportComponent},
+      {path: 'reportAppoitmentDay', component: ReportAppoitmetsByDayComponent},
+      {path: 'reportAppoitmentWeek', component:ReportAppoitmentWeek}
+
     ] ,canActivate:[AuthGuard]
   },
 ];

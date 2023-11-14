@@ -1,0 +1,36 @@
+<div class="header">
+    <h1>Reporte Anual</h1>
+</div>
+<br>
+<br>
+
+<div class="container">
+    <label  class="label">Año</label>
+    <br>
+    <select id="identification_type" name="identification_type"  >
+        <option value="" disabled selected>Seleccione una opcion</option>
+        <option *ngFor="let n of optionsYear" >{{n}}</option>
+
+    </select>
+    <br>
+    <div class="row my-4">
+
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                   <div class="card-body">
+                     <div class="card-title">
+                         Citas programadas
+                         <apx-chart
+                                 [series]="chartOptions.series!"
+                                 [chart]="chartOptions.chart!"
+                                 [xaxis]="chartOptions.xaxis!"
+                                 [title]="chartOptions.title!"
+                         ></apx-chart>
+                     </div>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -55,6 +55,20 @@ export const navbarData: INavbarData[] = [
     routeLink: 'coupens',
     icon: 'fal fa-scroll',
     label: 'Reportes',
+    items: [
+      {
+        routeLink: 'report',
+        label: 'Reporte de citas Anual',
+      },
+      {
+        routeLink: 'reportAppoitmentDay',
+        label: 'Reporte de citas Dia',
+      },
+      {
+        routeLink: 'reportAppoitmentWeek',
+        label: 'Reporte de citas Semanal',
+      }
+    ]
   },
   {
     routeLink: 'login',

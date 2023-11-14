@@ -39,6 +39,11 @@ import { CreateAppoitmentComponent } from './appoitment/create-appoitment/create
 import { AppoitmentComponent } from './appoitment/appoitment.component';
 import { ViewApoimentComponent } from './appoitment/view-apoiment/view-apoiment.component';
 import { ModifyAppoitmentComponent } from './appoitment/modify-appoitment/modify-appoitment.component';
+import { ReportComponent } from './report/report.component';
+import {ReportAppoitmetsByDayComponent} from "./reportAppoitmentsByDay/report.component";
+import {NgApexchartsModule} from "ng-apexcharts";
+import {ReportAppoitmentWeek} from "./reportAppoitmentWeek/report.component";
+// import { NgApexchartsModule } from 'ngx-apexcharts';
 
 
 
@@ -73,13 +78,18 @@ import { ModifyAppoitmentComponent } from './appoitment/modify-appoitment/modify
     CreateAppoitmentComponent,
     AppoitmentComponent,
     ViewApoimentComponent,
-    ModifyAppoitmentComponent
+    ModifyAppoitmentComponent,
+    ReportComponent,
+      ReportAppoitmetsByDayComponent,
+      ReportAppoitmentWeek
   ],
     imports: [
         PaginationModule.forRoot(),
         BrowserModule,
+ //     NgApexchartsModule,
         RouterOutlet,
         HttpClientModule,
+      NgApexchartsModule,
         CommonModule,
         FormsModule,
         RouterLink,
