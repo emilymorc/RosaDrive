@@ -56,18 +56,51 @@ export const navbarData: INavbarData[] = [
     icon: 'fal fa-scroll',
     label: 'Reportes',
     items: [
-      {
-        routeLink: 'report',
-        label: 'Reporte de citas Anual',
+      {routeLink: 'coupens',
+        label: 'Reportes de citas',
+        items: [ {
+          routeLink: 'report',
+          label: 'Reporte Anual',
+        },
+          {
+            routeLink: 'reportAppoitmentDay',
+            label: 'Reporte Diario',
+          },
+          {
+            routeLink: 'reportAppoitmentWeek',
+            label: 'Reporte Semanal',
+          }]
       },
-      {
-        routeLink: 'reportAppoitmentDay',
-        label: 'Reporte de citas Dia',
+      {routeLink: 'coupens',
+        label: 'Reportes de Ingresos',
+        items: [ {
+          routeLink: 'reportIcomeByYear',
+          label: 'Reporte Anual',
+        },
+          {
+            routeLink: 'reportIcomeByMonth',
+            label: 'Reporte Mensual',
+          },
+          {
+            routeLink: 'reportIcomeByDay',
+            label: 'Reporte Semanal',
+          }]
       },
-      {
-        routeLink: 'reportAppoitmentWeek',
-        label: 'Reporte de citas Semanal',
-      }
+      {routeLink: 'coupens',
+        label: 'Reportes de Ordenes',
+        items: [ {
+          routeLink: 'reportOrderByMonth',
+          label: 'Reporte Mensual',
+        },
+          {
+            routeLink: 'reportOrderByDay',
+            label: 'Reporte Diario',
+          },
+          {
+            routeLink: 'reportOrderByWeek',
+            label: 'Reporte Semanal',
+          }]
+      },
     ]
   },
   {

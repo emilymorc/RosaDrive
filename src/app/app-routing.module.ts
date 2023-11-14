@@ -27,8 +27,14 @@ import {CreateAppoitmentComponent} from "./appoitment/create-appoitment/create-a
 import {ViewApoimentComponent} from "./appoitment/view-apoiment/view-apoiment.component";
 import {ModifyAppoitmentComponent} from "./appoitment/modify-appoitment/modify-appoitment.component";
 import {ReportComponent} from "./report/report.component";
-import {ReportAppoitmetsByDayComponent} from "./reportAppoitmentsByDay/report.component";
-import {ReportAppoitmentWeek} from "./reportAppoitmentWeek/report.component";
+import {ReportAppoitmetsByDayComponent} from "./report/reportAppoitments/reportAppoitmentsByDay/report.component";
+import {ReportAppoitmentWeek} from "./report/reportAppoitments/reportAppoitmentWeek/report.component";
+import {ReportIcomeByDayComponent} from "./report/reportIcome/report-icome-by-day/report-icome-by-day.component";
+import {ReportIcomeByMonthComponent} from "./report/reportIcome/report-icome-by-month/report-icome-by-month.component";
+import {ReportIcomeByYearComponent} from "./report/reportIcome/report-icome-by-year/report-icome-by-year.component";
+import {ReportOrderByDayComponent} from "./report/reportOrders/report-order-by-day/report-order-by-day.component";
+import {ReportOrderByMonthComponent} from "./report/reportOrders/report-order-by-month/report-order-by-month.component";
+import {ReportOrderByWeekComponent} from "./report/reportOrders/report-order-by-week/report-order-by-week.component";
 
 
 const routes: Routes = [
@@ -69,7 +75,13 @@ const routes: Routes = [
       {path: 'modifyAppoitment', component: ModifyAppoitmentComponent},
       {path: 'report', component: ReportComponent},
       {path: 'reportAppoitmentDay', component: ReportAppoitmetsByDayComponent},
-      {path: 'reportAppoitmentWeek', component:ReportAppoitmentWeek}
+      {path: 'reportAppoitmentWeek', component:ReportAppoitmentWeek},
+      {path:  'reportOrderByWeek',component: ReportOrderByWeekComponent},
+      {path: 'reportOrderByDay', component: ReportOrderByDayComponent},
+      {path: 'reportOrderByMonth', component: ReportOrderByMonthComponent},
+      {path: 'reportIcomeByYear', component: ReportIcomeByYearComponent},
+      {path: 'reportIcomeByMonth', component: ReportIcomeByMonthComponent},
+      {path: 'reportIcomeByDay', component: ReportIcomeByDayComponent},
 
     ] ,canActivate:[AuthGuard]
   },

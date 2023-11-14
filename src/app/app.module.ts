@@ -40,9 +40,15 @@ import { AppoitmentComponent } from './appoitment/appoitment.component';
 import { ViewApoimentComponent } from './appoitment/view-apoiment/view-apoiment.component';
 import { ModifyAppoitmentComponent } from './appoitment/modify-appoitment/modify-appoitment.component';
 import { ReportComponent } from './report/report.component';
-import {ReportAppoitmetsByDayComponent} from "./reportAppoitmentsByDay/report.component";
+import {ReportAppoitmetsByDayComponent} from "./report/reportAppoitments/reportAppoitmentsByDay/report.component";
 import {NgApexchartsModule} from "ng-apexcharts";
-import {ReportAppoitmentWeek} from "./reportAppoitmentWeek/report.component";
+import {ReportAppoitmentWeek} from "./report/reportAppoitments/reportAppoitmentWeek/report.component";
+import { ReportOrderByDayComponent } from './report/reportOrders/report-order-by-day/report-order-by-day.component';
+import { ReportOrderByWeekComponent } from './report/reportOrders/report-order-by-week/report-order-by-week.component';
+import { ReportOrderByMonthComponent } from './report/reportOrders/report-order-by-month/report-order-by-month.component';
+import { ReportIcomeByDayComponent } from './report/reportIcome/report-icome-by-day/report-icome-by-day.component';
+import { ReportIcomeByMonthComponent } from './report/reportIcome/report-icome-by-month/report-icome-by-month.component';
+import { ReportIcomeByYearComponent } from './report/reportIcome/report-icome-by-year/report-icome-by-year.component';
 // import { NgApexchartsModule } from 'ngx-apexcharts';
 
 
@@ -81,7 +87,13 @@ import {ReportAppoitmentWeek} from "./reportAppoitmentWeek/report.component";
     ModifyAppoitmentComponent,
     ReportComponent,
       ReportAppoitmetsByDayComponent,
-      ReportAppoitmentWeek
+      ReportAppoitmentWeek,
+      ReportOrderByDayComponent,
+      ReportOrderByWeekComponent,
+      ReportOrderByMonthComponent,
+      ReportIcomeByDayComponent,
+      ReportIcomeByMonthComponent,
+      ReportIcomeByYearComponent
   ],
     imports: [
         PaginationModule.forRoot(),
