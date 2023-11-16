@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {map, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +41,32 @@ export class HistoryService {
     });
 
     return this.http.get(`${this.apiUrl}/getStories`, { headers });
+  }
+
+  getVehicleBrands(): Observable<string[]> {
+    return this.getHistories().pipe(
+      map((response: any[]) => {
+        const histories = response || [];
+        const brands = histories.map((history: any) => history.BRAND);
+
+        const uniqueBrands = Array.from(new Set(brands));
+      console.log(uniqueBrands);
+        return uniqueBrands;
+      })
+    );
+  }
+
+  getOwnerHistory(): Observable<string[]> {
+    return this.getHistories().pipe(
+      map((response: any[]) => {
+        const histories = response || [];
+        const owners = histories.map((history: any) => history.CURRENT_OWNER);
+
+        const currentOwners = Array.from(new Set(owners));
+        console.log(currentOwners);
+        return currentOwners;
+      })
+    );
   }
 
   getStoryById(id: number): Observable<any> {
