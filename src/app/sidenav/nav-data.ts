@@ -83,7 +83,7 @@ export const navbarData: INavbarData[] = [
           },
           {
             routeLink: 'reportIcomeByDay',
-            label: 'Reporte Semanal',
+            label: 'Reporte Diario',
           }]
       },
       {routeLink: 'coupens',
