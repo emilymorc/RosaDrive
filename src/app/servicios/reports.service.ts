@@ -22,20 +22,6 @@ export class ReportsService {
     return this.http.get(`${this.apiUrl}/ordersByTechnician`, { headers });
   }
 
-  getValueOrdersDay(day: string): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'User-Agent': 'Insomnia/2023.5.5',
-      'x-access-token': this.castToken,
-    });
-
-    const body = {
-      date: day,
-    };
-
-    return this.http.post(`${this.apiUrl}/valueOrdersDate`, body, { headers });
-  }
-
   getValueOrdersMonth(month: string): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -47,6 +33,23 @@ export class ReportsService {
       date: month,
     };
 
-    return this.http.post(`${this.apiUrl}/valueOrdersMonth`, body, { headers });
+    return this.http.post(`${this.apiUrl}/valueOrdersDate`, body, { headers });
   }
+
+  getValueOrdersYear(year: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'User-Agent': 'Insomnia/2023.5.5',
+      'x-access-token': this.castToken,
+    });
+
+    const body = {
+      date: year,
+    };
+
+    return this.http.post(`${this.apiUrl}/valueOrdersYear`, body, { headers });
+  }
+
 }
+
+

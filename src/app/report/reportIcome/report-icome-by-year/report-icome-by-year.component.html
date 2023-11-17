@@ -7,6 +7,10 @@
 <div class="container">
   <div class="row my-4">
     <div class="col-12">
+      <label for="selectedYear">Seleccione el año:</label>
+      <select id="selectedYear" [(ngModel)]="selectedYear" (change)="onYearChange()">
+        <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+      </select>
       <div class="card">
         <div class="card-header">
           <div class="card-body">

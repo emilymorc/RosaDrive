@@ -1,11 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
-import {
-  ChartComponent,
-  ApexAxisChartSeries,
-  ApexChart,
-  ApexXAxis,
-  ApexTitleSubtitle
-} from "ng-apexcharts";
+import { Component, ViewChild, OnInit } from '@angular/core';
+import { ChartComponent, ApexAxisChartSeries, ApexChart, ApexXAxis, ApexTitleSubtitle } from "ng-apexcharts";
+import {ReportsService} from "../../../servicios/reports.service";
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -19,30 +14,65 @@ export type ChartOptions = {
   templateUrl: './report-icome-by-year.component.html',
   styleUrls: ['./report-icome-by-year.component.css']
 })
-export class ReportIcomeByYearComponent {
+export class ReportIcomeByYearComponent implements OnInit {
   @ViewChild("chart") chart!: ChartComponent;
-  public chartOptions: Partial<ChartOptions>;
+  public chartOptions!: Partial<ChartOptions>; // Cambio aquí
+  public selectedYear: number = 0; // Nuevo
+  public years: number[] = []; // Nuevo
+  private monthNames: string[] = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]; // Nuevo
+  private startYear: number = 2010; // Puedes ajustar según tus necesidades
 
-  constructor() {
-    // Aquí debes proporcionar los datos reales de ingresos por año
-    // y ajustar las opciones del gráfico según tus necesidades.
-    this.chartOptions = {
-      series: [
-        {
+  constructor(private yourService: ReportsService) {}
+
+  ngOnInit(): void {
+    this.initializeYears();
+    // Obtener el año actual
+    const currentYear = new Date().getFullYear();
+    this.selectedYear = currentYear;
+    this.updateChart(currentYear);
+  }
+
+  initializeYears(): void {
+    const currentYear = new Date().getFullYear();
+    for (let year = this.startYear; year <= currentYear; year++) {
+      this.years.push(year);
+    }
+  }
+
+  updateChart(year: number): void {
+    this.yourService.getValueOrdersYear(`${year}-01-01 00:00:00`).subscribe(
+      (data: any) => {
+        // Formatear los datos para que coincidan con la estructura del gráfico
+        const formattedData = {
           name: "Ingresos",
-          data: [10000, 12000, 15000, 18000, 22000, 25000, 28000, 30000, 32000, 35000, 38000, 40000]
-        }
-      ],
-      chart: {
-        height: 350,
-        type: "line"
+          data: data.map((item: any) => item.TOTAL_VALUE)
+        };
+
+        // Obtener los nombres de los meses directamente de los datos del servicio
+        const monthNames = data.map((item: any) => this.monthNames[item.MONTH - 1]);
+
+        this.chartOptions = {
+          series: [formattedData],
+          chart: {
+            height: 350,
+            type: "bar"
+          },
+          title: {
+            text: `Ingresos anuales - ${year}`
+          },
+          xaxis: {
+            categories: monthNames
+          }
+        };
       },
-      title: {
-        text: "Ingresos anuales"
-      },
-      xaxis: {
-        categories: ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"]
+      (error: any) => {
+        console.error('Error al obtener los datos:', error);
       }
-    };
+    );
+  }
+
+
+  onYearChange(): void {
+    this.updateChart(this.selectedYear);
   }
 }

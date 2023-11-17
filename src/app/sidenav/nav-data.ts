@@ -80,11 +80,8 @@ export const navbarData: INavbarData[] = [
           {
             routeLink: 'reportIcomeByMonth',
             label: 'Reporte Mensual',
-          },
-          {
-            routeLink: 'reportIcomeByDay',
-            label: 'Reporte Diario',
-          }]
+          }
+          ]
       },
       {routeLink: 'coupens',
         label: 'Reportes de Ordenes',
