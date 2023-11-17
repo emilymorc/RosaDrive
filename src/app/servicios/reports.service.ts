@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,18 @@ export class ReportsService {
     });
 
     return this.http.get(`${this.apiUrl}/ordersByTechnician`, { headers });
+  }
+
+  getTechnicians(): Observable<string[]> {
+    return this.getOrdersByTechnician().pipe(
+      map(data => data.map((item: { RESPONSIBLE_TECHNICIAN: string }) => item.RESPONSIBLE_TECHNICIAN))
+    );
+  }
+
+  getOrdersComplete(): Observable<number[]> {
+    return this.getOrdersByTechnician().pipe(
+      map(data => data.map((item: { ORDERS_COMPLETE: number }) => item.ORDERS_COMPLETE))
+    );
   }
 
   getValueOrdersDay(day: string): Observable<any> {

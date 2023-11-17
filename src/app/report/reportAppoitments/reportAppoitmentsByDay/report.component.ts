@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 
 import {
   ChartComponent,
@@ -7,6 +7,7 @@ import {
   ApexXAxis,
   ApexTitleSubtitle
 } from "ng-apexcharts";
+import {ReportsService} from "../../../servicios/reports.service";
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -24,7 +25,8 @@ export class ReportAppoitmetsByDayComponent {
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 
-  constructor() {
+  constructor(private service: ReportsService) {
+
     this.chartOptions = {
       series: [
         {
@@ -40,8 +42,11 @@ export class ReportAppoitmetsByDayComponent {
         text: "11 de nobriembre de 2023"
       },
       xaxis: {
-        categories: ["8 AM", "9 AM",  "10 AM",  "11 AM",  "2 PM",  "3 PM",  "4 PM",  "5 PM", "6 PM"]
+        categories: ["8 AM", "9 AM", "10 AM", "11 AM", "2 PM", "3 PM", "4 PM", "5 PM", "6 PM"]
       }
     };
   }
 }
+
+
+

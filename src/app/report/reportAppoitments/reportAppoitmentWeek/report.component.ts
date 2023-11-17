@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 
 import {
   ChartComponent,
@@ -7,6 +7,7 @@ import {
   ApexXAxis,
   ApexTitleSubtitle
 } from "ng-apexcharts";
+import {ReportsService} from "../../../servicios/reports.service";
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -21,17 +22,20 @@ export type ChartOptions = {
   templateUrl: './report.component.html',
   styleUrls: ['./report.component.css']
 })
-export class ReportAppoitmentWeek {
+export class ReportAppoitmentWeek implements OnInit{
+
+  technicians: string[]= [];
+  orders: number[]= [];
   optionsYear = ['2023', '2024', '2025', '2026'];
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 
-  constructor() {
+  constructor(public service: ReportsService) {
     this.chartOptions = {
       series: [
         {
-          name: "Citas Programadas",
-          data: [20, 41, 35, 51, 49, 62]
+          name: "Ordenes completadas por Mecanicos",
+          data: this.orders
         }
       ],
       chart: {
@@ -42,9 +46,47 @@ export class ReportAppoitmentWeek {
         text: "Semana del 5 al 11 de Noviembre"
       },
       xaxis: {
-        categories: ["Lunes", "Martes",  "Miercoles",  "Jueves",  "Viernes",  "Sabado", ]
+        categories: this.technicians
       },
-      colors: ['#008FFB', '#00E396', '#FEB019', '#FF4560', '#775DD0']
     };
   }
+
+  private updateChartOptions() {
+    this.chartOptions = {
+      ...this.chartOptions,
+      series: [
+        {
+          name: "Ordenes completadas por Mecanicos",
+          data: this.orders
+        }
+      ],
+      xaxis: {
+        categories: this.technicians
+      },
+    };
+  }
+
+  ngOnInit(): void {
+    this.service.getTechnicians().subscribe(
+      (data: string[]) => {
+        this.technicians = data;
+        this.updateChartOptions();
+        console.log('Técnicos:', this.technicians);
+      },
+      error => {
+        console.error('Error al obtener técnicos:', error);
+      }
+    );
+
+    this.service.getOrdersComplete().subscribe(
+      (data: number[]) => {
+        this.orders = data;
+        this.updateChartOptions();
+        console.log('Ordenes:', this.orders);
+      },
+      error => {
+        console.error('Error al obtener ordenes:', error);
+      }
+    );
+    }
 }
