@@ -59,7 +59,7 @@ export const navbarData: INavbarData[] = [
       {routeLink: 'coupens',
         label: 'Reportes de citas',
         items: [ {
-          routeLink: 'report',
+          routeLink: 'reportAppoitmentYear',
           label: 'Reporte Anual',
         },
           {
@@ -90,7 +90,7 @@ export const navbarData: INavbarData[] = [
           label: 'Mensual',
         },
           {
-            routeLink: 'reportOrderByDay',
+            routeLink: 'reportOrderByTec',
             label: 'Mecanicos',
           },
           {

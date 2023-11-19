@@ -42,8 +42,8 @@ import { ModifyAppoitmentComponent } from './appoitment/modify-appoitment/modify
 import { ReportComponent } from './report/report.component';
 import {ReportAppoitmetsByDayComponent} from "./report/reportAppoitments/reportAppoitmentsByDay/report.component";
 import {NgApexchartsModule} from "ng-apexcharts";
-import {ReportAppoitmentWeek} from "./report/reportAppoitments/reportAppoitmentWeek/report.component";
-import { ReportOrderByDayComponent } from './report/reportOrders/report-order-by-day/report-order-by-day.component';
+import {ReportAppoitmentWeek} from "./report/reportAppoitments/reportAppoitmentYear/report.component";
+import { ReportOrderByDayComponent } from './report/reportOrders/report-order-by-tecnicos/report-order-by-day.component';
 import { ReportOrderByWeekComponent } from './report/reportOrders/report-order-by-week/report-order-by-week.component';
 import { ReportOrderByMonthComponent } from './report/reportOrders/report-order-by-month/report-order-by-month.component';
 import { ReportIcomeByDayComponent } from './report/reportIcome/report-icome-by-day/report-icome-by-day.component';

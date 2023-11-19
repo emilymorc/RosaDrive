@@ -17,12 +17,13 @@ export type ChartOptions = {
   colors: string[];
 
 };
+
 @Component({
-  selector: 'app-report',
-  templateUrl: './report.component.html',
-  styleUrls: ['./report.component.css']
+  selector: 'app-report-order-by-tecnicos',
+  templateUrl: './report-order-by-day.component.html',
+  styleUrls: ['./report-order-by-day.component.css']
 })
-export class ReportAppoitmentWeek implements OnInit{
+export class ReportOrderByDayComponent implements OnInit{
 
   technicians: string[]= [];
   orders: number[]= [];
@@ -43,7 +44,7 @@ export class ReportAppoitmentWeek implements OnInit{
         type: "bar"
       },
       title: {
-        text: "Semana del 5 al 11 de Noviembre"
+        text: "Mecanicos"
       },
       xaxis: {
         categories: this.technicians
@@ -88,5 +89,5 @@ export class ReportAppoitmentWeek implements OnInit{
         console.error('Error al obtener ordenes:', error);
       }
     );
-    }
+  }
 }

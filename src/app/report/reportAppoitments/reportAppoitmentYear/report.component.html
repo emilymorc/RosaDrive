@@ -1,5 +1,5 @@
 <div class="header">
-  <h1>Reporte de Ganancias Por Día</h1>
+  <h1>Reporte Citas Anuales</h1>
 </div>
 <br>
 <br>
@@ -7,11 +7,15 @@
 <div class="container">
   <div class="row my-4">
     <div class="col-12">
+      <label for="selectedYear">Seleccione el año:</label>
+      <select id="selectedYear" [(ngModel)]="selectedYear" (change)="onYearChange()">
+        <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+      </select>
       <div class="card">
         <div class="card-header">
           <div class="card-body">
             <div class="card-title">
-              Ganancias por día
+              Citas anuales
               <apx-chart
                 [series]="chartOptions.series!"
                 [chart]="chartOptions.chart!"
