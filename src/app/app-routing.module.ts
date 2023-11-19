@@ -36,6 +36,9 @@ import {ReportOrderByDayComponent} from "./report/reportOrders/report-order-by-d
 import {ReportOrderByMonthComponent} from "./report/reportOrders/report-order-by-month/report-order-by-month.component";
 import {ReportOrderByWeekComponent} from "./report/reportOrders/report-order-by-week/report-order-by-week.component";
 import {ReportHistoryComponent} from "./report/report-history/report-history.component";
+import {
+  ReportAppoitmetsByMonthComponent
+} from "./report/reportAppoitments/report-appoitmets-by-month/report-appoitmets-by-month.component";
 
 
 const routes: Routes = [
@@ -83,7 +86,8 @@ const routes: Routes = [
       {path: 'reportIcomeByYear', component: ReportIcomeByYearComponent},
       {path: 'reportIcomeByMonth', component: ReportIcomeByMonthComponent},
       {path: 'reportIcomeByDay', component: ReportIcomeByDayComponent},
-      {path: 'reportHistory', component: ReportHistoryComponent}
+      {path: 'reportHistory', component: ReportHistoryComponent},
+      {path: 'reportMonthAppoitment', component: ReportAppoitmetsByMonthComponent}
 
     ] ,canActivate:[AuthGuard]
   },
