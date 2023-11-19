@@ -27,7 +27,6 @@ import {CreateAppoitmentComponent} from "./appoitment/create-appoitment/create-a
 import {ViewApoimentComponent} from "./appoitment/view-apoiment/view-apoiment.component";
 import {ModifyAppoitmentComponent} from "./appoitment/modify-appoitment/modify-appoitment.component";
 import {ReportComponent} from "./report/report.component";
-import {ReportAppoitmetsByDayComponent} from "./report/reportAppoitments/reportAppoitmentsByDay/report.component";
 import {ReportAppoitmentWeek} from "./report/reportAppoitments/reportAppoitmentYear/report.component";
 import {ReportIcomeByDayComponent} from "./report/reportIcome/report-icome-by-day/report-icome-by-day.component";
 import {ReportIcomeByMonthComponent} from "./report/reportIcome/report-icome-by-month/report-icome-by-month.component";
@@ -78,7 +77,6 @@ const routes: Routes = [
       {path: 'viewApoimentComponent', component: ViewApoimentComponent},
       {path: 'modifyAppoitment', component: ModifyAppoitmentComponent},
       {path: 'report', component: ReportComponent},
-      {path: 'reportAppoitmentDay', component: ReportAppoitmetsByDayComponent},
       {path: 'reportAppoitmentYear', component:ReportAppoitmentWeek},
       {path:  'reportOrderByWeek',component: ReportOrderByWeekComponent},
       {path: 'reportOrderByTec', component: ReportOrderByDayComponent},
