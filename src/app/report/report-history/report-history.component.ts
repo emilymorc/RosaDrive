@@ -26,6 +26,7 @@ export class ReportHistoryComponent {
   users: any[] = [];
   owners: string[] = [];
   vehicleBrands: string[] = [];
+  filterCategories: any = {};
 
   constructor(private historyService: HistoryService , private router: Router) { }
 
@@ -38,25 +39,13 @@ export class ReportHistoryComponent {
         console.error('Error al obtener historiales', error);
       }
     );
-    this.getVehicleBrands();
-    this.getOwnerVehicules();
+    this.getFilters();
   }
 
-  getVehicleBrands() {
-    this.historyService.getVehicleBrands().subscribe(
-      (brands: string[]) => {
-        this.vehicleBrands = brands;
-      },
-      (error) => {
-        console.error('Error al obtener marcas de vehículos', error);
-      }
-    );
-  }
-
-  getOwnerVehicules() {
-    this.historyService.getOwnerHistory().subscribe(
-      (owners: string[]) => {
-        this.owners = owners;
+  getFilters() {
+    this.historyService.getFilterCategories().subscribe(
+      (categories: any[]) => {
+        this.filterCategories = categories;
       },
       (error) => {
         console.error('Error al obtener marcas de vehículos', error);
