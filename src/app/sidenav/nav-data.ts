@@ -87,15 +87,15 @@ export const navbarData: INavbarData[] = [
         label: 'Reportes de Ordenes',
         items: [ {
           routeLink: 'reportOrderByMonth',
-          label: 'Reporte Mensual',
+          label: 'Mensual',
         },
           {
             routeLink: 'reportOrderByDay',
-            label: 'Reporte Diario',
+            label: 'Mecanicos',
           },
           {
             routeLink: 'reportOrderByWeek',
-            label: 'Reporte Semanal',
+            label: 'Semanal',
           }]
       },
       {routeLink: 'reportHistory',

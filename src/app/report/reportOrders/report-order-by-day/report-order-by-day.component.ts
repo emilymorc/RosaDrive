@@ -1,4 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+
 import {
   ChartComponent,
   ApexAxisChartSeries,
@@ -6,12 +7,15 @@ import {
   ApexXAxis,
   ApexTitleSubtitle
 } from "ng-apexcharts";
+import {ReportsService} from "../../../servicios/reports.service";
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
   xaxis: ApexXAxis;
   title: ApexTitleSubtitle;
+  colors: string[];
+
 };
 
 @Component({
@@ -19,30 +23,71 @@ export type ChartOptions = {
   templateUrl: './report-order-by-day.component.html',
   styleUrls: ['./report-order-by-day.component.css']
 })
-export class ReportOrderByDayComponent {
+export class ReportOrderByDayComponent implements OnInit{
+
+  technicians: string[]= [];
+  orders: number[]= [];
+  optionsYear = ['2023', '2024', '2025', '2026'];
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 
-  constructor() {
-    // Aquí debes proporcionar los datos reales de ganancias por día
-    // y ajustar las opciones del gráfico según tus necesidades.
+  constructor(public service: ReportsService) {
     this.chartOptions = {
       series: [
         {
-          name: "Ganancias",
-          data: [100, 250, 200, 350, 300, 400, 450, 500, 600]
+          name: "Ordenes completadas por Mecanicos",
+          data: this.orders
         }
       ],
       chart: {
         height: 350,
-        type: "line" // Puedes usar 'line' para un gráfico de líneas, o 'bar' para un gráfico de barras, según tu preferencia.
+        type: "bar"
       },
       title: {
-        text: "Ganancias por día"
+        text: "Mecanicos"
       },
       xaxis: {
-        categories: ["8 AM", "9 AM", "10 AM", "11 AM", "2 PM", "3 PM", "4 PM", "5 PM", "6 PM"]
-      }
+        categories: this.technicians
+      },
     };
+  }
+
+  private updateChartOptions() {
+    this.chartOptions = {
+      ...this.chartOptions,
+      series: [
+        {
+          name: "Ordenes completadas por Mecanicos",
+          data: this.orders
+        }
+      ],
+      xaxis: {
+        categories: this.technicians
+      },
+    };
+  }
+
+  ngOnInit(): void {
+    this.service.getTechnicians().subscribe(
+      (data: string[]) => {
+        this.technicians = data;
+        this.updateChartOptions();
+        console.log('Técnicos:', this.technicians);
+      },
+      error => {
+        console.error('Error al obtener técnicos:', error);
+      }
+    );
+
+    this.service.getOrdersComplete().subscribe(
+      (data: number[]) => {
+        this.orders = data;
+        this.updateChartOptions();
+        console.log('Ordenes:', this.orders);
+      },
+      error => {
+        console.error('Error al obtener ordenes:', error);
+      }
+    );
   }
 }
