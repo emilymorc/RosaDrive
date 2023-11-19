@@ -15,7 +15,6 @@ export class ReportHistoryComponent {
   maxSize: number = 10;
   orderBy: string | null = null;
   isAsc: boolean = true;
-  filtroPorClase: string = '';
 
   filter1: string = "";
   filter2: string = "";
@@ -23,9 +22,8 @@ export class ReportHistoryComponent {
   filter4: string = "";
   filter5: string = "";
 
-  users: any[] = [];
-  owners: string[] = [];
-  vehicleBrands: string[] = [];
+  histories: any[] = [];
+  historiesWhitFilter: any[] = [];
   filterCategories: any = {};
 
   constructor(private historyService: HistoryService , private router: Router) { }
@@ -33,7 +31,8 @@ export class ReportHistoryComponent {
   ngOnInit(): void {
     this.historyService.getHistories().subscribe(
       data => {
-        this.users = data;
+        this.histories = data;
+        this.historiesWhitFilter = data;
       },
       error => {
         console.error('Error al obtener historiales', error);
@@ -69,7 +68,7 @@ export class ReportHistoryComponent {
     this.orderBy = column;
     this.isAsc = !this.isAsc;
 
-    this.users.sort((a, b) => {
+    this.histories.sort((a, b) => {
       const aValue = a[column];
       const bValue = b[column];
 
@@ -90,41 +89,33 @@ export class ReportHistoryComponent {
     });
   }
 
-  filtrarPorClase(): any[] {
-    if (this.filtroPorClase) {
-      return this.users.filter(dato =>
-        dato.VEHICLE_CLASS && dato.VEHICLE_CLASS.toLowerCase().includes(this.filtroPorClase.toLowerCase())
+  aplicarFiltros() {
+    const historiasFiltradas = this.histories.filter((historia) => {
+      return (
+        (this.filter1 === '' || historia.BRAND === this.filter1) &&
+        (this.filter2 === '' || historia.CURRENT_OWNER === this.filter2) &&
+        (this.filter3 === '' || historia.MODEL === this.filter3) &&
+        (this.filter4 === '' || historia.VEHICLE_STATE === this.filter4) &&
+        (this.filter5 === '' || historia.SERVICE_TYPE === this.filter5)
       );
-    } else {
-      return this.users;
-    }
+    });
+    console.log(this.filter1)
+    this.actualizarTabla(historiasFiltradas);
   }
 
-  getHistories(dato: any){
-    this.historyService.getHistoryById(dato.ID_USER).subscribe(
-      response => {
-        console.log(response.body);
-        this.historyService.setSelectedHistory(dato);
-        this.router.navigate(['/dashboard/detailsHistory']);
-        console.log('Datos del Historial:', response);
-      },
-      error => {
-        console.error('Error al obtener datos del Historial:', error);
-      }
-    );
+  limpiarFiltros() {
+    this.filter1 = '';
+    this.filter2 = '';
+    this.filter3 = '';
+    this.filter4 = '';
+    this.filter5 = '';
+
+    // Restaurar la lista completa
+    this.actualizarTabla(this.histories);
   }
 
-  modifyHistories(dato: any){
-    this.historyService.getHistoryById(dato.ID_USER).subscribe(
-      response => {
-        console.log(response.body);
-        this.historyService.setSelectedHistory(dato);
-        this.router.navigate(['/dashboard/modifyHistory']);
-        console.log('Datos del Historial:', response);
-      },
-      error => {
-        console.error('Error al obtener datos del Historial:', error);
-      }
-    );
+  actualizarTabla(datos: any[]) {
+    this.historiesWhitFilter = datos;
+    console.log(this.histories)
   }
 }

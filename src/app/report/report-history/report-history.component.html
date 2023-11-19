@@ -46,7 +46,10 @@
     </div>
 
     <div class="col-md-2">
-      <button class="btn btn-primary" >Filtrar</button>
+      <button class="btn btn-primary" (click)="aplicarFiltros()">Filtrar</button>
+      <button class="btn btn-secondary ms-2" (click)="limpiarFiltros()"> <!-- Agregado ms-2 para margen a la izquierda -->
+        <i class="fas fa-times"></i> <!-- Ícono de cruz de FontAwesome -->
+      </button>
     </div>
 
   </div>
@@ -78,7 +81,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let dato of filtrarPorClase() | slice:(currentPage-1)*itemsPerPage:currentPage*itemsPerPage">
+    <tr *ngFor="let dato of historiesWhitFilter | slice:(currentPage-1)*itemsPerPage:currentPage*itemsPerPage">
       <td class="align-middle" >{{ dato.CURRENT_OWNER }}</td>
       <td class="align-middle" >{{ dato.MODEL }}</td>
       <td class="align-middle" >{{ dato.BRAND }}</td>
@@ -90,7 +93,7 @@
     </tbody>
   </table>
   <pagination
-    [totalItems]="users.length"
+    [totalItems]="histories.length"
     [(ngModel)]="currentPage"
     [itemsPerPage]="itemsPerPage"
     [maxSize]="maxSize"
