@@ -1,0 +1,32 @@
+<div class="header">
+  <h1>Reporte de Numero de citas Mensuales</h1>
+</div>
+<br>
+<br>
+
+<div class="container">
+  <div class="row my-4">
+    <div class="col-12">
+      <label for="selectedMonth">Seleccione el mes:</label>
+      <select id="selectedMonth" [(ngModel)]="selectedMonth" (change)="onMonthChange()">
+        <option *ngFor="let month of months" [value]="month.value">{{ month.label }}</option>
+      </select>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-body">
+            <div class="card-title">
+              Numero de citas mensuales
+              <apx-chart
+                [series]="chartOptions.series!"
+                [chart]="chartOptions.chart!"
+                [xaxis]="chartOptions.xaxis!"
+                [title]="chartOptions.title!"
+              ></apx-chart>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
