@@ -68,7 +68,7 @@ export class ReportHistoryComponent {
     this.orderBy = column;
     this.isAsc = !this.isAsc;
 
-    this.histories.sort((a, b) => {
+    this.historiesWhitFilter.sort((a, b) => {
       const aValue = a[column];
       const bValue = b[column];
 
