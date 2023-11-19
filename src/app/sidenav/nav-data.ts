@@ -101,6 +101,9 @@ export const navbarData: INavbarData[] = [
             label: 'Semanal',
           }]
       },
+      {routeLink: 'reportHistory',
+        label: 'Reportes de historiales',
+      },
     ]
   },
   {
