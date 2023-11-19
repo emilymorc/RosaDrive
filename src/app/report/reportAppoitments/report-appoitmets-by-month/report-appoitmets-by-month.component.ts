@@ -2,6 +2,7 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { ChartComponent, ApexAxisChartSeries, ApexChart, ApexXAxis, ApexTitleSubtitle } from "ng-apexcharts";
 import {ReportsService} from "../../../servicios/reports.service";
 
+
 export type ChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
@@ -10,11 +11,11 @@ export type ChartOptions = {
 };
 
 @Component({
-  selector: 'app-report-icome-by-month',
-  templateUrl: './report-icome-by-month.component.html',
-  styleUrls: ['./report-icome-by-month.component.css']
+  selector: 'app-report-appoitmets-by-month',
+  templateUrl: './report-appoitmets-by-month.component.html',
+  styleUrls: ['./report-appoitmets-by-month.component.css']
 })
-export class ReportIcomeByMonthComponent implements OnInit {
+export class ReportAppoitmetsByMonthComponent implements  OnInit{
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions!: Partial<ChartOptions>; // Cambio aquí
   public selectedMonth: string = ''; // Nuevo
@@ -43,11 +44,11 @@ export class ReportIcomeByMonthComponent implements OnInit {
   }
 
   updateChart(month: string): void {
-    this.yourService.getValueOrdersMonth(`${month}-01 00:00:00`).subscribe(
+    this.yourService.getApppoitmentsMonth(`${month}-01 00:00:00`).subscribe(
       (data: any) => {
-        // Formatear los datos para que coincidan con la estructura del gráfico
+
         const formattedData = {
-          name: "Ingresos",
+          name: "Numero de Citas",
           data: data.map((item: any) => item.TOTAL_VALUE)
         };
 
@@ -58,7 +59,7 @@ export class ReportIcomeByMonthComponent implements OnInit {
             type: "area"
           },
           title: {
-            text: `Ingresos mensuales - ${month}`
+            text: `Numero de citas mensual - ${month}`
           },
           xaxis: {
             categories: data.map((item: any) => item.DAY.toString())

@@ -9,12 +9,14 @@ export type ChartOptions = {
   title: ApexTitleSubtitle;
 };
 
+
 @Component({
-  selector: 'app-report-icome-by-year',
-  templateUrl: './report-icome-by-year.component.html',
-  styleUrls: ['./report-icome-by-year.component.css']
+  selector: 'app-report',
+  templateUrl: './report.component.html',
+  styleUrls: ['./report.component.css']
 })
-export class ReportIcomeByYearComponent implements OnInit {
+export class ReportAppoitmentWeek implements OnInit{
+
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions!: Partial<ChartOptions>; // Cambio aquí
   public selectedYear: number = 0; // Nuevo
@@ -26,7 +28,6 @@ export class ReportIcomeByYearComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeYears();
-    // Obtener el año actual
     const currentYear = new Date().getFullYear();
     this.selectedYear = currentYear;
     this.updateChart(currentYear);
@@ -40,15 +41,12 @@ export class ReportIcomeByYearComponent implements OnInit {
   }
 
   updateChart(year: number): void {
-    this.yourService.getValueOrdersYear(`${year}-01-01 00:00:00`).subscribe(
+    this.yourService.getAppoitmentsYear(`${year}-01-01 00:00:00`).subscribe(
       (data: any) => {
-        // Formatear los datos para que coincidan con la estructura del gráfico
         const formattedData = {
-          name: "Ingresos",
+          name: "Número de citas",
           data: data.map((item: any) => item.TOTAL_VALUE)
         };
-
-        // Obtener los nombres de los meses directamente de los datos del servicio
         const monthNames = data.map((item: any) => this.monthNames[item.MONTH - 1]);
 
         this.chartOptions = {
@@ -58,7 +56,7 @@ export class ReportIcomeByYearComponent implements OnInit {
             type: "area"
           },
           title: {
-            text: `Ingresos anuales - ${year}`
+            text: `Número de citas anuales - ${year}`
           },
           xaxis: {
             categories: monthNames
