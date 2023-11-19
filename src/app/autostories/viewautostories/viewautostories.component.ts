@@ -18,7 +18,6 @@ export class ViewautostoriesComponent {
   filtroPorClase: string = '';
 
   users: any[] = [];
-  vehicleBrands: string[] = [];
 
   constructor(private historyService: HistoryService , private router: Router) { }
 
@@ -29,18 +28,6 @@ export class ViewautostoriesComponent {
       },
       error => {
         console.error('Error al obtener historiales', error);
-      }
-    );
-    this.getVehicleBrands();
-  }
-
-  getVehicleBrands() {
-    this.historyService.getVehicleBrands().subscribe(
-      (brands: string[]) => {
-        this.vehicleBrands = brands;
-      },
-      (error) => {
-        console.error('Error al obtener marcas de vehículos', error);
       }
     );
   }

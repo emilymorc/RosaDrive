@@ -43,19 +43,6 @@ export class HistoryService {
     return this.http.get(`${this.apiUrl}/getStories`, { headers });
   }
 
-  getVehicleBrands(): Observable<string[]> {
-    return this.getHistories().pipe(
-      map((response: any[]) => {
-        const histories = response || [];
-        const brands = histories.map((history: any) => history.BRAND);
-
-        const uniqueBrands = Array.from(new Set(brands));
-      console.log(uniqueBrands);
-        return uniqueBrands;
-      })
-    );
-  }
-
   getFilterCategories(): Observable<any> {
     return this.getHistories().pipe(
       map((response: any[]) => {
