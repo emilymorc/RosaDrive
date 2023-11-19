@@ -89,33 +89,32 @@ export class ReportHistoryComponent {
     });
   }
 
-  aplicarFiltros() {
-    const historiasFiltradas = this.histories.filter((historia) => {
+  applyFilters() {
+    const filterHistories = this.histories.filter((history) => {
       return (
-        (this.filter1 === '' || historia.BRAND === this.filter1) &&
-        (this.filter2 === '' || historia.CURRENT_OWNER === this.filter2) &&
-        (this.filter3 === '' || historia.MODEL === this.filter3) &&
-        (this.filter4 === '' || historia.VEHICLE_STATE === this.filter4) &&
-        (this.filter5 === '' || historia.SERVICE_TYPE === this.filter5)
+        (this.filter1 === '' || history.BRAND === this.filter1) &&
+        (this.filter2 === '' || history.CURRENT_OWNER === this.filter2) &&
+        (this.filter3 === '' || history.MODEL === this.filter3) &&
+        (this.filter4 === '' || history.VEHICLE_STATE === this.filter4) &&
+        (this.filter5 === '' || history.SERVICE_TYPE === this.filter5)
       );
     });
     console.log(this.filter1)
-    this.actualizarTabla(historiasFiltradas);
+    this.updateTable(filterHistories);
   }
 
-  limpiarFiltros() {
+  cleanFilters() {
     this.filter1 = '';
     this.filter2 = '';
     this.filter3 = '';
     this.filter4 = '';
     this.filter5 = '';
 
-    // Restaurar la lista completa
-    this.actualizarTabla(this.histories);
+    this.updateTable(this.histories);
   }
 
-  actualizarTabla(datos: any[]) {
-    this.historiesWhitFilter = datos;
+  updateTable(data: any[]) {
+    this.historiesWhitFilter = data;
     console.log(this.histories)
   }
 }
