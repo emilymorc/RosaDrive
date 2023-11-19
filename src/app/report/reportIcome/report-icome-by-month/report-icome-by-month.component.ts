@@ -43,7 +43,7 @@ export class ReportIcomeByMonthComponent implements OnInit {
   }
 
   updateChart(month: string): void {
-    this.yourService.getValueOrdersYear(`${month}-01 00:00:00`).subscribe(
+    this.yourService.getValueOrdersMonth(`${month}-01 00:00:00`).subscribe(
       (data: any) => {
         // Formatear los datos para que coincidan con la estructura del gráfico
         const formattedData = {
@@ -55,7 +55,7 @@ export class ReportIcomeByMonthComponent implements OnInit {
           series: [formattedData],
           chart: {
             height: 350,
-            type: "line"
+            type: "area"
           },
           title: {
             text: `Ingresos mensuales - ${month}`

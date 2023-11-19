@@ -55,7 +55,7 @@ export class ReportIcomeByYearComponent implements OnInit {
           series: [formattedData],
           chart: {
             height: 350,
-            type: "bar"
+            type: "area"
           },
           title: {
             text: `Ingresos anuales - ${year}`
