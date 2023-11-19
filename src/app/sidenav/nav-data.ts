@@ -56,6 +56,10 @@ export const navbarData: INavbarData[] = [
     icon: 'fal fa-scroll',
     label: 'Reportes',
     items: [
+      {
+        routeLink: 'reportOrderByTec',
+        label: 'Ordenes Mecanicos',
+      },
       {routeLink: 'coupens',
         label: 'Reportes de citas',
         items: [ {
@@ -82,21 +86,6 @@ export const navbarData: INavbarData[] = [
             label: 'Reporte Mensual',
           }
           ]
-      },
-      {routeLink: 'coupens',
-        label: 'Reportes de Ordenes',
-        items: [ {
-          routeLink: 'reportOrderByMonth',
-          label: 'Mensual',
-        },
-          {
-            routeLink: 'reportOrderByTec',
-            label: 'Mecanicos',
-          },
-          {
-            routeLink: 'reportOrderByWeek',
-            label: 'Semanal',
-          }]
       },
       {routeLink: 'reportHistory',
         label: 'Reportes de historiales',
