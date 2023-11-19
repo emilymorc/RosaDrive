@@ -43,7 +43,7 @@ export class ReportsService {
     });
 
     const body = {
-      date: month,
+      date: day,
     };
 
     return this.http.post(`${this.apiUrl}/valueOrdersDate`, body, { headers });
