@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+
+<body>
+
+<div class="header">
+  <h1>Historiales de Automotores</h1>
+</div>
+
+<div class="container mt-5 table-responsive">
+  <div class="row">
+    <div class="col-md-2 d-flex flex-column flex-md-row">
+      <select class="form-select me-md-2" [(ngModel)]="filter1" placeholder="Selecciona Filtro 1">
+        <option value="">Marcas</option>
+        <option *ngFor="let opcion of vehicleBrands" [value]="opcion">{{ opcion }}</option>
+      </select>
+    </div>
+
+    <div class="col-md-2 d-flex flex-column flex-md-row">
+      <select class="form-select me-md-2" [(ngModel)]="filter2" placeholder="Selecciona Filtro 1">
+        <option value="">Clientes</option>
+        <option *ngFor="let opcion of owners" [value]="opcion">{{ opcion }}</option>
+      </select>
+    </div>
+
+    <div class="col-md-2 d-flex flex-column flex-md-row">
+      <select class="form-select me-md-2" [(ngModel)]="filter3" placeholder="Selecciona Filtro 1">
+        <option value="">Modelo</option>
+        <option *ngFor="let opcion of vehicleBrands" [value]="opcion">{{ opcion }}</option>
+      </select>
+    </div>
+
+    <div class="col-md-2 d-flex flex-column flex-md-row">
+      <select class="form-select me-md-2" [(ngModel)]="filter4" placeholder="Selecciona Filtro 1">
+        <option value="">Estado</option>
+        <option *ngFor="let opcion of vehicleBrands" [value]="opcion">{{ opcion }}</option>
+      </select>
+    </div>
+
+    <div class="col-md-2 d-flex flex-column flex-md-row">
+      <select class="form-select me-md-2" [(ngModel)]="filter5" placeholder="Selecciona Filtro 1">
+        <option value="">Tipo de servicio</option>
+        <option *ngFor="let opcion of vehicleBrands" [value]="opcion">{{ opcion }}</option>
+      </select>
+    </div>
+
+    <div class="col-md-2">
+      <button class="btn btn-primary" >Filtrar</button>
+    </div>
+
+  </div>
+  <br>
+  <table class="table table table-bordered" >
+    <thead>
+    <tr>
+
+      <th (click)="sortDataByColumn('CURRENT_OWNER')">
+        Cliente
+        <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'CURRENT_OWNER' && isAsc, 'fa-arrow-down': orderBy === 'CURRENT_OWNER' && !isAsc}"></i>
+      </th>
+      <th (click)="sortDataByColumn('MODEL')">Modelo
+        <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'MODEL' && isAsc, 'fa-arrow-down': orderBy === 'MODEL' && !isAsc}"></i>
+      </th>
+      <th (click)="sortDataByColumn('BRAND')">
+        Marca
+        <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'BRAND' && isAsc, 'fa-arrow-down': orderBy === 'BRAND' && !isAsc}"></i>
+      </th>
+      <th (click)="sortDataByColumn('VEHICLE_STATE')">
+        Estado
+        <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'VEHICLE_STATE' && isAsc, 'fa-arrow-down': orderBy === 'VEHICLE_STATE' && !isAsc}"></i>
+      </th>
+      <th (click)="sortDataByColumn('SERVICE_TYPE')">
+        Tipo de Servicio
+        <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'SERVICE_TYPE' && isAsc, 'fa-arrow-down': orderBy === 'SERVICE_TYPE' && !isAsc}"></i>
+      </th>
+      <th>Fecha creación</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let dato of filtrarPorClase() | slice:(currentPage-1)*itemsPerPage:currentPage*itemsPerPage">
+      <td class="align-middle" >{{ dato.CURRENT_OWNER }}</td>
+      <td class="align-middle" >{{ dato.MODEL }}</td>
+      <td class="align-middle" >{{ dato.BRAND }}</td>
+      <td class="align-middle" >{{ dato.VEHICLE_STATE }}</td>
+      <td class="align-middle" >{{ dato.SERVICE_TYPE }}</td>
+      <!--      <td>{{ dato.CREATION_DATE | date: 'MM/dd/yyyy hh:mm:ss a'}}</td>-->
+      <td class="align-middle" >{{ dato.ENTRY_DATE | date: 'MM/dd/yyyy hh:mm:ss a'}}</td>
+    </tr>
+    </tbody>
+  </table>
+  <pagination
+    [totalItems]="users.length"
+    [(ngModel)]="currentPage"
+    [itemsPerPage]="itemsPerPage"
+    [maxSize]="maxSize"
+    [boundaryLinks]="true"
+    [previousText]="'Anterior'"
+    [nextText]="'Siguiente'"
+    [lastText]="'Final'"
+    [firstText]="'Primer'"
+    (pageChanged)="onPageChange($event)">
+  </pagination>
+</div>
+
+
+</body>
+
+</html>
+
