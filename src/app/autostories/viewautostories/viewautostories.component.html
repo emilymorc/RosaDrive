@@ -9,12 +9,6 @@
 </div>
 
 <div class="container mt-5 table-responsive">
-  <div>
-    <h2>Marcas de vehículos</h2>
-    <ul>
-      <li *ngFor="let brand of vehicleBrands">{{ brand }}</li>
-    </ul>
-  </div>
   <div class="ml-2">
     <input type="text" [(ngModel)]="filtroPorClase" placeholder="Filtrar por Clase de Vehiculo" class="form-control">
   </div>
@@ -22,7 +16,6 @@
   <table class="table table table-bordered" >
     <thead>
     <tr>
-
       <th (click)="sortDataByColumn('LICENSE_PLATE_NUMBER')">
         Placa
         <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'LICENSE_PLATE_NUMBER' && isAsc, 'fa-arrow-down': orderBy === 'LICENSE_PLATE_NUMBER' && !isAsc}"></i>

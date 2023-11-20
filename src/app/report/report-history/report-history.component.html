@@ -13,40 +13,43 @@
     <div class="col-md-2 d-flex flex-column flex-md-row">
       <select class="form-select me-md-2" [(ngModel)]="filter1" placeholder="Selecciona Filtro 1">
         <option value="">Marcas</option>
-        <option *ngFor="let opcion of vehicleBrands" [value]="opcion">{{ opcion }}</option>
+        <option *ngFor="let opcion of filterCategories.filter1" [value]="opcion">{{ opcion }}</option>
       </select>
     </div>
 
     <div class="col-md-2 d-flex flex-column flex-md-row">
       <select class="form-select me-md-2" [(ngModel)]="filter2" placeholder="Selecciona Filtro 1">
         <option value="">Clientes</option>
-        <option *ngFor="let opcion of owners" [value]="opcion">{{ opcion }}</option>
+        <option *ngFor="let opcion of filterCategories.filter2" [value]="opcion">{{ opcion }}</option>
       </select>
     </div>
 
     <div class="col-md-2 d-flex flex-column flex-md-row">
       <select class="form-select me-md-2" [(ngModel)]="filter3" placeholder="Selecciona Filtro 1">
         <option value="">Modelo</option>
-        <option *ngFor="let opcion of vehicleBrands" [value]="opcion">{{ opcion }}</option>
+        <option *ngFor="let opcion of filterCategories.filter3" [value]="opcion">{{ opcion }}</option>
       </select>
     </div>
 
     <div class="col-md-2 d-flex flex-column flex-md-row">
       <select class="form-select me-md-2" [(ngModel)]="filter4" placeholder="Selecciona Filtro 1">
         <option value="">Estado</option>
-        <option *ngFor="let opcion of vehicleBrands" [value]="opcion">{{ opcion }}</option>
+        <option *ngFor="let opcion of filterCategories.filter4" [value]="opcion">{{ opcion }}</option>
       </select>
     </div>
 
     <div class="col-md-2 d-flex flex-column flex-md-row">
       <select class="form-select me-md-2" [(ngModel)]="filter5" placeholder="Selecciona Filtro 1">
         <option value="">Tipo de servicio</option>
-        <option *ngFor="let opcion of vehicleBrands" [value]="opcion">{{ opcion }}</option>
+        <option *ngFor="let opcion of filterCategories.filter5" [value]="opcion">{{ opcion }}</option>
       </select>
     </div>
 
     <div class="col-md-2">
-      <button class="btn btn-primary" >Filtrar</button>
+      <button class="btn btn-primary" (click)="applyFilters()">Filtrar</button>
+      <button class="btn btn-secondary ms-2" (click)="cleanFilters()">
+        <i class="fas fa-times"></i>
+      </button>
     </div>
 
   </div>
@@ -78,7 +81,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let dato of filtrarPorClase() | slice:(currentPage-1)*itemsPerPage:currentPage*itemsPerPage">
+    <tr *ngFor="let dato of historiesWhitFilter | slice:(currentPage-1)*itemsPerPage:currentPage*itemsPerPage">
       <td class="align-middle" >{{ dato.CURRENT_OWNER }}</td>
       <td class="align-middle" >{{ dato.MODEL }}</td>
       <td class="align-middle" >{{ dato.BRAND }}</td>
@@ -90,7 +93,7 @@
     </tbody>
   </table>
   <pagination
-    [totalItems]="users.length"
+    [totalItems]="historiesWhitFilter.length"
     [(ngModel)]="currentPage"
     [itemsPerPage]="itemsPerPage"
     [maxSize]="maxSize"

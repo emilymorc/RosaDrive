@@ -15,7 +15,6 @@ export class ReportHistoryComponent {
   maxSize: number = 10;
   orderBy: string | null = null;
   isAsc: boolean = true;
-  filtroPorClase: string = '';
 
   filter1: string = "";
   filter2: string = "";
@@ -23,40 +22,29 @@ export class ReportHistoryComponent {
   filter4: string = "";
   filter5: string = "";
 
-  users: any[] = [];
-  owners: string[] = [];
-  vehicleBrands: string[] = [];
+  histories: any[] = [];
+  historiesWhitFilter: any[] = [];
+  filterCategories: any = {};
 
   constructor(private historyService: HistoryService , private router: Router) { }
 
   ngOnInit(): void {
     this.historyService.getHistories().subscribe(
       data => {
-        this.users = data;
+        this.histories = data;
+        this.historiesWhitFilter = data;
       },
       error => {
         console.error('Error al obtener historiales', error);
       }
     );
-    this.getVehicleBrands();
-    this.getOwnerVehicules();
+    this.getFilters();
   }
 
-  getVehicleBrands() {
-    this.historyService.getVehicleBrands().subscribe(
-      (brands: string[]) => {
-        this.vehicleBrands = brands;
-      },
-      (error) => {
-        console.error('Error al obtener marcas de vehículos', error);
-      }
-    );
-  }
-
-  getOwnerVehicules() {
-    this.historyService.getOwnerHistory().subscribe(
-      (owners: string[]) => {
-        this.owners = owners;
+  getFilters() {
+    this.historyService.getFilterCategories().subscribe(
+      (categories: any[]) => {
+        this.filterCategories = categories;
       },
       (error) => {
         console.error('Error al obtener marcas de vehículos', error);
@@ -80,7 +68,7 @@ export class ReportHistoryComponent {
     this.orderBy = column;
     this.isAsc = !this.isAsc;
 
-    this.users.sort((a, b) => {
+    this.historiesWhitFilter.sort((a, b) => {
       const aValue = a[column];
       const bValue = b[column];
 
@@ -101,41 +89,32 @@ export class ReportHistoryComponent {
     });
   }
 
-  filtrarPorClase(): any[] {
-    if (this.filtroPorClase) {
-      return this.users.filter(dato =>
-        dato.VEHICLE_CLASS && dato.VEHICLE_CLASS.toLowerCase().includes(this.filtroPorClase.toLowerCase())
+  applyFilters() {
+    const filterHistories = this.histories.filter((history) => {
+      return (
+        (this.filter1 === '' || history.BRAND === this.filter1) &&
+        (this.filter2 === '' || history.CURRENT_OWNER === this.filter2) &&
+        (this.filter3 === '' || history.MODEL === this.filter3) &&
+        (this.filter4 === '' || history.VEHICLE_STATE === this.filter4) &&
+        (this.filter5 === '' || history.SERVICE_TYPE === this.filter5)
       );
-    } else {
-      return this.users;
-    }
+    });
+    console.log(this.filter1)
+    this.updateTable(filterHistories);
   }
 
-  getHistories(dato: any){
-    this.historyService.getHistoryById(dato.ID_USER).subscribe(
-      response => {
-        console.log(response.body);
-        this.historyService.setSelectedHistory(dato);
-        this.router.navigate(['/dashboard/detailsHistory']);
-        console.log('Datos del Historial:', response);
-      },
-      error => {
-        console.error('Error al obtener datos del Historial:', error);
-      }
-    );
+  cleanFilters() {
+    this.filter1 = '';
+    this.filter2 = '';
+    this.filter3 = '';
+    this.filter4 = '';
+    this.filter5 = '';
+
+    this.updateTable(this.histories);
   }
 
-  modifyHistories(dato: any){
-    this.historyService.getHistoryById(dato.ID_USER).subscribe(
-      response => {
-        console.log(response.body);
-        this.historyService.setSelectedHistory(dato);
-        this.router.navigate(['/dashboard/modifyHistory']);
-        console.log('Datos del Historial:', response);
-      },
-      error => {
-        console.error('Error al obtener datos del Historial:', error);
-      }
-    );
+  updateTable(data: any[]) {
+    this.historiesWhitFilter = data;
+    console.log(this.histories)
   }
 }
