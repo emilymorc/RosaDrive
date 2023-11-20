@@ -25,6 +25,7 @@ export type ChartOptions = {
 })
 export class ReportOrderByDayComponent implements OnInit{
 
+
   technicians: string[]= [];
   orders: number[]= [];
   optionsYear = ['2023', '2024', '2025', '2026'];

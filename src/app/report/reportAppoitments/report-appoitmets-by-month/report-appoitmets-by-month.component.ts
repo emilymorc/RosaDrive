@@ -49,20 +49,20 @@ export class ReportAppoitmetsByMonthComponent implements  OnInit{
 
         const formattedData = {
           name: "Numero de Citas",
-          data: data.map((item: any) => item.TOTAL_VALUE)
+          data: data.map((item: any) => item.APPOINTMENTS_NUMBER)
         };
 
         this.chartOptions = {
           series: [formattedData],
           chart: {
             height: 350,
-            type: "area"
+            type: "bar"
           },
           title: {
             text: `Numero de citas mensual - ${month}`
           },
           xaxis: {
-            categories: data.map((item: any) => item.DAY.toString())
+            categories: data.map((item: any) => item.DAY_APPOINTMENT.toString())
           }
         };
       },

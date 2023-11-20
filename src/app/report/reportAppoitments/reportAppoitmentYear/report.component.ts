@@ -1,6 +1,7 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { ChartComponent, ApexAxisChartSeries, ApexChart, ApexXAxis, ApexTitleSubtitle } from "ng-apexcharts";
 import {ReportsService} from "../../../servicios/reports.service";
+import {colors} from "@angular/cli/src/utilities/color";
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -19,10 +20,10 @@ export class ReportAppoitmentWeek implements OnInit{
 
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions!: Partial<ChartOptions>; // Cambio aquí
-  public selectedYear: number = 0; // Nuevo
-  public years: number[] = []; // Nuevo
+  public selectedYear: number = 0;
+  public years: number[] = [];
   private monthNames: string[] = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]; // Nuevo
-  private startYear: number = 2010; // Puedes ajustar según tus necesidades
+  private startYear: number = 2010;
 
   constructor(private yourService: ReportsService) {}
 
@@ -45,23 +46,25 @@ export class ReportAppoitmentWeek implements OnInit{
       (data: any) => {
         const formattedData = {
           name: "Número de citas",
-          data: data.map((item: any) => item.TOTAL_VALUE)
+          data: data.map((item: any) => item.APPOINTMENTS_NUMBER)
         };
-        const monthNames = data.map((item: any) => this.monthNames[item.MONTH - 1]);
+        const monthNames = data.map((item: any) => this.monthNames[item.MONTH_APPOINTMENT - 1]);
 
         this.chartOptions = {
           series: [formattedData],
           chart: {
             height: 350,
-            type: "area"
+            type: "bar"
           },
           title: {
             text: `Número de citas anuales - ${year}`
           },
           xaxis: {
             categories: monthNames
-          }
+          },
+
         };
+
       },
       (error: any) => {
         console.error('Error al obtener los datos:', error);

@@ -60,7 +60,7 @@ export class ReportsService {
       date: month,
     };
 
-    return this.http.post(`${this.apiUrl}/valueOrdersDate`, body, { headers });
+    return this.http.post(`${this.apiUrl}/numberAppointmentsMonth`, body, { headers });
   }
 
   getValueOrdersYear(year: string): Observable<any> {
@@ -88,6 +88,6 @@ export class ReportsService {
       date: year,
     };
 
-    return this.http.post(`${this.apiUrl}/valueOrdersYear`, body, { headers });
+    return this.http.post(`${this.apiUrl}/numberAppointmentsYear`, body, { headers });
   }
 }

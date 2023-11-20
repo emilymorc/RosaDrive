@@ -66,10 +66,7 @@ export const navbarData: INavbarData[] = [
           routeLink: 'reportAppoitmentYear',
           label: 'Reporte Anual',
         },
-          {
-            routeLink: 'reportAppoitmentDay',
-            label: 'Reporte Diario',
-          },
+
           {
             routeLink: 'reportMonthAppoitment',
             label: 'Reporte Mensual',
