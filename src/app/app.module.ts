@@ -40,7 +40,6 @@ import { AppoitmentComponent } from './appoitment/appoitment.component';
 import { ViewApoimentComponent } from './appoitment/view-apoiment/view-apoiment.component';
 import { ModifyAppoitmentComponent } from './appoitment/modify-appoitment/modify-appoitment.component';
 import { ReportComponent } from './report/report.component';
-import {ReportAppoitmetsByDayComponent} from "./report/reportAppoitments/reportAppoitmentsByDay/report.component";
 import {NgApexchartsModule} from "ng-apexcharts";
 import {ReportAppoitmentWeek} from "./report/reportAppoitments/reportAppoitmentYear/report.component";
 import { ReportOrderByDayComponent } from './report/reportOrders/report-order-by-tecnicos/report-order-by-day.component';
@@ -88,7 +87,6 @@ import { ReportAppoitmetsByMonthComponent } from './report/reportAppoitments/rep
     ViewApoimentComponent,
     ModifyAppoitmentComponent,
     ReportComponent,
-      ReportAppoitmetsByDayComponent,
       ReportAppoitmentWeek,
       ReportOrderByDayComponent,
       ReportOrderByWeekComponent,
