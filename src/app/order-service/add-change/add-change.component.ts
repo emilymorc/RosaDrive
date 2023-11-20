@@ -7,6 +7,7 @@ import {ChangeService} from "../../servicios/change.service";
 import {NgForm} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
 import {FormBuilder} from "@angular/forms";
+import {MailService} from  "../../servicios/mail.service";
 
 interface Image {
   name: string;
@@ -31,7 +32,7 @@ export class AddChangeComponent implements OnInit {
   imagesApiKey: string = "b9eb61371f94895bbcb1b8ee9e15e144";
   showError = false; // Para mostrar u ocultar el error
 
-  constructor(private orderService: OrderService, private historyService: HistoryService, private changeService: ChangeService, private toastr: ToastrService,private formBuilder: FormBuilder) {
+  constructor(private orderService: OrderService, private historyService: HistoryService, private changeService: ChangeService, private toastr: ToastrService,private formBuilder: FormBuilder, private mailService:MailService) {
 
   }
 
@@ -98,6 +99,7 @@ export class AddChangeComponent implements OnInit {
           const changeId = response.insertId;
           this.postImages(changeId);
           console.log(changeId);
+          this.sendEmail(this.selectedOrder.ID_ORDER,description);
           this.toastr.success("Cambio agregado con exito", "EXITOSO!");
         },
         error => {
@@ -120,6 +122,36 @@ export class AddChangeComponent implements OnInit {
     );
   }
 
+  /*getIdHistory(id_story: number){
+    this.historyService.getHistoryById(id_story).subscribe(
+      response => {
+        this.historySelected = response;
+      },
+      error => {
+        console.error('Error al obtener datos del Historial:', error);
+      }
+    );
+  }*/
+
+  sendEmail(id_order: any,description:string ): void {
+    const messageString = "actualizacion en la orden: " + id_order + " asociada al automovil de placa: " + this.historySelected.LICENSE_PLATE_NUMBER + "\n descripción del cambio: " + description;
+    const emailData = {
+      name: this.historySelected.CURRENT_OWNER +"",
+      email: this.historySelected.OWNER_CONTACT +"",
+      message: messageString
+    };
+    console.log(emailData)
+
+    this.mailService.sendEmail(emailData).subscribe(
+      response => {
+        console.log('Respuesta:', response);
+      },
+      error => {
+        console.error('Error al enviar el correo:', error);
+      }
+    );
+  }
+
   async postImages(idChange: number) {
     for (const imagen of this.listImages) {
       const base64Image = await this.fileToBase64(imagen.file);
@@ -131,8 +163,6 @@ export class AddChangeComponent implements OnInit {
           const imageName = response.data.image.filename;
           console.log('Imagen subida con éxito:', response);
           this.uploadChangeImage(idChange, imageUrl, imageName);
-          /*console.log(imageUrl);
-          console.log(imageName);*/
         },
         error => {
           console.error('Error al subir la imagen:', error);
