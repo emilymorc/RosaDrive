@@ -105,7 +105,6 @@ export class OrderServiceComponent implements OnInit{
   }
 
   sendEmail(id_order: any ): void {
-
     const emailData = {
       name: this.historySelected[0].CURRENT_OWNER +"",
       email: this.historySelected[0].OWNER_CONTACT +"",
