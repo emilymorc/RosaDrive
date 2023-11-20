@@ -99,7 +99,7 @@ export class AddChangeComponent implements OnInit {
           const changeId = response.insertId;
           this.postImages(changeId);
           console.log(changeId);
-          this.sendEmail(response.insertId,description);
+          this.sendEmail(this.selectedOrder.ID_ORDER,description);
           this.toastr.success("Cambio agregado con exito", "EXITOSO!");
         },
         error => {
