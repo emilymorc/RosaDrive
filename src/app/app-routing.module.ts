@@ -38,6 +38,7 @@ import {ReportHistoryComponent} from "./report/report-history/report-history.com
 import {
   ReportAppoitmetsByMonthComponent
 } from "./report/reportAppoitments/report-appoitmets-by-month/report-appoitmets-by-month.component";
+import {LogsComponent} from "./logs/logs.component";
 
 
 const routes: Routes = [
@@ -85,6 +86,7 @@ const routes: Routes = [
       {path: 'reportIcomeByMonth', component: ReportIcomeByMonthComponent},
       {path: 'reportIcomeByDay', component: ReportIcomeByDayComponent},
       {path: 'reportHistory', component: ReportHistoryComponent},
+      {path: 'logs', component: LogsComponent},
       {path: 'reportMonthAppoitment', component: ReportAppoitmetsByMonthComponent}
 
     ] ,canActivate:[AuthGuard]

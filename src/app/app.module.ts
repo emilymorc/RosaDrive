@@ -50,6 +50,7 @@ import { ReportIcomeByMonthComponent } from './report/reportIcome/report-icome-b
 import { ReportIcomeByYearComponent } from './report/reportIcome/report-icome-by-year/report-icome-by-year.component';
 import { ReportHistoryComponent } from './report/report-history/report-history.component';
 import { ReportAppoitmetsByMonthComponent } from './report/reportAppoitments/report-appoitmets-by-month/report-appoitmets-by-month.component';
+import { LogsComponent } from './logs/logs.component';
 // import { NgApexchartsModule } from 'ngx-apexcharts';
 
 
@@ -95,7 +96,8 @@ import { ReportAppoitmetsByMonthComponent } from './report/reportAppoitments/rep
       ReportIcomeByMonthComponent,
       ReportIcomeByYearComponent,
       ReportHistoryComponent,
-      ReportAppoitmetsByMonthComponent
+      ReportAppoitmetsByMonthComponent,
+      LogsComponent
   ],
     imports: [
         PaginationModule.forRoot(),
