@@ -58,7 +58,7 @@ export class ReportIcomeByMonthComponent implements OnInit {
             type: "area"
           },
           title: {
-            text: `Ingresos mensuales - ${month}`
+            text: `Ingresos mensuales - ${this.getMonthName(month)}`
           },
           xaxis: {
             categories: data.map((item: any) => item.DAY.toString())
@@ -73,5 +73,10 @@ export class ReportIcomeByMonthComponent implements OnInit {
 
   onMonthChange(): void {
     this.updateChart(this.selectedMonth);
+  }
+
+  getMonthName(month: string): string {
+    const selectedMonth = this.months.find(m => m.value === month);
+    return selectedMonth ? selectedMonth.label : '';
   }
 }

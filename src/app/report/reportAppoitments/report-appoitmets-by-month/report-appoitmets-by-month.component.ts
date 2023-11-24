@@ -59,7 +59,7 @@ export class ReportAppoitmetsByMonthComponent implements  OnInit{
             type: "bar"
           },
           title: {
-            text: `Numero de citas mensual - ${month}`
+            text: `Numero de citas mensual - ${this.getMonthName(month)}`
           },
           xaxis: {
             categories: data.map((item: any) => item.DAY_APPOINTMENT.toString())
@@ -74,5 +74,10 @@ export class ReportAppoitmetsByMonthComponent implements  OnInit{
 
   onMonthChange(): void {
     this.updateChart(this.selectedMonth);
+  }
+
+  getMonthName(month: string): string {
+    const selectedMonth = this.months.find(m => m.value === month);
+    return selectedMonth ? selectedMonth.label : '';
   }
 }

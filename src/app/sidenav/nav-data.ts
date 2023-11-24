@@ -57,8 +57,17 @@ export const navbarData: INavbarData[] = [
     label: 'Reportes',
     items: [
       {
-        routeLink: 'reportOrderByTec',
+        routeLink: 'coupens',
         label: 'Ordenes Mecanicos',
+        items: [ {
+          routeLink: 'reportTecYear',
+          label: 'Reporte Anual',
+        },
+
+          {
+            routeLink: 'reportOrderByTec',
+            label: 'Reporte Mensual',
+          }]
       },
       {routeLink: 'coupens',
         label: 'Reportes de citas',

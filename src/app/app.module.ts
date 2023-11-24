@@ -51,6 +51,7 @@ import { ReportIcomeByYearComponent } from './report/reportIcome/report-icome-by
 import { ReportHistoryComponent } from './report/report-history/report-history.component';
 import { ReportAppoitmetsByMonthComponent } from './report/reportAppoitments/report-appoitmets-by-month/report-appoitmets-by-month.component';
 import { LogsComponent } from './logs/logs.component';
+import { ReportTecYearComponent } from './report-tec-year/report-tec-year.component';
 // import { NgApexchartsModule } from 'ngx-apexcharts';
 
 
@@ -96,6 +97,8 @@ import { LogsComponent } from './logs/logs.component';
       ReportIcomeByMonthComponent,
       ReportIcomeByYearComponent,
       ReportHistoryComponent,
+      ReportAppoitmetsByMonthComponent,
+      ReportTecYearComponent
       ReportAppoitmetsByMonthComponent,
       LogsComponent
   ],
