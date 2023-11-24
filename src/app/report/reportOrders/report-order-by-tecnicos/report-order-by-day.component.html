@@ -1,5 +1,5 @@
 <div class="header">
-  <h1>Reporte de Ordenes atendidas por Mecánicos</h1>
+  <h1>Reporte Ordenes Completadas por Mecanicos </h1>
 </div>
 <br>
 <br>
@@ -7,11 +7,15 @@
 <div class="container">
   <div class="row my-4">
     <div class="col-12">
+      <label for="selectedMonth">Seleccione el mes:</label>
+      <select id="selectedMonth" [(ngModel)]="selectedMonth" (change)="onMonthChange()">
+        <option *ngFor="let month of months" [value]="month.value">{{ month.label }}</option>
+      </select>
       <div class="card">
         <div class="card-header">
           <div class="card-body">
             <div class="card-title">
-              Ordenes de servicio por Mecanicos
+              Numero de ordenes completadas mensuales
               <apx-chart
                 [series]="chartOptions.series!"
                 [chart]="chartOptions.chart!"
@@ -25,3 +29,4 @@
     </div>
   </div>
 </div>
+
