@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import {AuthService} from "../servicios/auth.service";
 import { fadeInOut, INavbarData } from './helper';
 import { navbarData } from './nav-data';
+import { navbarData2 } from './nav-data';
 
 interface SideNavToggle {
   screenWidth: number;
@@ -35,7 +36,7 @@ export class SidenavComponent implements OnInit {
   screenWidth = 0;
   navData = navbarData;
   multiple: boolean = false;
-
+  isAdmin: boolean;
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.screenWidth = window.innerWidth;
@@ -45,10 +46,18 @@ export class SidenavComponent implements OnInit {
     }
   }
 
-  constructor(public router: Router) {}
+  constructor(public router: Router, private authService: AuthService) {
+    this.isAdmin = this.authService.isUserAdmin();
+  }
 
   ngOnInit(): void {
     this.screenWidth = window.innerWidth;
+    if (this.isAdmin){
+      this.navData = navbarData
+    }else {
+      this.navData = navbarData2
+    }
+
   }
 
   toggleCollapse(): void {

@@ -110,3 +110,31 @@ export const navbarData: INavbarData[] = [
     label: 'Cerrar Sesión'
   }
 ];
+
+export const navbarData2: INavbarData[] = [
+  {
+    routeLink: 'landing',
+    icon: 'fal fa-home',
+    label: 'Inicio'
+  },
+  {
+    routeLink: 'login',
+    icon: 'fa solid fa-address-book',
+    label: 'Citas',
+    items: [
+      {
+        routeLink: 'createAppoitment',
+        label: 'Crear',
+      },
+      {
+        routeLink: 'viewApoimentComponent',
+        label: 'Ver',
+      }
+    ]
+  },
+  {
+    routeLink: 'logout',
+    icon: 'fa solid fa-arrow-right',
+    label: 'Cerrar Sesión'
+  }
+];
