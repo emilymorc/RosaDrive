@@ -43,10 +43,10 @@ export class ReportTecYearComponent implements OnInit{
     this.yourService.getTecsOrdersYear(`${year}-01-01 00:00:00`).subscribe(
       (data: any) => {
         const formattedData = {
-          name: "Número de citas",
-          data: data.map((item: any) => item.APPOINTMENTS_NUMBER)
+          name: "Número de ordenes",
+          data: data.map((item: any) => item.ORDERS_COMPLETE)
         };
-        const monthNames = data.map((item: any) => this.monthNames[item.MONTH_APPOINTMENT - 1]);
+        const monthNames = data.map((item: any) => this.monthNames[item.RESPONSIBLE_TECHNICIAN - 1]);
 
         this.chartOptions = {
           series: [formattedData],
@@ -55,7 +55,7 @@ export class ReportTecYearComponent implements OnInit{
             type: "bar"
           },
           title: {
-            text: `Número de citas anuales - ${year}`
+            text: `Número de ordenes anuales - ${year}`
           },
           xaxis: {
             categories: monthNames
