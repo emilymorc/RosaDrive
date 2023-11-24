@@ -12,7 +12,15 @@
 
 <div class="container mt-5 table-responsive">
   <div class="d-flex align-items-center ml-2">
-    <input type="text" [(ngModel)]="filtroServicio" placeholder="Filtrar por: " class="form-control input-large">
+
+    <div *ngIf="selectedCategory === 'Fecha'" class="div-label">
+      <input type="text" [(ngModel)]="filtroServicio" placeholder="AAAA-MM-DD" class="form-control input-large">
+    </div>
+
+    <div *ngIf="selectedCategory !== 'Fecha'"  class="div-label">
+      <input type="text" [(ngModel)]="filtroServicio" placeholder="Filtrar por: " class="form-control input-large">
+    </div>
+
     <select class="form-select ml-2" [(ngModel)]="selectedCategory" (change)="assignSelectedCategory(selectedCategory)">
       <option value="">Todas las Categorías</option>
       <option *ngFor="let categoria of availableCategories" [value]="categoria">{{ categoria }}</option>

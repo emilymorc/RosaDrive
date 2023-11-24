@@ -93,6 +93,11 @@ export class ViewOrdersComponent implements OnInit{
   }
   assignSelectedCategory(category: string): void {
     this.selectedCategory = category;
+
+    if (category !== 'Fecha') {
+      // Limpiar el campo de texto si la opción no es "Fecha"
+      this.filtroServicio = '';
+    }
     console.log(this.selectedCategory);
   }
 
