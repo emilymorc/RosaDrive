@@ -46,7 +46,7 @@ export class ReportTecYearComponent implements OnInit{
           name: "Número de ordenes",
           data: data.map((item: any) => item.ORDERS_COMPLETE)
         };
-        const monthNames = data.map((item: any) => this.monthNames[item.RESPONSIBLE_TECHNICIAN - 1]);
+        //const monthNames = data.map((item: any) => this.monthNames[item.RESPONSIBLE_TECHNICIAN - 1]);
 
         this.chartOptions = {
           series: [formattedData],
@@ -58,7 +58,7 @@ export class ReportTecYearComponent implements OnInit{
             text: `Número de ordenes anuales - ${year}`
           },
           xaxis: {
-            categories: monthNames
+            categories: data.map((item: any) => item.RESPONSIBLE_TECHNICIAN.toString())
           },
 
         };
@@ -71,7 +71,12 @@ export class ReportTecYearComponent implements OnInit{
   }
 
 
+
+
+
   onYearChange(): void {
     this.updateChart(this.selectedYear);
   }
+
+
 }
