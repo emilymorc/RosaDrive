@@ -92,6 +92,20 @@ export class ReportsService {
     return this.http.post(`${this.apiUrl}/valueOrdersYear`, body, { headers });
   }
 
+  getTecsOrdersYear(year: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'User-Agent': 'Insomnia/2023.5.5',
+      'x-access-token': this.castToken,
+    });
+
+    const body = {
+      date: year,
+    };
+
+    return this.http.post(`${this.apiUrl}/ordersByTechnicianYear`, body, { headers });
+  }
+
   getAppoitmentsYear(year: string): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
