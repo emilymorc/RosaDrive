@@ -122,17 +122,6 @@ export class AddChangeComponent implements OnInit {
     );
   }
 
-  /*getIdHistory(id_story: number){
-    this.historyService.getHistoryById(id_story).subscribe(
-      response => {
-        this.historySelected = response;
-      },
-      error => {
-        console.error('Error al obtener datos del Historial:', error);
-      }
-    );
-  }*/
-
   sendEmail(id_order: any,description:string ): void {
     const messageString = "\nActualizacion en la orden: " + id_order + " \nAsociada al automovil de placa: " + this.historySelected.LICENSE_PLATE_NUMBER + "^\nDescripción del cambio: " + description;
     const emailData = {

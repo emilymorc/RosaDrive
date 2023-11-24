@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {OrderService} from "../../servicios/order.service";
 import {HistoryService} from "../../servicios/history.service";
@@ -38,7 +38,7 @@ export class ViewApoimentComponent {
   }
 
   ngOnInit(): void {
-    if(this.isAdmin){
+    if (this.isAdmin) {
       this.appointmentService.getAppointmentsByStatus('All').subscribe(
         data => {
           this.orders = data;
@@ -47,7 +47,7 @@ export class ViewApoimentComponent {
           console.error('Error al obtener usuarios:', error);
         }
       );
-    }else {
+    } else {
       this.appointmentService.getAppointmentById(this.authService.getCurrentUser().data.ID_USER).subscribe(
         data => {
           this.orders = data;
@@ -103,9 +103,13 @@ export class ViewApoimentComponent {
     });
   }
 
-  getStatusAppoitment(id: any): boolean{
-    return this.findByID(id).STATUS != 'Activa';
+  getStatusAppoitment(id: any): boolean {
+    const appointment = this.findByID(id);
+    return appointment.STATUS !== 'Activa' && appointment.STATUS !== 'En Curso';
   }
+
+//STATUS_ORDER
+
 
   findByID(id: number): any {
     return this.orders.find(order => order.ID_APPOINTMENT === id);
@@ -141,6 +145,7 @@ export class ViewApoimentComponent {
       }
     );
   }
+
   cancelApoiment(dato: any): void {
     const appointmentData = {
       idUser: dato.ID_USER,
@@ -162,8 +167,8 @@ export class ViewApoimentComponent {
     );
   }
 
-  getApoitments(): void{
-    if(this.isAdmin){
+  getApoitments(): void {
+    if (this.isAdmin) {
       this.appointmentService.getAppointmentsByStatus('All').subscribe(
         data => {
           this.orders = data;
@@ -172,7 +177,7 @@ export class ViewApoimentComponent {
           //console.error('Error al obtener usuarios:', error);
         }
       );
-    }else {
+    } else {
       this.appointmentService.getAppointmentById(this.authService.getCurrentUser().data.ID_USER).subscribe(
         data => {
           this.orders = data;
