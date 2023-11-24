@@ -19,10 +19,11 @@ export class ViewOrdersComponent implements OnInit{
   isAsc: boolean = true;
   filtroServicio: string = '';
 
-  availableCategories: string[] = ['Servico', 'Tecnico Responsable'];
+  availableCategories: string[] = ['Servico', 'Tecnico Responsable', 'Fecha'];
   availableCategoriesMap: Map<string, string> = new Map([
     ['Servico', 'SERVICE'],
-    ['Tecnico Responsable', 'RESPONSIBLE_TECHNICIAN']
+    ['Tecnico Responsable', 'RESPONSIBLE_TECHNICIAN'],
+    ['Fecha', 'ISSUE_DATE']
   ]);
   selectedCategory: string = '';
   orders: any[] = [];

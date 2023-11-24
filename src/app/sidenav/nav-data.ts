@@ -87,6 +87,9 @@ export const navbarData: INavbarData[] = [
       {routeLink: 'reportHistory',
         label: 'Reportes de historiales',
       },
+      {routeLink: 'logs',
+        label: 'Logs',
+      }
     ]
   },
   {

@@ -134,7 +134,7 @@ export class AddChangeComponent implements OnInit {
   }*/
 
   sendEmail(id_order: any,description:string ): void {
-    const messageString = "actualizacion en la orden: " + id_order + " asociada al automovil de placa: " + this.historySelected.LICENSE_PLATE_NUMBER + "\n descripción del cambio: " + description;
+    const messageString = "\nActualizacion en la orden: " + id_order + " \nAsociada al automovil de placa: " + this.historySelected.LICENSE_PLATE_NUMBER + "^\nDescripción del cambio: " + description;
     const emailData = {
       name: this.historySelected.CURRENT_OWNER +"",
       email: this.historySelected.OWNER_CONTACT +"",
