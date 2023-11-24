@@ -27,7 +27,7 @@
         <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'ID_STORY' && isAsc, 'fa-arrow-down': orderBy === 'ID_STORY' && !isAsc}"></i>
       </th>
       <th (click)="sortDataByColumn('ID_ORDER')">
-        ID ORDEN
+        ESTADO
         <i class="fa" [ngClass]="{'fa-arrow-up': orderBy === 'ID_ORDER' && isAsc, 'fa-arrow-down': orderBy === 'ID_ORDER' && !isAsc}"></i>
       </th>
       <th (click)="sortDataByColumn('SERVICE')">
@@ -51,7 +51,7 @@
     <tbody>
     <tr *ngFor="let dato of filterByCategory() | slice:(currentPage-1)*itemsPerPage:currentPage*itemsPerPage">
       <td>{{getPlateByHistory(dato.ID_STORY)}}</td>
-      <td>{{ dato.ID_ORDER }}</td>
+      <td>{{ dato.STATUS_ORDER }}</td>
       <td>{{ dato.SERVICE }}</td>
       <td>{{ dato.DESCRIPTION }}</td>
       <td>{{ dato.RESPONSIBLE_TECHNICIAN }}</td>
