@@ -98,7 +98,7 @@ import { ReportTecYearComponent } from './report-tec-year/report-tec-year.compon
       ReportIcomeByYearComponent,
       ReportHistoryComponent,
       ReportAppoitmetsByMonthComponent,
-      ReportTecYearComponent
+      ReportTecYearComponent,
       ReportAppoitmetsByMonthComponent,
       LogsComponent
   ],

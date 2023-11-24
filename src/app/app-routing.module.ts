@@ -88,7 +88,7 @@ const routes: Routes = [
       {path: 'reportIcomeByDay', component: ReportIcomeByDayComponent},
       {path: 'reportHistory', component: ReportHistoryComponent},
       {path: 'logs', component: LogsComponent},
-      {path: 'reportMonthAppoitment', component: ReportAppoitmetsByMonthComponent}
+      {path: 'reportMonthAppoitment', component: ReportAppoitmetsByMonthComponent},
       {path: 'reportMonthAppoitment', component: ReportAppoitmetsByMonthComponent},
       {path: 'reportTecYear', component: ReportTecYearComponent}
 
