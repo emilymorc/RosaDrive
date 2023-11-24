@@ -57,7 +57,7 @@
       <td>{{ dato.RESPONSIBLE_TECHNICIAN }}</td>
       <td>{{ dato.TOTAL_COST }}</td>
       <td>
-         <button class="btn btn-primary" (click)="modifyOrder(dato)">Modificar</button>
+         <button class="btn btn-primary" (click)="modifyOrder(dato)" [disabled]="getStatusAppoitment(dato.ID_ORDER)">Modificar</button>
       </td>
       <td>
         <button class="btn btn-primary" (click)="viewOrder(dato)">VER</button>

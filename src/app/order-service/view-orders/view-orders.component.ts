@@ -91,6 +91,15 @@ export class ViewOrdersComponent implements OnInit{
       }
     });
   }
+
+  getStatusAppoitment(id: any): boolean {
+    const appointment = this.findByID(id);
+    return appointment.STATUS_ORDER !== 'En curso';
+  }
+
+  findByID(id: number): any {
+    return this.orders.find(order => order.ID_ORDER === id);
+  }
   assignSelectedCategory(category: string): void {
     this.selectedCategory = category;
     console.log(this.selectedCategory);
