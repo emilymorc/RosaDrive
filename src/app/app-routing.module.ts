@@ -39,6 +39,7 @@ import {
   ReportAppoitmetsByMonthComponent
 } from "./report/reportAppoitments/report-appoitmets-by-month/report-appoitmets-by-month.component";
 import {LogsComponent} from "./logs/logs.component";
+import {ReportTecYearComponent} from "./report-tec-year/report-tec-year.component";
 
 
 const routes: Routes = [
@@ -88,6 +89,8 @@ const routes: Routes = [
       {path: 'reportHistory', component: ReportHistoryComponent},
       {path: 'logs', component: LogsComponent},
       {path: 'reportMonthAppoitment', component: ReportAppoitmetsByMonthComponent}
+      {path: 'reportMonthAppoitment', component: ReportAppoitmetsByMonthComponent},
+      {path: 'reportTecYear', component: ReportTecYearComponent}
 
     ] ,canActivate:[AuthGuard]
   },
