@@ -3,13 +3,14 @@ import {HttpClient} from "@angular/common/http";
 import {OrderService} from "../../servicios/order.service";
 import {Router} from "@angular/router";
 import {ChangeService} from "../../servicios/change.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-details-order',
   templateUrl: './details-order.component.html',
   styleUrls: ['./details-order.component.css']
 })
-export class DetailsOrderComponent implements OnInit{
+export class DetailsOrderComponent implements OnInit {
   responseData: any;
   public selectedOrder: any = {};
   currentPage: number = 1;
@@ -19,9 +20,10 @@ export class DetailsOrderComponent implements OnInit{
   isAsc: boolean = true;
   filtro: string = '';
   public changes: any[] = [];
-  public images: any = [] ;
+  public images: any = [];
 
-  constructor(private router: Router, private http: HttpClient, public service: OrderService, public changeService: ChangeService) { }
+  constructor(private router: Router, private http: HttpClient, public service: OrderService, public changeService: ChangeService, public orderService:OrderService, private toastr: ToastrService) {
+  }
 
   ngOnInit(): void {
     this.selectedOrder = this.service.getSelectedOrder();
@@ -43,10 +45,10 @@ export class DetailsOrderComponent implements OnInit{
     );
 
   }
+
   onPageChange(event: any): void {
     this.currentPage = event.page;
   }
-
 
 
   filtrar(): any[] {
@@ -58,16 +60,6 @@ export class DetailsOrderComponent implements OnInit{
       return this.changes;
     }
   }
-
-/*  filtrarImages(): any[] {
-    if (this.filtro) {
-      return this.images.filter(dato1 =>
-        dato1.SERVICE && dato1.SERVICE.toLowerCase().includes(this.filtro.toLowerCase())
-      );
-    } else {
-      return this.changes;
-    }
-  }*/
 
 
   sortDataByColumn(column: string): void {
@@ -96,10 +88,25 @@ export class DetailsOrderComponent implements OnInit{
   }
 
   protected readonly length = length;
-    addChange(): void{
-    console.log("se presiono");
-      this.router.navigate(['/dashboard/changeOrder']);
-    }
 
+  addChange(): void {
+    console.log("se presiono");
+    this.router.navigate(['/dashboard/changeOrder']);
+  }
+
+
+  changeState():void{
+    this.orderService.updateOrderStatus(this.selectedOrder.ID_STORY, this.selectedOrder.ID_ORDER, "Finalizada").subscribe(
+      response => {
+        console.log('Respuesta de actualización de estado:', response);
+        this.toastr.success("Orden Finalizada", "EXITOSO!");
+        this.router.navigate(['/dashboard/viewOrder']);
+        // Haz algo con la respuesta aquí
+      },
+      error => {
+        console.error('Error al actualizar el estado del pedido:', error);
+      }
+    );
+  }
 
 }

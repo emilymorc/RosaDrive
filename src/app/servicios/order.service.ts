@@ -69,4 +69,19 @@ export class OrderService{
     return this.http.post(`${this.apiUrl}/updateOrder`, orderData, { headers });
   }
 
+  updateOrderStatus(id_story: number, id_order: number, status: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'User-Agent': 'Insomnia/2023.5.5',
+      'x-access-token': this.castToken,
+    });
+
+    const body = {
+      id_story: id_story,
+      id_order: id_order,
+      status: status,
+    };
+
+    return this.http.post(`${this.apiUrl}/updateOrderStatus`, body, { headers });
+  }
 }
