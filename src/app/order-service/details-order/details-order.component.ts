@@ -125,11 +125,11 @@ export class DetailsOrderComponent implements OnInit {
   }
 
   sendEmail(id_order: any): void {
-    const messageString = "\nActualizacion en la orden: " + id_order + " \nAsociada al automovil de placa: " + this.historySelected.LICENSE_PLATE_NUMBER + "^\nDescripción del cambio: La Orden se ha dado por finalizada su automovil esta listo";
+    const messageString = "\nActualizacion en la orden: " + id_order + " \nAsociada al automovil de placa: " + this.historySelected.LICENSE_PLATE_NUMBER + "\nDescripción del cambio: La Orden se ha dado por finalizada su automovil esta listo";
     const emailData = {
       name: this.historySelected.CURRENT_OWNER +"",
       email: this.historySelected.OWNER_CONTACT +"",
-      message: messageString
+      estado: messageString
     };
     console.log(emailData)
 

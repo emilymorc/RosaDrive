@@ -108,7 +108,7 @@ export class OrderServiceComponent implements OnInit{
     const emailData = {
       name: this.historySelected[0].CURRENT_OWNER +"",
       email: this.historySelected[0].OWNER_CONTACT +"",
-      message: "se creo la orden numero: " + id_order + " asociada al automovil de placa: " + this.historySelected[0].LICENSE_PLATE_NUMBER
+      estado: "se creo la orden numero: " + id_order + " asociada al automovil de placa: " + this.historySelected[0].LICENSE_PLATE_NUMBER
     };
     console.log(emailData)
 

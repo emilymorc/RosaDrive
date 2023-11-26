@@ -127,7 +127,7 @@ export class AddChangeComponent implements OnInit {
     const emailData = {
       name: this.historySelected.CURRENT_OWNER +"",
       email: this.historySelected.OWNER_CONTACT +"",
-      message: messageString
+      estado: messageString
     };
     console.log(emailData)
 
