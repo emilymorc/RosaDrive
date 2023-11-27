@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
     private apiUrl = 'https://rosasdriveback.onrender.com/api/users/';
-    //private apiUrlG = 'https://app-e988bfc5-a6ee-41bb-a6af-e418a4b27735.cleverapps.io/api/users/';
     private token: string | null = localStorage.getItem('token')
     private castToken: string | number | (string | number)[] = this.token as string | number | (string | number)[];
     private selectedUser: any;

@@ -76,6 +76,5 @@ export class HistoryService {
   }
   getSelectedHistory() {
     return this.selectedHistory;
-    //return this.http.get(url, { headers });
   }
 }

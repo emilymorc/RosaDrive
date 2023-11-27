@@ -46,7 +46,6 @@ export class ReportTecYearComponent implements OnInit{
           name: "Número de ordenes",
           data: data.map((item: any) => item.ORDERS_COMPLETE)
         };
-        //const monthNames = data.map((item: any) => this.monthNames[item.RESPONSIBLE_TECHNICIAN - 1]);
 
         this.chartOptions = {
           series: [formattedData],

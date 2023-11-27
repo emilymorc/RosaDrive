@@ -112,7 +112,6 @@ export class AutostorieComponent {
 
     const data = {
 
-      // creationDate: this.creationDate,
       entryDate: this.convertirFecha(this.entryDate),
       brand: this.brand,
       color: this.color,

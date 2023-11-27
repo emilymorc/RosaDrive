@@ -52,9 +52,6 @@ import { ReportHistoryComponent } from './report/report-history/report-history.c
 import { ReportAppoitmetsByMonthComponent } from './report/reportAppoitments/report-appoitmets-by-month/report-appoitmets-by-month.component';
 import { LogsComponent } from './logs/logs.component';
 import { ReportTecYearComponent } from './report-tec-year/report-tec-year.component';
-// import { NgApexchartsModule } from 'ngx-apexcharts';
-
-
 
 
 @NgModule({
@@ -105,7 +102,6 @@ import { ReportTecYearComponent } from './report-tec-year/report-tec-year.compon
     imports: [
         PaginationModule.forRoot(),
         BrowserModule,
- //     NgApexchartsModule,
         RouterOutlet,
         HttpClientModule,
       NgApexchartsModule,

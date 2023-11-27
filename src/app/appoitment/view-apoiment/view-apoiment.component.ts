@@ -108,8 +108,6 @@ export class ViewApoimentComponent {
     return appointment.STATUS !== 'Activa' && appointment.STATUS !== 'En Curso';
   }
 
-//STATUS_ORDER
-
 
   findByID(id: number): any {
     return this.orders.find(order => order.ID_APPOINTMENT === id);
@@ -170,7 +168,6 @@ export class ViewApoimentComponent {
           this.orders = data;
         },
         error => {
-          //console.error('Error al obtener usuarios:', error);
         }
       );
     } else {
@@ -179,7 +176,6 @@ export class ViewApoimentComponent {
           this.orders = data;
         },
         error => {
-          //console.error('Error al obtener usuario:', error);
         }
       );
     }

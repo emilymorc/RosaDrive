@@ -70,7 +70,6 @@ export class CreateAppoitmentComponent implements OnInit {
     const mañana = new Date(hoy); // Crea una copia de la fecha actual
     mañana.setDate(hoy.getDate() + 1); // Suma un día a la copia para obtener la fecha de mañana
 
-    // Obtiene el año, mes y día en el formato "YYYY-MM-DD"
     const año = mañana.getFullYear();
     const mes = String(mañana.getMonth() + 1).padStart(2, '0'); // Agrega 1 al mes porque los meses comienzan desde 0
     const dia = String(mañana.getDate()).padStart(2, '0');
@@ -159,7 +158,6 @@ export class CreateAppoitmentComponent implements OnInit {
   createAppoitment(form: any){
     const appointmentData = {
       idUser: this.id_user,
-      //appointmentDate: this.appoitment_date ,
       appointmentDate: this.appoitment_date + ' ' + this.formatHourToHHMMSS(this.selectedHour),
       description: this.description,
       status: this.status

@@ -180,7 +180,6 @@ export class ModifyAppoitmentComponent implements OnInit{
       idUser: this.selectedAppoitment.ID_USER,
       idAppointment: this.selectedAppoitment.ID_APPOINTMENT,
       appointmentDate: form.value.entryDate+ ' ' + this.formatHourToHHMMSS(form.value.selectedHour),
-      //appointmentDate: form.value.appoitment_date + ' ' + this.formatHourToHHMMSS(this.selectedHour),
       description: form.value.description,
       status: form.value.status
 
