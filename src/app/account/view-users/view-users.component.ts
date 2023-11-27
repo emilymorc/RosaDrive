@@ -82,10 +82,8 @@ export class ViewUsersComponent implements OnInit{
   modificarUsuario(dato: any): void {
     this.userService.getUserById(dato.ID_USER).subscribe(
       response => {
-        console.log(response.body);
         this.userService.setSelectedUser(dato);
         this.router.navigate(['/dashboard/modifyAccount']);
-        console.log('Datos del usuario:', response);
       },
       error => {
         console.error('Error al obtener datos del usuario:', error);
@@ -99,8 +97,6 @@ export class ViewUsersComponent implements OnInit{
     if (confirmation) {
       this.userService.deleteUser(userId).subscribe(
         (response) => {
-          console.log('Usuario eliminado:', response);
-          // Actualizar la lista de usuarios después de la eliminación
           this.users = this.users.filter(user => user.ID_USER !== userId);
         },
         (error) => {

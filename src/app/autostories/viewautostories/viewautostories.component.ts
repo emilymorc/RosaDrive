@@ -83,10 +83,8 @@ export class ViewautostoriesComponent {
   getHistories(dato: any){
     this.historyService.getHistoryById(dato.ID_USER).subscribe(
       response => {
-        console.log(response.body);
         this.historyService.setSelectedHistory(dato);
         this.router.navigate(['/dashboard/detailsHistory']);
-        console.log('Datos del Historial:', response);
       },
       error => {
         console.error('Error al obtener datos del Historial:', error);
@@ -97,10 +95,8 @@ export class ViewautostoriesComponent {
   modifyHistories(dato: any){
     this.historyService.getHistoryById(dato.ID_USER).subscribe(
       response => {
-        console.log(response.body);
         this.historyService.setSelectedHistory(dato);
         this.router.navigate(['/dashboard/modifyHistory']);
-        console.log('Datos del Historial:', response);
       },
       error => {
         console.error('Error al obtener datos del Historial:', error);

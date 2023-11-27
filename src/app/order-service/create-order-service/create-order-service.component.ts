@@ -35,7 +35,6 @@ export class CreateOrderServiceComponent implements OnInit{
     this.service1.getHistories().subscribe(
       (data: any) => {
         this.histories = data;
-        console.log(data)
       },
       (error: any) => {
         console.error(error);

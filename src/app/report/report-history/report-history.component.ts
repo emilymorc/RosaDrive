@@ -99,7 +99,6 @@ export class ReportHistoryComponent {
         (this.filter5 === '' || history.SERVICE_TYPE === this.filter5)
       );
     });
-    console.log(this.filter1)
     this.updateTable(filterHistories);
   }
 
@@ -115,6 +114,5 @@ export class ReportHistoryComponent {
 
   updateTable(data: any[]) {
     this.historiesWhitFilter = data;
-    console.log(this.histories)
   }
 }

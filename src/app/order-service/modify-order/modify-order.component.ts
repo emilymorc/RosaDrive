@@ -72,11 +72,9 @@ export class ModifyOrderComponent implements OnInit{
       // 'User-Agent': 'Insomnia/2023.5.5',
       'x-access-token': valorCasteado
     });
-    console.log('Token from localStorage:', valorCasteado);
     this.http.post(apiUrl, data, {headers: headers})
       .subscribe(
         (response) => {
-          console.log('create order successful:', response);
           this.toastr.success("Orden de servicio creada con exito", "EXITOSO!");
           this.resetForm(form);
         },
@@ -134,7 +132,6 @@ export class ModifyOrderComponent implements OnInit{
 
      this.orderService.updateOrderData(orderData).subscribe(
        (response) => {
-         console.log('Orden actualizada:', response);
         this.toastr.success("Orden modificada con exito", "EXITOSO!");
         this.resetForm(userDataForm);
          this.router.navigate(['/dashboard/viewOrder']);

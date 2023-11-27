@@ -74,7 +74,6 @@ export class ChangeService {
       'Content-Type': 'application/json',
       'x-access-token': this.castToken
     });
-    console.log(this.castToken);
     return this.http.get(url, { headers });
   }
 }

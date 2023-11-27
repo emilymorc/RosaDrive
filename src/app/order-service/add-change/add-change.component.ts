@@ -95,10 +95,8 @@ export class AddChangeComponent implements OnInit {
     if (changeDataForm.valid) {
       this.changeService.addChange(this.selectedOrder.ID_ORDER, description, remplaced_parts, referencesParts).subscribe(
         response => {
-          console.log('Cambio agregado:', response);
           const changeId = response.insertId;
           this.postImages(changeId);
-          console.log(changeId);
           this.sendEmail(this.selectedOrder.ID_ORDER,description);
           this.toastr.success("Cambio agregado con exito", "EXITOSO!");
         },
@@ -114,7 +112,6 @@ export class AddChangeComponent implements OnInit {
     this.historyService.getHistoryById(this.selectedOrder.ID_STORY).subscribe(
       response => {
         this.historySelected = response[0];
-        //console.log(this.historySelected[0]);
       },
       error => {
         console.error('Error al obtener datos del Historial:', error);
@@ -129,11 +126,9 @@ export class AddChangeComponent implements OnInit {
       email: this.historySelected.OWNER_CONTACT +"",
       estado: messageString
     };
-    console.log(emailData)
 
     this.mailService.sendEmail(emailData).subscribe(
       response => {
-        console.log('Respuesta:', response);
       },
       error => {
         console.error('Error al enviar el correo:', error);
@@ -144,13 +139,11 @@ export class AddChangeComponent implements OnInit {
   async postImages(idChange: number) {
     for (const imagen of this.listImages) {
       const base64Image = await this.fileToBase64(imagen.file);
-      console.log(base64Image);
 
       this.changeService.uploadImage(base64Image, this.imagesApiKey).subscribe(
         response => {
           const imageUrl = response.data.display_url;
           const imageName = response.data.image.filename;
-          console.log('Imagen subida con éxito:', response);
           this.uploadChangeImage(idChange, imageUrl, imageName);
         },
         error => {
@@ -163,7 +156,6 @@ export class AddChangeComponent implements OnInit {
   uploadChangeImage(changeId: number, displayUrl: string, filename: string) {
     this.changeService.uploadChangeImage(changeId, displayUrl, filename).subscribe(
       response => {
-        console.log('Imagen subida al back con éxito:', response);
       },
       error => {
         console.error('Error al subir la imagen:', error);

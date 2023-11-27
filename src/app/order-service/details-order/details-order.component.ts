@@ -53,7 +53,6 @@ export class DetailsOrderComponent implements OnInit {
     this.historyService.getHistoryById(this.selectedOrder.ID_STORY).subscribe(
       response => {
         this.historySelected = response[0];
-        //console.log(this.historySelected[0]);
       },
       error => {
         console.error('Error al obtener datos del Historial:', error);
@@ -105,18 +104,15 @@ export class DetailsOrderComponent implements OnInit {
   protected readonly length = length;
 
   addChange(): void {
-    console.log("se presiono");
     this.router.navigate(['/dashboard/changeOrder']);
   }
 
   changeState(): void {
     this.orderService.updateOrderStatus(this.selectedOrder.ID_STORY, this.selectedOrder.ID_ORDER, "Finalizada").subscribe(
       response => {
-        console.log('Respuesta de actualización de estado:', response);
         this.sendEmail(this.selectedOrder.ID_ORDER)
         this.toastr.success("Orden Finalizada", "EXITOSO!");
         this.router.navigate(['/dashboard/viewOrder']);
-        // Haz algo con la respuesta aquí
       },
       error => {
         console.error('Error al actualizar el estado del pedido:', error);
@@ -131,11 +127,8 @@ export class DetailsOrderComponent implements OnInit {
       email: this.historySelected.OWNER_CONTACT +"",
       estado: messageString
     };
-    console.log(emailData)
-
     this.mailService.sendEmail(emailData).subscribe(
       response => {
-        console.log('Respuesta:', response);
       },
       error => {
         console.error('Error al enviar el correo:', error);

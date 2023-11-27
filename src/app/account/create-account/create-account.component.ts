@@ -58,7 +58,6 @@ export class CreateAccountComponent {
     this.service.addAccount(userData)
       .subscribe(
         (response) => {
-          console.log('Sign up successful:', response);
           this.toastr.success("Usuario creado con exito", "EXITOSO!");
           this.resetForm(form);
         },

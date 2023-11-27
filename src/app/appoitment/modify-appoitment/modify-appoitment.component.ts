@@ -43,7 +43,6 @@ export class ModifyAppoitmentComponent implements OnInit{
 
   constructor( private http: HttpClient, private router: Router, private toastr: ToastrService, private formBuilder: FormBuilder, public service1: UserService, private appointmentService: AppointmentService, private authService: AuthService) {
     this.minDate = this.obtenerFechaManana();
-    // console.log('HORA FORMATEADA'+this.formatHourToHHMMSS('12 AM'))
   }
 
   appoitmentState= ['Activa', 'Completada', 'Cancelada'];
@@ -64,20 +63,6 @@ export class ModifyAppoitmentComponent implements OnInit{
     if (!this.authService.isUserAdmin()){
       this.appoitmentState= ['Activa','Cancelada'];
     }
-
-    /*this.service1.getUsers().subscribe((data: any[]) => {
-      this.usersData = data;
-      this.userNamesAndLastNames = this.concatNamesAndLastNames(data);
-      this.userNamesAndIds = this.concatNamesAndIds(this.usersData);
-      this.selectedAppoitment = this.appointmentService.getSelectedAppoitment();
-      this.fecha_hora = this.selectedAppoitment.APPOINTMENTS_DATE;
-      this.id_user = this.selectedAppoitment.ID_USER;
-      this.status == this.selectedAppoitment.STAATUS;
-
-      this.fecha = this.fecha_hora.split('T')[0]; // Obtenemos la parte de la fecha
-      this.hora= this.obtenerHoraFormateada(this.fecha_hora)
-
-    });*/
     this.userNamesAndIds = this.concatNamesAndIds(this.usersData);
     this.selectedAppoitment = this.appointmentService.getSelectedAppoitment();
     this.fecha_hora = this.selectedAppoitment.APPOINTMENTS_DATE;
@@ -137,8 +122,6 @@ export class ModifyAppoitmentComponent implements OnInit{
 
   onDateChange(form: NgForm){
     this.horasDisponibles = [];
-    console.log(this.appoitment_date );
-    console.log(this.selectedHour + "hora seleccionada");
     this.getBusyHours(form.value.entryDate + " 12:00:00");
   }
 
@@ -160,7 +143,6 @@ export class ModifyAppoitmentComponent implements OnInit{
             return `${hora12h < 10 ? '0' : ''}${hora12h}:${minutosUTC < 10 ? '0' : ''}${minutosUTC} ${periodo}`;
           });
 
-        console.log(this.horasOcupadas[0]);
         this.generarHorasDisponibles();
       },
       (error) => {
@@ -203,7 +185,6 @@ export class ModifyAppoitmentComponent implements OnInit{
       status: form.value.status
 
     };
-    console.log(this.hora);
     if (this.hora.trim() === ''){
       this.toastr.error("Por favor, elige una hora", "Campos Vacios");
       return;
@@ -211,7 +192,6 @@ export class ModifyAppoitmentComponent implements OnInit{
 
     this.appointmentService.updateAppoitment(appointmentData).subscribe(
       (response) => {
-        console.log('Éxito: ', response);
         this.toastr.success("Cita modificada con exito", "EXITOSO!");
         this.router.navigate(['/dashboard/viewApoimentComponent']);
       },

@@ -40,7 +40,6 @@ export class OrderServiceComponent implements OnInit{
     this.historyService.getHistories().subscribe(
       (data: any) => {
         this.histories = data;
-        console.log(data)
       },
       (error: any) => {
         console.error(error);
@@ -81,7 +80,6 @@ export class OrderServiceComponent implements OnInit{
     this.serviceOrder.addOrder(data)
       .subscribe(
         (response) => {
-          console.log('create order successful:', response);
           this.sendEmail(response.insertId);
           this.toastr.success("Orden de servicio creada con exito", "EXITOSO!");
           this.resetForm(form);
@@ -110,11 +108,8 @@ export class OrderServiceComponent implements OnInit{
       email: this.historySelected[0].OWNER_CONTACT +"",
       estado: "se creo la orden numero: " + id_order + " asociada al automovil de placa: " + this.historySelected[0].LICENSE_PLATE_NUMBER
     };
-    console.log(emailData)
-
     this.mailService.sendEmail(emailData).subscribe(
       response => {
-        console.log('Respuesta:', response);
       },
       error => {
         console.error('Error al enviar el correo:', error);

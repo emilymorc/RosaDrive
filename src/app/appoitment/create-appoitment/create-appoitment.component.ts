@@ -44,7 +44,6 @@ export class CreateAppoitmentComponent implements OnInit {
   constructor( private http: HttpClient, private router: Router, private toastr: ToastrService, private formBuilder: FormBuilder, public service1: UserService, private appointmentService: AppointmentService, private authService: AuthService) {
     this.isAdmin = this.authService.isUserAdmin();
     this.minDate = this.obtenerFechaManana();
-    // console.log('HORA FORMATEADA'+this.formatHourToHHMMSS('12 AM'))
   }
 
   ngOnInit(): void {
@@ -168,7 +167,6 @@ export class CreateAppoitmentComponent implements OnInit {
 
     this.appointmentService.addAppointment(appointmentData).subscribe(
       (response) => {
-        console.log('Éxito: ', response);
         this.toastr.success("Cita creada con exito", "EXITOSO!");
         this.resetForm(form);
       },

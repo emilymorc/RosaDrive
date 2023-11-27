@@ -19,7 +19,6 @@ export class AuthService {
   constructor(private http: HttpClient){
     this.isAuthenticated = !!localStorage.getItem('token');
     this.currentUser = null;
-    console.log(this.isAuthenticated);
   }
 
   logear(email: string, password: string) {

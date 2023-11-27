@@ -159,7 +159,6 @@ export class AutostorieComponent {
     this.service.addAutoStorie(data)
       .subscribe(
         (response) => {
-          console.log('Sign up successful:', response);
           this.toastr.success("Historial creado con exito", "EXITOSO!");
           this.resetForm(form);
         },

@@ -15,10 +15,8 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ): boolean {
     if (this.authService.isLoggedIn()) {
-      console.log('SE ENCUENTRA LOGEADO')
       return true;
     } else {
-      console.log('Acceso denegado')
       this.router.navigate(['.']);
       return false;
     }

@@ -66,11 +66,8 @@ export class ModifyAccountComponet implements OnInit{
     const oldPassword = passwordDataForm.value.oldPassword;
     const newPassword = passwordDataForm.value.newPassword;
 
-    console.log(oldPassword + " - " + newPassword);
-
     if ((!oldPassword ||oldPassword.trim() === '') && (!newPassword || newPassword.trim() === '')){
       this.updateOnlyDataUser(userData, userDataForm);
-      console.log("solo user")
     }else {
       if(!oldPassword || oldPassword.trim() === ''){
         this.toastr.error("Por favor, complete todos los campos", "¡Campos incompletos!");
@@ -83,14 +80,12 @@ export class ModifyAccountComponet implements OnInit{
       }
       this.updatePassword(passwordDataForm);
       this.updateOnlyDataUser(userData, userDataForm);
-      console.log("user con password")
     }
   }
 
   updateOnlyDataUser(userData: any, userDataForm: NgForm ): void{
     this.userService.updateUserData(userData).subscribe(
       (response) => {
-        console.log('Usuario actualizado:', response);
         this.toastr.success("Usuario modificado con exito", "EXITOSO!");
         this.resetForm(userDataForm);
         this.router.navigate(['/dashboard/view-users']);

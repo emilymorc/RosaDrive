@@ -117,7 +117,6 @@ export class ViewApoimentComponent {
 
   assignSelectedCategory(category: string): void {
     this.selectedCategory = category;
-    console.log(this.selectedCategory);
   }
 
   filterByCategory(): any[] {
@@ -134,10 +133,8 @@ export class ViewApoimentComponent {
   modifyAppoitement(dato: any): void {
     this.appointmentService.getAppoitmentId(dato.ID_APPOINTMENT).subscribe(
       response => {
-        console.log(response.body);
         this.appointmentService.setSelectedAppoitment(dato);
         this.router.navigate(['/dashboard/modifyAppoitment']);
-        console.log('Datos de la cita', response);
       },
       error => {
         console.error('Error al obtener datos de la cita:', error);
@@ -156,7 +153,6 @@ export class ViewApoimentComponent {
     };
     this.appointmentService.updateAppoitment(appointmentData).subscribe(
       (response) => {
-        console.log('Éxito: ', response);
         this.toastr.success("Cita cancelada con exito", "EXITOSO!");
         this.getApoitments();
       },

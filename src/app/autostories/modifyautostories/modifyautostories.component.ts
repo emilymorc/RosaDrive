@@ -223,7 +223,6 @@ export class ModifyautostoriesComponent {
     this.service.updateStorie(data)
       .subscribe(
         (response) => {
-          console.log('Sign up successful:', response);
           this.toastr.success("Historial modificado con exito", "EXITOSO!");
           this.resetForm(form);
           this.router.navigate(['/dashboard/viewStories']);
